@@ -1,0 +1,2 @@
+[console_scripts]
+gutenberg-reader = gutenberg_reader.cli:main

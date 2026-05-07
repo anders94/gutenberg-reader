@@ -1,0 +1,4 @@
+httpx>=0.28
+click>=8.0
+rich>=13.0
+chardet>=5.0

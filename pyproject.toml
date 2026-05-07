@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gutenberg-reader"
+version = "0.1.0"
+description = "Download Project Gutenberg books and produce structured JSON for TTS audiobook generation"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx>=0.28",
+    "click>=8.0",
+    "rich>=13.0",
+    "chardet>=5.0",
+]
+
+[project.scripts]
+gutenberg-reader = "gutenberg_reader.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["gutenberg_reader*"]
