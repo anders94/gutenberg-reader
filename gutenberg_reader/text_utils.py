@@ -190,10 +190,10 @@ def chunk_text(text: str, chunk_size: int = 800, overlap: int = 150) -> list[str
 def normalize_whitespace(text: str) -> str:
     """Normalize whitespace for comparison.
 
-    Also treats Gutenberg double-dashes (--) as whitespace separators, since
-    the model often converts them to spaces and TTS treats them as pauses.
+    Also treats Gutenberg dashes (-- and em-dash —) as whitespace separators,
+    since the model often converts them to spaces and TTS treats them as pauses.
     """
-    text = re.sub(r"-{2,}", " ", text)  # -- and --- → space
+    text = re.sub(r"-{2,}|\u2014", " ", text)  # --, ---, em-dash → space
     return re.sub(r"\s+", " ", text).strip()
 
 
@@ -371,3 +371,319 @@ def find_closest_character(name: str, known_chars: list[str], max_distance: int 
             best_dist = dist
             best = char
     return best if best_dist <= max_distance else None
+
+
+# ── Speaker attribution anchor propagation ────────────────────────────────────
+
+SPEECH_VERB_RE = re.compile(
+    r"\b(said|replied|answered|cried|asked|returned|exclaimed|whispered|remarked|"
+    r"continued|added|observed|repeated|murmured|laughed|called|declared|"
+    r"interposed|interrupted|rejoined|responded|urged|insisted|demanded|"
+    r"admitted|confessed|agreed|protested|pleaded|began|concluded|sighed|"
+    r"shouted|screamed|muttered|stammered|faltered|ventured|suggested|told)\b",
+    re.IGNORECASE,
+)
+
+_REPORTED_SPEECH_RE = re.compile(
+    r"\b(said|replied|answered|cried|asked|returned|exclaimed|told|informed|"
+    r"acknowledged|admitted)\s+that\b",
+    re.IGNORECASE,
+)
+
+
+def _is_attribution_narration(seg: dict) -> bool:
+    """Return True if this narration segment is a speech attribution tag.
+
+    Attribution tags are short narration segments containing a speech verb that
+    are NOT reported-speech constructions like "replied that he had not".
+    """
+    if seg.get("type") != "narration":
+        return False
+    text = seg.get("text", "")
+    if not SPEECH_VERB_RE.search(text):
+        return False
+    if _REPORTED_SPEECH_RE.search(text):
+        return False  # indirect speech, not a direct attribution tag
+    return len(text.split()) <= 20
+
+
+def _group_conversation_chains(segments: list[dict]) -> list[list[int]]:
+    """Group segment indices into conversation chains.
+
+    A chain is a maximal sequence of dialogue + attribution-narration segments.
+    Any narration that is NOT an attribution tag breaks the chain.
+    Chains with fewer than 2 dialogue segments are discarded.
+    """
+    chains: list[list[int]] = []
+    current: list[int] = []
+
+    for i, seg in enumerate(segments):
+        if seg.get("type") == "dialogue":
+            current.append(i)
+        elif _is_attribution_narration(seg):
+            if current:  # only attach if we're already in a chain
+                current.append(i)
+        else:
+            dia_count = sum(1 for j in current if segments[j].get("type") == "dialogue")
+            if dia_count >= 2:
+                chains.append(current)
+            current = []
+
+    dia_count = sum(1 for j in current if segments[j].get("type") == "dialogue")
+    if dia_count >= 2:
+        chains.append(current)
+
+    return chains
+
+
+def _group_into_speech_units(
+    dialogue_idxs: list[int],
+    segments: list[dict],
+) -> list[list[int]]:
+    """Group consecutive dialogue indices into speech units.
+
+    Two adjacent dialogue segments belong to the same speech unit when the only
+    segment between them is attribution narration ending with a comma, semicolon,
+    or colon — indicating the speech continues.
+
+    Example: '"Part A," said she, "Part B."' → one speech unit [A, B].
+    Example: '"Statement." said she. [next dia]' → two separate speech units.
+    """
+    if not dialogue_idxs:
+        return []
+
+    units: list[list[int]] = [[dialogue_idxs[0]]]
+
+    for pos in range(1, len(dialogue_idxs)):
+        prev_idx = dialogue_idxs[pos - 1]
+        curr_idx = dialogue_idxs[pos]
+        between = segments[prev_idx + 1:curr_idx]
+
+        is_bridge = (
+            len(between) == 1
+            and _is_attribution_narration(between[0])
+            and between[0].get("text", "").strip().endswith((",", ";", ":"))
+        )
+
+        if is_bridge:
+            units[-1].append(dialogue_idxs[pos])
+        else:
+            units.append([dialogue_idxs[pos]])
+
+    return units
+
+
+def _build_alias_map(characters: list) -> dict[str, str]:
+    """Build alias → canonical_name lookup from CharacterInfo-like objects."""
+    alias_map: dict[str, str] = {}
+    for char in characters:
+        name = char.name if hasattr(char, "name") else char["name"]
+        aliases = char.aliases if hasattr(char, "aliases") else char.get("aliases", [])
+        alias_map[name.lower()] = name
+        for alias in aliases:
+            alias_map[alias.lower()] = name
+    return alias_map
+
+
+def _find_char_in_text(text: str, alias_map: dict[str, str]) -> str | None:
+    """Return canonical character name if a known alias appears in text (word-boundary)."""
+    text_lower = text.lower()
+    best: str | None = None
+    best_len = 0
+    for alias, canonical in alias_map.items():
+        if len(alias) < 3:
+            continue
+        if re.search(r"\b" + re.escape(alias) + r"\b", text_lower) and len(alias) > best_len:
+            best_len = len(alias)
+            best = canonical
+    return best
+
+
+_REFERENCE_VERB_RE = re.compile(
+    r"^\s+(said|says|told|has|had|was|were|did|does|is|are|will|would|can|could|"
+    r"may|might|came|went|has|have|replied|asked|answered|cried)",
+    re.IGNORECASE,
+)
+
+
+def _extract_scene_cast(
+    chain_segs: list[dict],
+    confirmed_speakers: set[str],
+    char_names: list[str],
+) -> set[str]:
+    """Detect characters present in a scene from VOCATIVE use of their name in dialogue.
+
+    Only counts a character as present if their full canonical name is directly
+    addressed (vocative), NOT merely referenced ("Mrs. Long says that...").
+
+    Detection:
+    - Name in first 50 chars AND not immediately followed by a reference verb.
+    - OR name follows an address marker ("My dear NAME", "Oh NAME").
+    """
+    cast = set(confirmed_speakers)
+    for seg in chain_segs:
+        if seg.get("type") != "dialogue":
+            continue
+        text = seg.get("text", "")
+        text_inner = text.lstrip('"\u201c').lstrip()
+        for name in char_names:
+            name_pat = re.escape(name)
+            # Case 1: full name in first 50 chars, not followed by a reference verb
+            m = re.search(r"\b" + name_pat + r"\b", text_inner[:50], re.IGNORECASE)
+            if m:
+                after = text_inner[m.end():m.end() + 25]
+                if not _REFERENCE_VERB_RE.match(after):
+                    cast.add(name)
+                    continue
+            # Case 2: full name follows an address marker anywhere in text
+            if re.search(
+                r"\b(my dear|dear|oh|ah|pray)\s+" + name_pat + r"\b",
+                text,
+                re.IGNORECASE,
+            ):
+                cast.add(name)
+    return cast
+
+
+def extract_attribution_anchors(
+    segments: list[dict],
+    characters: list,
+) -> dict[int, str]:
+    """Find dialogue segments directly confirmed by adjacent attribution narration.
+
+    When narration says "said Mr. Bennet" (contains a character name), the
+    immediately adjacent dialogue segments are mapped to that character.
+
+    Returns: dict mapping dialogue segment index → canonical character name.
+    """
+    alias_map = _build_alias_map(characters)
+    named_anchors: dict[int, str] = {}
+
+    for i, seg in enumerate(segments):
+        if not _is_attribution_narration(seg):
+            continue
+        text = seg.get("text", "")
+        canonical = _find_char_in_text(text, alias_map)
+        if canonical:
+            if i > 0 and segments[i - 1].get("type") == "dialogue":
+                named_anchors[i - 1] = canonical
+            if i < len(segments) - 1 and segments[i + 1].get("type") == "dialogue":
+                named_anchors[i + 1] = canonical
+
+    return named_anchors
+
+
+def propagate_anchors(
+    segments: list[dict],
+    characters: list,
+    char_names: list[str],
+) -> tuple[list[dict], list[list[int]], int]:
+    """Propagate confirmed speakers through 2-person conversation chains.
+
+    Algorithm:
+    1. Group segments into conversation chains (dialogue + attribution narration).
+    2. For each chain, find confirmed speakers from:
+       a. Named anchors (attribution narration containing a character name)
+       b. Fallback: LLM-assigned speakers adjacent to attribution narration
+    3. Detect scene cast (2nd character from dialogue text name mentions).
+    4. If cast == 2: fill unanchored dialogue via strict alternation by speech unit.
+    5. If cast != 2 or no anchors: flag chain for Tier-2 LLM review.
+
+    Returns: (corrected_segments, flagged_chains, n_corrections)
+    """
+    named_anchors = extract_attribution_anchors(segments, characters)
+    corrected = [dict(s) for s in segments]
+    chains = _group_conversation_chains(segments)
+    flagged_chains: list[list[int]] = []
+    n_corrections = 0
+
+    for chain in chains:
+        dialogue_idxs = [i for i in chain if segments[i].get("type") == "dialogue"]
+        if len(dialogue_idxs) < 2:
+            continue
+
+        # Step 1: confirmed speakers from named anchors
+        confirmed: dict[int, str] = {
+            i: named_anchors[i] for i in dialogue_idxs if i in named_anchors
+        }
+
+        # Step 2: fallback — LLM-assigned speakers adjacent to attribution narration
+        if not confirmed:
+            for idx in dialogue_idxs:
+                adj_before = idx - 1 >= 0 and _is_attribution_narration(segments[idx - 1])
+                adj_after = (
+                    idx + 1 < len(segments)
+                    and _is_attribution_narration(segments[idx + 1])
+                )
+                if adj_before or adj_after:
+                    spk = segments[idx].get("speaker")
+                    if spk and spk not in ("Unknown", "Narrator"):
+                        confirmed[idx] = spk
+
+        if not confirmed:
+            flagged_chains.append(chain)
+            continue
+
+        confirmed_speakers = set(confirmed.values())
+
+        # Step 3: detect scene cast from dialogue text (e.g., "My dear Mr. Bennet,")
+        chain_segs = [segments[i] for i in chain]
+        scene_cast = _extract_scene_cast(chain_segs, confirmed_speakers, char_names)
+        scene_cast = {c for c in scene_cast if c in char_names}
+
+        if len(scene_cast) != 2:
+            flagged_chains.append(chain)
+            continue
+
+        # Step 4: group dialogue into speech units (handle split-speech patterns)
+        speech_units = _group_into_speech_units(dialogue_idxs, segments)
+
+        # Map each speech unit position to its confirmed speaker
+        su_confirmed: dict[int, str] = {}
+        for su_pos, su in enumerate(speech_units):
+            for seg_idx in su:
+                if seg_idx in confirmed:
+                    su_confirmed[su_pos] = confirmed[seg_idx]
+                    break
+
+        if not su_confirmed:
+            flagged_chains.append(chain)
+            continue
+
+        # Step 5: determine alternation orientation from confirmed speech units
+        chars = list(scene_cast)
+        anchor_pos = min(su_confirmed.keys())
+        anchor_spk = su_confirmed[anchor_pos]
+
+        # Try both orientations; use the one consistent with all confirmed anchors
+        best_anchor_char_idx: int | None = None
+        for try_idx in range(2):
+            ok = True
+            for su_pos, spk in su_confirmed.items():
+                if spk not in chars:
+                    ok = False
+                    break
+                expected = chars[(try_idx + (su_pos - anchor_pos)) % 2]
+                if expected != spk:
+                    ok = False
+                    break
+            if ok:
+                best_anchor_char_idx = try_idx
+                break
+
+        if best_anchor_char_idx is None:
+            flagged_chains.append(chain)
+            continue
+
+        # Step 6: apply alternation to unconfirmed speech units
+        for su_pos, su in enumerate(speech_units):
+            if su_pos in su_confirmed:
+                continue
+            expected_char_idx = (best_anchor_char_idx + (su_pos - anchor_pos)) % 2
+            new_speaker = chars[expected_char_idx]
+            for seg_idx in su:
+                if corrected[seg_idx].get("speaker") != new_speaker:
+                    corrected[seg_idx] = {**corrected[seg_idx], "speaker": new_speaker}
+                    n_corrections += 1
+
+    return corrected, flagged_chains, n_corrections

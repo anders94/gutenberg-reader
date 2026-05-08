@@ -97,6 +97,16 @@ def _strip_trailing_commas(content: str) -> str:
     return re.sub(r",(\s*[}\]])", r"\1", content)
 
 
+def _strip_empty_string_keys(content: str) -> str:
+    """Remove stray ,"", artifacts (empty-string pseudo-keys the model appends after a value).
+
+    e.g. "text": "...master\\"","",  ->  "text": "...master\\"",
+    In valid JSON a key is always followed by ':', never ',', so ,"", is always wrong.
+    """
+    import re
+    return re.sub(r',\s*""\s*,', ',', content)
+
+
 def _strip_markdown_fences(content: str) -> str:
     """Remove ```json ... ``` or ``` ... ``` wrappers if present."""
     content = content.strip()
@@ -212,6 +222,7 @@ class OllamaClient:
         content = _strip_markdown_fences(content)
         content = _fix_json_strings(content)
         content = _strip_trailing_commas(content)
+        content = _strip_empty_string_keys(content)
         try:
             return json.loads(content)
         except json.JSONDecodeError as e:

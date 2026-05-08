@@ -31,7 +31,6 @@ def run(
 ) -> dict[int, tuple[ProcessedChapter, CriticReport]]:
     """Run critic pass on processed chapters. Returns {num: (accepted_chapter, report)}."""
     stage_dir = config.stage_dir(6)
-    char_names = [c.name for c in characters]
     nums = chapter_nums if chapter_nums is not None else sorted(processed.keys())
 
     results: dict[int, tuple[ProcessedChapter, CriticReport]] = {}
@@ -55,7 +54,7 @@ def run(
         if config.verbose:
             console.print(f"[cyan]Stage 06:[/cyan] Critiquing chapter {num:02d}...")
 
-        report, final_chapter = _critique_chapter(chapter, char_names, config, client)
+        report, final_chapter = _critique_chapter(chapter, characters, config, client)
 
         # Save combined output
         data = {
@@ -77,35 +76,48 @@ def run(
 
 def _critique_chapter(
     chapter: ProcessedChapter,
-    char_names: list[str],
+    characters: list[CharacterInfo],
     config: Config,
     client: OllamaClient,
 ) -> tuple[CriticReport, ProcessedChapter]:
     """Run code-level checks and LLM critique."""
+    char_names = [c.name for c in characters]
+
+    # Tier 1: deterministic anchor propagation
+    anchor_chapter, anchor_corrections = _anchor_attribution(chapter, characters, char_names, config)
 
     # Code-level: coverage check
-    coverage_issues = _check_coverage(chapter)
+    coverage_issues = _check_coverage(anchor_chapter)
 
     # Code-level: name spell-check
-    name_issues = _check_names(chapter, char_names)
+    name_issues = _check_names(anchor_chapter, char_names)
 
-    # LLM critique
-    report = _llm_critique(chapter, char_names, config, client)
+    # LLM critique (on anchor-corrected segments)
+    report = _llm_critique(anchor_chapter, char_names, config, client)
 
     # Merge code-level findings into report
     report.missing_text.extend(coverage_issues)
     report.name_inconsistencies.extend(name_issues)
+    if anchor_corrections:
+        report.attribution_issues = [f"Anchor pass fixed: {anchor_corrections}"] + report.attribution_issues
 
     if coverage_issues:
         report.needs_reprocessing = True
         report.overall_quality = min(report.overall_quality, 0.7)
 
-    # Determine final segments
+    # Determine final segments; anchor corrections take precedence over LLM fixes
     if report.fixed_segments:
-        # Use LLM-fixed segments, preserving original chapter metadata
-        final_segs = report.fixed_segments
+        # Re-apply named anchors: if an anchor confirmed a speaker, keep it
+        named_anchors = text_utils.extract_attribution_anchors(
+            [s.to_dict() for s in chapter.segments], characters
+        )
+        fixed = [s.to_dict() for s in report.fixed_segments]
+        for idx, spk in named_anchors.items():
+            if idx < len(fixed):
+                fixed[idx] = {**fixed[idx], "speaker": spk}
+        final_segs = [Segment.from_dict(d) for d in fixed]
     else:
-        final_segs = chapter.segments
+        final_segs = anchor_chapter.segments
 
     final_chapter = ProcessedChapter(
         chapter_number=chapter.chapter_number,
@@ -116,6 +128,47 @@ def _critique_chapter(
     )
 
     return report, final_chapter
+
+
+def _anchor_attribution(
+    chapter: ProcessedChapter,
+    characters: list[CharacterInfo],
+    char_names: list[str],
+    config: Config,
+) -> tuple[ProcessedChapter, str]:
+    """Tier 1: deterministic speaker propagation via conversation-chain alternation.
+
+    Walks the chapter's segments, groups them into conversation chains, and
+    propagates confirmed speakers bidirectionally via strict alternation for
+    2-person chains.  Returns the (possibly corrected) chapter and a summary string.
+    """
+    segments_dicts = [s.to_dict() for s in chapter.segments]
+    corrected_dicts, flagged_chains, n_corrections = text_utils.propagate_anchors(
+        segments_dicts, characters, char_names
+    )
+
+    if n_corrections == 0 and not flagged_chains:
+        return chapter, ""
+
+    summary_parts = []
+    if n_corrections > 0:
+        summary_parts.append(f"{n_corrections} speaker(s) corrected by anchor propagation")
+    if flagged_chains:
+        summary_parts.append(f"{len(flagged_chains)} chain(s) flagged for LLM review")
+    summary = "; ".join(summary_parts)
+
+    if config.verbose and n_corrections > 0:
+        console.print(f"  [green]Anchor pass:[/green] {summary}")
+
+    corrected_segs = [Segment.from_dict(d) for d in corrected_dicts]
+    corrected_chapter = ProcessedChapter(
+        chapter_number=chapter.chapter_number,
+        chapter_title=chapter.chapter_title,
+        segments=corrected_segs,
+        discovered_characters=chapter.discovered_characters,
+        word_count=chapter.word_count,
+    )
+    return corrected_chapter, summary
 
 
 def _check_coverage(chapter: ProcessedChapter) -> list[str]:

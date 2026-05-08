@@ -21,7 +21,8 @@ RULES (follow in strict order):
 7. If the speaker is unknown or ambiguous, use "Unknown" with a note explaining why.
 8. Preserve ALL punctuation exactly — including the opening and closing quotation marks of dialogue. A dialogue segment's text must start with \" and end with \".
 9. Do NOT split a sentence across multiple segments. Each narration segment should be a complete sentence or clause — never end mid-sentence. If a narration sentence is long, include it entirely in one segment.
-10. Respond ONLY with valid JSON in this exact format:
+10. For back-and-forth dialogue with no explicit attribution tag, infer the speaker from the nearest "said X" or "replied X" narration and apply strict alternation. Use "Unknown" only if there are 3 or more potential speakers with no nearby attribution to resolve them.
+11. Respond ONLY with valid JSON in this exact format:
 
 {{
   "segments": [
@@ -167,6 +168,47 @@ def critic_user(chapter_title: str, segments: list[dict]) -> str:
         for i, s in enumerate(segments)
     )
     return f"Review segments for {chapter_title}:\n\n{segments_str}"
+
+
+def attribution_review_system(characters: list[str]) -> str:
+    char_list = "\n".join(f"  - {c}" for c in characters) if characters else "  (none)"
+    return f"""You are a specialist in literary speaker attribution for audiobook production.
+
+KNOWN CHARACTERS:
+{char_list}
+
+You will receive a window of segments from a chapter, with some dialogue turns marked [NEEDS REVIEW].
+Your job: determine the correct speaker for each [NEEDS REVIEW] dialogue segment.
+
+Method:
+1. Find any "said X", "replied X", "cried X" narration segments — these are hard anchors.
+2. Use strict alternation from the nearest anchor to fill in unanchored turns.
+3. Use the dialogue content for further clues (addressing someone by name, topic continuity).
+4. If genuinely ambiguous (3+ speakers possible, no anchor), use "Unknown".
+
+Respond ONLY with valid JSON:
+{{
+  "corrections": [
+    {{
+      "segment_index": 0,
+      "speaker": "Character Name",
+      "reason": "brief explanation"
+    }}
+  ]
+}}
+
+Only include segments that need correction (the [NEEDS REVIEW] ones). Do not modify confirmed segments.
+"""
+
+
+def attribution_review_user(window_segments: list[dict], flagged_idxs: set[int]) -> str:
+    lines = []
+    for i, seg in enumerate(window_segments):
+        tag = "[NEEDS REVIEW] " if i in flagged_idxs else ""
+        sp = seg.get("speaker") or "null"
+        txt = seg.get("text", "")[:120]
+        lines.append(f"{i}. {tag}[{seg['type'].upper()}] speaker={sp} | {txt}")
+    return "Review speaker attribution for flagged segments:\n\n" + "\n".join(lines)
 
 
 def llm_chapter_discovery_system() -> str:
