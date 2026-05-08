@@ -51,11 +51,9 @@ def _fix_json_strings(content: str) -> str:
                     just_opened = False
                     i += 1
                     continue
-                # Pattern 2: "" or """ at end of string value
-                # e.g. "text": "...world."",  — first " is unescaped dialogue closing quote
-                # e.g. "text": "...world.""" — first two " are dialogue close, third is JSON close
-                if (not just_opened and nxt == '"'
-                        and (not nxt2 or nxt2 in (",", "}", "]", "\n", "\r", " ", "\t", '"'))):
+                # Pattern 2: any "" sequence inside a string — first " is always an embedded quote.
+                # Covers end-of-value ("...world."",) and mid-string ("...uncle. ""Your great men...)
+                if not just_opened and nxt == '"':
                     result.append('\\"')
                     just_opened = False
                     i += 1

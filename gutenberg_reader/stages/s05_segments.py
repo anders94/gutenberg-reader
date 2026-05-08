@@ -216,11 +216,22 @@ def _process_chunk_with_retry(
     # Max retries reached — try splitting the chunk in half as a last resort
     paragraphs = _split_paragraphs(chunk)
     if len(paragraphs) >= 2:
-        if config.verbose:
-            console.print(f"  [dim]Splitting chunk in half as fallback...[/dim]")
         mid = len(paragraphs) // 2
         half_a = "\n\n".join(paragraphs[:mid])
         half_b = "\n\n".join(paragraphs[mid:])
+    else:
+        # Single paragraph — split at the midpoint word boundary
+        words = chunk.split()
+        if len(words) >= 20:
+            mid_w = len(words) // 2
+            half_a = " ".join(words[:mid_w])
+            half_b = " ".join(words[mid_w:])
+        else:
+            half_a = half_b = ""  # too small to split further
+
+    if half_a and half_b:
+        if config.verbose:
+            console.print(f"  [dim]Splitting chunk in half as fallback...[/dim]")
         segs_a, chars_a = _process_chunk_with_retry(
             half_a, char_names, prev_segments, chunk_idx, config, client
         )

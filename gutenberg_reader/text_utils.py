@@ -188,7 +188,12 @@ def chunk_text(text: str, chunk_size: int = 800, overlap: int = 150) -> list[str
 # ── Integrity verification ────────────────────────────────────────────────────
 
 def normalize_whitespace(text: str) -> str:
-    """Normalize whitespace for comparison."""
+    """Normalize whitespace for comparison.
+
+    Also treats Gutenberg double-dashes (--) as whitespace separators, since
+    the model often converts them to spaces and TTS treats them as pauses.
+    """
+    text = re.sub(r"-{2,}", " ", text)  # -- and --- → space
     return re.sub(r"\s+", " ", text).strip()
 
 
