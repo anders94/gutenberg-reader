@@ -106,16 +106,29 @@ def _critique_chapter(
         report.overall_quality = min(report.overall_quality, 0.7)
 
     # Determine final segments; anchor corrections take precedence over LLM fixes
-    if report.fixed_segments:
-        # Re-apply named anchors: if an anchor confirmed a speaker, keep it
+    if report.fixed_segments and len(report.fixed_segments) == len(anchor_chapter.segments):
+        # Merge: ALWAYS keep the original text (the critic prompt truncates at 120 chars,
+        # so the LLM returns truncated text — never trust its text field).
+        # Only accept type/speaker/notes from the LLM.
         named_anchors = text_utils.extract_attribution_anchors(
             [s.to_dict() for s in chapter.segments], characters
         )
-        fixed = [s.to_dict() for s in report.fixed_segments]
-        for idx, spk in named_anchors.items():
-            if idx < len(fixed):
-                fixed[idx] = {**fixed[idx], "speaker": spk}
-        final_segs = [Segment.from_dict(d) for d in fixed]
+        merged = []
+        for i, (orig, llm_seg) in enumerate(
+            zip(anchor_chapter.segments, report.fixed_segments)
+        ):
+            speaker = llm_seg.speaker
+            # Named anchors override LLM speaker
+            if i in named_anchors:
+                speaker = named_anchors[i]
+            merged.append(Segment(
+                type=llm_seg.type,
+                text=orig.text,  # always use original — never the LLM's possibly-truncated copy
+                speaker=speaker,
+                pronunciation_hints=llm_seg.pronunciation_hints or orig.pronunciation_hints,
+                notes=llm_seg.notes,
+            ))
+        final_segs = merged
     else:
         final_segs = anchor_chapter.segments
 

@@ -6,7 +6,18 @@ build-backend = "setuptools.build_meta"
 name = "gutenberg-reader"
 version = "0.1.0"
 description = "Download Project Gutenberg books and produce structured JSON for TTS audiobook generation"
+readme = "README.md"
+license = {text = "MIT"}
 requires-python = ">=3.11"
+keywords = ["gutenberg", "audiobook", "tts", "nlp", "ollama"]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Text Processing :: Linguistic",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+]
 dependencies = [
     "httpx>=0.28",
     "click>=8.0",
