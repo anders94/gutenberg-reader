@@ -1,6 +1,6 @@
 # gutenberg-reader
 
-Convert any [Project Gutenberg](https://www.gutenberg.org/) book into structured JSON ready for text-to-speech (TTS) audiobook generation. Each sentence is labelled as **narration** or **dialogue**, with speaker attribution and pronunciation hints, so TTS engines can apply per-character voices automatically.
+Convert any [Project Gutenberg](https://www.gutenberg.org/) book into structured JSON ready for text-to-speech (TTS) audiobook generation with [tts-audiobook](https://github.com/anders94/tts-audiobook). Each sentence is labelled as **narration** or **dialogue**, with speaker attribution and pronunciation hints, so TTS engines can apply per-character voices automatically.
 
 Processing runs entirely locally using [Ollama](https://ollama.com/) — no cloud API keys required.
 
