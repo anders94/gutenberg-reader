@@ -1,3 +1,5 @@
+LICENSE
+README.md
 pyproject.toml
 gutenberg_reader/__init__.py
 gutenberg_reader/cache.py
