@@ -2,16 +2,17 @@
 
 Convert any [Project Gutenberg](https://www.gutenberg.org/) book into structured JSON ready for text-to-speech (TTS) audiobook generation with [tts-audiobook](https://github.com/anders94/tts-audiobook). Each sentence is labelled as **narration** or **dialogue**, with speaker attribution and pronunciation hints, so TTS engines can apply per-character voices automatically.
 
-Processing runs entirely locally using [Ollama](https://ollama.com/) — no cloud API keys required.
+Processing runs entirely locally against any OpenAI-compatible LLM server ([vLLM](https://docs.vllm.ai/), llama.cpp server, LM Studio, ...) — no cloud API keys required.
 
 ---
 
 ## Features
 
 - Downloads and processes any Gutenberg book by numeric ID
-- Splits text into narration and dialogue segments with speaker attribution
+- **Deterministic segmentation**: narration/dialogue splitting is done by quote parsing, not an LLM — text coverage is guaranteed and reported speech ("Mr. Bennet replied that he had not.") can never be misclassified as dialogue
+- Layered speaker attribution: deterministic attribution-tag anchors, LLM resolution of nameless tags ("said his lady"), deterministic alternation propagation, then LLM review of only the unresolved turns
+- **Guided decoding**: speaker names are constrained to the known character list via vLLM structured output — invented or misspelled speakers are impossible
 - Identifies characters and their aliases across the full book
-- Deterministic anchor-propagation pass corrects misattributed back-and-forth dialogue before the LLM review
 - Resumable pipeline: interrupted runs pick up where they left off
 - Atomic cache writes — safe to kill at any point
 
@@ -20,8 +21,20 @@ Processing runs entirely locally using [Ollama](https://ollama.com/) — no clou
 ## Requirements
 
 - Python 3.11+
-- [Ollama](https://ollama.com/) running locally (default: `http://localhost:11434`)
-- A capable instruction-following model — see [Model recommendations](#model-recommendations)
+- An OpenAI-compatible LLM server. For example, vLLM:
+
+```bash
+vllm serve google/gemma-4-E4B-it-qat-w4a16-ct \
+  --max-model-len 65536 \
+  --gpu-memory-utilization 0.85 \
+  --max-num-seqs 16 \
+  --enable-auto-tool-choice \
+  --tool-call-parser gemma4 \
+  --reasoning-parser gemma4 \
+  --chat-template vllm-env/tool_chat_template_gemma4.jinja
+```
+
+Any server exposing `/v1/models` and `/v1/chat/completions` with `response_format` JSON-schema support works (vLLM, llama.cpp server, LM Studio).
 
 ---
 
@@ -44,14 +57,14 @@ pip install -e .
 ## Quick start
 
 ```bash
-# Process Pride and Prejudice (book 1342)
+# Process Pride and Prejudice (book 1342) — model auto-detected from the server
 gutenberg-reader 1342
 
 # Process Dr. Jekyll and Mr. Hyde with verbose output
 gutenberg-reader 43 --verbose
 
-# Use a specific model
-gutenberg-reader 1342 --model gemma3:27b --verbose
+# Use a specific model / server
+gutenberg-reader 1342 --base-url http://localhost:8000/v1 --model google/gemma-4-E4B-it-qat-w4a16-ct
 ```
 
 Output is written to `cache/<book_id>/07-final/<book_id>.json`.
@@ -71,27 +84,24 @@ gutenberg-reader BOOK_ID [OPTIONS]
 
 | Option | Default | Description |
 |--------|---------|-------------|
-| `--model MODEL` | `qwen2.5:14b` | Ollama model for segmentation and character discovery |
+| `--base-url URL` | `http://localhost:8000/v1` | OpenAI-compatible API base URL |
+| `--api-key KEY` | `EMPTY` | API key, if the server requires one |
+| `--model MODEL` | *(auto-detect)* | Model for attribution and character discovery; defaults to the first model the server offers |
 | `--validator MODEL` | *(same as --model)* | Separate model for the Stage 06 critic pass |
-| `--ollama-url URL` | `http://localhost:11434` | Ollama API base URL |
 | `--cache-dir DIR` | `./cache` | Directory for all cached stage outputs |
 | `--output FILE` | *(auto)* | Override output JSON path |
-| `--chunk-size N` | `400` | Words per processing chunk (lower = more API calls, less context pressure) |
-| `--overlap N` | `150` | Overlap words between chunks |
-| `--no-critic` | off | Skip Stage 06 LLM critic pass (faster; deterministic anchor pass still runs) |
+| `--chunk-size N` | `1000` | Words per LLM attribution window |
+| `--critic` | off | Run the Stage 06 LLM critic pass (most useful with a larger `--validator` model) |
 | `--force-stage N` | — | Re-run from stage N (1–7) forward, discarding cached results from that stage on |
 | `--chapters N[,N,…]` | — | Process only specific chapter numbers (e.g. `1,2,5`) |
-| `--max-retries N` | `3` | Max LLM retries per chunk on integrity failure |
+| `--max-retries N` | `3` | Max LLM retries per attribution window |
 | `-v / --verbose` | off | Show per-stage progress and correction details |
 
 ### Examples
 
 ```bash
-# Fast run: skip LLM critic, use deterministic anchor pass only
-gutenberg-reader 1342 --no-critic --verbose
-
-# Use a larger model for segmentation, lighter model for critic
-gutenberg-reader 1342 --model gemma3:27b --validator gemma3:12b
+# Add the LLM critic pass, reviewing with a larger model on another machine
+gutenberg-reader 1342 --critic --validator some-larger-model --verbose
 
 # Re-run only the assembly stage (Stage 07) to regenerate final JSON
 gutenberg-reader 1342 --force-stage 7
@@ -99,8 +109,8 @@ gutenberg-reader 1342 --force-stage 7
 # Re-run segmentation + everything after, for chapters 1–3 only
 gutenberg-reader 1342 --force-stage 5 --chapters 1,2,3
 
-# Point at a remote Ollama instance
-gutenberg-reader 1342 --ollama-url http://192.168.1.10:11434 --model llama3.3:70b
+# Point at a bigger model on another machine (e.g. a Mac Studio running llama.cpp/LM Studio)
+gutenberg-reader 1342 --base-url http://192.168.1.10:8080/v1
 
 # Write output to a custom path
 gutenberg-reader 1342 --output ~/audiobooks/pride_and_prejudice.json
@@ -110,23 +120,19 @@ gutenberg-reader 1342 --output ~/audiobooks/pride_and_prejudice.json
 
 ## Model recommendations
 
-Any Ollama model that follows structured JSON instructions will work. Tested configurations:
+Because segmentation is deterministic and the LLM only resolves speaker
+attribution (with guided decoding constraining outputs), model requirements are
+much lighter than for full LLM segmentation. On a single 24 GB GPU:
 
-| Model | Quality | Speed | Notes |
-|-------|---------|-------|-------|
-| `gemma3:27b` | ★★★★★ | Slow | Best attribution accuracy |
-| `qwen2.5:14b` | ★★★★☆ | Medium | Good default choice |
-| `gemma3:12b` | ★★★★☆ | Fast | Good balance |
-| `gemma4:latest` | ★★★★☆ | Fast | Tested reference model |
-| `llama3.3:70b` | ★★★★★ | Very slow | For maximum quality |
+| Model | Quality | Notes |
+|-------|---------|-------|
+| `google/gemma-4-E4B-it-qat-w4a16-ct` | ★★★★☆ | Fast; fine for most books |
+| Gemma 3 27B (W4A16) | ★★★★★ | Best attribution on ambiguous multi-party scenes |
+| Qwen 2.5 14B (AWQ/GPTQ) | ★★★★☆ | Good balance |
 
-Pull a model before first use:
-
-```bash
-ollama pull qwen2.5:14b
-```
-
-Smaller models (7B and below) tend to produce more JSON formatting errors and speaker misattributions. The pipeline has automatic repair and retry logic, but larger models need fewer corrections.
+For maximum quality on books with large ensemble casts, point `--validator` (or
+the whole run) at a larger model served from a bigger machine — any
+OpenAI-compatible endpoint works.
 
 ---
 
@@ -166,7 +172,7 @@ The final JSON has this structure:
           },
           {
             "type": "dialogue",
-            "text": "\u201cI incline to Cain\u2019s heresy,\u201d",
+            "text": "“I incline to Cain’s heresy,”",
             "speaker": "Mr. Utterson",
             "pronunciation_hints": [],
             "notes": null
@@ -180,7 +186,7 @@ The final JSON has this structure:
           },
           {
             "type": "dialogue",
-            "text": "\u201cI let my brother go to the devil in his own way.\u201d",
+            "text": "“I let my brother go to the devil in his own way.”",
             "speaker": "Mr. Utterson",
             "pronunciation_hints": [],
             "notes": null
@@ -228,6 +234,10 @@ Attribution phrases like *"said Mr. Bennet"* or *"replied his wife"* are always 
 
 When the speaker cannot be determined, `speaker` is `"Unknown"`.
 
+A dialogue segment whose quotation continues into the next paragraph (Gutenberg
+convention: no closing quote at paragraph end) carries `"notes": "quote-continues"`;
+the following dialogue segment is the same speaker.
+
 ---
 
 ## Pipeline stages
@@ -240,8 +250,8 @@ The pipeline runs in 7 stages. Each stage writes to `cache/<book_id>/0N-<name>/`
 | 02 | Discovery | Strips boilerplate, detects chapter boundaries, extracts metadata |
 | 03 | Chapter split | Extracts each chapter into a plain-text file |
 | 04 | Characters | LLM identifies all named characters and aliases |
-| 05 | Segmentation | LLM splits each chapter into narration/dialogue segments with speaker attribution |
-| 06 | Critic | Deterministic anchor-propagation pass + optional LLM quality review |
+| 05 | Segmentation | Deterministic quote-based narration/dialogue split + three-tier speaker attribution |
+| 06 | Critic | Deterministic anchor-propagation pass + optional LLM attribution review |
 | 07 | Assembly | Merges all chapters into the final JSON |
 
 ### Resume and force-rerun
@@ -279,19 +289,45 @@ cache/
 
 ## How attribution works
 
-Back-and-forth dialogue that lacks explicit attribution tags (e.g., *"said Mr. Bennet"*) is handled in two passes:
+Narration/dialogue **segmentation is not an LLM task**: quotation marks delimit
+dialogue, so the split is done by a deterministic parser (`segmenter.py`) that
+handles curly and straight quotes, apostrophes, and multi-paragraph quotations.
+Every character of the source text lands in exactly one segment, verbatim.
 
-1. **Anchor propagation (Stage 06, deterministic):** The pipeline locates every narration segment containing a speech verb adjacent to dialogue. It groups consecutive dialogue into *conversation chains*, then uses confirmed speakers as anchors and propagates via strict alternation for 2-character scenes. Characters present in a scene are detected from vocative name use inside dialogue (e.g., *"My dear Mr. Bennet,"* confirms Mr. Bennet is present).
+Speaker attribution then runs in four tiers:
 
-2. **LLM critic (Stage 06, optional):** A second LLM pass reviews the anchor-corrected segments for remaining attribution issues, name inconsistencies, and coverage gaps. Disable with `--no-critic` for faster processing.
+1. **Attribution anchors (deterministic):** narration like *"said Mr. Bennet"*
+   adjacent to a dialogue segment confirms its speaker. The speech verb must
+   lead a sentence of the tag (so scene beats containing a verb mid-sentence
+   don't false-match), reported speech (*"replied that ..."*) is excluded, and
+   a tag ending in a period only anchors backwards. Names after a speech verb
+   anchor even when character discovery missed them (*"said Lydia,"*).
+
+2. **Tag resolution (LLM, constrained):** nameless tags (*"said his lady"*,
+   *"returned she"*) are resolved to character names — a far easier task than
+   free attribution — and then anchor their adjacent dialogue.
+
+3. **Anchor propagation (deterministic):** consecutive dialogue is grouped into
+   *conversation chains*; confirmed speakers propagate via strict alternation in
+   2-character scenes. Characters present in a scene are detected from vocative
+   name use inside dialogue (e.g., *"My dear Mr. Bennet,"* confirms Mr. Bennet
+   is present — as the listener).
+
+4. **LLM review:** only dialogue still unresolved is sent to the LLM, in
+   windows with surrounding context. Guided decoding constrains each answer to
+   the known character list (or `"Unknown"`), so the model cannot invent names.
+
+Stage 06 optionally runs an LLM critic over each chapter's final attribution;
+it may only *reassign speakers* (again constrained to the character list) —
+segment text is never touched by any model. Disable with `--no-critic`.
 
 ---
 
 ## Limitations
 
-- Requires a locally running Ollama instance
-- Processing a full novel takes 15–90 minutes depending on model and hardware
-- Very long chapters (>5,000 words) are chunked; chunk boundaries can occasionally split a dialogue exchange across two LLM calls
+- Requires a locally running OpenAI-compatible LLM server
+- Books that mark dialogue without quotation marks (em-dash dialogue, some
+  translations) fall back to narration-only segmentation
 - Books in languages other than English work if the model supports the language, but the speech-verb detection regex is English-only
 - Some books use non-standard chapter structures (Roman numerals, titled chapters, etc.) — the pipeline falls back to LLM-based chapter discovery when regex detection finds fewer than 2 chapters
 

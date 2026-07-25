@@ -27,6 +27,7 @@ def run(
     metadata: BookMetadata,
     chapter_infos: list[ChapterInfo],
     accepted: dict[int, tuple[ProcessedChapter, CriticReport | None]],
+    characters: list[CharacterInfo],
     start_time: float,
 ) -> Path:
     """Assemble and save final JSON. Returns path to output file."""
@@ -45,7 +46,8 @@ def run(
     info_by_num = {ci.number: ci for ci in chapter_infos}
 
     chapters_out = []
-    all_chars: dict[str, CharacterInfo] = {}
+    # Stage-04 roster first; per-chapter tag discoveries merge in after
+    all_chars: dict[str, CharacterInfo] = {c.name.lower(): c for c in characters}
     total_words = 0
     total_segments = 0
     quality_scores: list[float] = []

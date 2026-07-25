@@ -15,14 +15,19 @@ console = Console()
 
 @click.command()
 @click.argument("book_id")
-@click.option("--model", default="qwen2.5:14b", show_default=True, help="Ollama processing model")
+@click.option("--model", default="", help="Processing model (default: first model served by the API)")
 @click.option("--validator", default="", help="Critic model (default: same as --model)")
-@click.option("--ollama-url", default="http://localhost:11434", show_default=True, help="Ollama base URL")
+@click.option("--base-url", default="http://localhost:8000/v1", show_default=True,
+              help="OpenAI-compatible API base URL (vLLM, llama.cpp server, LM Studio, ...)")
+@click.option("--api-key", default="EMPTY", help="API key, if the server requires one")
 @click.option("--cache-dir", default="./cache", show_default=True, type=click.Path(), help="Cache directory")
 @click.option("--output", default=None, type=click.Path(), help="Output file path")
-@click.option("--chunk-size", default=400, show_default=True, type=int, help="Words per chunk")
+@click.option("--chunk-size", default=1000, show_default=True, type=int,
+              help="Words per LLM attribution window")
 @click.option("--overlap", default=150, show_default=True, type=int, help="Overlap words between chunks")
-@click.option("--no-critic", is_flag=True, default=False, help="Skip Stage 06 critic pass")
+@click.option("--critic/--no-critic", "critic", default=False,
+              help="Run the Stage 06 LLM critic pass (default: off; most useful with a "
+                   "larger --validator model)")
 @click.option("--force-stage", default=None, type=int, metavar="STAGE", help="Re-run from this stage (1-7)")
 @click.option("--chapters", default=None, help="Process only these chapters (e.g. 1,2,5)")
 @click.option("--max-retries", default=3, show_default=True, type=int, help="Max retries per chunk")
@@ -31,12 +36,13 @@ def main(
     book_id: str,
     model: str,
     validator: str,
-    ollama_url: str,
+    base_url: str,
+    api_key: str,
     cache_dir: str,
     output: str | None,
     chunk_size: int,
     overlap: int,
-    no_critic: bool,
+    critic: bool,
     force_stage: int | None,
     chapters: str | None,
     max_retries: int,
@@ -59,7 +65,8 @@ def main(
 
     config = Config(
         book_id=str(book_id),
-        ollama_url=ollama_url,
+        base_url=base_url,
+        api_key=api_key,
         processing_model=model,
         validation_model=validator or model,
         cache_dir=Path(cache_dir),
@@ -68,7 +75,7 @@ def main(
         chunk_overlap=overlap,
         max_retries=max_retries,
         verbose=verbose,
-        no_critic=no_critic,
+        no_critic=not critic,
         force_stage=force_stage,
         chapters_only=chapters_only,
     )

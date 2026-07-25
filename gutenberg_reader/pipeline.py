@@ -9,7 +9,7 @@ from rich.progress import Progress, SpinnerColumn, TextColumn, TimeElapsedColumn
 
 from gutenberg_reader.config import Config
 from gutenberg_reader.models import CriticReport, ProcessedChapter
-from gutenberg_reader.ollama import OllamaClient
+from gutenberg_reader.llm import LLMClient
 from gutenberg_reader.stages import (
     s01_download,
     s02_discovery,
@@ -27,16 +27,20 @@ def run_pipeline(config: Config) -> Path:
     """Run the full pipeline and return path to final output."""
     start_time = time.time()
 
-    # Create Ollama client and verify connectivity
-    client = OllamaClient(base_url=config.ollama_url)
-
-    console.print(f"[bold]gutenberg-reader[/bold] book_id={config.book_id} model={config.processing_model}")
+    # Create LLM client and verify connectivity; auto-detect the model if unset
+    client = LLMClient(base_url=config.base_url, api_key=config.api_key)
 
     try:
-        client.health_check(config.processing_model)
+        config.processing_model = client.health_check(config.processing_model or None)
+        if not config.validation_model:
+            config.validation_model = config.processing_model
+        else:
+            config.validation_model = client.health_check(config.validation_model)
     except Exception as e:
         console.print(f"[red]Error: {e}[/red]")
         raise SystemExit(1) from None
+
+    console.print(f"[bold]gutenberg-reader[/bold] book_id={config.book_id} model={config.processing_model}")
 
     # Set up stage dirs
     for stage_num in range(1, 8):
@@ -102,6 +106,7 @@ def run_pipeline(config: Config) -> Path:
         metadata,
         chapter_infos,
         accepted,
+        characters,
         start_time,
     )
 

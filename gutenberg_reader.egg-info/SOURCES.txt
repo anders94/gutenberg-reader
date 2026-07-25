@@ -5,10 +5,12 @@ gutenberg_reader/__init__.py
 gutenberg_reader/cache.py
 gutenberg_reader/cli.py
 gutenberg_reader/config.py
+gutenberg_reader/llm.py
 gutenberg_reader/models.py
-gutenberg_reader/ollama.py
 gutenberg_reader/pipeline.py
 gutenberg_reader/prompts.py
+gutenberg_reader/schemas.py
+gutenberg_reader/segmenter.py
 gutenberg_reader/text_utils.py
 gutenberg_reader.egg-info/PKG-INFO
 gutenberg_reader.egg-info/SOURCES.txt

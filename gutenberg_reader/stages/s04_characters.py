@@ -8,8 +8,8 @@ from rich.console import Console
 from gutenberg_reader.cache import atomic_write_json, read_json, read_text, stage_complete
 from gutenberg_reader.config import Config
 from gutenberg_reader.models import CharacterInfo
-from gutenberg_reader.ollama import OllamaClient
-from gutenberg_reader import prompts
+from gutenberg_reader.llm import LLMClient
+from gutenberg_reader import prompts, schemas
 
 console = Console()
 
@@ -19,7 +19,7 @@ SECOND_PASS_CHAPTERS = 5  # Sample from middle/later chapters
 
 def run(
     config: Config,
-    client: OllamaClient,
+    client: LLMClient,
     chapter_paths: dict[int, Path],
 ) -> list[CharacterInfo]:
     """Discover characters from chapters. Returns list of CharacterInfo."""
@@ -78,7 +78,7 @@ def _load_chapters_text(nums: list[int], chapter_paths: dict[int, Path]) -> str:
 def _discover_characters(
     text: str,
     config: Config,
-    client: OllamaClient,
+    client: LLMClient,
     existing: list[CharacterInfo] | None = None,
 ) -> list[CharacterInfo]:
     """Call LLM to discover characters in the given text."""
@@ -88,7 +88,7 @@ def _discover_characters(
     ]
 
     try:
-        data = client.chat_json(config.processing_model, messages)
+        data = client.chat_json(config.processing_model, messages, schema=schemas.CHARACTERS_SCHEMA)
         chars = data.get("characters", [])
         return [CharacterInfo.from_dict(c) for c in chars]
     except Exception as e:

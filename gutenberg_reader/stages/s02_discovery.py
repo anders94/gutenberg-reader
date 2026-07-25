@@ -8,14 +8,14 @@ from rich.console import Console
 from gutenberg_reader.cache import atomic_write_json, read_text, stage_complete
 from gutenberg_reader.config import Config
 from gutenberg_reader.models import BookMetadata, ChapterInfo, DiscoveryResult
-from gutenberg_reader.ollama import OllamaClient
-from gutenberg_reader import prompts
+from gutenberg_reader.llm import LLMClient
+from gutenberg_reader import prompts, schemas
 from gutenberg_reader import text_utils
 
 console = Console()
 
 
-def run(config: Config, client: OllamaClient) -> DiscoveryResult:
+def run(config: Config, client: LLMClient) -> DiscoveryResult:
     """Run discovery and return DiscoveryResult."""
     stage_dir = config.stage_dir(2)
     out_path = stage_dir / "discovery.json"
@@ -254,7 +254,7 @@ def _find_illustration_lines(body_lines: list[str], start: int, end: int) -> set
 def _llm_chapter_discovery(
     body_lines: list[str],
     config: Config,
-    client: OllamaClient,
+    client: LLMClient,
 ) -> list[dict]:
     """Fall back to LLM for chapter detection."""
     # Send at most first 500 lines to keep context manageable
@@ -268,7 +268,7 @@ def _llm_chapter_discovery(
     ]
 
     try:
-        data = client.chat_json(config.processing_model, messages)
+        data = client.chat_json(config.processing_model, messages, schema=schemas.CHAPTERS_SCHEMA)
         chapters = data.get("chapters", [])
         # Normalize to our format
         return [

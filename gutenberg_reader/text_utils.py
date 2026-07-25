@@ -375,13 +375,22 @@ def find_closest_character(name: str, known_chars: list[str], max_distance: int 
 
 # ── Speaker attribution anchor propagation ────────────────────────────────────
 
-SPEECH_VERB_RE = re.compile(
-    r"\b(said|replied|answered|cried|asked|returned|exclaimed|whispered|remarked|"
+_SPEECH_VERBS = (
+    r"said|replied|answered|cried|asked|returned|exclaimed|whispered|remarked|"
     r"continued|added|observed|repeated|murmured|laughed|called|declared|"
     r"interposed|interrupted|rejoined|responded|urged|insisted|demanded|"
     r"admitted|confessed|agreed|protested|pleaded|began|concluded|sighed|"
-    r"shouted|screamed|muttered|stammered|faltered|ventured|suggested|told)\b",
-    re.IGNORECASE,
+    r"shouted|screamed|muttered|stammered|faltered|ventured|suggested|told"
+)
+
+SPEECH_VERB_RE = re.compile(r"\b(" + _SPEECH_VERBS + r")\b", re.IGNORECASE)
+
+# "said Lydia," / "cried Miss Bingley" — a proper name directly after a speech
+# verb, for anchoring speakers not (yet) in the known character list.
+_TAG_NAME_RE = re.compile(
+    r"(?i:\b(?:" + _SPEECH_VERBS + r"))\s+"
+    r"((?:(?:Mr|Mrs|Dr|St|Mme|Mlle)\.\s+|(?:Miss|Lady|Sir|Lord|Madame|Colonel|Captain)\s+)?"
+    r"[A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+)?)"
 )
 
 _REPORTED_SPEECH_RE = re.compile(
@@ -391,20 +400,41 @@ _REPORTED_SPEECH_RE = re.compile(
 )
 
 
+# Sentence split that doesn't break on honorific abbreviations
+_SENTENCE_SPLIT_RE = re.compile(
+    r"(?<!Mr\.)(?<!Mrs\.)(?<!Dr\.)(?<!St\.)(?<!Mme\.)(?<=[.!?])\s+"
+)
+
+# A speech verb this deep into a sentence ("...unable to contain herself,
+# began scolding...") is not an attribution-tag construction.
+_TAG_VERB_LEAD_WORDS = 6
+
+
+def _split_sentences(text: str) -> list[str]:
+    return [s for s in _SENTENCE_SPLIT_RE.split(text.strip()) if s]
+
+
+def _has_lead_speech_verb(sentence: str) -> bool:
+    """True if a speech verb appears in the sentence's first few words
+    ("said his lady...", "Mrs. Bennet said only,")."""
+    lead = " ".join(sentence.split()[:_TAG_VERB_LEAD_WORDS])
+    return bool(SPEECH_VERB_RE.search(lead)) and not _REPORTED_SPEECH_RE.search(sentence)
+
+
 def _is_attribution_narration(seg: dict) -> bool:
     """Return True if this narration segment is a speech attribution tag.
 
-    Attribution tags are short narration segments containing a speech verb that
-    are NOT reported-speech constructions like "replied that he had not".
+    Attribution tags are short narration segments where some sentence LEADS
+    with a speech verb ("said she,", "he continued,", "Mrs. Bennet said only,").
+    A speech verb buried mid-sentence is action/beat narration, not a tag, and
+    reported-speech constructions ("replied that he had not") never qualify.
     """
     if seg.get("type") != "narration":
         return False
     text = seg.get("text", "")
-    if not SPEECH_VERB_RE.search(text):
+    if len(text.split()) > 20:
         return False
-    if _REPORTED_SPEECH_RE.search(text):
-        return False  # indirect speech, not a direct attribution tag
-    return len(text.split()) <= 20
+    return any(_has_lead_speech_verb(s) for s in _split_sentences(text))
 
 
 def _group_conversation_chains(segments: list[dict]) -> list[list[int]]:
@@ -444,11 +474,14 @@ def _group_into_speech_units(
 
     Two adjacent dialogue segments belong to the same speech unit when the only
     segment between them is attribution narration ending with a comma, semicolon,
-    or colon — indicating the speech continues.
+    or colon — indicating the speech continues — or when the earlier segment is
+    an unclosed quotation continuing into the next paragraph (quote-continues).
 
     Example: '"Part A," said she, "Part B."' → one speech unit [A, B].
     Example: '"Statement." said she. [next dia]' → two separate speech units.
     """
+    from gutenberg_reader.segmenter import QUOTE_CONTINUES
+
     if not dialogue_idxs:
         return []
 
@@ -463,6 +496,9 @@ def _group_into_speech_units(
             len(between) == 1
             and _is_attribution_narration(between[0])
             and between[0].get("text", "").strip().endswith((",", ";", ":"))
+        ) or (
+            len(between) == 0
+            and segments[prev_idx].get("notes") == QUOTE_CONTINUES
         )
 
         if is_bridge:
@@ -525,16 +561,29 @@ def _extract_scene_cast(
         if seg.get("type") != "dialogue":
             continue
         text = seg.get("text", "")
-        text_inner = text.lstrip('"\u201c').lstrip()
+        text_inner = text.lstrip('"\u201c\u2018_').lstrip()
         for name in char_names:
             name_pat = re.escape(name)
-            # Case 1: full name in first 50 chars, not followed by a reference verb
-            m = re.search(r"\b" + name_pat + r"\b", text_inner[:50], re.IGNORECASE)
-            if m:
-                after = text_inner[m.end():m.end() + 25]
-                if not _REFERENCE_VERB_RE.match(after):
+            # Case 1: true vocative \u2014 the name is directly addressed: followed
+            # by vocative punctuation and preceded by a clause boundary, so mere
+            # references ("I heard it from Mrs. Long has...") don't count. A
+            # period after the name only counts mid-utterance ("...will like it,
+            # Lizzy.") \u2014 a bare "Bingley." is an answer, not an address.
+            found = False
+            for m in re.finditer(name_pat + r"(?=[,.!?])", text_inner, re.IGNORECASE):
+                before = text_inner[:m.start()].rstrip()
+                after_char = text_inner[m.end():m.end() + 1]
+                boundary = (
+                    before.endswith((",", ";", "!", "?", "\u2014", "--"))
+                    or re.search(r"\b(my dear|dear|oh|ah|why|well|pray|come)$", before, re.IGNORECASE)
+                )
+                ok = boundary if before else after_char != "."
+                if ok:
                     cast.add(name)
-                    continue
+                    found = True
+                    break
+            if found:
+                continue
             # Case 2: full name follows an address marker anywhere in text
             if re.search(
                 r"\b(my dear|dear|oh|ah|pray)\s+" + name_pat + r"\b",
@@ -553,6 +602,10 @@ def extract_attribution_anchors(
 
     When narration says "said Mr. Bennet" (contains a character name), the
     immediately adjacent dialogue segments are mapped to that character.
+    The preceding dialogue is always anchored; the following dialogue only when
+    the tag ends with continuation punctuation (",", ";", ":") — a tag ending
+    with a period ("cried his wife, impatiently.") closes the speech, and the
+    next quote may belong to anyone.
 
     Returns: dict mapping dialogue segment index → canonical character name.
     """
@@ -563,14 +616,49 @@ def extract_attribution_anchors(
         if not _is_attribution_narration(seg):
             continue
         text = seg.get("text", "")
-        canonical = _find_char_in_text(text, alias_map)
-        if canonical:
-            if i > 0 and segments[i - 1].get("type") == "dialogue":
+        sentences = _split_sentences(text)
+
+        # Backward anchor: the tag's FIRST sentence attributes the preceding
+        # dialogue ("said Mr. Bennet; and, as he spoke, he left the room...")
+        if (
+            i > 0
+            and segments[i - 1].get("type") == "dialogue"
+            and _has_lead_speech_verb(sentences[0])
+        ):
+            canonical = _tag_speaker(sentences[0], alias_map)
+            if canonical:
                 named_anchors[i - 1] = canonical
-            if i < len(segments) - 1 and segments[i + 1].get("type") == "dialogue":
+
+        # Forward anchor: the tag's LAST sentence introduces the following
+        # dialogue ("The girls stared at their father. Mrs. Bennet said only,").
+        # Requires continuation punctuation — a tag ending with a period
+        # ("cried his wife, impatiently.") closes the speech, and the next
+        # quote may belong to anyone.
+        if (
+            i < len(segments) - 1
+            and segments[i + 1].get("type") == "dialogue"
+            and text.strip().endswith((",", ";", ":"))
+            and _has_lead_speech_verb(sentences[-1])
+        ):
+            canonical = _tag_speaker(sentences[-1], alias_map)
+            if canonical:
                 named_anchors[i + 1] = canonical
 
     return named_anchors
+
+
+def _tag_speaker(sentence: str, alias_map: dict[str, str]) -> str | None:
+    """Resolve an attribution-tag sentence to a speaker name.
+
+    Prefers the known-character alias map; falls back to a proper name directly
+    after the speech verb ("said Lydia,") so characters the discovery stage
+    missed still anchor deterministically.
+    """
+    canonical = _find_char_in_text(sentence, alias_map)
+    if canonical:
+        return canonical
+    m = _TAG_NAME_RE.search(sentence)
+    return m.group(1).strip() if m else None
 
 
 def propagate_anchors(

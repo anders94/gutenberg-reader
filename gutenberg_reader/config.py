@@ -8,12 +8,13 @@ from pathlib import Path
 @dataclass
 class Config:
     book_id: str
-    ollama_url: str = "http://localhost:11434"
-    processing_model: str = "qwen2.5:14b"
+    base_url: str = "http://localhost:8000/v1"
+    api_key: str = "EMPTY"
+    processing_model: str = ""  # empty = auto-detect from the server
     validation_model: str = ""
     cache_dir: Path = field(default_factory=lambda: Path("./cache"))
     output_file: Path | None = None
-    chunk_size: int = 400
+    chunk_size: int = 1000
     chunk_overlap: int = 150
     max_retries: int = 3
     verbose: bool = False

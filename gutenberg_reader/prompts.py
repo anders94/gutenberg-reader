@@ -1,100 +1,127 @@
-"""All LLM prompt templates for the gutenberg-reader pipeline."""
+"""All LLM prompt templates for the gutenberg-reader pipeline.
+
+Segmentation into narration/dialogue is deterministic (see segmenter.py);
+the LLM is only asked to attribute speakers to already-extracted dialogue.
+"""
 
 from __future__ import annotations
 
 
-def segmentation_system(characters: list[str]) -> str:
-    char_list = "\n".join(f"  - {c}" for c in characters) if characters else "  (none identified yet)"
-    return f"""You are an expert literary annotator preparing audiobook segments.
-Your task is to split a passage of text into narration and dialogue segments with speaker attribution.
+def _render_segment_lines(
+    segments: list[dict],
+    start_index: int = 0,
+    flagged: set[int] | None = None,
+    context_count: int = 0,
+    flag_label: str = "[NEEDS SPEAKER]",
+) -> str:
+    """Render segments as numbered lines for attribution/critic prompts.
+
+    Indices shown are absolute (start_index + position). The first
+    context_count lines are marked [CONTEXT] (already attributed, read-only).
+    """
+    from gutenberg_reader.segmenter import QUOTE_CONTINUES
+
+    lines = []
+    for pos, seg in enumerate(segments):
+        idx = start_index + pos
+        kind = seg.get("type", "narration").upper()
+        text = seg.get("text", "")
+        if len(text) > 300:
+            text = text[:300] + "…"
+        tags = []
+        if pos < context_count:
+            tags.append("[CONTEXT]")
+        if flagged and idx in flagged:
+            tags.append(flag_label)
+        speaker = seg.get("speaker")
+        spk = f" speaker={speaker}" if kind == "DIALOGUE" and speaker else ""
+        cont = " [SPEECH CONTINUES INTO NEXT SEGMENT]" if seg.get("notes") == QUOTE_CONTINUES else ""
+        tag_str = (" " + " ".join(tags)) if tags else ""
+        lines.append(f"{idx}.{tag_str} [{kind}]{spk} | {text}{cont}")
+    return "\n".join(lines)
+
+
+def tag_resolution_system(characters: list[str]) -> str:
+    char_list = "\n".join(f"  - {c}" for c in characters) if characters else "  (none)"
+    return f"""You are a specialist in literary text analysis.
 
 KNOWN CHARACTERS:
 {char_list}
 
-RULES (follow in strict order):
-1. Every word from the input must appear in exactly one segment — no additions, removals, or alterations to the text.
-2. Use "narration" for all non-dialogue text (description, action, attribution tags like "said she", "he replied").
-3. Use "dialogue" only for text inside quotation marks that is spoken aloud by a character.
-4. Attribution tags ("said Mr. Bennet", "replied his wife") are "narration", NOT "dialogue". They must be their OWN separate narration segment, never bundled with the dialogue before or after them.
-5. speaker must be null for all narration segments.
-6. Speaker names must exactly match a name from the KNOWN CHARACTERS list above.
-7. If the speaker is unknown or ambiguous, use "Unknown" with a note explaining why.
-8. Preserve ALL punctuation exactly — including the opening and closing quotation marks of dialogue. A dialogue segment's text must start with \" and end with \".
-9. Do NOT split a sentence across multiple segments. Each narration segment should be a complete sentence or clause — never end mid-sentence. If a narration sentence is long, include it entirely in one segment.
-10. For back-and-forth dialogue with no explicit attribution tag, infer the speaker from the nearest "said X" or "replied X" narration and apply strict alternation. Use "Unknown" only if there are 3 or more potential speakers with no nearby attribution to resolve them.
-11. Respond ONLY with valid JSON in this exact format:
+You will receive a numbered list of segments from a novel: narration and dialogue,
+in original order. Some narration segments are speech-attribution tags that refer
+to the speaker indirectly — e.g. "said his lady", "cried his wife", "returned she",
+"replied her mother" — and are marked [WHO IS THIS?].
 
-{{
-  "segments": [
-    {{
-      "type": "narration"|"dialogue",
-      "text": "exact text here",
-      "speaker": null|"Character Name",
-      "pronunciation_hints": [],
-      "notes": null|"explanation"
-    }}
-  ],
-  "discovered_characters": [
-    {{
-      "name": "Character Name",
-      "aliases": ["alias1"],
-      "pronunciation_hints": [],
-      "first_appearance_chapter": 1
-    }}
-  ]
-}}
+Your job: for each marked tag, resolve WHO the referring expression denotes.
+"his lady" / "his wife" spoken of Mr. Bennet means Mrs. Bennet. "she" refers to
+the most recently established female speaker. Use the surrounding narration and
+dialogue to resolve pronouns and role references to actual character names.
 
-EXAMPLE A — given input: `said she, "I am quite well."`
-CORRECT output segments:
-  {{"type": "narration", "text": "said she,", "speaker": null, ...}}
-  {{"type": "dialogue", "text": "\"I am quite well.\"", "speaker": "Character", ...}}
-Note: the dialogue text starts with \" (escaped quote) and ends with \" — the quotation marks are PART of the text field.
+Respond ONLY with JSON:
+{{"attributions": [{{"index": <segment number>, "speaker": "<Character Name>"}}]}}
 
-EXAMPLE B — given input: `"My dear sir," said his wife, "have you heard the news?"`
-CORRECT output segments (3 segments):
-  {{"type": "dialogue", "text": "\"My dear sir,\"", "speaker": "Wife", ...}}
-  {{"type": "narration", "text": "said his wife,", "speaker": null, ...}}
-  {{"type": "dialogue", "text": "\"have you heard the news?\"", "speaker": "Wife", ...}}
-WRONG — do NOT merge attribution into dialogue:
-  {{"type": "dialogue", "text": "\"My dear sir,\" said his wife, \"have you heard the news?\"", ...}}
-The attribution phrase "said his wife," is NARRATION even when it appears between two dialogue fragments.
-Any phrase like "said X", "replied X", "answered X", "returned X", "cried X", "asked X" is ALWAYS narration.
-
-EXAMPLE C — given input: `"But it is," returned she; "for I heard it from Mrs. Long."`
-CORRECT output segments (3 segments):
-  {{"type": "dialogue", "text": "\"But it is,\"", "speaker": "Speaker", ...}}
-  {{"type": "narration", "text": "returned she;", "speaker": null, ...}}
-  {{"type": "dialogue", "text": "\"for I heard it from Mrs. Long.\"", "speaker": "Speaker", ...}}
-WRONG — do NOT bundle the attribution and the following dialogue together:
-  {{"type": "narration", "text": "returned she; \"for I heard it from Mrs. Long.\"", ...}}
-Any text inside quotation marks is ALWAYS a dialogue segment, even if it follows an attribution phrase on the same line.
-
-CRITICAL: The concatenation of all segment "text" fields must equal the input text exactly (same characters, same order, same punctuation). Do not drop, add, or alter any character — including quotation marks.
+Include exactly one entry per [WHO IS THIS?] segment: the character the tag
+refers to (the person doing the saying/replying/crying). Names must match the
+KNOWN CHARACTERS list exactly, or be "Unknown" if unresolvable.
 """
 
 
-def segmentation_user(chunk_text: str, context_segments: list[dict] | None = None) -> str:
-    parts = []
-    if context_segments:
-        context_str = "\n".join(
-            f"[{s['type'].upper()}] {s.get('speaker', '') or ''}: {s['text'][:100]}..."
-            if len(s['text']) > 100 else f"[{s['type'].upper()}] {s.get('speaker', '') or ''}: {s['text']}"
-            for s in context_segments[-3:]
-        )
-        parts.append(f"CONTEXT (last segments from previous chunk, do NOT re-segment):\n{context_str}\n")
-    parts.append(f"TEXT TO SEGMENT:\n{chunk_text}")
-    return "\n".join(parts)
-
-
-def segmentation_retry(chunk_text: str, issues: list[str], context_segments: list[dict] | None = None) -> str:
-    issues_str = "\n".join(f"  - {issue}" for issue in issues)
-    base = segmentation_user(chunk_text, context_segments)
-    return (
-        f"{base}\n\n"
-        f"PREVIOUS ATTEMPT HAD INTEGRITY ISSUES — the following text was missing or altered:\n"
-        f"{issues_str}\n\n"
-        f"You MUST include every word of the input exactly. Fix the issues above."
+def tag_resolution_user(
+    segments: list[dict],
+    start_index: int,
+    flagged: set[int],
+    context_count: int,
+) -> str:
+    listing = _render_segment_lines(
+        segments, start_index, flagged, context_count, flag_label="[WHO IS THIS?]"
     )
+    return f"Resolve the [WHO IS THIS?] attribution tags to character names:\n\n{listing}"
+
+
+def attribution_system(characters: list[str]) -> str:
+    char_list = "\n".join(f"  - {c}" for c in characters) if characters else "  (none)"
+    return f"""You are a specialist in literary speaker attribution for audiobook production.
+
+KNOWN CHARACTERS:
+{char_list}
+
+You will receive a numbered list of segments from a novel: narration and dialogue,
+in original order. Some dialogue segments are marked [NEEDS SPEAKER].
+Your job: determine which character speaks each [NEEDS SPEAKER] dialogue segment.
+
+Method, in priority order:
+1. Attribution tags in adjacent narration ("said Mr. Bennet", "replied his wife",
+   "cried Elizabeth") are hard evidence. Note that a possessive or descriptive
+   reference ("his wife", "her mother") must be resolved to the actual character name.
+2. In a two-person exchange, speakers strictly alternate between speech turns.
+   A turn interrupted only by an attribution tag ("..." said she "...") or a
+   [SPEECH CONTINUES INTO NEXT SEGMENT] marker is ONE turn, not two.
+3. Vocatives identify the LISTENER, not the speaker: in "My dear Mr. Bennet, have
+   you heard...", Mr. Bennet is being spoken TO — someone else is speaking.
+4. Use content clues: who knows this information, whose manner of speech is this,
+   who was asked the preceding question.
+5. If genuinely ambiguous (3+ possible speakers, no anchor), use "Unknown".
+
+Dialogue segments already labeled with a speaker, and [CONTEXT] lines, are
+established fact — use them as anchors; do not re-attribute them.
+
+Respond ONLY with JSON:
+{{"attributions": [{{"index": <segment number>, "speaker": "<Character Name>"}}]}}
+
+Include exactly one entry per [NEEDS SPEAKER] segment. Speaker names must match
+the KNOWN CHARACTERS list exactly, or be "Unknown".
+"""
+
+
+def attribution_user(
+    segments: list[dict],
+    start_index: int,
+    flagged: set[int],
+    context_count: int,
+) -> str:
+    listing = _render_segment_lines(segments, start_index, flagged, context_count)
+    return f"Attribute the [NEEDS SPEAKER] dialogue segments:\n\n{listing}"
 
 
 def character_discovery_system() -> str:
@@ -128,87 +155,36 @@ def character_discovery_user(chapters_text: str) -> str:
 
 def critic_system(characters: list[str]) -> str:
     char_list = "\n".join(f"  - {c}" for c in characters) if characters else "  (none)"
-    return f"""You are a quality reviewer for audiobook segment attribution.
+    return f"""You are a quality reviewer for audiobook speaker attribution.
 
 KNOWN CHARACTERS:
 {char_list}
 
-Review the provided segments for:
-1. Speaker attribution errors (wrong character assigned to dialogue)
-2. Mismatched attribution tags ("said X" paired with wrong dialogue segment)
-3. Back-and-forth dialogue pattern errors (dialogue wrongly attributed in rapid exchanges)
-4. Character name inconsistencies (misspellings, wrong canonical form)
+You will receive a chapter's segments, numbered, with their assigned speakers.
+Review ONLY the speaker assignments of dialogue segments. Look for:
+1. Dialogue attributed to the wrong character (contradicted by an adjacent
+   "said X" attribution tag in narration)
+2. Broken alternation in two-person exchanges (same speaker on consecutive
+   turns with no indication of a continued speech)
+3. A speaker who is being addressed in the dialogue itself (a vocative names
+   the listener, so the speaker must be someone else)
 
-Respond with valid JSON:
+Respond ONLY with JSON:
 {{
-  "missing_text": [],
-  "attribution_issues": ["description of issue"],
-  "name_inconsistencies": ["description"],
-  "overall_quality": 0.0-1.0,
-  "needs_reprocessing": true|false,
-  "fixed_segments": [
-    {{
-      "type": "narration"|"dialogue",
-      "text": "exact text",
-      "speaker": null|"Character Name",
-      "pronunciation_hints": [],
-      "notes": null|"explanation"
-    }}
-  ]
+  "corrections": [
+    {{"index": <segment number>, "speaker": "<Correct Character Name>", "reason": "<brief>"}}
+  ],
+  "overall_quality": <0.0-1.0 fraction of dialogue segments correctly attributed>
 }}
 
-If overall_quality >= 0.85 and no coverage gaps: set needs_reprocessing to false and return the segments as-is (with any minor fixes) in fixed_segments.
-If below 0.85 or serious issues: set needs_reprocessing to true.
+Only include entries for dialogue segments whose speaker should CHANGE.
+If everything is correct, return an empty corrections list and quality 1.0.
 """
 
 
 def critic_user(chapter_title: str, segments: list[dict]) -> str:
-    segments_str = "\n".join(
-        f"{i+1}. [{s['type'].upper()}] speaker={s.get('speaker')} | {s['text'][:120]}"
-        for i, s in enumerate(segments)
-    )
-    return f"Review segments for {chapter_title}:\n\n{segments_str}"
-
-
-def attribution_review_system(characters: list[str]) -> str:
-    char_list = "\n".join(f"  - {c}" for c in characters) if characters else "  (none)"
-    return f"""You are a specialist in literary speaker attribution for audiobook production.
-
-KNOWN CHARACTERS:
-{char_list}
-
-You will receive a window of segments from a chapter, with some dialogue turns marked [NEEDS REVIEW].
-Your job: determine the correct speaker for each [NEEDS REVIEW] dialogue segment.
-
-Method:
-1. Find any "said X", "replied X", "cried X" narration segments — these are hard anchors.
-2. Use strict alternation from the nearest anchor to fill in unanchored turns.
-3. Use the dialogue content for further clues (addressing someone by name, topic continuity).
-4. If genuinely ambiguous (3+ speakers possible, no anchor), use "Unknown".
-
-Respond ONLY with valid JSON:
-{{
-  "corrections": [
-    {{
-      "segment_index": 0,
-      "speaker": "Character Name",
-      "reason": "brief explanation"
-    }}
-  ]
-}}
-
-Only include segments that need correction (the [NEEDS REVIEW] ones). Do not modify confirmed segments.
-"""
-
-
-def attribution_review_user(window_segments: list[dict], flagged_idxs: set[int]) -> str:
-    lines = []
-    for i, seg in enumerate(window_segments):
-        tag = "[NEEDS REVIEW] " if i in flagged_idxs else ""
-        sp = seg.get("speaker") or "null"
-        txt = seg.get("text", "")[:120]
-        lines.append(f"{i}. {tag}[{seg['type'].upper()}] speaker={sp} | {txt}")
-    return "Review speaker attribution for flagged segments:\n\n" + "\n".join(lines)
+    listing = _render_segment_lines(segments)
+    return f"Review speaker attribution for {chapter_title}:\n\n{listing}"
 
 
 def llm_chapter_discovery_system() -> str:

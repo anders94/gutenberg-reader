@@ -13,8 +13,8 @@ from gutenberg_reader.cache import (
 )
 from gutenberg_reader.config import Config
 from gutenberg_reader.models import CharacterInfo, CriticReport, ProcessedChapter, Segment
-from gutenberg_reader.ollama import OllamaClient, OllamaError
-from gutenberg_reader import prompts, text_utils
+from gutenberg_reader.llm import LLMClient, LLMError
+from gutenberg_reader import prompts, schemas, text_utils
 
 console = Console()
 
@@ -24,7 +24,7 @@ MAX_REPROCESSING = 2
 
 def run(
     config: Config,
-    client: OllamaClient,
+    client: LLMClient,
     processed: dict[int, ProcessedChapter],
     characters: list[CharacterInfo],
     chapter_nums: list[int] | None = None,
@@ -78,7 +78,7 @@ def _critique_chapter(
     chapter: ProcessedChapter,
     characters: list[CharacterInfo],
     config: Config,
-    client: OllamaClient,
+    client: LLMClient,
 ) -> tuple[CriticReport, ProcessedChapter]:
     """Run code-level checks and LLM critique."""
     char_names = [c.name for c in characters]
@@ -92,45 +92,44 @@ def _critique_chapter(
     # Code-level: name spell-check
     name_issues = _check_names(anchor_chapter, char_names)
 
-    # LLM critique (on anchor-corrected segments)
-    report = _llm_critique(anchor_chapter, char_names, config, client)
+    # LLM critique: returns per-segment speaker corrections, never text.
+    # Segment text is deterministic and untouchable at this point.
+    corrections, quality = _llm_critique(anchor_chapter, char_names, config, client)
 
-    # Merge code-level findings into report
-    report.missing_text.extend(coverage_issues)
-    report.name_inconsistencies.extend(name_issues)
+    # Named anchors ("said Mr. Bennet" adjacent to the dialogue) outrank the critic
+    named_anchors = text_utils.extract_attribution_anchors(
+        [s.to_dict() for s in anchor_chapter.segments], characters
+    )
+
+    final_segs = list(anchor_chapter.segments)
+    applied: list[str] = []
+    for corr in corrections:
+        idx = corr.get("index")
+        speaker = corr.get("speaker")
+        if not isinstance(idx, int) or not (0 <= idx < len(final_segs)) or not speaker:
+            continue
+        seg = final_segs[idx]
+        if seg.type != "dialogue" or idx in named_anchors or seg.speaker == speaker:
+            continue
+        applied.append(f"segment {idx}: {seg.speaker} -> {speaker} ({corr.get('reason', '')})")
+        final_segs[idx] = Segment(
+            type=seg.type,
+            text=seg.text,
+            speaker=speaker,
+            pronunciation_hints=seg.pronunciation_hints,
+            notes=seg.notes,
+        )
+
+    report = CriticReport(
+        chapter_number=chapter.chapter_number,
+        missing_text=coverage_issues,
+        attribution_issues=applied,
+        name_inconsistencies=name_issues,
+        overall_quality=quality,
+        needs_reprocessing=bool(coverage_issues),
+    )
     if anchor_corrections:
         report.attribution_issues = [f"Anchor pass fixed: {anchor_corrections}"] + report.attribution_issues
-
-    if coverage_issues:
-        report.needs_reprocessing = True
-        report.overall_quality = min(report.overall_quality, 0.7)
-
-    # Determine final segments; anchor corrections take precedence over LLM fixes
-    if report.fixed_segments and len(report.fixed_segments) == len(anchor_chapter.segments):
-        # Merge: ALWAYS keep the original text (the critic prompt truncates at 120 chars,
-        # so the LLM returns truncated text — never trust its text field).
-        # Only accept type/speaker/notes from the LLM.
-        named_anchors = text_utils.extract_attribution_anchors(
-            [s.to_dict() for s in chapter.segments], characters
-        )
-        merged = []
-        for i, (orig, llm_seg) in enumerate(
-            zip(anchor_chapter.segments, report.fixed_segments)
-        ):
-            speaker = llm_seg.speaker
-            # Named anchors override LLM speaker
-            if i in named_anchors:
-                speaker = named_anchors[i]
-            merged.append(Segment(
-                type=llm_seg.type,
-                text=orig.text,  # always use original — never the LLM's possibly-truncated copy
-                speaker=speaker,
-                pronunciation_hints=llm_seg.pronunciation_hints or orig.pronunciation_hints,
-                notes=llm_seg.notes,
-            ))
-        final_segs = merged
-    else:
-        final_segs = anchor_chapter.segments
 
     final_chapter = ProcessedChapter(
         chapter_number=chapter.chapter_number,
@@ -212,9 +211,9 @@ def _llm_critique(
     chapter: ProcessedChapter,
     char_names: list[str],
     config: Config,
-    client: OllamaClient,
-) -> CriticReport:
-    """Call LLM to review and optionally fix segments."""
+    client: LLMClient,
+) -> tuple[list[dict], float]:
+    """Call LLM to review speaker attribution. Returns (corrections, quality)."""
     segments_data = [s.to_dict() for s in chapter.segments]
 
     messages = [
@@ -223,36 +222,15 @@ def _llm_critique(
     ]
 
     try:
-        data = client.chat_json(config.validation_model, messages)
-    except OllamaError as e:
+        data = client.chat_json(
+            config.validation_model,
+            messages,
+            schema=schemas.critic_schema(char_names),
+        )
+    except LLMError as e:
         console.print(f"  [red]Stage 06: LLM critique failed: {e}[/red]")
         # Return a passing report so we don't block the pipeline
-        return CriticReport(
-            chapter_number=chapter.chapter_number,
-            overall_quality=1.0,
-            needs_reprocessing=False,
-        )
+        return [], 1.0
 
-    fixed_segs = None
-    if data.get("fixed_segments"):
-        fixed_raw = [s for s in data["fixed_segments"] if _valid_seg(s)]
-        fixed_segs = [Segment.from_dict(s) for s in fixed_raw]
-
-    return CriticReport(
-        chapter_number=chapter.chapter_number,
-        missing_text=data.get("missing_text", []),
-        attribution_issues=data.get("attribution_issues", []),
-        name_inconsistencies=data.get("name_inconsistencies", []),
-        overall_quality=float(data.get("overall_quality", 1.0)),
-        needs_reprocessing=bool(data.get("needs_reprocessing", False)),
-        fixed_segments=fixed_segs,
-    )
-
-
-def _valid_seg(s: object) -> bool:
-    return (
-        isinstance(s, dict)
-        and s.get("type") in ("narration", "dialogue")
-        and isinstance(s.get("text"), str)
-        and len(s.get("text", "").strip()) > 0
-    )
+    corrections = [c for c in data.get("corrections", []) if isinstance(c, dict)]
+    return corrections, float(data.get("overall_quality", 1.0))
