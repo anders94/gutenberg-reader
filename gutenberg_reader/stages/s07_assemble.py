@@ -6,7 +6,7 @@ from pathlib import Path
 
 from rich.console import Console
 
-from gutenberg_reader.cache import atomic_write_json, chapter_file, read_json, stage_complete
+from gutenberg_reader.cache import atomic_write_json
 from gutenberg_reader.config import Config
 from gutenberg_reader.models import (
     BookMetadata,
@@ -15,11 +15,29 @@ from gutenberg_reader.models import (
     CriticReport,
     ProcessedChapter,
 )
-from gutenberg_reader import text_utils
 
 console = Console()
 
 PIPELINE_VERSION = "1.0.0"
+
+
+def _output_path(config: Config) -> Path:
+    """Where the final JSON goes.
+
+    A --chapters run holds only part of the book, so it gets its own file:
+    writing it to the canonical path would replace a complete book with a
+    fragment, and the next full run would happily serve that fragment.
+    """
+    if config.output_file:
+        return config.output_file
+
+    stage_dir = config.stage_dir(7)
+    if not config.chapters_only:
+        return stage_dir / f"{config.book_id}.json"
+
+    nums = sorted(config.chapters_only)
+    span = "-".join(str(n) for n in nums) if len(nums) <= 6 else f"{nums[0]}_{nums[-1]}"
+    return stage_dir / f"{config.book_id}-ch{span}.json"
 
 
 def run(
@@ -31,13 +49,11 @@ def run(
     start_time: float,
 ) -> Path:
     """Assemble and save final JSON. Returns path to output file."""
-    stage_dir = config.stage_dir(7)
-    out_path = config.output_file or stage_dir / f"{config.book_id}.json"
+    out_path = _output_path(config)
 
-    if stage_complete(out_path) and (config.force_stage is None or config.force_stage > 7):
-        if config.verbose:
-            console.print(f"[dim]Stage 07: already complete ({out_path})[/dim]")
-        return out_path
+    # Assembly is always re-run: it takes milliseconds, and its inputs (stages
+    # 05/06) change on every resumed run. Skipping it when the file merely
+    # exists would keep serving an output assembled from fewer chapters.
 
     if config.verbose:
         console.print("[cyan]Stage 07:[/cyan] Assembling final output...")

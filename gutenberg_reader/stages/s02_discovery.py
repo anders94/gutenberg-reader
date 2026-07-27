@@ -68,6 +68,7 @@ def run(config: Config, client: LLMClient) -> DiscoveryResult:
 
     # Build ChapterInfo objects with end_line and word_count
     chapter_infos = _build_chapter_infos(raw_chapters, body_lines, body_start)
+    _warn_on_degenerate_chapters(chapter_infos)
 
     result = DiscoveryResult(
         metadata=metadata,
@@ -88,6 +89,7 @@ def _build_chapter_infos(
     """Convert raw chapter dicts into ChapterInfo with word counts and absolute line numbers."""
     infos: list[ChapterInfo] = []
     n = len(raw_chapters)
+    seen_numbers: set[int] = set()
 
     for i, ch in enumerate(raw_chapters):
         # start_line in raw_chapters is 1-indexed relative to body_lines
@@ -107,8 +109,16 @@ def _build_chapter_infos(
         chapter_text = text_utils.strip_illustration_blocks(chapter_text)
         wc = text_utils.word_count(chapter_text)
 
+        # Chapter numbers key the per-chapter cache files in stages 03/05 and the
+        # accepted-chapter map in stage 07, so a duplicate silently discards a
+        # chapter. Fall back to position when a source hands us a repeat.
+        number = ch["number"]
+        if number in seen_numbers:
+            number = max(seen_numbers) + 1
+        seen_numbers.add(number)
+
         infos.append(ChapterInfo(
-            number=ch["number"],
+            number=number,
             title=ch["title"],
             start_line=abs_start + 1,  # 1-indexed in full file
             end_line=abs_end + 1,
@@ -117,6 +127,26 @@ def _build_chapter_infos(
         ))
 
     return infos
+
+
+def _warn_on_degenerate_chapters(infos: list[ChapterInfo], min_words: int = 20) -> None:
+    """Warn when many chapters hold nothing but their own heading.
+
+    This is what a table of contents mistaken for the body looks like, and it is
+    otherwise invisible until the final JSON comes out nearly empty.
+    """
+    if not infos:
+        return
+
+    degenerate = [ci for ci in infos if ci.word_count < min_words]
+    if len(degenerate) * 5 < len(infos):  # under 20% — nothing systematic
+        return
+
+    console.print(
+        f"[yellow]Stage 02: warning —[/yellow] {len(degenerate)} of {len(infos)} chapters "
+        f"contain fewer than {min_words} words. Chapter detection may have matched a "
+        "table of contents or an index rather than the book body."
+    )
 
 
 def _maybe_prepend_chapter_one(
@@ -140,6 +170,11 @@ def _maybe_prepend_chapter_one(
         _re.IGNORECASE,
     )
 
+    def is_toc(stripped: str) -> bool:
+        # A heading-shaped line ahead of the first detected chapter is a contents
+        # entry, not narrative — otherwise a full TOC reads as a 500-word chapter one.
+        return bool(TOC_RE.search(stripped)) or text_utils.looks_like_chapter_heading(stripped)
+
     # Build set of illustration line indices before the first chapter
     illustration_lines: set[int] = _find_illustration_lines(body_lines, 0, first_chapter_start_idx)
 
@@ -154,7 +189,7 @@ def _maybe_prepend_chapter_one(
         stripped = body_lines[j].strip()
         if not stripped:
             continue
-        if TOC_RE.search(stripped):
+        if is_toc(stripped):
             continue
         if last_prose_line is None or j > last_prose_line:
             last_prose_line = j
@@ -182,13 +217,13 @@ def _maybe_prepend_chapter_one(
             if k < 0:
                 break
             prev_stripped = body_lines[k].strip()
-            if TOC_RE.search(prev_stripped):
+            if is_toc(prev_stripped):
                 break  # Hit TOC boundary
             # Continue over the blank gap
             block_start = k
             j = k - 1
         else:
-            if TOC_RE.search(stripped):
+            if is_toc(stripped):
                 break
             block_start = j
             j -= 1
@@ -199,7 +234,7 @@ def _maybe_prepend_chapter_one(
         if j in illustration_lines:
             continue
         stripped = body_lines[j].strip()
-        if stripped and not TOC_RE.search(stripped):
+        if stripped and not is_toc(stripped):
             pre_text_words.extend(stripped.split())
 
     if len(pre_text_words) < MIN_CHAPTER_WORDS:
@@ -211,7 +246,7 @@ def _maybe_prepend_chapter_one(
         if j in illustration_lines:
             continue
         stripped = body_lines[j].strip()
-        if not stripped or TOC_RE.search(stripped):
+        if not stripped or is_toc(stripped):
             continue
         actual_start = j
         break
@@ -270,10 +305,12 @@ def _llm_chapter_discovery(
     try:
         data = client.chat_json(config.processing_model, messages, schema=schemas.CHAPTERS_SCHEMA)
         chapters = data.get("chapters", [])
-        # Normalize to our format
+        # Normalize to our format. Numbering is positional, not taken from the
+        # model: a heading the model labels "Chapter 1" may be the Nth it found,
+        # and a repeated number would collide in the per-chapter caches.
         return [
             {
-                "number": ch.get("number", i + 1),
+                "number": i + 1,
                 "title": ch.get("title", f"Chapter {i+1}"),
                 "start_line": ch.get("start_line", 1),
                 "start_marker": ch.get("title", ""),

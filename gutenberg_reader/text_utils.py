@@ -94,20 +94,78 @@ def extract_preamble_metadata(preamble: str) -> dict[str, str]:
 
 # ── Chapter detection ─────────────────────────────────────────────────────────
 
+# Many books carry the title on the heading line itself ("Chapter 1. Marseilles—The
+# Arrival"), so the numeral may be followed by an optional same-line title. Two
+# guards keep prose from being mistaken for a heading: the title must begin like a
+# title (capital, digit, or opening quote), and after a roman numeral it must be
+# introduced by punctuation — otherwise "Chapter I am late" would qualify.
+_TITLE_BODY = r"[A-Z0-9“‘\"'(\[].*"
+_TITLE_AFTER_PUNCT = rf"(?:\s*[.:—–-]\s*(?:{_TITLE_BODY})?)?"
+_TITLE_AFTER_SPACE = rf"(?:\s*[.:—–-]?\s*(?:{_TITLE_BODY})?)?"
+
 CHAPTER_PATTERNS = [
-    re.compile(r"^(CHAPTER\s+[IVXLCDM]+\.?\s*)$", re.MULTILINE),
-    re.compile(r"^(CHAPTER\s+\d+\.?\s*)$", re.MULTILINE),
-    re.compile(r"^(Chapter\s+\d+\.?\s*)$", re.MULTILINE),
-    re.compile(r"^(Chapter\s+[IVXLCDM]+\.?\s*)$", re.MULTILINE),
-    re.compile(r"^(PART\s+[IVXLCDM]+\.?\s*)$", re.MULTILINE),
-    re.compile(r"^(BOOK\s+[IVXLCDM]+\.?\s*)$", re.MULTILINE),
+    re.compile(rf"^(CHAPTER\s+[IVXLCDM]+{_TITLE_AFTER_PUNCT})\s*$"),
+    re.compile(rf"^(CHAPTER\s+\d+{_TITLE_AFTER_SPACE})\s*$"),
+    re.compile(rf"^(Chapter\s+\d+{_TITLE_AFTER_SPACE})\s*$"),
+    re.compile(rf"^(Chapter\s+[IVXLCDM]+{_TITLE_AFTER_PUNCT})\s*$"),
+    re.compile(rf"^(PART\s+[IVXLCDM]+{_TITLE_AFTER_PUNCT})\s*$"),
+    re.compile(rf"^(BOOK\s+[IVXLCDM]+{_TITLE_AFTER_PUNCT})\s*$"),
 ]
+
+# A table of contents lists every heading a line or two apart; real chapters are
+# hundreds of lines apart. Any run of at least TOC_MIN_RUN headings packed within
+# TOC_MAX_GAP lines of each other is a contents listing, not the body.
+TOC_MAX_GAP = 4
+TOC_MIN_RUN = 3
+
+
+def looks_like_chapter_heading(stripped: str) -> bool:
+    """True if an already-stripped line has the shape of a chapter heading."""
+    return any(p.match(stripped) for p in CHAPTER_PATTERNS)
+
+
+def drop_toc_clusters(matches: list[dict]) -> list[dict]:
+    """Drop headings belonging to densely packed runs (table-of-contents listings).
+
+    Takes and returns dicts carrying a 0-based "line_idx". If filtering would
+    discard everything, the input is returned unchanged — better to over-detect
+    than to report a book with no chapters at all.
+    """
+    n = len(matches)
+    if n < TOC_MIN_RUN:
+        return matches
+
+    close_to_next = [
+        matches[i + 1]["line_idx"] - matches[i]["line_idx"] <= TOC_MAX_GAP
+        for i in range(n - 1)
+    ]
+
+    keep = [True] * n
+    i = 0
+    while i < n - 1:
+        if not close_to_next[i]:
+            i += 1
+            continue
+        # Walk to the end of the cluster; the final member has no close successor
+        # of its own but still belongs to the run.
+        j = i
+        while j < n - 1 and close_to_next[j]:
+            j += 1
+        if j - i + 1 >= TOC_MIN_RUN:
+            for k in range(i, j + 1):
+                keep[k] = False
+        i = j + 1
+
+    filtered = [m for m, k in zip(matches, keep) if k]
+    return filtered or matches
 
 
 def detect_chapters_regex(lines: list[str]) -> list[dict]:
     """Detect chapter boundaries using ordered regex patterns.
 
     Returns list of dicts with keys: number, title, start_line (1-indexed), start_marker.
+    Numbering is positional rather than parsed from the heading, so books that
+    restart their count per part cannot produce duplicate chapter numbers.
     """
     matches = []
     for i, line in enumerate(lines):
@@ -119,6 +177,8 @@ def detect_chapters_regex(lines: list[str]) -> list[dict]:
                     "title": stripped,
                 })
                 break
+
+    matches = drop_toc_clusters(matches)
 
     # Number them sequentially
     result = []
