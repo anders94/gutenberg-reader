@@ -1,5 +1,13 @@
 # Chapter Boundary Detection — Front Matter and Back Matter
 
+> **Status: addressed.** This document describes an earlier layout
+> (`src/gutenberg_reader/download/parser.py`); the defects carried over into the
+> staged pipeline and were fixed there — back-matter terminal boundary and
+> front-matter guard in `gutenberg_reader/stages/s02_discovery.py`, heading
+> classification in `gutenberg_reader/text_utils.py`, size-outlier warning,
+> LLM entry validation, and `--include-front-matter` / `--include-back-matter`
+> CLI flags. Regression tests: `tests/test_structure.py` (PG 1727 fixture).
+
 ## What Went Wrong
 
 The Odyssey (PG 1727) render produced two defects that had to be repaired by hand

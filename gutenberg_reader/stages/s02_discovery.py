@@ -67,8 +67,12 @@ def run(config: Config, client: LLMClient) -> DiscoveryResult:
         console.print(f"[cyan]Stage 02:[/cyan] Found {len(raw_chapters)} chapters")
 
     # Build ChapterInfo objects with end_line and word_count
-    chapter_infos = _build_chapter_infos(raw_chapters, body_lines, body_start)
+    chapter_infos = _build_chapter_infos(
+        raw_chapters, body_lines, body_start,
+        include_back_matter=config.include_back_matter,
+    )
     _warn_on_degenerate_chapters(chapter_infos)
+    _warn_on_size_outliers(chapter_infos)
 
     result = DiscoveryResult(
         metadata=metadata,
@@ -85,11 +89,13 @@ def _build_chapter_infos(
     raw_chapters: list[dict],
     body_lines: list[str],
     body_start: int,
+    include_back_matter: bool = False,
 ) -> list[ChapterInfo]:
     """Convert raw chapter dicts into ChapterInfo with word counts and absolute line numbers."""
     infos: list[ChapterInfo] = []
     n = len(raw_chapters)
     seen_numbers: set[int] = set()
+    back_matter_start: int | None = None  # rel index of the first back-matter heading
 
     for i, ch in enumerate(raw_chapters):
         # start_line in raw_chapters is 1-indexed relative to body_lines
@@ -100,7 +106,25 @@ def _build_chapter_infos(
         if i + 1 < n:
             rel_end = raw_chapters[i + 1]["start_line"] - 2  # line before next chapter header
         else:
+            # The final chapter would otherwise run to end-of-body, swallowing
+            # any footnote appendix, index, or errata the edition carries.
             rel_end = len(body_lines) - 1
+            back_matter_start = _find_back_matter_heading(body_lines, rel_start + 1, rel_end)
+            if back_matter_start is not None:
+                trimmed = rel_end - back_matter_start + 1
+                console.print(
+                    f"[cyan]Stage 02:[/cyan] final chapter ends at back-matter heading "
+                    f"{body_lines[back_matter_start].strip()!r} — "
+                    f"{'keeping' if include_back_matter else 'trimming'} {trimmed:,} trailing lines"
+                )
+                rel_end = back_matter_start - 1
+
+        if rel_end < rel_start:
+            console.print(
+                f"[yellow]Stage 02: warning —[/yellow] chapter {ch['number']} "
+                f"({ch['title']!r}) spans no lines; its boundaries are out of order. "
+                "Check the discovered chapter list."
+            )
 
         abs_end = body_start + rel_end
 
@@ -124,9 +148,32 @@ def _build_chapter_infos(
             end_line=abs_end + 1,
             word_count=wc,
             start_marker=ch.get("start_marker", ch["title"]),
+            kind=ch.get("kind", "body"),
+        ))
+
+    if include_back_matter and back_matter_start is not None and infos:
+        rel_end = len(body_lines) - 1
+        text = "\n".join(body_lines[back_matter_start:rel_end + 1])
+        text = text_utils.strip_illustration_blocks(text)
+        infos.append(ChapterInfo(
+            number=max(seen_numbers) + 1,
+            title=body_lines[back_matter_start].strip(),
+            start_line=body_start + back_matter_start + 1,
+            end_line=body_start + rel_end + 1,
+            word_count=text_utils.word_count(text),
+            start_marker=body_lines[back_matter_start].strip(),
+            kind="back",
         ))
 
     return infos
+
+
+def _find_back_matter_heading(body_lines: list[str], start: int, end: int) -> int | None:
+    """Return the 0-based index of the first back-matter heading in [start, end], if any."""
+    for j in range(start, end + 1):
+        if text_utils.BACK_MATTER_RE.match(body_lines[j].strip()):
+            return j
+    return None
 
 
 def _warn_on_degenerate_chapters(infos: list[ChapterInfo], min_words: int = 20) -> None:
@@ -147,6 +194,36 @@ def _warn_on_degenerate_chapters(infos: list[ChapterInfo], min_words: int = 20) 
         f"contain fewer than {min_words} words. Chapter detection may have matched a "
         "table of contents or an index rather than the book body."
     )
+
+
+def _warn_on_size_outliers(
+    infos: list[ChapterInfo],
+    high: float = 2.5,
+    low: float = 0.2,
+) -> None:
+    """Warn when a chapter is wildly larger or smaller than the median.
+
+    A chapter several times the median usually means swallowed front or back
+    matter, and it costs real TTS time downstream before anyone hears it.
+    """
+    import statistics
+
+    if len(infos) < 3:
+        return
+
+    median = statistics.median(ci.word_count for ci in infos)
+    if median == 0:
+        return
+
+    for ci in infos:
+        ratio = ci.word_count / median
+        if ratio > high or ratio < low:
+            console.print(
+                f"[yellow]Stage 02: warning —[/yellow] chapter {ci.number} "
+                f"({ci.title!r}) is {ratio:.1f}× the median chapter size "
+                f"({ci.word_count:,} vs {median:,.0f} words). "
+                "Check for swallowed front or back matter."
+            )
 
 
 def _maybe_prepend_chapter_one(
@@ -228,6 +305,18 @@ def _maybe_prepend_chapter_one(
             block_start = j
             j -= 1
 
+    # A preface or dedication reads as prose to the walk-back above — nothing in
+    # it is TOC-shaped. But such a block announces itself with a heading
+    # ("PREFACE TO FIRST EDITION", "DEDICATION", ...); if one is present anywhere
+    # in the block, this is the edition's apparatus, not an unlabeled chapter one.
+    for j in range(block_start, first_chapter_start_idx):
+        if j in illustration_lines:
+            continue
+        stripped = body_lines[j].strip()
+        if (text_utils.FRONT_MATTER_RE.match(stripped)
+                or text_utils.BACK_MATTER_RE.match(stripped)):
+            return raw_chapters
+
     # Collect all text in [block_start, first_chapter_start_idx) excluding illustrations
     pre_text_words = []
     for j in range(block_start, first_chapter_start_idx):
@@ -286,6 +375,59 @@ def _find_illustration_lines(body_lines: list[str], start: int, end: int) -> set
     return result
 
 
+def _validate_llm_chapters(
+    chapters: list[dict],
+    body_line_count: int,
+    config: Config,
+) -> list[dict]:
+    """Sanitize model-provided chapter entries before trusting their positions.
+
+    Chapter ends are derived from the *next* entry's start, so an out-of-order
+    or out-of-range start silently produces an empty chapter while its
+    neighbour balloons. Entries are range-checked, sorted by position, and
+    deduplicated — loudly, never silently. Front and back matter (prefaces,
+    footnote appendices) are dropped unless the config keeps them.
+    """
+    valid: list[dict] = []
+    seen_starts: set[int] = set()
+    for ch in chapters:
+        title = ch.get("title", "")
+        try:
+            start = int(ch.get("start_line", 0))
+        except (TypeError, ValueError):
+            start = 0
+        if start < 1 or start > body_line_count:
+            console.print(
+                f"[yellow]Stage 02: warning —[/yellow] dropping LLM chapter {title!r}: "
+                f"start_line {ch.get('start_line')!r} is outside the body (1–{body_line_count})"
+            )
+            continue
+        if start in seen_starts:
+            console.print(
+                f"[yellow]Stage 02: warning —[/yellow] dropping LLM chapter {title!r}: "
+                f"duplicate start_line {start}"
+            )
+            continue
+        kind = text_utils.classify_heading(title)
+        if kind == "front" and not config.include_front_matter:
+            console.print(f"[cyan]Stage 02:[/cyan] skipping front matter: {title!r}")
+            continue
+        if kind == "back" and not config.include_back_matter:
+            console.print(f"[cyan]Stage 02:[/cyan] skipping back matter: {title!r}")
+            continue
+        seen_starts.add(start)
+        valid.append(dict(ch, start_line=start, kind=kind))
+
+    in_order = [ch["start_line"] for ch in valid]
+    if in_order != sorted(in_order):
+        console.print(
+            "[yellow]Stage 02: warning —[/yellow] LLM returned chapters out of "
+            "document order; sorting by position"
+        )
+        valid.sort(key=lambda ch: ch["start_line"])
+    return valid
+
+
 def _llm_chapter_discovery(
     body_lines: list[str],
     config: Config,
@@ -305,6 +447,7 @@ def _llm_chapter_discovery(
     try:
         data = client.chat_json(config.processing_model, messages, schema=schemas.CHAPTERS_SCHEMA)
         chapters = data.get("chapters", [])
+        chapters = _validate_llm_chapters(chapters, len(body_lines), config)
         # Normalize to our format. Numbering is positional, not taken from the
         # model: a heading the model labels "Chapter 1" may be the Nth it found,
         # and a repeated number would collide in the per-chapter caches.
@@ -314,6 +457,7 @@ def _llm_chapter_discovery(
                 "title": ch.get("title", f"Chapter {i+1}"),
                 "start_line": ch.get("start_line", 1),
                 "start_marker": ch.get("title", ""),
+                "kind": ch.get("kind", "body"),
             }
             for i, ch in enumerate(chapters)
         ]

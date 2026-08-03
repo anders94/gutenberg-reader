@@ -83,25 +83,22 @@ def _critique_chapter(
     """Run code-level checks and LLM critique."""
     char_names = [c.name for c in characters]
 
-    # Tier 1: deterministic anchor propagation
-    anchor_chapter, anchor_corrections = _anchor_attribution(chapter, characters, char_names, config)
-
     # Code-level: coverage check
-    coverage_issues = _check_coverage(anchor_chapter)
+    coverage_issues = _check_coverage(chapter)
 
     # Code-level: name spell-check
-    name_issues = _check_names(anchor_chapter, char_names)
+    name_issues = _check_names(chapter, char_names)
 
     # LLM critique: returns per-segment speaker corrections, never text.
     # Segment text is deterministic and untouchable at this point.
-    corrections, quality = _llm_critique(anchor_chapter, char_names, config, client)
+    corrections, quality = _llm_critique(chapter, char_names, config, client)
 
     # Named anchors ("said Mr. Bennet" adjacent to the dialogue) outrank the critic
     named_anchors = text_utils.extract_attribution_anchors(
-        [s.to_dict() for s in anchor_chapter.segments], characters
+        [s.to_dict() for s in chapter.segments], characters
     )
 
-    final_segs = list(anchor_chapter.segments)
+    final_segs = list(chapter.segments)
     applied: list[str] = []
     for corr in corrections:
         idx = corr.get("index")
@@ -128,8 +125,6 @@ def _critique_chapter(
         overall_quality=quality,
         needs_reprocessing=bool(coverage_issues),
     )
-    if anchor_corrections:
-        report.attribution_issues = [f"Anchor pass fixed: {anchor_corrections}"] + report.attribution_issues
 
     final_chapter = ProcessedChapter(
         chapter_number=chapter.chapter_number,
@@ -140,47 +135,6 @@ def _critique_chapter(
     )
 
     return report, final_chapter
-
-
-def _anchor_attribution(
-    chapter: ProcessedChapter,
-    characters: list[CharacterInfo],
-    char_names: list[str],
-    config: Config,
-) -> tuple[ProcessedChapter, str]:
-    """Tier 1: deterministic speaker propagation via conversation-chain alternation.
-
-    Walks the chapter's segments, groups them into conversation chains, and
-    propagates confirmed speakers bidirectionally via strict alternation for
-    2-person chains.  Returns the (possibly corrected) chapter and a summary string.
-    """
-    segments_dicts = [s.to_dict() for s in chapter.segments]
-    corrected_dicts, flagged_chains, n_corrections = text_utils.propagate_anchors(
-        segments_dicts, characters, char_names
-    )
-
-    if n_corrections == 0 and not flagged_chains:
-        return chapter, ""
-
-    summary_parts = []
-    if n_corrections > 0:
-        summary_parts.append(f"{n_corrections} speaker(s) corrected by anchor propagation")
-    if flagged_chains:
-        summary_parts.append(f"{len(flagged_chains)} chain(s) flagged for LLM review")
-    summary = "; ".join(summary_parts)
-
-    if config.verbose and n_corrections > 0:
-        console.print(f"  [green]Anchor pass:[/green] {summary}")
-
-    corrected_segs = [Segment.from_dict(d) for d in corrected_dicts]
-    corrected_chapter = ProcessedChapter(
-        chapter_number=chapter.chapter_number,
-        chapter_title=chapter.chapter_title,
-        segments=corrected_segs,
-        discovered_characters=chapter.discovered_characters,
-        word_count=chapter.word_count,
-    )
-    return corrected_chapter, summary
 
 
 def _check_coverage(chapter: ProcessedChapter) -> list[str]:

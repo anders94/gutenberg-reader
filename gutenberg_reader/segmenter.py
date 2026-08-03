@@ -104,15 +104,21 @@ def segment_text(text: str, quote_pair: tuple[str, str] | None = None) -> list[d
         quote_pair = detect_quote_pair(text)
 
     segments: list[dict] = []
-    for para in split_paragraphs(text):
+    for para_idx, para in enumerate(split_paragraphs(text)):
         if quote_pair is None:
-            segments.append({
+            para_segments = [{
                 "type": "narration",
                 "text": para,
                 "speaker": None,
                 "pronunciation_hints": [],
                 "notes": None,
-            })
+            }]
         else:
-            segments.extend(segment_paragraph(para, *quote_pair))
+            para_segments = segment_paragraph(para, *quote_pair)
+        # Which paragraph a segment came from is real typographic evidence for
+        # attribution (narration and a quote sharing a paragraph usually share
+        # a subject); kept on the working dicts, dropped from the final model.
+        for seg in para_segments:
+            seg["para"] = para_idx
+        segments.extend(para_segments)
     return segments

@@ -1,0 +1,255 @@
+"""Chapter boundary detection — front matter, back matter, and LLM validation.
+
+Regression tests for the Odyssey (PG 1727) defects: the final chapter swallowing
+the footnote appendix, and the prefaces being promoted to a synthetic chapter 1.
+The cached raw texts under cache/ serve as fixtures when present.
+"""
+
+from __future__ import annotations
+
+import json
+import statistics
+from pathlib import Path
+
+import pytest
+
+from gutenberg_reader import text_utils
+from gutenberg_reader.stages.s02_discovery import (
+    _build_chapter_infos,
+    _maybe_prepend_chapter_one,
+    _validate_llm_chapters,
+)
+from gutenberg_reader.config import Config
+
+CACHE = Path(__file__).resolve().parent.parent / "cache"
+
+
+def _discover(body_lines: list[str], include_back_matter: bool = False):
+    """Run the regex discovery path the way stage 02 does."""
+    raw = text_utils.detect_chapters_regex(body_lines)
+    raw = _maybe_prepend_chapter_one(raw, body_lines)
+    return _build_chapter_infos(raw, body_lines, 0,
+                                include_back_matter=include_back_matter)
+
+
+def _body_lines(book_id: str) -> list[str]:
+    raw_path = CACHE / book_id / "01-raw" / "book.txt"
+    if not raw_path.exists():
+        pytest.skip(f"cache/{book_id} fixture not present")
+    lines = raw_path.read_text(encoding="utf-8").splitlines()
+    start, end = text_utils.find_body_bounds(lines)
+    return lines[start:end]
+
+
+# ── Heading classification ────────────────────────────────────────────────────
+
+@pytest.mark.parametrize("title,kind", [
+    ("PREFACE TO FIRST EDITION", "front"),
+    ("PREFACE.", "front"),
+    ("INTRODUCTION", "front"),
+    ("DEDICATION", "front"),
+    ("Contents", "front"),
+    ("LIST OF ILLUSTRATIONS", "front"),
+    ("FOOTNOTES:", "back"),
+    ("APPENDIX", "back"),
+    ("INDEX.", "back"),
+    ("GLOSSARY", "back"),
+    ("ERRATA", "back"),
+    ("BOOK XXIV", "body"),
+    ("CHAPTER VII.", "body"),
+    ("Chapter 1. Marseilles—The Arrival", "body"),
+    ("The captain took notes on the voyage.", "body"),
+    ("An index of his character emerged.", "body"),
+])
+def test_classify_heading(title, kind):
+    assert text_utils.classify_heading(title) == kind
+
+
+# ── Synthetic book: back-matter trim and front-matter guard ──────────────────
+
+PREFACE_WORDS = " ".join(["preface"] * 60)
+CHAPTER_WORDS = " ".join(["story"] * 60)
+FOOTNOTE_WORDS = " ".join(["footnote"] * 60)
+
+SYNTHETIC = f"""DEDICATION
+
+To someone dear.
+
+PREFACE TO FIRST EDITION
+
+{PREFACE_WORDS}
+
+CHAPTER I.
+
+{CHAPTER_WORDS}
+
+CHAPTER II.
+
+{CHAPTER_WORDS}
+
+CHAPTER III.
+
+{CHAPTER_WORDS}
+
+FOOTNOTES:
+
+{FOOTNOTE_WORDS}
+""".splitlines()
+
+
+def test_synthetic_back_matter_trimmed():
+    infos = _discover(SYNTHETIC)
+    assert [ci.title for ci in infos] == ["CHAPTER I.", "CHAPTER II.", "CHAPTER III."]
+    last_text = "\n".join(SYNTHETIC[infos[-1].start_line - 1:infos[-1].end_line])
+    assert "FOOTNOTES" not in last_text
+    assert "footnote" not in last_text
+
+
+def test_synthetic_front_matter_not_promoted():
+    infos = _discover(SYNTHETIC)
+    # The dedication + preface block must not become a synthetic chapter 1.
+    assert infos[0].title == "CHAPTER I."
+    assert all("preface" not in ci.title.lower() for ci in infos)
+
+
+def test_synthetic_include_back_matter_keeps_own_chapter():
+    infos = _discover(SYNTHETIC, include_back_matter=True)
+    assert [ci.title for ci in infos][:3] == ["CHAPTER I.", "CHAPTER II.", "CHAPTER III."]
+    assert infos[-1].kind == "back"
+    assert infos[-1].title == "FOOTNOTES:"
+    body_text = "\n".join(SYNTHETIC[infos[2].start_line - 1:infos[2].end_line])
+    assert "footnote" not in body_text
+
+
+def test_unlabeled_chapter_one_still_promoted():
+    # P&P-style: real narrative before the first heading, no front-matter heading.
+    lines = f"""{CHAPTER_WORDS}
+
+CHAPTER II.
+
+{CHAPTER_WORDS}
+
+CHAPTER III.
+
+{CHAPTER_WORDS}
+""".splitlines()
+    infos = _discover(lines)
+    assert len(infos) == 3
+    assert infos[0].title == "Chapter I"
+    assert infos[0].start_line == 1
+
+
+# ── LLM entry validation ─────────────────────────────────────────────────────
+
+def _cfg(**kw) -> Config:
+    return Config(book_id="0", **kw)
+
+
+def test_llm_out_of_order_sorted_not_dropped():
+    entries = [
+        {"title": "FOOTNOTES:", "start_line": 900},
+        {"title": "Chapter One", "start_line": 10},
+        {"title": "Chapter Two", "start_line": 500},
+    ]
+    valid = _validate_llm_chapters(entries, 1000, _cfg())
+    assert [ch["title"] for ch in valid] == ["Chapter One", "Chapter Two"]
+    assert [ch["start_line"] for ch in valid] == [10, 500]
+
+
+def test_llm_bad_entries_dropped():
+    entries = [
+        {"title": "Chapter One", "start_line": 10},
+        {"title": "Ghost", "start_line": 0},
+        {"title": "Beyond", "start_line": 5000},
+        {"title": "Duplicate", "start_line": 10},
+        {"title": "Chapter Two", "start_line": "not-a-number"},
+    ]
+    valid = _validate_llm_chapters(entries, 1000, _cfg())
+    assert [ch["title"] for ch in valid] == ["Chapter One"]
+
+
+def test_llm_front_back_kept_with_flags():
+    entries = [
+        {"title": "PREFACE", "start_line": 5},
+        {"title": "Chapter One", "start_line": 10},
+        {"title": "FOOTNOTES:", "start_line": 900},
+    ]
+    valid = _validate_llm_chapters(
+        entries, 1000, _cfg(include_front_matter=True, include_back_matter=True))
+    assert [ch["kind"] for ch in valid] == ["front", "body", "back"]
+
+
+# ── PG 1727 (The Odyssey) — the shipped failure ──────────────────────────────
+
+def test_odyssey_structure():
+    body = _body_lines("1727")
+    infos = _discover(body)
+
+    assert len(infos) == 24
+    assert infos[0].title.startswith("BOOK I")
+    assert infos[-1].title.startswith("BOOK XXIV")
+
+    # No synthetic preface-chapter in front.
+    assert all(ci.title.startswith("BOOK") for ci in infos)
+
+    # The last chapter must not have swallowed the footnote appendix.
+    sizes = [ci.word_count for ci in infos]
+    med = statistics.median(sizes)
+    assert sizes[-1] <= 1.5 * med, f"last chapter {sizes[-1]} words vs median {med}"
+
+    last_text = "\n".join(body[infos[-1].start_line - 1:infos[-1].end_line])
+    assert "FOOTNOTES" not in last_text
+
+    # No chapter title is front or back matter.
+    assert all(ci.kind == "body" for ci in infos)
+    assert all(text_utils.classify_heading(ci.title) == "body" for ci in infos)
+
+
+# ── Regressions on the other cached books ────────────────────────────────────
+
+def test_pride_and_prejudice_unchanged_except_kind():
+    """P&P's unlabeled chapter 1 must still be detected, preface excluded."""
+    raw_path = CACHE / "1342" / "01-raw" / "book.txt"
+    disc_path = CACHE / "1342" / "02-discovery" / "discovery.json"
+    if not raw_path.exists() or not disc_path.exists():
+        pytest.skip("cache/1342 fixture not present")
+
+    lines = raw_path.read_text(encoding="utf-8").splitlines()
+    start, _end = text_utils.find_body_bounds(lines)
+    infos = _discover(_body_lines("1342"))
+    cached = json.load(open(disc_path))["chapters"]
+
+    assert len(infos) == len(cached) == 61
+    assert infos[0].title == "Chapter I"
+    # Same boundaries as the shipped discovery (relative → absolute line shift).
+    assert [ci.start_line + start for ci in infos] == [c["start_line"] for c in cached]
+
+
+def test_monte_cristo_footnotes_trimmed():
+    """1184 has the same swallowed-FOOTNOTES defect; the trim must fix it too."""
+    body = _body_lines("1184")
+    infos = _discover(body)
+    assert len(infos) == 117
+    last_text = "\n".join(body[infos[-1].start_line - 1:infos[-1].end_line])
+    assert "FOOTNOTES" not in last_text
+
+
+def test_jane_eyre_preface_not_promoted():
+    """1260's dedication + Currer Bell preface used to become a bogus chapter 1."""
+    body = _body_lines("1260")
+    infos = _discover(body)
+    assert len(infos) == 38
+    assert infos[0].title == "CHAPTER I"
+    first_text = "\n".join(body[infos[0].start_line - 1:infos[0].end_line])
+    assert "THACKERAY" not in first_text
+
+
+def test_moby_dick_cetology_not_split():
+    """Chapter 32's whale taxonomy ("BOOK I. (_Folio_), CHAPTER I. (_Sperm
+    Whale_)...") is prose that starts like a heading; it must stay one chapter."""
+    body = _body_lines("2701")
+    infos = _discover(body)
+    assert len(infos) == 136  # synthetic ch1 + 135 numbered chapters
+    assert not any("Folio" in ci.title for ci in infos)
+    # Wrapped two-line titles are still detected as headings.
+    assert any(ci.title.startswith("CHAPTER 56.") for ci in infos)

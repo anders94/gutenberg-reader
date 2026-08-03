@@ -21,6 +21,8 @@ class Config:
     no_critic: bool = False
     force_stage: int | None = None
     chapters_only: list[int] | None = None
+    include_front_matter: bool = False
+    include_back_matter: bool = False
 
     def __post_init__(self):
         if not self.validation_model:

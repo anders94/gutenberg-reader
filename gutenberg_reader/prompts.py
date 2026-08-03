@@ -22,8 +22,13 @@ def _render_segment_lines(
     from gutenberg_reader.segmenter import QUOTE_CONTINUES
 
     lines = []
+    prev_para = None
     for pos, seg in enumerate(segments):
         idx = start_index + pos
+        para = seg.get("para")
+        if para is not None and prev_para is not None and para != prev_para:
+            lines.append("¶")
+        prev_para = para
         kind = seg.get("type", "narration").upper()
         text = seg.get("text", "")
         if len(text) > 300:
@@ -99,9 +104,19 @@ Method, in priority order:
    [SPEECH CONTINUES INTO NEXT SEGMENT] marker is ONE turn, not two.
 3. Vocatives identify the LISTENER, not the speaker: in "My dear Mr. Bennet, have
    you heard...", Mr. Bennet is being spoken TO — someone else is speaking.
-4. Use content clues: who knows this information, whose manner of speech is this,
+4. A character who is merely MENTIONED — in the dialogue itself or in nearby
+   narration ("...saddened by the Signora's unexpected accent") — is NOT
+   thereby the speaker. Attribute only to someone present and speaking in
+   the scene.
+5. Lines containing only ¶ mark paragraph breaks in the original text.
+   Narration and a quote in the SAME paragraph usually share their subject:
+   in "Lucy felt that she had been selfish. ‘Charlotte, you mustn't spoil
+   me…’" the quote is Lucy's. A paragraph break often — not always — means
+   the speaker changes.
+6. Use content clues: who knows this information, whose manner of speech is this,
    who was asked the preceding question.
-5. If genuinely ambiguous (3+ possible speakers, no anchor), use "Unknown".
+7. If genuinely ambiguous (3+ possible speakers, no anchor), use "Unknown".
+   "Unknown" is better than a confident wrong guess.
 
 Dialogue segments already labeled with a speaker, and [CONTEXT] lines, are
 established fact — use them as anchors; do not re-attribute them.
@@ -122,6 +137,108 @@ def attribution_user(
 ) -> str:
     listing = _render_segment_lines(segments, start_index, flagged, context_count)
     return f"Attribute the [NEEDS SPEAKER] dialogue segments:\n\n{listing}"
+
+
+def verify_attribution_system(characters: list[str]) -> str:
+    char_list = "\n".join(f"  - {c}" for c in characters) if characters else "  (none)"
+    return f"""You are a critical reviewer of speaker attribution for audiobook production.
+
+KNOWN CHARACTERS:
+{char_list}
+
+You will receive a numbered list of segments from a novel: narration and dialogue,
+in original order. Dialogue marked [VERIFY] was attributed by an earlier pass,
+but those answers are hidden from you so that your judgment is independent.
+Derive each speaker from scratch; your answers are compared against the other
+pass and disagreements go to an arbiter.
+
+For each [VERIFY] segment:
+1. Adjacent attribution tags in narration ("said Lucy") are decisive.
+2. Vocatives name the LISTENER: in "Charlotte, don't you feel...", Charlotte
+   is being spoken TO — the speaker is someone else.
+3. A character merely mentioned in dialogue or nearby narration is NOT thereby
+   the speaker. Only someone present and speaking in the scene qualifies.
+4. Lines containing only ¶ mark paragraph breaks in the original text.
+   Narration and a quote in the SAME paragraph usually share their subject;
+   a paragraph break often — not always — means the speaker changes.
+5. Track the conversation turn by turn: who was asked the question, who would
+   know this, whose manner of speech is this.
+6. If the evidence is insufficient or contradictory, answer "Unknown" — a
+   guess that cannot be defended from the text is worse than "Unknown".
+
+Dialogue segments NOT marked [VERIFY] but showing speaker= were anchored by
+explicit attribution tags in the text and are established fact.
+
+Respond ONLY with JSON:
+{{"attributions": [{{"index": <segment number>, "speaker": "<Character Name>"}}]}}
+
+Include exactly one entry per [VERIFY] segment. Speaker names must match the
+KNOWN CHARACTERS list exactly, or be "Unknown".
+"""
+
+
+def verify_attribution_user(
+    segments: list[dict],
+    start_index: int,
+    flagged: set[int],
+    context_count: int,
+) -> str:
+    # Hide the first pass's answers: an independent second opinion catches
+    # errors that a reviewer shown the proposal tends to rubber-stamp.
+    display = [
+        {**seg, "speaker": None} if start_index + pos in flagged else seg
+        for pos, seg in enumerate(segments)
+    ]
+    listing = _render_segment_lines(
+        display, start_index, flagged, context_count, flag_label="[VERIFY]"
+    )
+    return f"Independently attribute the [VERIFY] dialogue segments:\n\n{listing}"
+
+
+def tiebreak_system(characters: list[str]) -> str:
+    char_list = "\n".join(f"  - {c}" for c in characters) if characters else "  (none)"
+    return f"""You are the final arbiter of disputed speaker attributions for audiobook production.
+
+KNOWN CHARACTERS:
+{char_list}
+
+Two independent passes disagreed about who speaks the dialogue segments marked
+[DISPUTED]. The user message lists both candidates for each. Weigh the textual
+evidence — adjacent attribution tags, conversation flow, vocatives (which name
+the listener, not the speaker), who was asked the preceding question, and
+paragraph breaks (lines containing only ¶; narration and a quote in the same
+paragraph usually share their subject) — and decide. Usually one candidate is right; if both are clearly wrong, answer with
+the correct character instead; if the text truly does not say, "Unknown".
+
+Respond ONLY with JSON:
+{{"attributions": [{{"index": <segment number>, "speaker": "<Character Name>"}}]}}
+
+Include exactly one entry per [DISPUTED] segment. Speaker names must match the
+KNOWN CHARACTERS list exactly, or be "Unknown".
+"""
+
+
+def tiebreak_user(
+    segments: list[dict],
+    start_index: int,
+    flagged: set[int],
+    context_count: int,
+    candidates: dict[int, tuple[str, str]],
+) -> str:
+    # Hide the disputed assignments so neither candidate looks like the default.
+    display = [
+        {**seg, "speaker": None} if start_index + pos in flagged else seg
+        for pos, seg in enumerate(segments)
+    ]
+    listing = _render_segment_lines(
+        display, start_index, flagged, context_count, flag_label="[DISPUTED]"
+    )
+    disputes = "\n".join(
+        f"Segment {idx}: one pass said {a!r}, the other said {b!r}"
+        for idx, (a, b) in sorted(candidates.items())
+        if idx in flagged
+    )
+    return f"Resolve the [DISPUTED] attributions:\n\n{listing}\n\nDisputes:\n{disputes}"
 
 
 def character_discovery_system() -> str:
@@ -146,6 +263,18 @@ Respond with valid JSON:
 }
 
 Be thorough. Include all named characters, even minor ones. Use the most formal version of each name as the canonical name.
+
+CRITICAL: each real person must appear EXACTLY ONCE. Novels refer to the same
+character many ways — "Lucy", "Miss Honeychurch", and "Lucy Honeychurch" are one
+person: one entry, fullest name as canonical, every other form as an alias.
+Given names and courtesy names pair up the same way ("Charlotte" is "Miss
+Bartlett"). Before answering, re-check the list: if a bare first name or a
+title+surname could be the same person as a fuller entry, merge them.
+
+Equally CRITICAL: never merge DIFFERENT people who share a surname. A father
+and son ("Mr. Emerson" and "George Emerson"), a mother and daughter
+("Mrs. Honeychurch" and "Lucy Honeychurch"), and siblings are separate
+entries. Merge only when the text shows the names refer to one person.
 """
 
 

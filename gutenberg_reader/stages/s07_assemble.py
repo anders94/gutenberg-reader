@@ -8,6 +8,7 @@ from rich.console import Console
 
 from gutenberg_reader.cache import atomic_write_json
 from gutenberg_reader.config import Config
+from gutenberg_reader import text_utils
 from gutenberg_reader.models import (
     BookMetadata,
     CharacterInfo,
@@ -103,6 +104,27 @@ def run(
                     if alias not in all_chars[key].aliases:
                         all_chars[key].aliases.append(alias)
 
+    # Regularize: chapters discover partial names ("said Sir Harry" in a
+    # chapter whose roster only knows Sir Harry Otway), so the same person
+    # can arrive under several names. Merge the roster, then remap every
+    # segment speaker to its canonical name.
+    final_chars = text_utils.merge_duplicate_characters(list(all_chars.values()))
+    alias_map = text_utils._build_alias_map(final_chars)
+    n_remapped = 0
+    for entry in chapters_out:
+        for seg in entry["processed"]["segments"]:
+            speaker = seg.get("speaker")
+            if speaker and speaker not in ("Unknown", "Narrator"):
+                canonical = alias_map.get(speaker.lower())
+                if canonical and canonical != speaker:
+                    seg["speaker"] = canonical
+                    n_remapped += 1
+    if config.verbose and (n_remapped or len(final_chars) != len(all_chars)):
+        console.print(
+            f"  [dim]Regularized {len(all_chars)} -> {len(final_chars)} characters, "
+            f"remapped {n_remapped} speaker labels[/dim]"
+        )
+
     elapsed = time.time() - start_time
     avg_quality = sum(quality_scores) / len(quality_scores) if quality_scores else 1.0
     min_quality = min(quality_scores) if quality_scores else 1.0
@@ -110,12 +132,12 @@ def run(
     output = {
         "metadata": metadata.to_dict(),
         "chapters": chapters_out,
-        "characters": [c.to_dict() for c in all_chars.values()],
+        "characters": [c.to_dict() for c in final_chars],
         "statistics": {
             "total_chapters": len(chapters_out),
             "total_words": total_words,
             "total_segments": total_segments,
-            "total_characters": len(all_chars),
+            "total_characters": len(final_chars),
             "processing_time_seconds": round(elapsed, 2),
             "validation_performed": not config.no_critic,
             "pipeline_version": PIPELINE_VERSION,

@@ -2,12 +2,21 @@
 
 Segmentation into narration/dialogue is fully deterministic (quotation marks
 delimit dialogue — see segmenter.py), so text coverage is guaranteed by
-construction. The LLM's only job is speaker attribution, done in three tiers:
+construction. Speaker attribution favors accuracy over cost:
 
-  1. Deterministic anchors: "said Mr. Bennet" narration adjacent to dialogue
-  2. Deterministic alternation propagation through 2-person exchanges
-  3. LLM review of whatever remains unresolved (guided decoding constrains
-     speakers to the known character list)
+  1. Deterministic anchors: "said Mr. Bennet" narration adjacent to dialogue.
+     These are the author naming the speaker — kept as hard evidence.
+  2. Everything else goes through three LLM passes (guided decoding constrains
+     speakers to the known character list):
+       a. opportunistic — best-guess attribution with full context
+       b. critical — independently re-derives every non-anchored speaker,
+          blind to pass (a)'s answers so its errors don't correlate
+       c. tie-breaker — sees both candidates and resolves disagreements
+
+No alternation or scene-cast heuristics: real texts break the "speakers
+alternate" and "one speaker per paragraph" conventions often enough (e.g.
+PG 2641 ch. 1 puts two speakers in one paragraph) that guessing from
+typography produces confident errors the LLM passes would have caught.
 """
 
 from __future__ import annotations
@@ -117,24 +126,52 @@ def _segment_chapter(
     # the adjacent dialogue exactly as named tags do.
     n_tag = _resolve_nameless_tags(segments, characters, char_names, config, client)
 
-    # Tier 2: alternation propagation through 2-person conversation chains
-    segments, _flagged, n_propagated = text_utils.propagate_anchors(
-        segments, characters, char_names
-    )
-
-    # Tier 3: LLM attribution for remaining unresolved dialogue
+    # Pass A (opportunistic): best-guess LLM attribution for unanchored dialogue
     unresolved = {
         i for i, s in enumerate(segments)
         if s["type"] == "dialogue" and not s.get("speaker")
     }
-    assigned = _llm_window_pass(
+    proposed = _llm_window_pass(
         segments, unresolved, config, client,
         system_msg=prompts.attribution_system(char_names),
         user_fn=prompts.attribution_user,
         schema=schemas.attribution_schema(char_names),
     )
-    for idx, speaker in assigned.items():
+    for idx, speaker in proposed.items():
         segments[idx]["speaker"] = speaker
+
+    # Pass B (critical): independently re-derive every non-anchored speaker.
+    # Runs on the validator model — pointing --validator at a larger model
+    # (it defaults to the processing model) buys accuracy exactly where it
+    # matters, and decorrelates the two passes' errors even at equal size.
+    verified = _llm_window_pass(
+        segments, unresolved, config, client,
+        system_msg=prompts.verify_attribution_system(char_names),
+        user_fn=prompts.verify_attribution_user,
+        schema=schemas.attribution_schema(char_names),
+        model=config.validation_model,
+    )
+    disputes: dict[int, tuple[str, str]] = {}
+    for idx, speaker in verified.items():
+        current = segments[idx].get("speaker")
+        if current is None:
+            segments[idx]["speaker"] = speaker
+        elif speaker != current:
+            disputes[idx] = (current, speaker)
+
+    # Pass C (tie-breaker): resolve disagreements between A and B
+    if disputes:
+        broken = _llm_window_pass(
+            segments, set(disputes), config, client,
+            system_msg=prompts.tiebreak_system(char_names),
+            user_fn=lambda w, s, f, c: prompts.tiebreak_user(w, s, f, c, disputes),
+            schema=schemas.attribution_schema(char_names),
+            model=config.validation_model,
+        )
+        for idx in disputes:
+            # Two passes disagreed and the arbiter didn't rule: Unknown is
+            # more honest than either guess.
+            segments[idx]["speaker"] = broken.get(idx, "Unknown")
 
     n_unknown = 0
     for s in segments:
@@ -146,8 +183,8 @@ def _segment_chapter(
         n_dialogue = sum(1 for s in segments if s["type"] == "dialogue")
         console.print(
             f"  [dim]{len(segments)} segments, {n_dialogue} dialogue: "
-            f"{len(anchors)} anchored, {n_tag} tag-resolved, {n_propagated} propagated, "
-            f"{len(assigned)} LLM-attributed, {n_unknown} unknown[/dim]"
+            f"{len(anchors)} anchored, {n_tag} tag-resolved, {len(proposed)} proposed, "
+            f"{len(disputes)} disputed, {n_unknown} unknown[/dim]"
         )
 
     return ProcessedChapter(
@@ -183,13 +220,16 @@ def _llm_window_pass(
     system_msg: str,
     user_fn,
     schema: dict,
+    model: str | None = None,
 ) -> dict[int, str]:
     """Run an LLM pass over flagged segment indices, window by window.
 
     Returns {segment_index: speaker} for every flagged index the LLM answered
     with something other than "Unknown"-by-omission. Does not mutate segments.
+    model defaults to the processing model.
     """
     results: dict[int, str] = {}
+    model = model or config.processing_model
     if not flagged_all:
         return results
 
@@ -207,7 +247,7 @@ def _llm_window_pass(
 
         for attempt in range(config.max_retries):
             try:
-                data = client.chat_json(config.processing_model, messages, schema=schema)
+                data = client.chat_json(model, messages, schema=schema)
             except LLMError as e:
                 console.print(f"  [red]LLM pass error (attempt {attempt+1}): {e}[/red]")
                 continue

@@ -16,7 +16,9 @@ console = Console()
 @click.command()
 @click.argument("book_id")
 @click.option("--model", default="", help="Processing model (default: first model served by the API)")
-@click.option("--validator", default="", help="Critic model (default: same as --model)")
+@click.option("--validator", default="",
+              help="Model for the critical/tie-breaker attribution passes and the Stage 06 "
+                   "critic (default: same as --model)")
 @click.option("--base-url", default="http://localhost:8000/v1", show_default=True,
               help="OpenAI-compatible API base URL (vLLM, llama.cpp server, LM Studio, ...)")
 @click.option("--api-key", default="EMPTY", help="API key, if the server requires one")
@@ -28,6 +30,10 @@ console = Console()
 @click.option("--critic/--no-critic", "critic", default=False,
               help="Run the Stage 06 LLM critic pass (default: off; most useful with a "
                    "larger --validator model)")
+@click.option("--include-front-matter", is_flag=True, default=False,
+              help="Keep prefaces, introductions, and dedications as chapters (default: skip them)")
+@click.option("--include-back-matter", is_flag=True, default=False,
+              help="Keep footnotes, appendices, and indexes as a final chapter (default: trim them)")
 @click.option("--force-stage", default=None, type=int, metavar="STAGE", help="Re-run from this stage (1-7)")
 @click.option("--chapters", default=None, help="Process only these chapters (e.g. 1,2,5)")
 @click.option("--max-retries", default=3, show_default=True, type=int, help="Max retries per chunk")
@@ -43,6 +49,8 @@ def main(
     chunk_size: int,
     overlap: int,
     critic: bool,
+    include_front_matter: bool,
+    include_back_matter: bool,
     force_stage: int | None,
     chapters: str | None,
     max_retries: int,
@@ -76,6 +84,8 @@ def main(
         max_retries=max_retries,
         verbose=verbose,
         no_critic=not critic,
+        include_front_matter=include_front_matter,
+        include_back_matter=include_back_matter,
         force_stage=force_stage,
         chapters_only=chapters_only,
     )

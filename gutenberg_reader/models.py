@@ -41,6 +41,7 @@ class ChapterInfo:
     end_line: int
     word_count: int = 0
     start_marker: str = ""
+    kind: str = "body"  # "front" | "body" | "back"
 
     def to_dict(self) -> dict:
         return {
@@ -50,6 +51,7 @@ class ChapterInfo:
             "end_line": self.end_line,
             "word_count": self.word_count,
             "start_marker": self.start_marker,
+            "kind": self.kind,
         }
 
     @classmethod
@@ -61,6 +63,7 @@ class ChapterInfo:
             end_line=d["end_line"],
             word_count=d.get("word_count", 0),
             start_marker=d.get("start_marker", ""),
+            kind=d.get("kind", "body"),
         )
 
 

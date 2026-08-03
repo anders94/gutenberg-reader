@@ -9,7 +9,7 @@ from gutenberg_reader.cache import atomic_write_json, read_json, read_text, stag
 from gutenberg_reader.config import Config
 from gutenberg_reader.models import CharacterInfo
 from gutenberg_reader.llm import LLMClient
-from gutenberg_reader import prompts, schemas
+from gutenberg_reader import prompts, schemas, text_utils
 
 console = Console()
 
@@ -30,7 +30,10 @@ def run(
         if config.verbose:
             console.print(f"[dim]Stage 04: already complete ({out_path})[/dim]")
         data = read_json(out_path)
-        return [CharacterInfo.from_dict(c) for c in data["characters"]]
+        chars = [CharacterInfo.from_dict(c) for c in data["characters"]]
+        # Regularize even on the cached path so re-runs of later stages get a
+        # deduplicated roster without forcing rediscovery.
+        return text_utils.merge_duplicate_characters(chars)
 
     sorted_nums = sorted(chapter_paths.keys())
 
@@ -54,6 +57,8 @@ def run(
 
         later_chars = _discover_characters(later_text, config, client, existing=first_chars)
         all_chars = _merge_characters(first_chars, later_chars)
+
+    all_chars = text_utils.merge_duplicate_characters(all_chars)
 
     if config.verbose:
         console.print(f"[cyan]Stage 04:[/cyan] Found {len(all_chars)} unique characters")
