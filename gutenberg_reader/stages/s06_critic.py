@@ -21,6 +21,9 @@ console = Console()
 QUALITY_THRESHOLD = 0.85
 MAX_REPROCESSING = 2
 
+# Segments from the previous window included (read-only) for continuity
+CONTEXT_SEGMENTS = 8
+
 
 def run(
     config: Config,
@@ -167,24 +170,56 @@ def _llm_critique(
     config: Config,
     client: LLMClient,
 ) -> tuple[list[dict], float]:
-    """Call LLM to review speaker attribution. Returns (corrections, quality)."""
+    """Call LLM to review speaker attribution. Returns (corrections, quality).
+
+    Runs window by window, like the attribution passes in stage 05: a whole
+    chapter in one prompt overruns the server's context window on long chapters
+    (Moby Dick's longest is 10k words), and the request fails outright.
+    """
     segments_data = [s.to_dict() for s in chapter.segments]
+    system_msg = prompts.critic_system(char_names)
+    schema = schemas.critic_schema(char_names)
 
-    messages = [
-        {"role": "system", "content": prompts.critic_system(char_names)},
-        {"role": "user", "content": prompts.critic_user(chapter.chapter_title, segments_data)},
-    ]
+    corrections: list[dict] = []
+    qualities: list[tuple[float, int]] = []  # (quality, dialogue segments judged)
 
-    try:
-        data = client.chat_json(
-            config.validation_model,
-            messages,
-            schema=schemas.critic_schema(char_names),
+    for start, end in text_utils.build_segment_windows(segments_data, config.chunk_size):
+        ctx_start = max(0, start - CONTEXT_SEGMENTS)
+        window = segments_data[ctx_start:end]
+        messages = [
+            {"role": "system", "content": system_msg},
+            {
+                "role": "user",
+                "content": prompts.critic_user(
+                    chapter.chapter_title, window, ctx_start, start - ctx_start
+                ),
+            },
+        ]
+
+        try:
+            data = client.chat_json(config.validation_model, messages, schema=schema)
+        except LLMError as e:
+            console.print(f"  [red]Stage 06: LLM critique failed: {e}[/red]")
+            # Skip this window rather than the chapter: the rest still reviews.
+            continue
+
+        # Corrections aimed at [CONTEXT] lines belong to the window that owned
+        # them; that window already judged them with its own full context.
+        corrections.extend(
+            c for c in data.get("corrections", [])
+            if isinstance(c, dict) and isinstance(c.get("index"), int) and start <= c["index"] < end
         )
-    except LLMError as e:
-        console.print(f"  [red]Stage 06: LLM critique failed: {e}[/red]")
-        # Return a passing report so we don't block the pipeline
+        n_dialogue = sum(1 for s in segments_data[start:end] if s.get("type") == "dialogue")
+        qualities.append((float(data.get("overall_quality", 1.0)), n_dialogue))
+
+    if not qualities:
+        # Every window failed — report a passing score so we don't block the
+        # pipeline on an unreachable critic.
         return [], 1.0
 
-    corrections = [c for c in data.get("corrections", []) if isinstance(c, dict)]
-    return corrections, float(data.get("overall_quality", 1.0))
+    judged = sum(n for _, n in qualities)
+    if judged == 0:
+        quality = sum(q for q, _ in qualities) / len(qualities)
+    else:
+        quality = sum(q * n for q, n in qualities) / judged
+    return corrections, quality

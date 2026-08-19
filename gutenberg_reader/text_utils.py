@@ -285,6 +285,27 @@ def chunk_text(text: str, chunk_size: int = 800, overlap: int = 150) -> list[str
     return chunks if chunks else [text]
 
 
+def build_segment_windows(segments: list[dict], word_budget: int) -> list[tuple[int, int]]:
+    """Split segment indices into [start, end) windows of ~word_budget words.
+
+    Every LLM pass over a chapter's segments goes window by window: a chapter is
+    not bounded in length (Moby Dick's "The Town-Ho's Story" runs 7,900 words) and
+    a whole-chapter prompt overruns the server's context window.
+    """
+    windows: list[tuple[int, int]] = []
+    start = 0
+    words = 0
+    for i, seg in enumerate(segments):
+        w = len(seg["text"].split())
+        if words + w > word_budget and i > start:
+            windows.append((start, i))
+            start = i
+            words = 0
+        words += w
+    windows.append((start, len(segments)))
+    return windows
+
+
 # ── Integrity verification ────────────────────────────────────────────────────
 
 def normalize_whitespace(text: str) -> str:

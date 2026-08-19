@@ -196,22 +196,6 @@ def _segment_chapter(
     )
 
 
-def _build_windows(segments: list[dict], word_budget: int) -> list[tuple[int, int]]:
-    """Split segment indices into [start, end) windows of ~word_budget words."""
-    windows: list[tuple[int, int]] = []
-    start = 0
-    words = 0
-    for i, seg in enumerate(segments):
-        w = len(seg["text"].split())
-        if words + w > word_budget and i > start:
-            windows.append((start, i))
-            start = i
-            words = 0
-        words += w
-    windows.append((start, len(segments)))
-    return windows
-
-
 def _llm_window_pass(
     segments: list[dict],
     flagged_all: set[int],
@@ -233,7 +217,7 @@ def _llm_window_pass(
     if not flagged_all:
         return results
 
-    for start, end in _build_windows(segments, config.chunk_size):
+    for start, end in text_utils.build_segment_windows(segments, config.chunk_size):
         flagged = {i for i in flagged_all if start <= i < end}
         if not flagged:
             continue

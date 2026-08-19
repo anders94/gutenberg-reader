@@ -289,7 +289,12 @@ def critic_system(characters: list[str]) -> str:
 KNOWN CHARACTERS:
 {char_list}
 
-You will receive a chapter's segments, numbered, with their assigned speakers.
+You will receive a run of a chapter's segments, numbered, with their assigned
+speakers. Long chapters arrive in several such runs, so the numbering starts
+wherever the run starts — always answer with the numbers as shown. Lines marked
+[CONTEXT] carry over from the preceding run for continuity: read them, but do
+not correct them.
+
 Review ONLY the speaker assignments of dialogue segments. Look for:
 1. Dialogue attributed to the wrong character (contradicted by an adjacent
    "said X" attribution tag in narration)
@@ -311,8 +316,13 @@ If everything is correct, return an empty corrections list and quality 1.0.
 """
 
 
-def critic_user(chapter_title: str, segments: list[dict]) -> str:
-    listing = _render_segment_lines(segments)
+def critic_user(
+    chapter_title: str,
+    segments: list[dict],
+    start_index: int = 0,
+    context_count: int = 0,
+) -> str:
+    listing = _render_segment_lines(segments, start_index, context_count=context_count)
     return f"Review speaker attribution for {chapter_title}:\n\n{listing}"
 
 
