@@ -681,7 +681,36 @@ def merge_duplicate_characters(characters: list) -> list:
             del chars[i]
             merged = True
             break
+
+    # Canonical must be a proper name, not a description. Discovery sometimes
+    # emits the descriptive entry as primary ("Jane's mother", aliases:
+    # ["Mrs. Bennet"]); the absorb above keeps the target's name, so 125 P&P
+    # segments once shipped labeled "Jane's mother". Promote the best alias
+    # when it outranks the name.
+    for c in chars:
+        best = max(c.aliases, key=_name_quality, default=None)
+        if best is not None and _name_quality(best) > _name_quality(c.name):
+            c.aliases = [a for a in c.aliases if a.lower() != best.lower()] + [c.name]
+            c.name = best
     return chars
+
+
+def _name_quality(name: str) -> int:
+    """Rank how much a string looks like a proper name.
+
+    Capitalized tokens score up; lowercase tokens and possessives score down,
+    so "Mrs. Bennet" (2) outranks "Jane's mother" (-2) and "his wife" (-2),
+    while "Captain Ahab" (2) keeps its title over plain "Ahab" (1).
+    """
+    score = 0
+    if re.search(r"[’']s\b", name):
+        score -= 2
+    for token in name.split():
+        if token[0].isupper():
+            score += 1
+        elif token[0].isalpha():
+            score -= 1
+    return score
 
 
 def _build_alias_map(characters: list) -> dict[str, str]:

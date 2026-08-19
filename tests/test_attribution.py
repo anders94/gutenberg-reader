@@ -398,3 +398,35 @@ class TestSplitLongNarration:
             len(s["text"]) <= 400 for s in segs if s["type"] == "narration"
         )
 
+
+class TestCanonicalNamePreference:
+    def test_descriptive_primary_demoted_to_alias(self):
+        # Discovery emitted the description as primary and the real name as
+        # alias; 125 P&P segments shipped labeled "Jane's mother".
+        chars = [
+            CharacterInfo(name="Jane's mother", aliases=["Mrs. Bennet", "his wife"]),
+        ]
+        merged = text_utils.merge_duplicate_characters(chars)
+        assert merged[0].name == "Mrs. Bennet"
+        assert "Jane's mother" in merged[0].aliases
+        assert "his wife" in merged[0].aliases
+
+    def test_merge_prefers_proper_name_canonical(self):
+        chars = [
+            CharacterInfo(name="Mrs. Bennet", first_appearance_chapter=1),
+            CharacterInfo(name="Jane's mother", aliases=["Mrs. Bennet"], first_appearance_chapter=2),
+        ]
+        merged = text_utils.merge_duplicate_characters(chars)
+        assert len(merged) == 1
+        assert merged[0].name == "Mrs. Bennet"
+        assert merged[0].first_appearance_chapter == 1
+
+    def test_title_keeps_canonical_over_bare_name(self):
+        chars = [CharacterInfo(name="Captain Ahab", aliases=["Ahab", "old man"])]
+        merged = text_utils.merge_duplicate_characters(chars)
+        assert merged[0].name == "Captain Ahab"
+
+    def test_full_name_keeps_canonical_over_nickname(self):
+        chars = [CharacterInfo(name="Elizabeth Bennet", aliases=["Lizzy", "Eliza"])]
+        merged = text_utils.merge_duplicate_characters(chars)
+        assert merged[0].name == "Elizabeth Bennet"
