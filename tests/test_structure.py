@@ -249,7 +249,10 @@ def test_moby_dick_cetology_not_split():
     Whale_)...") is prose that starts like a heading; it must stay one chapter."""
     body = _body_lines("2701")
     infos = _discover(body)
-    assert len(infos) == 136  # synthetic ch1 + 135 numbered chapters
+    assert len(infos) == 135  # Melville's 135 numbered chapters, nothing synthetic
+    # ETYMOLOGY and the Sub-Sub-Librarian's EXTRACTS are front matter; promoting
+    # them to chapter 1 used to shift every chapter number by one.
+    assert infos[0].title == "CHAPTER 1. Loomings."
     assert not any("Folio" in ci.title for ci in infos)
     # Wrapped two-line titles are still detected as headings.
     assert any(ci.title.startswith("CHAPTER 56.") for ci in infos)

@@ -117,14 +117,16 @@ CHAPTER_PATTERNS = [
 # detector, so they are recognized by their headings instead. Anchored to the
 # whole line: a heading is a line that says only this.
 FRONT_MATTER_RE = re.compile(
-    r"^\s*(PREFACE|INTRODUCTION|DEDICATION|FOREWORD|"
+    r"^\s*(PREFACE|INTRODUCTION|DEDICATION|FOREWORD|ETYMOLOGY|EXTRACTS|"
     r"TRANSLATOR.?S?\s+NOTE|CONTENTS?|LIST OF ILLUSTRATIONS|ILLUSTRATIONS)"
     r"\b[\w\s’']*[:.]?\s*$",
     re.IGNORECASE,
 )
+# A transcriber's note usually carries a qualifier ("Original Transcriber's
+# Notes:"), and the heading is anchored, so allow one leading word there.
 BACK_MATTER_RE = re.compile(
     r"^\s*(FOOTNOTES?|ENDNOTES?|NOTES?|APPENDIX|APPENDICES|INDEX|GLOSSARY|"
-    r"BIBLIOGRAPHY|ERRATA|COLOPHON|TRANSCRIBER.?S?\s+NOTES?)\b[:.]?\s*$",
+    r"BIBLIOGRAPHY|ERRATA|COLOPHON|(?:\w+\s+)?TRANSCRIBER.?S?\s+NOTES?)\b[:.]?\s*$",
     re.IGNORECASE,
 )
 
