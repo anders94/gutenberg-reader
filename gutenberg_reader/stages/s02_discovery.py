@@ -24,7 +24,14 @@ def run(config: Config, client: LLMClient) -> DiscoveryResult:
         if config.verbose:
             console.print(f"[dim]Stage 02: already complete ({out_path})[/dim]")
         from gutenberg_reader.cache import read_json
-        return DiscoveryResult.from_dict(read_json(out_path))
+        cached = DiscoveryResult.from_dict(read_json(out_path))
+        # Re-check the cached structure, not just freshly detected structure: a
+        # discovery.json written by an older detector stays on disk and silently
+        # feeds every later stage a table of contents (see PG 2701). The checks
+        # are pure, so running them on the cached path costs nothing.
+        _warn_on_degenerate_chapters(cached.chapters)
+        _warn_on_size_outliers(cached.chapters)
+        return cached
 
     raw_path = config.stage_dir(1) / "book.txt"
     raw_text = read_text(raw_path)
