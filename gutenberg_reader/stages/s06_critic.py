@@ -1,7 +1,13 @@
-"""Stage 06 — Critic pass: quality review and correction of segments."""
+"""Stage 06 — Critic pass: quality review and correction of segments.
+
+Runs inside stage 05's chapter loop, right after attribution, so its verdicts
+can act while they still matter: besides correcting speaker labels, the critic
+reviews the characters discovery just added and can strike a ship, a cited
+author, or a duplicate from the roster before the next chapter's attribution
+ever sees it as an option.
+"""
 
 from __future__ import annotations
-from pathlib import Path
 
 from rich.console import Console
 
@@ -19,72 +25,120 @@ from gutenberg_reader import prompts, schemas, text_utils
 console = Console()
 
 QUALITY_THRESHOLD = 0.85
-MAX_REPROCESSING = 2
 
 # Segments from the previous window included (read-only) for continuity
 CONTEXT_SEGMENTS = 8
 
 
-def run(
+def run_chapter(
     config: Config,
     client: LLMClient,
-    processed: dict[int, ProcessedChapter],
-    characters: list[CharacterInfo],
-    chapter_nums: list[int] | None = None,
-) -> dict[int, tuple[ProcessedChapter, CriticReport]]:
-    """Run critic pass on processed chapters. Returns {num: (accepted_chapter, report)}."""
-    stage_dir = config.stage_dir(6)
-    nums = chapter_nums if chapter_nums is not None else sorted(processed.keys())
+    chapter: ProcessedChapter,
+    roster: list[CharacterInfo],
+    new_names: list[str],
+) -> tuple[ProcessedChapter, CriticReport, list[dict]]:
+    """Critique one chapter. Returns (accepted_chapter, report, roster_issues).
 
-    results: dict[int, tuple[ProcessedChapter, CriticReport]] = {}
+    roster_issues are the critic's raw objections to this chapter's roster
+    additions; the caller applies them (see apply_roster_issues) so anchor
+    protection and the rolling roster stay in one place.
+    """
+    num = chapter.chapter_number
+    out_path = chapter_file(config.stage_dir(6), num)
 
-    for num in nums:
-        out_path = chapter_file(stage_dir, num)
+    if stage_complete(out_path) and (config.force_stage is None or config.force_stage > 6):
+        if config.verbose:
+            console.print(f"[dim]Stage 06: chapter {num:02d} already complete[/dim]")
+        data = read_json(out_path)
+        return (
+            ProcessedChapter.from_dict(data["chapter"]),
+            CriticReport.from_dict(data["report"]),
+            data.get("roster_issues", []),
+        )
 
-        if stage_complete(out_path) and (config.force_stage is None or config.force_stage > 6):
-            if config.verbose:
-                console.print(f"[dim]Stage 06: chapter {num:02d} already complete[/dim]")
-            data = read_json(out_path)
-            chapter = ProcessedChapter.from_dict(data["chapter"])
-            report = CriticReport.from_dict(data["report"])
-            results[num] = (chapter, report)
+    if config.verbose:
+        console.print(f"[cyan]Stage 06:[/cyan] Critiquing chapter {num:02d}...")
+
+    report, final_chapter, roster_issues = _critique_chapter(
+        chapter, roster, new_names, config, client
+    )
+
+    data = {
+        "chapter": final_chapter.to_dict(),
+        "report": report.to_dict(),
+        "roster_issues": roster_issues,
+    }
+    atomic_write_json(out_path, data)
+
+    if config.verbose:
+        quality_color = "green" if report.overall_quality >= QUALITY_THRESHOLD else "yellow"
+        console.print(
+            f"  [{quality_color}]Quality: {report.overall_quality:.2f}[/{quality_color}]"
+            + (" (needs reprocessing)" if report.needs_reprocessing else "")
+        )
+
+    return final_chapter, report, roster_issues
+
+
+def apply_roster_issues(
+    roster: list[CharacterInfo],
+    issues: list[dict],
+    protected: set[str],
+) -> tuple[list[CharacterInfo], list[str]]:
+    """Apply the critic's roster objections. Pure; returns (roster, log lines).
+
+    Effects are forward-only: they change which names later chapters can
+    attribute to, never labels already written (stage 07's remap reconciles
+    those). Names in `protected` (lowercase) were anchor-established — the
+    author wrote "said X" — and outrank the critic, exactly as named anchors
+    outrank its segment corrections.
+    """
+    by_name = {c.name.lower(): c for c in roster}
+    applied: list[str] = []
+
+    for issue in issues:
+        if not isinstance(issue, dict):
+            continue
+        name = issue.get("name", "")
+        verdict = issue.get("verdict")
+        entry = by_name.get(name.lower())
+        if entry is None:
+            continue
+        if entry.name.lower() in protected or any(a.lower() in protected for a in entry.aliases):
             continue
 
-        if num not in processed:
-            continue
-
-        chapter = processed[num]
-        if config.verbose:
-            console.print(f"[cyan]Stage 06:[/cyan] Critiquing chapter {num:02d}...")
-
-        report, final_chapter = _critique_chapter(chapter, characters, config, client)
-
-        # Save combined output
-        data = {
-            "chapter": final_chapter.to_dict(),
-            "report": report.to_dict(),
-        }
-        atomic_write_json(out_path, data)
-        results[num] = (final_chapter, report)
-
-        if config.verbose:
-            quality_color = "green" if report.overall_quality >= QUALITY_THRESHOLD else "yellow"
-            console.print(
-                f"  [{quality_color}]Quality: {report.overall_quality:.2f}[/{quality_color}]"
-                + (" (needs reprocessing)" if report.needs_reprocessing else "")
+        if verdict == "not_a_character":
+            del by_name[entry.name.lower()]
+            applied.append(f"dropped {entry.name!r} ({issue.get('reason', '')})")
+        elif verdict == "duplicate":
+            canonical = by_name.get(issue.get("canonical", "").lower())
+            if canonical is None or canonical is entry:
+                continue
+            for alias in [entry.name, *entry.aliases]:
+                if alias.lower() != canonical.name.lower() and all(
+                    alias.lower() != a.lower() for a in canonical.aliases
+                ):
+                    canonical.aliases.append(alias)
+            canonical.first_appearance_chapter = min(
+                canonical.first_appearance_chapter, entry.first_appearance_chapter
+            )
+            del by_name[entry.name.lower()]
+            applied.append(
+                f"merged {entry.name!r} into {canonical.name!r} ({issue.get('reason', '')})"
             )
 
-    return results
+    return list(by_name.values()), applied
 
 
 def _critique_chapter(
     chapter: ProcessedChapter,
-    characters: list[CharacterInfo],
+    roster: list[CharacterInfo],
+    new_names: list[str],
     config: Config,
     client: LLMClient,
-) -> tuple[CriticReport, ProcessedChapter]:
+) -> tuple[CriticReport, ProcessedChapter, list[dict]]:
     """Run code-level checks and LLM critique."""
-    char_names = [c.name for c in characters]
+    char_names = [c.name for c in roster]
 
     # Code-level: coverage check
     coverage_issues = _check_coverage(chapter)
@@ -92,13 +146,15 @@ def _critique_chapter(
     # Code-level: name spell-check
     name_issues = _check_names(chapter, char_names)
 
-    # LLM critique: returns per-segment speaker corrections, never text.
-    # Segment text is deterministic and untouchable at this point.
-    corrections, quality = _llm_critique(chapter, char_names, config, client)
+    # LLM critique: returns per-segment speaker corrections and roster
+    # objections, never text. Segment text is deterministic and untouchable.
+    corrections, quality, roster_issues = _llm_critique(
+        chapter, char_names, new_names, config, client
+    )
 
     # Named anchors ("said Mr. Bennet" adjacent to the dialogue) outrank the critic
     named_anchors = text_utils.extract_attribution_anchors(
-        [s.to_dict() for s in chapter.segments], characters
+        [s.to_dict() for s in chapter.segments], roster
     )
 
     final_segs = list(chapter.segments)
@@ -137,7 +193,7 @@ def _critique_chapter(
         word_count=chapter.word_count,
     )
 
-    return report, final_chapter
+    return report, final_chapter, roster_issues
 
 
 def _check_coverage(chapter: ProcessedChapter) -> list[str]:
@@ -167,21 +223,25 @@ def _check_names(chapter: ProcessedChapter, char_names: list[str]) -> list[str]:
 def _llm_critique(
     chapter: ProcessedChapter,
     char_names: list[str],
+    new_names: list[str],
     config: Config,
     client: LLMClient,
-) -> tuple[list[dict], float]:
-    """Call LLM to review speaker attribution. Returns (corrections, quality).
+) -> tuple[list[dict], float, list[dict]]:
+    """Call LLM to review attribution. Returns (corrections, quality, roster_issues).
 
     Runs window by window, like the attribution passes in stage 05: a whole
     chapter in one prompt overruns the server's context window on long chapters
-    (Moby Dick's longest is 10k words), and the request fails outright.
+    (Moby Dick's longest is 7,918 words), and the request fails outright.
     """
     segments_data = [s.to_dict() for s in chapter.segments]
-    system_msg = prompts.critic_system(char_names)
-    schema = schemas.critic_schema(char_names)
+    system_msg = prompts.critic_system(char_names, new_names)
+    schema = schemas.critic_schema(char_names, new_names)
 
     corrections: list[dict] = []
     qualities: list[tuple[float, int]] = []  # (quality, dialogue segments judged)
+    # Every window sees the same NEW-name list, so objections repeat; the first
+    # verdict for a name wins (windows are read in order, like the chapter).
+    issues_by_name: dict[str, dict] = {}
 
     for start, end in text_utils.build_segment_windows(segments_data, config.chunk_size):
         ctx_start = max(0, start - CONTEXT_SEGMENTS)
@@ -209,17 +269,20 @@ def _llm_critique(
             c for c in data.get("corrections", [])
             if isinstance(c, dict) and isinstance(c.get("index"), int) and start <= c["index"] < end
         )
+        for issue in data.get("roster_issues", []):
+            if isinstance(issue, dict) and issue.get("name"):
+                issues_by_name.setdefault(issue["name"], issue)
         n_dialogue = sum(1 for s in segments_data[start:end] if s.get("type") == "dialogue")
         qualities.append((float(data.get("overall_quality", 1.0)), n_dialogue))
 
     if not qualities:
         # Every window failed — report a passing score so we don't block the
         # pipeline on an unreachable critic.
-        return [], 1.0
+        return [], 1.0, []
 
     judged = sum(n for _, n in qualities)
     if judged == 0:
         quality = sum(q for q, _ in qualities) / len(qualities)
     else:
         quality = sum(q * n for q, n in qualities) / judged
-    return corrections, quality
+    return corrections, quality, list(issues_by_name.values())

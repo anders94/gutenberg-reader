@@ -8,15 +8,12 @@ from rich.console import Console
 from rich.progress import Progress, SpinnerColumn, TextColumn, TimeElapsedColumn
 
 from gutenberg_reader.config import Config
-from gutenberg_reader.models import CriticReport, ProcessedChapter
 from gutenberg_reader.llm import LLMClient
 from gutenberg_reader.stages import (
     s01_download,
     s02_discovery,
     s03_chapters,
-    s04_characters,
     s05_segments,
-    s06_critic,
     s07_assemble,
 )
 
@@ -72,32 +69,16 @@ def run_pipeline(config: Config) -> Path:
     _log_stage(3, "Chapter Splitting", config)
     chapter_paths = s03_chapters.run(config, chapter_infos)
 
-    # ── Stage 04: Character Discovery ────────────────────────────────────────
-    _log_stage(4, "Character Discovery", config)
-    characters = s04_characters.run(config, client, chapter_paths)
-    console.print(f"  [dim]{len(characters)} characters identified[/dim]")
-
-    # ── Stage 05: Segmentation ────────────────────────────────────────────────
-    _log_stage(5, "Segmentation", config)
-    chapter_nums = [ci.number for ci in chapter_infos]
-    processed = s05_segments.run(config, client, chapter_paths, characters, chapter_nums)
-
-    # ── Stage 06: Critic Pass ─────────────────────────────────────────────────
-    accepted: dict[int, tuple[ProcessedChapter, CriticReport | None]]
-
+    # ── Stages 04–06: Read, Discover & Attribute ──────────────────────────────
+    # One loop in reading order: per chapter, discover characters into the
+    # rolling roster, segment, attribute, and (unless --no-critic) critique —
+    # the critic can prune roster additions before later chapters see them.
+    _log_stage(5, "Read, Discover & Attribute", config)
     if config.no_critic:
-        console.print("[dim]Stage 06: skipped (--no-critic)[/dim]")
-        accepted = {num: (ch, None) for num, ch in processed.items()}
-    else:
-        _log_stage(6, "Critic Pass", config)
-        critic_results = s06_critic.run(config, client, processed, characters, chapter_nums)
-        accepted = {}
-        for num, (ch, report) in critic_results.items():
-            accepted[num] = (ch, report)
-        # Include any chapters that weren't critiqued (shouldn't happen, but safety)
-        for num, ch in processed.items():
-            if num not in accepted:
-                accepted[num] = (ch, None)
+        console.print("[dim]critic: off (--no-critic)[/dim]")
+    chapter_nums = [ci.number for ci in chapter_infos]
+    accepted, characters = s05_segments.run(config, client, chapter_paths, chapter_nums)
+    console.print(f"  [dim]{len(characters)} characters identified[/dim]")
 
     # ── Stage 07: Assembly ────────────────────────────────────────────────────
     _log_stage(7, "Assembly", config)

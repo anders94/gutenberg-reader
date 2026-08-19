@@ -38,8 +38,8 @@ def attribution_schema(char_names: list[str]) -> dict:
     }
 
 
-def critic_schema(char_names: list[str]) -> dict:
-    return {
+def critic_schema(char_names: list[str], new_names: list[str] | None = None) -> dict:
+    schema = {
         "type": "object",
         "properties": {
             "corrections": {
@@ -60,6 +60,27 @@ def critic_schema(char_names: list[str]) -> dict:
         "required": ["corrections", "overall_quality"],
         "additionalProperties": False,
     }
+    if new_names:
+        # Roster review: the critic may object to names discovery just added.
+        # "name" is constrained to this chapter's additions — the rest of the
+        # roster is settled; "canonical" (for duplicates) to the roster plus
+        # "" for the not_a_character verdict, where it carries no meaning.
+        schema["properties"]["roster_issues"] = {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {"type": "string", "enum": list(dict.fromkeys(new_names))},
+                    "verdict": {"type": "string", "enum": ["not_a_character", "duplicate"]},
+                    "canonical": {"type": "string", "enum": [*dict.fromkeys(char_names), ""]},
+                    "reason": {"type": "string"},
+                },
+                "required": ["name", "verdict", "canonical", "reason"],
+                "additionalProperties": False,
+            },
+        }
+        schema["required"].append("roster_issues")
+    return schema
 
 
 CHARACTERS_SCHEMA = {

@@ -592,6 +592,52 @@ def _merge_target(i: int, chars: list) -> int | None:
     return None
 
 
+PLACEHOLDER_NAME_RE = re.compile(
+    r"^\s*(n/?a|none|unknown|nobody|no\b.*\bcharacters?\b.*)\s*$",
+    re.IGNORECASE,
+)
+
+
+def is_placeholder_name(name: str) -> bool:
+    """True for non-names a model emits when a chapter has no characters.
+
+    A chapter of pure exposition tempts discovery into answering "N/A" or
+    "No named characters found" rather than an empty list; such an entry then
+    becomes a legal speaker for the whole rest of the book. "Unknown" is also
+    a placeholder: it is the attribution fallback, never a character.
+    """
+    return bool(PLACEHOLDER_NAME_RE.match(name))
+
+
+def merge_rosters(roster: list, found: list) -> list:
+    """Fold newly found characters into a roster, deduplicating by name and aliases.
+
+    A found entry whose name matches a roster entry's name (case-insensitive)
+    contributes its aliases to that entry; one whose name matches a roster
+    entry's alias is dropped as already known. Only genuinely new names are
+    appended. Deeper reconciliation ('Peleg' vs 'Captain Peleg') is
+    merge_duplicate_characters' job, once, at assembly.
+    """
+    by_name = {c.name.lower(): c for c in roster}
+
+    for char in found:
+        key = char.name.lower()
+        if key in by_name:
+            existing = by_name[key]
+            for alias in char.aliases:
+                if all(alias.lower() != a.lower() for a in existing.aliases):
+                    existing.aliases.append(alias)
+        else:
+            known_alias = any(
+                any(a.lower() == key for a in existing.aliases)
+                for existing in by_name.values()
+            )
+            if not known_alias:
+                by_name[key] = char
+
+    return list(by_name.values())
+
+
 def merge_duplicate_characters(characters: list) -> list:
     """Merge roster entries that name the same person.
 

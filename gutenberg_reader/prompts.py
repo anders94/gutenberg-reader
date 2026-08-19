@@ -279,11 +279,42 @@ entries. Merge only when the text shows the names refer to one person.
 
 
 def character_discovery_user(chapters_text: str) -> str:
-    return f"Identify all characters in these chapters:\n\n{chapters_text}"
+    # Deliberately not shown the roster built by earlier chapters. Listing it
+    # and asking for only the new names was tried both ways and lost either
+    # way: the model echoed the whole list back (a 41-window book spent most of
+    # its time regenerating names it had), and when told firmly enough to obey,
+    # it under-reported instead — Pip, Bulkington and the "Midnight, Forecastle"
+    # sailors all vanished from PG 2701. Each chapter reports what it sees, and
+    # merge_rosters/merge_duplicate_characters reconcile the names.
+    return f"Identify all characters in this text:\n\n{chapters_text}"
 
 
-def critic_system(characters: list[str]) -> str:
+def critic_system(characters: list[str], new_characters: list[str] | None = None) -> str:
     char_list = "\n".join(f"  - {c}" for c in characters) if characters else "  (none)"
+    roster_section = ""
+    roster_json = ""
+    if new_characters:
+        new_list = "\n".join(f"  - {c}" for c in new_characters)
+        roster_section = f"""
+Separately, these names were just added to the character roster based on this
+chapter. Character discovery over-collects: it lists ships, gods, cited
+authors, historical figures from digressions, and duplicate spellings of
+people already on the KNOWN CHARACTERS list. Anything that gets onto the
+roster becomes a candidate speaker for the whole rest of the book, so review
+each NEW name:
+{new_list}
+
+Report an issue only for names that should NOT stand as new characters:
+- verdict "not_a_character": not a person in the story (a ship, an animal, a
+  place, an author cited by the narrator, a person merely quoted or discussed
+  who never appears). When in doubt, let the name stand — report nothing.
+- verdict "duplicate": the same person as an existing KNOWN character; give
+  that character as "canonical".
+"""
+        roster_json = """,
+  "roster_issues": [
+    {"name": "<New Name>", "verdict": "not_a_character" | "duplicate", "canonical": "<Known Character or empty>", "reason": "<brief>"}
+  ]"""
     return f"""You are a quality reviewer for audiobook speaker attribution.
 
 KNOWN CHARACTERS:
@@ -302,13 +333,13 @@ Review ONLY the speaker assignments of dialogue segments. Look for:
    turns with no indication of a continued speech)
 3. A speaker who is being addressed in the dialogue itself (a vocative names
    the listener, so the speaker must be someone else)
-
+{roster_section}
 Respond ONLY with JSON:
 {{
   "corrections": [
     {{"index": <segment number>, "speaker": "<Correct Character Name>", "reason": "<brief>"}}
   ],
-  "overall_quality": <0.0-1.0 fraction of dialogue segments correctly attributed>
+  "overall_quality": <0.0-1.0 fraction of dialogue segments correctly attributed>{roster_json}
 }}
 
 Only include entries for dialogue segments whose speaker should CHANGE.

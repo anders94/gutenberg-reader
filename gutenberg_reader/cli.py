@@ -34,7 +34,9 @@ console = Console()
               help="Keep prefaces, introductions, and dedications as chapters (default: skip them)")
 @click.option("--include-back-matter", is_flag=True, default=False,
               help="Keep footnotes, appendices, and indexes as a final chapter (default: trim them)")
-@click.option("--force-stage", default=None, type=int, metavar="STAGE", help="Re-run from this stage (1-7)")
+@click.option("--force-stage", default=None, type=int, metavar="STAGE",
+              help="Re-run from this stage (1-7; discovery/segmentation/critic share one "
+                   "loop, so 4 and 5 are equivalent)")
 @click.option("--chapters", default=None, help="Process only these chapters (e.g. 1,2,5)")
 @click.option("--max-retries", default=3, show_default=True, type=int, help="Max retries per chunk")
 @click.option("-v", "--verbose", is_flag=True, default=False, help="Verbose output")

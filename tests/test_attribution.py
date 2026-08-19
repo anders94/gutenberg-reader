@@ -129,3 +129,173 @@ class TestMergeDuplicateCharacters:
         once = text_utils.merge_duplicate_characters(chars)
         twice = text_utils.merge_duplicate_characters(once)
         assert [c.name for c in twice] == ["Minnie Beebe", "Mr. Beebe"]
+
+
+class TestMergeRosters:
+    def test_new_names_append(self):
+        roster = [CharacterInfo(name="Ishmael", first_appearance_chapter=1)]
+        found = [CharacterInfo(name="Queequeg", first_appearance_chapter=3)]
+        merged = text_utils.merge_rosters(roster, found)
+        assert [c.name for c in merged] == ["Ishmael", "Queequeg"]
+
+    def test_same_name_contributes_aliases_keeps_first_appearance(self):
+        roster = [CharacterInfo(name="Starbuck", first_appearance_chapter=20)]
+        found = [
+            CharacterInfo(name="Starbuck", aliases=["Mr. Starbuck"], first_appearance_chapter=36)
+        ]
+        merged = text_utils.merge_rosters(roster, found)
+        assert len(merged) == 1
+        assert merged[0].aliases == ["Mr. Starbuck"]
+        assert merged[0].first_appearance_chapter == 20
+
+    def test_name_matching_existing_alias_is_dropped(self):
+        roster = [CharacterInfo(name="Captain Ahab", aliases=["Ahab"])]
+        found = [CharacterInfo(name="Ahab")]
+        merged = text_utils.merge_rosters(roster, found)
+        assert [c.name for c in merged] == ["Captain Ahab"]
+
+    def test_case_insensitive(self):
+        roster = [CharacterInfo(name="Pip")]
+        found = [CharacterInfo(name="PIP")]
+        assert len(text_utils.merge_rosters(roster, found)) == 1
+
+
+class TestApplyRosterIssues:
+    def _roster(self):
+        return [
+            CharacterInfo(name="Captain Ahab", aliases=["Ahab"], first_appearance_chapter=16),
+            CharacterInfo(name="Peleg", first_appearance_chapter=16),
+            CharacterInfo(name="Pequod", first_appearance_chapter=16),
+            CharacterInfo(name="Captain Peleg", first_appearance_chapter=16),
+        ]
+
+    def test_not_a_character_drops(self):
+        from gutenberg_reader.stages.s06_critic import apply_roster_issues
+
+        roster, applied = apply_roster_issues(
+            self._roster(),
+            [{"name": "Pequod", "verdict": "not_a_character", "canonical": "", "reason": "a ship"}],
+            protected=set(),
+        )
+        assert "Pequod" not in [c.name for c in roster]
+        assert len(applied) == 1
+
+    def test_anchor_protection_beats_critic(self):
+        from gutenberg_reader.stages.s06_critic import apply_roster_issues
+
+        roster, applied = apply_roster_issues(
+            self._roster(),
+            [{"name": "Pequod", "verdict": "not_a_character", "canonical": "", "reason": ""}],
+            protected={"pequod"},
+        )
+        assert "Pequod" in [c.name for c in roster]
+        assert applied == []
+
+    def test_protection_extends_to_aliases(self):
+        from gutenberg_reader.stages.s06_critic import apply_roster_issues
+
+        # "said Ahab" anchored the alias; the entry survives under any name.
+        roster, applied = apply_roster_issues(
+            self._roster(),
+            [{"name": "Captain Ahab", "verdict": "not_a_character", "canonical": "", "reason": ""}],
+            protected={"ahab"},
+        )
+        assert "Captain Ahab" in [c.name for c in roster]
+
+    def test_duplicate_merges_as_alias(self):
+        from gutenberg_reader.stages.s06_critic import apply_roster_issues
+
+        roster, applied = apply_roster_issues(
+            self._roster(),
+            [{"name": "Peleg", "verdict": "duplicate", "canonical": "Captain Peleg", "reason": ""}],
+            protected=set(),
+        )
+        names = [c.name for c in roster]
+        assert "Peleg" not in names
+        target = next(c for c in roster if c.name == "Captain Peleg")
+        assert "Peleg" in target.aliases
+
+    def test_idempotent_on_resumed_snapshot(self):
+        from gutenberg_reader.stages.s06_critic import apply_roster_issues
+
+        issues = [
+            {"name": "Pequod", "verdict": "not_a_character", "canonical": "", "reason": ""},
+            {"name": "Peleg", "verdict": "duplicate", "canonical": "Captain Peleg", "reason": ""},
+        ]
+        once, _ = apply_roster_issues(self._roster(), issues, protected=set())
+        twice, applied = apply_roster_issues(once, issues, protected=set())
+        assert [c.name for c in twice] == [c.name for c in once]
+        assert applied == []
+
+    def test_unknown_name_and_self_merge_ignored(self):
+        from gutenberg_reader.stages.s06_critic import apply_roster_issues
+
+        roster, applied = apply_roster_issues(
+            self._roster(),
+            [
+                {"name": "Moby Dick", "verdict": "not_a_character", "canonical": "", "reason": ""},
+                {"name": "Peleg", "verdict": "duplicate", "canonical": "Peleg", "reason": ""},
+            ],
+            protected=set(),
+        )
+        assert len(roster) == 4
+        assert applied == []
+
+
+class TestRosterSnapshotRoundTrip:
+    def test_snapshot_restores_chapter_roster_and_anchors(self, tmp_path):
+        from gutenberg_reader.cache import atomic_write_json, chapter_file
+        from gutenberg_reader.config import Config
+        from gutenberg_reader.models import ProcessedChapter, Segment
+        from gutenberg_reader.stages.s05_segments import _load_cached
+
+        config = Config(book_id="test", cache_dir=tmp_path)
+        chapter = ProcessedChapter(
+            chapter_number=3,
+            chapter_title="Chapter 3",
+            segments=[Segment(type="narration", text="Call me Ishmael.", speaker=None)],
+            word_count=3,
+        )
+        roster = [CharacterInfo(name="Ishmael", first_appearance_chapter=1)]
+        path = chapter_file(tmp_path, 3)
+        data = chapter.to_dict()
+        data["roster_after"] = [c.to_dict() for c in roster]
+        data["anchor_names"] = ["ishmael"]
+        atomic_write_json(path, data)
+
+        loaded = _load_cached(path, config)
+        assert loaded is not None
+        got_chapter, got_roster, got_anchors = loaded
+        assert got_chapter.chapter_number == 3
+        assert [c.name for c in got_roster] == ["Ishmael"]
+        assert got_anchors == {"ishmael"}
+
+    def test_pre_snapshot_file_counts_as_incomplete(self, tmp_path):
+        from gutenberg_reader.cache import atomic_write_json, chapter_file
+        from gutenberg_reader.config import Config
+        from gutenberg_reader.models import ProcessedChapter
+        from gutenberg_reader.stages.s05_segments import _load_cached
+
+        config = Config(book_id="test", cache_dir=tmp_path)
+        chapter = ProcessedChapter(chapter_number=3, chapter_title="Chapter 3", segments=[])
+        path = chapter_file(tmp_path, 3)
+        atomic_write_json(path, chapter.to_dict())  # no roster_after
+
+        assert _load_cached(path, config) is None
+
+    def test_force_stage_invalidates(self, tmp_path):
+        from gutenberg_reader.cache import atomic_write_json, chapter_file
+        from gutenberg_reader.config import Config
+        from gutenberg_reader.models import ProcessedChapter
+        from gutenberg_reader.stages.s05_segments import _load_cached
+
+        chapter = ProcessedChapter(chapter_number=3, chapter_title="Chapter 3", segments=[])
+        path = chapter_file(tmp_path, 3)
+        data = chapter.to_dict()
+        data["roster_after"] = []
+        atomic_write_json(path, data)
+
+        # force-stage 4 and 5 both re-run the loop; 6 keeps its cache
+        for stage, expect_cached in [(4, False), (5, False), (6, True)]:
+            config = Config(book_id="test", cache_dir=tmp_path, force_stage=stage)
+            assert (_load_cached(path, config) is not None) == expect_cached, stage

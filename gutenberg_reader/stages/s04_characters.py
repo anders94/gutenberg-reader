@@ -1,11 +1,22 @@
-"""Stage 04 — Discover characters using LLM on first N chapters."""
+"""Stage 04 — Character discovery, one chapter at a time.
+
+There is no separate discovery sweep. Stage 05's chapter loop calls
+discover_in_chapter() as it reads, merging each chapter's finds into a rolling
+roster, so chapter N's speaker enum contains exactly the characters the book
+has introduced by chapter N. The final roster is written to this stage's
+directory (characters.json) by that loop, purely as an inspection artifact.
+
+A novel's cast is not front-loaded — Moby Dick's first ten chapters name
+Ishmael and Queequeg but not Ahab, Starbuck, Stubb or Flask, who between them
+speak most of the book — and a name absent from the roster cannot be chosen by
+the constrained attribution passes. Discovery therefore has to read everything;
+reading it in the same loop that attributes means it is read exactly once.
+"""
 
 from __future__ import annotations
-from pathlib import Path
 
 from rich.console import Console
 
-from gutenberg_reader.cache import atomic_write_json, read_json, read_text, stage_complete
 from gutenberg_reader.config import Config
 from gutenberg_reader.models import CharacterInfo
 from gutenberg_reader.llm import LLMClient
@@ -13,80 +24,14 @@ from gutenberg_reader import prompts, schemas, text_utils
 
 console = Console()
 
-FIRST_PASS_CHAPTERS = 5
-SECOND_PASS_CHAPTERS = 5  # Sample from middle/later chapters
 
-
-def run(
-    config: Config,
-    client: LLMClient,
-    chapter_paths: dict[int, Path],
-) -> list[CharacterInfo]:
-    """Discover characters from chapters. Returns list of CharacterInfo."""
-    stage_dir = config.stage_dir(4)
-    out_path = stage_dir / "characters.json"
-
-    if stage_complete(out_path) and (config.force_stage is None or config.force_stage > 4):
-        if config.verbose:
-            console.print(f"[dim]Stage 04: already complete ({out_path})[/dim]")
-        data = read_json(out_path)
-        chars = [CharacterInfo.from_dict(c) for c in data["characters"]]
-        # Regularize even on the cached path so re-runs of later stages get a
-        # deduplicated roster without forcing rediscovery.
-        return text_utils.merge_duplicate_characters(chars)
-
-    sorted_nums = sorted(chapter_paths.keys())
-
-    # First pass: first N chapters
-    first_nums = sorted_nums[:FIRST_PASS_CHAPTERS]
-    first_text = _load_chapters_text(first_nums, chapter_paths)
-
-    if config.verbose:
-        console.print(f"[cyan]Stage 04:[/cyan] First pass on {len(first_nums)} chapters...")
-
-    first_chars = _discover_characters(first_text, config, client)
-
-    # Second pass: sample from later chapters if book is long enough
-    all_chars = first_chars
-    if len(sorted_nums) > FIRST_PASS_CHAPTERS + SECOND_PASS_CHAPTERS:
-        later_nums = sorted_nums[FIRST_PASS_CHAPTERS:FIRST_PASS_CHAPTERS + SECOND_PASS_CHAPTERS]
-        later_text = _load_chapters_text(later_nums, chapter_paths)
-
-        if config.verbose:
-            console.print(f"[cyan]Stage 04:[/cyan] Second pass on chapters {later_nums}...")
-
-        later_chars = _discover_characters(later_text, config, client, existing=first_chars)
-        all_chars = _merge_characters(first_chars, later_chars)
-
-    all_chars = text_utils.merge_duplicate_characters(all_chars)
-
-    if config.verbose:
-        console.print(f"[cyan]Stage 04:[/cyan] Found {len(all_chars)} unique characters")
-
-    data = {"characters": [c.to_dict() for c in all_chars]}
-    atomic_write_json(out_path, data)
-    return all_chars
-
-
-def _load_chapters_text(nums: list[int], chapter_paths: dict[int, Path]) -> str:
-    parts = []
-    for n in nums:
-        if n in chapter_paths:
-            try:
-                text = read_text(chapter_paths[n])
-                parts.append(f"--- Chapter {n} ---\n{text[:3000]}")
-            except FileNotFoundError:
-                pass
-    return "\n\n".join(parts)
-
-
-def _discover_characters(
+def discover_in_chapter(
     text: str,
+    chapter_num: int,
     config: Config,
     client: LLMClient,
-    existing: list[CharacterInfo] | None = None,
 ) -> list[CharacterInfo]:
-    """Call LLM to discover characters in the given text."""
+    """Discover characters in one chapter's text. Returns [] on LLM failure."""
     messages = [
         {"role": "system", "content": prompts.character_discovery_system()},
         {"role": "user", "content": prompts.character_discovery_user(text)},
@@ -94,39 +39,18 @@ def _discover_characters(
 
     try:
         data = client.chat_json(config.processing_model, messages, schema=schemas.CHARACTERS_SCHEMA)
-        chars = data.get("characters", [])
-        return [CharacterInfo.from_dict(c) for c in chars]
     except Exception as e:
-        console.print(f"[red]Stage 04: Character discovery failed: {e}[/red]")
-        return existing or []
+        # One bad chapter costs its discoveries, not the roster built so far.
+        console.print(f"  [red]Stage 04: character discovery failed for chapter {chapter_num}: {e}[/red]")
+        return []
 
-
-def _merge_characters(
-    first: list[CharacterInfo],
-    second: list[CharacterInfo],
-) -> list[CharacterInfo]:
-    """Merge two character lists, deduplicating by name and aliases."""
-    by_name: dict[str, CharacterInfo] = {}
-
-    for char in first:
-        by_name[char.name.lower()] = char
-
-    for char in second:
-        key = char.name.lower()
-        if key in by_name:
-            # Merge aliases
-            existing = by_name[key]
-            for alias in char.aliases:
-                if alias not in existing.aliases:
-                    existing.aliases.append(alias)
-        else:
-            # Check if it's an alias of an existing character
-            found = False
-            for existing in by_name.values():
-                if any(a.lower() == key for a in existing.aliases):
-                    found = True
-                    break
-            if not found:
-                by_name[key] = char
-
-    return list(by_name.values())
+    chars = [
+        CharacterInfo.from_dict(c)
+        for c in data.get("characters", [])
+        if c.get("name") and not text_utils.is_placeholder_name(c["name"])
+    ]
+    for c in chars:
+        # The model sees a single chapter; its guess at a first appearance is
+        # meaningless. The loop calls us in reading order, so this is exact.
+        c.first_appearance_chapter = chapter_num
+    return chars

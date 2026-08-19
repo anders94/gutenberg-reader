@@ -63,8 +63,6 @@ def run(
     info_by_num = {ci.number: ci for ci in chapter_infos}
 
     chapters_out = []
-    # Stage-04 roster first; per-chapter tag discoveries merge in after
-    all_chars: dict[str, CharacterInfo] = {c.name.lower(): c for c in characters}
     total_words = 0
     total_segments = 0
     quality_scores: list[float] = []
@@ -93,36 +91,36 @@ def run(
         if report:
             quality_scores.append(report.overall_quality)
 
-        # Collect characters
-        for char in processed.discovered_characters:
-            key = char.name.lower()
-            if key not in all_chars:
-                all_chars[key] = char
-            else:
-                # Merge aliases
-                for alias in char.aliases:
-                    if alias not in all_chars[key].aliases:
-                        all_chars[key].aliases.append(alias)
-
-    # Regularize: chapters discover partial names ("said Sir Harry" in a
-    # chapter whose roster only knows Sir Harry Otway), so the same person
-    # can arrive under several names. Merge the roster, then remap every
-    # segment speaker to its canonical name.
-    final_chars = text_utils.merge_duplicate_characters(list(all_chars.values()))
+    # The rolling roster is authoritative — per-chapter discovered_characters
+    # are provenance only. Re-adding them here would resurrect every entry the
+    # critic struck (90 of them on PG 2701). Regularize the roster, then remap
+    # every segment speaker to its canonical name: forward-only naming means
+    # early chapters carry whatever name was known at the time ("Ahab" before
+    # "Captain Ahab" became canonical), and this is the backward fix-up.
+    final_chars = text_utils.merge_duplicate_characters(
+        [c for c in characters if not text_utils.is_placeholder_name(c.name)]
+    )
     alias_map = text_utils._build_alias_map(final_chars)
     n_remapped = 0
+    n_orphaned = 0
     for entry in chapters_out:
         for seg in entry["processed"]["segments"]:
             speaker = seg.get("speaker")
             if speaker and speaker not in ("Unknown", "Narrator"):
                 canonical = alias_map.get(speaker.lower())
-                if canonical and canonical != speaker:
+                if canonical is None:
+                    # Attributed to a name the critic later struck from the
+                    # roster (a ship, an epitaph): the judgment "not a
+                    # character" applies to these labels too.
+                    seg["speaker"] = "Unknown"
+                    n_orphaned += 1
+                elif canonical != speaker:
                     seg["speaker"] = canonical
                     n_remapped += 1
-    if config.verbose and (n_remapped or len(final_chars) != len(all_chars)):
+    if config.verbose and (n_remapped or n_orphaned):
         console.print(
-            f"  [dim]Regularized {len(all_chars)} -> {len(final_chars)} characters, "
-            f"remapped {n_remapped} speaker labels[/dim]"
+            f"  [dim]Regularized to {len(final_chars)} characters, remapped "
+            f"{n_remapped} speaker labels, {n_orphaned} orphaned -> Unknown[/dim]"
         )
 
     elapsed = time.time() - start_time
