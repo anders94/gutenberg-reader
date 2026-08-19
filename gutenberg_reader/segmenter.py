@@ -20,6 +20,23 @@ import re
 # logic treats the next dialogue segment as the same speaker.
 QUOTE_CONTINUES = "quote-continues"
 
+# TTS voice drifts over long spans: past a few hundred characters the voice at
+# the end of a segment no longer matches its beginning. Narration longer than
+# this is split at sentence boundaries into chunks packed up to the limit —
+# but never mid-sentence, so a single monstrous sentence stays whole.
+MAX_NARRATION_CHARS = 400
+
+# Tokens whose trailing period does not end a sentence. Lowercase, no dot.
+_ABBREVIATIONS = {
+    "mr", "mrs", "ms", "dr", "st", "esq", "capt", "col", "gen", "lieut",
+    "sergt", "rev", "hon", "prof", "messrs", "mme", "mlle", "viz", "etc",
+    "vs", "jr", "sr", "no", "vol", "chap", "op",
+}
+
+# A sentence ends at terminal punctuation (plus any closing quotes/brackets)
+# followed by whitespace.
+_SENTENCE_END_RE = re.compile(r"[.!?…]+[”’\"')\]]*\s+")
+
 
 def split_paragraphs(text: str) -> list[str]:
     """Split into paragraphs, unwrapping Gutenberg's ~70-char line wrapping."""
@@ -98,6 +115,66 @@ def segment_paragraph(para: str, open_q: str, close_q: str) -> list[dict]:
     return segments
 
 
+def split_sentences(text: str) -> list[str]:
+    """Split unwrapped text into sentences, conservatively.
+
+    A candidate break is terminal punctuation followed by whitespace. It is
+    vetoed when the preceding token is a known abbreviation ("Mr.", "Capt."),
+    a single-letter initial ("J. Ross Browne"), or when what follows starts
+    lowercase (ellipses and interrobang-ish constructions mid-sentence).
+    Wrong-but-conservative beats eager: a missed break merely leaves a chunk
+    longer, while a false break cuts a name in half.
+    """
+    sentences: list[str] = []
+    start = 0
+    for m in _SENTENCE_END_RE.finditer(text):
+        # Token carrying the terminal punctuation
+        head = text[start:m.start() + 1]
+        last_token = head.rsplit(None, 1)[-1] if head.split() else ""
+        word = last_token.rstrip(".!?…”’\"')]").lstrip("“‘\"'([").lower()
+        if last_token.endswith(".") and word in _ABBREVIATIONS:
+            continue
+        if last_token.endswith(".") and len(word) == 1 and word.isalpha():
+            continue
+        nxt = text[m.end():m.end() + 1]
+        if nxt.islower():
+            continue
+        sentences.append(text[start:m.end()].strip())
+        start = m.end()
+    tail = text[start:].strip()
+    if tail:
+        sentences.append(tail)
+    return sentences
+
+
+def split_long_narration(segments: list[dict], max_chars: int = MAX_NARRATION_CHARS) -> list[dict]:
+    """Split narration segments longer than max_chars at sentence boundaries.
+
+    Sentences pack greedily up to max_chars per chunk; a single sentence over
+    the limit stays whole (leniency over mid-sentence cuts). Dialogue is left
+    alone: its speaker labels, QUOTE_CONTINUES notes, and adjacency to
+    attribution tags all assume the quoted span is one segment.
+    """
+    out: list[dict] = []
+    for seg in segments:
+        if seg["type"] != "narration" or len(seg["text"]) <= max_chars:
+            out.append(seg)
+            continue
+        chunks: list[str] = []
+        cur = ""
+        for sentence in split_sentences(seg["text"]):
+            if cur and len(cur) + 1 + len(sentence) > max_chars:
+                chunks.append(cur)
+                cur = sentence
+            else:
+                cur = f"{cur} {sentence}" if cur else sentence
+        if cur:
+            chunks.append(cur)
+        for chunk in chunks:
+            out.append({**seg, "text": chunk})
+    return out
+
+
 def segment_text(text: str, quote_pair: tuple[str, str] | None = None) -> list[dict]:
     """Segment a chapter's text into narration/dialogue segment dicts."""
     if quote_pair is None:
@@ -121,4 +198,4 @@ def segment_text(text: str, quote_pair: tuple[str, str] | None = None) -> list[d
         for seg in para_segments:
             seg["para"] = para_idx
         segments.extend(para_segments)
-    return segments
+    return split_long_narration(segments)

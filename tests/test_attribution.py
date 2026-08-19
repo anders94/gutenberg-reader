@@ -299,3 +299,102 @@ class TestRosterSnapshotRoundTrip:
         for stage, expect_cached in [(4, False), (5, False), (6, True)]:
             config = Config(book_id="test", cache_dir=tmp_path, force_stage=stage)
             assert (_load_cached(path, config) is not None) == expect_cached, stage
+
+
+class TestSplitSentences:
+    def test_abbreviations_do_not_split(self):
+        from gutenberg_reader.segmenter import split_sentences
+
+        text = "Mr. Bennet made no answer. Mrs. Long and Capt. Carter arrived."
+        assert split_sentences(text) == [
+            "Mr. Bennet made no answer.",
+            "Mrs. Long and Capt. Carter arrived.",
+        ]
+
+    def test_initials_do_not_split(self):
+        from gutenberg_reader.segmenter import split_sentences
+
+        text = "So says J. Ross Browne in his book. He was wrong."
+        assert split_sentences(text) == [
+            "So says J. Ross Browne in his book.",
+            "He was wrong.",
+        ]
+
+    def test_lowercase_continuation_does_not_split(self):
+        from gutenberg_reader.segmenter import split_sentences
+
+        text = "What then? he wondered aloud, and walked on."
+        assert split_sentences(text) == [text]
+
+    def test_terminal_quotes_stay_attached(self):
+        from gutenberg_reader.segmenter import split_sentences
+
+        text = "It was called “the whale.” Nobody argued."
+        assert split_sentences(text) == ["It was called “the whale.”", "Nobody argued."]
+
+
+class TestSplitLongNarration:
+    def _seg(self, text, kind="narration", para=0):
+        return {
+            "type": kind, "text": text, "speaker": None,
+            "pronunciation_hints": [], "notes": None, "para": para,
+        }
+
+    def test_short_narration_untouched(self):
+        from gutenberg_reader.segmenter import split_long_narration
+
+        segs = [self._seg("A short line.")]
+        assert split_long_narration(segs) == segs
+
+    def test_long_narration_packs_to_limit(self):
+        from gutenberg_reader.segmenter import split_long_narration
+
+        sentence = "This sentence is exactly fifty characters long!!! "
+        segs = [self._seg((sentence * 12).strip())]  # ~600 chars
+        out = split_long_narration(segs, max_chars=400)
+        assert len(out) > 1
+        assert all(len(s["text"]) <= 400 for s in out)
+        # No text lost, order preserved
+        rejoined = " ".join(s["text"] for s in out)
+        assert rejoined == segs[0]["text"]
+        # Chunks are packed, not one-sentence-each
+        assert any(len(s["text"]) > 200 for s in out)
+
+    def test_monster_sentence_stays_whole(self):
+        from gutenberg_reader.segmenter import split_long_narration
+
+        monster = "and so on, " * 60  # one 700-char "sentence", no terminals
+        segs = [self._seg("Short opener. " + monster.strip() + ".")]
+        out = split_long_narration(segs, max_chars=400)
+        assert any(len(s["text"]) > 400 for s in out)  # lenient: not cut mid-sentence
+
+    def test_dialogue_never_split(self):
+        from gutenberg_reader.segmenter import split_long_narration
+
+        long_speech = "“" + ("I will talk. " * 60).strip() + "”"
+        segs = [self._seg(long_speech, kind="dialogue")]
+        assert split_long_narration(segs, max_chars=400) == segs
+
+    def test_pieces_keep_paragraph_and_type(self):
+        from gutenberg_reader.segmenter import split_long_narration
+
+        text = " ".join(f"Sentence number {i} is here." for i in range(30))
+        out = split_long_narration([self._seg(text, para=7)], max_chars=400)
+        assert all(s["para"] == 7 and s["type"] == "narration" for s in out)
+
+    def test_segment_text_coverage_still_exact(self):
+        from gutenberg_reader.segmenter import segment_text
+
+        text = (
+            "It is a truth universally acknowledged, that a single man in "
+            "possession of a good fortune, must be in want of a wife. " * 6
+            + "\n\n“Come here,” said Mr. Bennet. “Now go.”"
+        )
+        segs = segment_text(text)
+        ok, issues = text_utils.verify_segment_coverage(text, segs)
+        assert ok, issues
+        assert any(s["type"] == "dialogue" for s in segs)
+        assert all(
+            len(s["text"]) <= 400 for s in segs if s["type"] == "narration"
+        )
+
