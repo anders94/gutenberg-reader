@@ -254,10 +254,18 @@ def _maybe_prepend_chapter_one(
         _re.IGNORECASE,
     )
 
-    def is_toc(stripped: str) -> bool:
+    def is_toc(line: str) -> bool:
         # A heading-shaped line ahead of the first detected chapter is a contents
         # entry, not narrative — otherwise a full TOC reads as a 500-word chapter one.
-        return bool(TOC_RE.search(stripped)) or text_utils.looks_like_chapter_heading(stripped)
+        # Takes the raw line: an indented numeral entry ("   I.  A Scandal in
+        # Bohemia") is recognizable only by its indentation, since the heading
+        # patterns require an all-caps title and contents entries are title case.
+        stripped = line.strip()
+        return (
+            bool(TOC_RE.search(stripped))
+            or text_utils.looks_like_chapter_heading(stripped)
+            or bool(text_utils.TOC_NUMERAL_ENTRY_RE.match(line))
+        )
 
     # Build set of illustration line indices before the first chapter
     illustration_lines: set[int] = _find_illustration_lines(body_lines, 0, first_chapter_start_idx)
@@ -273,7 +281,7 @@ def _maybe_prepend_chapter_one(
         stripped = body_lines[j].strip()
         if not stripped:
             continue
-        if is_toc(stripped):
+        if is_toc(body_lines[j]):
             continue
         if last_prose_line is None or j > last_prose_line:
             last_prose_line = j
@@ -300,14 +308,13 @@ def _maybe_prepend_chapter_one(
                 k -= 1
             if k < 0:
                 break
-            prev_stripped = body_lines[k].strip()
-            if is_toc(prev_stripped):
+            if is_toc(body_lines[k]):
                 break  # Hit TOC boundary
             # Continue over the blank gap
             block_start = k
             j = k - 1
         else:
-            if is_toc(stripped):
+            if is_toc(body_lines[j]):
                 break
             block_start = j
             j -= 1
@@ -330,7 +337,7 @@ def _maybe_prepend_chapter_one(
         if j in illustration_lines:
             continue
         stripped = body_lines[j].strip()
-        if stripped and not is_toc(stripped):
+        if stripped and not is_toc(body_lines[j]):
             pre_text_words.extend(stripped.split())
 
     if len(pre_text_words) < MIN_CHAPTER_WORDS:
@@ -342,7 +349,7 @@ def _maybe_prepend_chapter_one(
         if j in illustration_lines:
             continue
         stripped = body_lines[j].strip()
-        if not stripped or is_toc(stripped):
+        if not stripped or is_toc(body_lines[j]):
             continue
         actual_start = j
         break

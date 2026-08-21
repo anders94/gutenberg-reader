@@ -103,6 +103,16 @@ _TITLE_BODY = r"[A-Z0-9“‘\"'(\[].*"
 _TITLE_AFTER_PUNCT = rf"(?:\s*[.:—–-]\s*(?:{_TITLE_BODY})?)?"
 _TITLE_AFTER_SPACE = rf"(?:\s*[.:—–-]?\s*(?:{_TITLE_BODY})?)?"
 
+# Some books number their divisions with a bare roman numeral and no keyword
+# at all ("I. A SCANDAL IN BOHEMIA"). That shape is far weaker evidence than a
+# CHAPTER/PART/BOOK line — 'M.' is a roman numeral, so it matches French
+# "M. Morrel, and this day and a half was lost..." — so two extra guards apply:
+# the title is REQUIRED (bare "I." is a section marker inside a story, not a
+# story heading) and must be ALL CAPS, which is what makes such a line read as
+# a heading typographically. Without them, PG 1184 gains 8 phantom chapters
+# and PG 2701 four.
+_ALL_CAPS_TITLE = r"[A-Z][A-Z0-9\s—–\-’'\".,:;!?()]*[A-Z0-9.!?)\"’]"
+
 CHAPTER_PATTERNS = [
     re.compile(rf"^(CHAPTER\s+[IVXLCDM]+{_TITLE_AFTER_PUNCT})\s*$"),
     re.compile(rf"^(CHAPTER\s+\d+{_TITLE_AFTER_SPACE})\s*$"),
@@ -110,7 +120,15 @@ CHAPTER_PATTERNS = [
     re.compile(rf"^(Chapter\s+[IVXLCDM]+{_TITLE_AFTER_PUNCT})\s*$"),
     re.compile(rf"^(PART\s+[IVXLCDM]+{_TITLE_AFTER_PUNCT})\s*$"),
     re.compile(rf"^(BOOK\s+[IVXLCDM]+{_TITLE_AFTER_PUNCT})\s*$"),
+    re.compile(rf"^([IVXLCDM]+\.\s+{_ALL_CAPS_TITLE})\s*$"),
 ]
+
+# A contents entry for the bare-numeral form above: indented, numeral, then a
+# title in any case ("   I.     A Scandal in Bohemia"). The heading pattern
+# deliberately will not match these — they are title case — so the front-matter
+# walk needs its own way to see them, or a 12-entry contents block reads as
+# narrative and becomes a synthetic chapter one.
+TOC_NUMERAL_ENTRY_RE = re.compile(r"^\s+[IVXLCDM]+\.\s+\S")
 
 # Editions carry their own apparatus around the story: prefaces and dedications
 # before it, footnotes and indexes after. Both read as prose to the chapter

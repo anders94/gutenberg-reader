@@ -430,3 +430,28 @@ class TestCanonicalNamePreference:
         chars = [CharacterInfo(name="Elizabeth Bennet", aliases=["Lizzy", "Eliza"])]
         merged = text_utils.merge_duplicate_characters(chars)
         assert merged[0].name == "Elizabeth Bennet"
+
+
+class TestDiscoveryWindowing:
+    def test_short_chapter_is_one_window(self):
+        from gutenberg_reader.stages.s04_characters import _split_for_discovery
+
+        text = "A short chapter.\n\nWith two paragraphs."
+        assert _split_for_discovery(text, 6000) == [text]
+
+    def test_long_chapter_splits_at_paragraphs(self):
+        from gutenberg_reader.stages.s04_characters import _split_for_discovery
+
+        para = " ".join(["word"] * 100)
+        text = "\n\n".join([para] * 50)  # 5,000 words
+        windows = _split_for_discovery(text, 1000)
+        assert len(windows) == 5
+        assert all(text_utils.word_count(w) <= 1000 for w in windows)
+        # No text lost, order preserved
+        assert "\n\n".join(windows) == text
+
+    def test_oversized_paragraph_kept_whole(self):
+        from gutenberg_reader.stages.s04_characters import _split_for_discovery
+
+        text = " ".join(["word"] * 3000)
+        assert _split_for_discovery(text, 1000) == [text]

@@ -24,6 +24,13 @@ from gutenberg_reader import prompts, schemas, text_utils
 
 console = Console()
 
+# Words of chapter text per discovery call. A chapter is not bounded in length
+# — and when structure detection goes wrong it is not bounded at all: PG 1661's
+# story headings ("I. A SCANDAL IN BOHEMIA") once went undetected and left a
+# single 100,984-word "chapter", which is ~130k tokens against a 65k context.
+# Every other LLM call in the pipeline windows; this one does too.
+DISCOVERY_WORD_BUDGET = 6000
+
 
 def discover_in_chapter(
     text: str,
@@ -31,7 +38,44 @@ def discover_in_chapter(
     config: Config,
     client: LLMClient,
 ) -> list[CharacterInfo]:
-    """Discover characters in one chapter's text. Returns [] on LLM failure."""
+    """Discover characters in one chapter's text.
+
+    Long chapters are read in windows and their finds unioned. A window that
+    fails costs its own text, not the chapter's.
+    """
+    found: list[CharacterInfo] = []
+    for window in _split_for_discovery(text, DISCOVERY_WORD_BUDGET):
+        found = text_utils.merge_rosters(found, _discover(window, chapter_num, config, client))
+    return found
+
+
+def _split_for_discovery(text: str, word_budget: int) -> list[str]:
+    """Split text into ~word_budget windows at paragraph boundaries."""
+    if text_utils.word_count(text) <= word_budget:
+        return [text]
+
+    windows: list[str] = []
+    current: list[str] = []
+    words = 0
+    for para in text.split("\n\n"):
+        w = text_utils.word_count(para)
+        if current and words + w > word_budget:
+            windows.append("\n\n".join(current))
+            current, words = [], 0
+        current.append(para)
+        words += w
+    if current:
+        windows.append("\n\n".join(current))
+    return windows
+
+
+def _discover(
+    text: str,
+    chapter_num: int,
+    config: Config,
+    client: LLMClient,
+) -> list[CharacterInfo]:
+    """One discovery call. Returns [] on LLM failure."""
     messages = [
         {"role": "system", "content": prompts.character_discovery_system()},
         {"role": "user", "content": prompts.character_discovery_user(text)},
@@ -40,7 +84,7 @@ def discover_in_chapter(
     try:
         data = client.chat_json(config.processing_model, messages, schema=schemas.CHARACTERS_SCHEMA)
     except Exception as e:
-        # One bad chapter costs its discoveries, not the roster built so far.
+        # One bad window costs its text, not the roster built so far.
         console.print(f"  [red]Stage 04: character discovery failed for chapter {chapter_num}: {e}[/red]")
         return []
 

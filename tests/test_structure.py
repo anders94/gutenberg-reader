@@ -256,3 +256,59 @@ def test_moby_dick_cetology_not_split():
     assert not any("Folio" in ci.title for ci in infos)
     # Wrapped two-line titles are still detected as headings.
     assert any(ci.title.startswith("CHAPTER 56.") for ci in infos)
+
+
+def test_sherlock_holmes_bare_numeral_headings():
+    """1661 titles its stories "I. A SCANDAL IN BOHEMIA" — a bare roman numeral
+    with no CHAPTER/PART/BOOK keyword. No pattern matched, so regex detection
+    returned zero, stage 02 fell back to the LLM, and that fallback only sees
+    body_lines[:500] — leaving one 100,984-word "chapter" holding 11 stories."""
+    body = _body_lines("1661")
+    infos = _discover(body)
+
+    assert len(infos) == 12
+    assert infos[0].title == "I. A SCANDAL IN BOHEMIA"
+    assert infos[-1].title == "XII. THE ADVENTURE OF THE COPPER BEECHES"
+    # The title page + contents block must not become a synthetic chapter one.
+    assert not any("Sherlock Holmes" == ci.title for ci in infos)
+    # No story swallows the rest of the book.
+    assert max(ci.word_count for ci in infos) < 4 * statistics.median(
+        ci.word_count for ci in infos
+    )
+
+
+def test_bare_numeral_pattern_requires_all_caps_title():
+    """The bare-numeral shape is weak evidence — 'M.' is a roman numeral, so an
+    unrestricted pattern eats French "M. Morrel..." prose (1184 gained 8 phantom
+    chapters, 2701 four). A title is required, and it must be all caps."""
+    matches = text_utils.looks_like_chapter_heading
+
+    assert matches("I. A SCANDAL IN BOHEMIA")
+    assert matches("XII. THE ADVENTURE OF THE COPPER BEECHES")
+    # Bare numeral with no title is an in-story section marker, not a heading.
+    assert not matches("I.")
+    assert not matches("II.")
+    # Prose that happens to start with a numeral-shaped token.
+    assert not matches("M. Morrel, and this day and a half was lost from pure whim, for the")
+    assert not matches("I. But it is a common name in Nantucket, they say, and I suppose this")
+    assert not matches("I. THE FOLIO WHALE; II. the OCTAVO WHALE; III. the DUODECIMO WHALE.")
+
+
+def test_indented_numeral_contents_entries_are_toc():
+    """Contents entries for the bare-numeral form are title case, so the heading
+    patterns will not see them; the front-matter walk needs its own check or a
+    12-entry contents block reads as narrative and becomes chapter one."""
+    assert text_utils.TOC_NUMERAL_ENTRY_RE.match("   I.     A Scandal in Bohemia")
+    assert text_utils.TOC_NUMERAL_ENTRY_RE.match("  XII.  The Copper Beeches")
+    # Not indented → a real heading line, not a contents entry.
+    assert not text_utils.TOC_NUMERAL_ENTRY_RE.match("I. A SCANDAL IN BOHEMIA")
+
+
+@pytest.mark.parametrize("book_id,expected", [
+    ("1184", 117), ("1260", 38), ("1342", 61), ("1661", 12),
+    ("1727", 24), ("2641", 19), ("2701", 135), ("3296", 13),
+])
+def test_chapter_counts_pinned(book_id, expected):
+    """Every cached book's chapter count, pinned. The bare-numeral pattern is
+    the loosest in CHAPTER_PATTERNS; this is what catches it over-matching."""
+    assert len(_discover(_body_lines(book_id))) == expected
