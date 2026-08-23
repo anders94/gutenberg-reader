@@ -249,7 +249,7 @@ def test_moby_dick_cetology_not_split():
     Whale_)...") is prose that starts like a heading; it must stay one chapter."""
     body = _body_lines("2701")
     infos = _discover(body)
-    assert len(infos) == 135  # Melville's 135 numbered chapters, nothing synthetic
+    assert len(infos) == 136  # 135 numbered chapters + the Epilogue, nothing synthetic
     # ETYMOLOGY and the Sub-Sub-Librarian's EXTRACTS are front matter; promoting
     # them to chapter 1 used to shift every chapter number by one.
     assert infos[0].title == "CHAPTER 1. Loomings."
@@ -306,9 +306,44 @@ def test_indented_numeral_contents_entries_are_toc():
 
 @pytest.mark.parametrize("book_id,expected", [
     ("1184", 117), ("1260", 38), ("1342", 61), ("1661", 12),
-    ("1727", 24), ("2641", 19), ("2701", 135), ("3296", 13),
+    ("1727", 24), ("2641", 19), ("2701", 136), ("3296", 13),
 ])
 def test_chapter_counts_pinned(book_id, expected):
     """Every cached book's chapter count, pinned. The bare-numeral pattern is
     the loosest in CHAPTER_PATTERNS; this is what catches it over-matching."""
     assert len(_discover(_body_lines(book_id))) == expected
+
+
+def test_moby_dick_epilogue_is_its_own_chapter():
+    """Melville's Epilogue is where Ishmael explains how a drowned crew has a
+    narrator. It carries a name instead of a number, so no pattern matched it
+    and it was glued onto the end of "The Chase—Third Day" — never its own
+    track."""
+    body = _body_lines("2701")
+    infos = _discover(body)
+
+    assert infos[-1].title == "Epilogue"
+    assert infos[-1].kind == "body"          # part of the story, not apparatus
+    assert infos[-2].title == "CHAPTER 135. The Chase.—Third Day."
+
+    epilogue = "\n".join(body[infos[-1].start_line - 1:infos[-1].end_line])
+    assert "ESCAPED ALONE TO TELL THEE" in epilogue
+    assert "another orphan" in epilogue      # runs to its real end
+    # The preceding chapter must no longer carry it.
+    chase = "\n".join(body[infos[-2].start_line - 1:infos[-2].end_line])
+    assert "ESCAPED ALONE" not in chase
+    # Back-matter trimming still applies to whatever ends up last.
+    assert "Transcriber" not in epilogue
+
+
+def test_named_division_headings():
+    matches = text_utils.looks_like_chapter_heading
+    for title in ("Epilogue", "EPILOGUE", "epilogue", "Prologue",
+                  "EPILOGUE.", "Epilogue: The Return"):
+        assert matches(title), title
+    # Body words, not headings.
+    for title in ("The epilogue was brief.", "Prologue to the affair, he said."):
+        assert not matches(title), title
+    # A named division belongs to the story, never the apparatus.
+    assert text_utils.classify_heading("Epilogue") == "body"
+    assert text_utils.classify_heading("Prologue") == "body"
