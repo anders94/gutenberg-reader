@@ -275,6 +275,13 @@ Equally CRITICAL: never merge DIFFERENT people who share a surname. A father
 and son ("Mr. Emerson" and "George Emerson"), a mother and daughter
 ("Mrs. Honeychurch" and "Lucy Honeychurch"), and siblings are separate
 entries. Merge only when the text shows the names refer to one person.
+
+A first-person narrator is a character like any other and must be listed
+under their NAME, never under a role or a pronoun. If the book names its
+teller anywhere — "Call me Ishmael", a companion addressing them as Watson —
+use that name. Never emit "the narrator", "the author", "I", or "myself" as
+a character: they are not names, and the person behind them already has an
+entry that these would compete with.
 """
 
 
@@ -310,6 +317,14 @@ Report an issue only for names that should NOT stand as new characters:
   who never appears). When in doubt, let the name stand — report nothing.
 - verdict "duplicate": the same person as an existing KNOWN character; give
   that character as "canonical".
+
+For "duplicate", weigh who the name REFERS TO, not how it is spelled — a
+description and a name share no words but can be one person. A role or
+relationship standing in for someone already listed ("the doctor", "his
+wife", "the young stranger") is a duplicate of that character. Watch the
+teller of the story especially: in a first-person book the narrator is one
+of the named characters, so an entry describing them by role belongs to the
+name their companions use.
 """
         roster_json = """,
   "roster_issues": [

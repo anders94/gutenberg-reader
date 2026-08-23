@@ -455,3 +455,45 @@ class TestDiscoveryWindowing:
 
         text = " ".join(["word"] * 3000)
         assert _split_for_discovery(text, 1000) == [text]
+
+
+class TestNarratorRoleNames:
+    def test_narrator_roles_rejected(self):
+        for name in ("Narrator", "The Narrator", "the narrator", "I", "me",
+                     "Myself", "The Author", "storyteller",
+                     # Told not to emit "Narrator", the model qualifies it instead.
+                     "Unnamed narrator", "An anonymous narrator", "Our Storyteller",
+                     "first-person narrator"):
+            assert text_utils.is_narrator_role(name), name
+            assert text_utils.is_reserved_character_name(name), name
+
+    def test_real_names_survive(self):
+        for name in ("Ishmael", "Dr. Watson", "Mary", "Ivan", "Io",
+                     # A real person described by relation — ends on the noun
+                     # that names her, so the whole-name match must not fire.
+                     "Narrator's Wife", "The Narrator's Brother",
+                     "Mr. I. M. Wright", "Author Jones", "Mr. Speaker Clay"):
+            assert not text_utils.is_narrator_role(name), name
+            assert not text_utils.is_reserved_character_name(name), name
+
+    def test_placeholders_still_reserved(self):
+        for name in ("N/A", "None", "Unknown", "No named characters found"):
+            assert text_utils.is_reserved_character_name(name), name
+
+    def test_discovery_filters_narrator_entry(self):
+        # The PG 1661 defect: "The Narrator" (aliases: I, Narrator) sat beside
+        # "Dr. Watson" and took 106 of Watson's lines. It shares no tokens with
+        # "Dr. Watson", so merge_duplicate_characters can never reconcile them.
+        raw = {
+            "characters": [
+                {"name": "Dr. Watson", "aliases": ["Watson"],
+                 "pronunciation_hints": [], "first_appearance_chapter": 1},
+                {"name": "The Narrator", "aliases": ["I", "Narrator"],
+                 "pronunciation_hints": [], "first_appearance_chapter": 1},
+            ]
+        }
+        kept = [
+            c["name"] for c in raw["characters"]
+            if not text_utils.is_reserved_character_name(c["name"])
+        ]
+        assert kept == ["Dr. Watson"]

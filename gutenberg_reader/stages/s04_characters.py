@@ -91,7 +91,7 @@ def _discover(
     chars = [
         CharacterInfo.from_dict(c)
         for c in data.get("characters", [])
-        if c.get("name") and not text_utils.is_placeholder_name(c["name"])
+        if c.get("name") and not text_utils.is_reserved_character_name(c["name"])
     ]
     for c in chars:
         # The model sees a single chapter; its guess at a first appearance is

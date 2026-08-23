@@ -98,7 +98,7 @@ def run(
     # early chapters carry whatever name was known at the time ("Ahab" before
     # "Captain Ahab" became canonical), and this is the backward fix-up.
     final_chars = text_utils.merge_duplicate_characters(
-        [c for c in characters if not text_utils.is_placeholder_name(c.name)]
+        [c for c in characters if not text_utils.is_reserved_character_name(c.name)]
     )
     alias_map = text_utils._build_alias_map(final_chars)
     n_remapped = 0

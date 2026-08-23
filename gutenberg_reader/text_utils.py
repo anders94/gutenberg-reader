@@ -113,6 +113,14 @@ _TITLE_AFTER_SPACE = rf"(?:\s*[.:—–-]?\s*(?:{_TITLE_BODY})?)?"
 # and PG 2701 four.
 _ALL_CAPS_TITLE = r"[A-Z][A-Z0-9\s—–\-’'\".,:;!?()]*[A-Z0-9.!?)\"’]"
 
+# A few divisions are named rather than numbered. They are part of the story —
+# Moby Dick's Epilogue ("AND I ONLY AM ESCAPED ALONE TO TELL THEE") is where
+# Ishmael explains how a drowned crew has a narrator, and a listener expects it
+# as its own track — so they are body chapters, not front or back apparatus.
+# Deliberately just these two: "Conclusion" and "Afterword" are ordinary enough
+# words that matching them costs more than it gains.
+_NAMED_DIVISIONS = r"EPILOGUE|PROLOGUE"
+
 CHAPTER_PATTERNS = [
     re.compile(rf"^(CHAPTER\s+[IVXLCDM]+{_TITLE_AFTER_PUNCT})\s*$"),
     re.compile(rf"^(CHAPTER\s+\d+{_TITLE_AFTER_SPACE})\s*$"),
@@ -121,6 +129,7 @@ CHAPTER_PATTERNS = [
     re.compile(rf"^(PART\s+[IVXLCDM]+{_TITLE_AFTER_PUNCT})\s*$"),
     re.compile(rf"^(BOOK\s+[IVXLCDM]+{_TITLE_AFTER_PUNCT})\s*$"),
     re.compile(rf"^([IVXLCDM]+\.\s+{_ALL_CAPS_TITLE})\s*$"),
+    re.compile(rf"^((?:{_NAMED_DIVISIONS}){_TITLE_AFTER_PUNCT})\s*$", re.IGNORECASE),
 ]
 
 # A contents entry for the bare-numeral form above: indented, numeral, then a
@@ -625,6 +634,42 @@ def is_placeholder_name(name: str) -> bool:
     a placeholder: it is the attribution fallback, never a character.
     """
     return bool(PLACEHOLDER_NAME_RE.match(name))
+
+
+# The role the story is told from, and the pronouns a first-person narrator
+# refers to themselves by. Leading qualifiers are absorbed: told plainly not to
+# emit "Narrator", the model answered "Unnamed narrator" instead, so the role
+# noun is what matters, not what decorates it. Still whole-name only —
+# "Narrator's Wife" is a real person described by relation, and ends on the
+# noun that names her.
+NARRATOR_ROLE_RE = re.compile(
+    r"^\s*(?:(?:the|a|an|our|its|this|unnamed|anonymous|unidentified|main|primary"
+    r"|first[-\s]person)\s+)*"
+    r"(?:narrator|storyteller|author|writer|speaker)\s*$",
+    re.IGNORECASE,
+)
+# Pronouns stay strict — no qualifiers — so "Mary" and "Io" are untouched.
+NARRATOR_PRONOUN_RE = re.compile(r"^\s*(?:i|me|myself|my)\s*$", re.IGNORECASE)
+
+
+def is_narrator_role(name: str) -> bool:
+    """True for "Narrator", "The Narrator", "I" and friends.
+
+    A first-person book invites discovery to file its teller under the role
+    rather than the name, so PG 1661 carried "The Narrator" (aliases: I,
+    Narrator, my patient) beside "Dr. Watson" — one person, two entries, with
+    106 of Watson's lines on the wrong one. The two never merge lexically:
+    "The Narrator" and "Dr. Watson" share no tokens.
+
+    "Narrator" is also this pipeline's reserved label for narration, so a
+    character by that name is ambiguous by construction.
+    """
+    return bool(NARRATOR_ROLE_RE.match(name) or NARRATOR_PRONOUN_RE.match(name))
+
+
+def is_reserved_character_name(name: str) -> bool:
+    """True for names that must never become roster entries."""
+    return is_placeholder_name(name) or is_narrator_role(name)
 
 
 def merge_rosters(roster: list, found: list) -> list:
