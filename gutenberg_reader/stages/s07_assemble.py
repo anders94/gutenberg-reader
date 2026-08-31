@@ -152,7 +152,6 @@ def run(
             "validation_model": config.validation_model,
             "dual_llm_validation": config.processing_model != config.validation_model,
             "chunk_size": config.chunk_size,
-            "chunk_overlap": config.chunk_overlap,
         },
     }
 

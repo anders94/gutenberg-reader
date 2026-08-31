@@ -7,7 +7,9 @@ from rich.console import Console
 
 from gutenberg_reader.cache import atomic_write_json, read_text, stage_complete
 from gutenberg_reader.config import Config
-from gutenberg_reader.models import BookMetadata, ChapterInfo, DiscoveryResult
+from gutenberg_reader.models import (
+    SCHEMA_VERSION, BookMetadata, ChapterInfo, DiscoveryResult,
+)
 from gutenberg_reader.llm import LLMError, LLMRouter, call_json_with_retries
 from gutenberg_reader import prompts, schemas
 from gutenberg_reader import text_utils
@@ -22,17 +24,28 @@ def run(config: Config, client: LLMRouter) -> DiscoveryResult:
     out_path = stage_dir / "discovery.json"
 
     if stage_complete(out_path) and (config.force_stage is None or config.force_stage > 2):
-        if config.verbose:
-            console.print(f"[dim]Stage 02: already complete ({out_path})[/dim]")
         from gutenberg_reader.cache import read_json
         cached = DiscoveryResult.from_dict(read_json(out_path))
+        # A discovery.json written by an older detector stays on disk and feeds
+        # every later stage its verdict — PG 1727 and 2641 both have cached files
+        # that disagree with the detector supposedly behind them. Recompute
+        # instead of trusting them.
+        wanted = _detector_id(config)
+        if cached.schema_version != SCHEMA_VERSION or cached.detector != wanted:
+            console.print(
+                f"[cyan]Stage 02:[/cyan] cached structure is {cached.detector} "
+                f"v{cached.schema_version}, want {wanted} v{SCHEMA_VERSION} — recomputing"
+            )
+        else:
+            if config.verbose:
+                console.print(f"[dim]Stage 02: already complete ({out_path})[/dim]")
         # Re-check the cached structure, not just freshly detected structure: a
         # discovery.json written by an older detector stays on disk and silently
         # feeds every later stage a table of contents (see PG 2701). The checks
         # are pure, so running them on the cached path costs nothing.
-        body_lines = _body_lines(config)
-        _enforce_structure(cached.chapters, body_lines, cached.body_start_line, config)
-        return cached
+            body_lines = _body_lines(config)
+            _enforce_structure(cached.chapters, body_lines, cached.body_start_line, config)
+            return cached
 
     raw_path = config.stage_dir(1) / "book.txt"
     raw_text = read_text(raw_path)
@@ -56,38 +69,19 @@ def run(config: Config, client: LLMRouter) -> DiscoveryResult:
     if config.verbose:
         console.print(f"[cyan]Stage 02:[/cyan] Metadata: {metadata.title} by {metadata.author}")
 
-    # Detect chapters within body
     body_lines = lines[body_start:body_end]
-    raw_chapters = text_utils.detect_chapters_regex(body_lines)
+    verdict: dict = {}
 
-    # Check for content before the first detected chapter (e.g. P&P chapter 1 has no heading)
-    raw_chapters = _maybe_prepend_chapter_one(raw_chapters, body_lines)
-
-    if len(raw_chapters) < 2:
-        if config.verbose:
-            console.print(
-                f"[yellow]Stage 02:[/yellow] Regex found only {len(raw_chapters)} chapters, "
-                "falling back to LLM discovery..."
-            )
-        raw_chapters = _llm_chapter_discovery(body_lines, config, client)
-
-    # Runs after both paths: the title-page split is what a heading-less source
-    # produces, and either detector can land on it.
-    raw_chapters = _drop_leading_front_matter(
-        raw_chapters, body_lines, include_front_matter=config.include_front_matter,
-    )
-
-    # Last resort: a body that really has no headings still needs to come apart.
-    raw_chapters = _split_headless_body(raw_chapters, body_lines)
+    if config.structure_detector == "llm":
+        chapter_infos, verdict = _llm_structure(body_lines, config, client)
+        chapter_infos = _shift_to_absolute(chapter_infos, body_start)
+        _cross_check_against_regex(chapter_infos, body_lines, body_start, config)
+    else:
+        chapter_infos = _regex_structure(body_lines, body_start, config, client)
 
     if config.verbose:
-        console.print(f"[cyan]Stage 02:[/cyan] Found {len(raw_chapters)} chapters")
+        console.print(f"[cyan]Stage 02:[/cyan] Found {len(chapter_infos)} chapters")
 
-    # Build ChapterInfo objects with end_line and word_count
-    chapter_infos = _build_chapter_infos(
-        raw_chapters, body_lines, body_start,
-        include_back_matter=config.include_back_matter,
-    )
     _enforce_structure(chapter_infos, body_lines, body_start, config)
 
     result = DiscoveryResult(
@@ -95,10 +89,267 @@ def run(config: Config, client: LLMRouter) -> DiscoveryResult:
         chapters=chapter_infos,
         body_start_line=body_start,
         body_end_line=body_end,
+        detector=_detector_id(config),
+        work_type=verdict.get("work_type", ""),
+        has_chapter_structure=verdict.get("has_chapter_structure", True),
     )
 
     atomic_write_json(out_path, result.to_dict())
     return result
+
+
+# A heading with nothing under it is a part title, not a chapter: PG 6400 prints
+# "LIVES OF THE POETS." directly above "THE LIFE OF TERENCE." as the heading for
+# a group of lives. Left alone it becomes a five-word chapter, which downstream
+# is a two-second audio track.
+MIN_STANDALONE_CHAPTER_WORDS = 20
+
+
+def _absorb_part_titles(raw: list[dict], body_lines: list[str]) -> list[dict]:
+    """Fold a heading-only chapter into the chapter that follows it.
+
+    The part title stays in the text — it is a line or two — but stops being a
+    boundary. The following chapter keeps its own title and simply starts higher
+    up. The last chapter has nothing to fold into, so it is left alone and the
+    degenerate check speaks for it instead.
+    """
+    if len(raw) < 2:
+        return raw
+
+    out: list[dict] = []
+    absorbed: list[str] = []
+    pending_start: int | None = None
+    for i, ch in enumerate(raw):
+        end = (raw[i + 1]["start_line"] - 2) if i + 1 < len(raw) else len(body_lines) - 1
+        words = text_utils.word_count(
+            "\n".join(body_lines[ch["start_line"] - 1:end + 1]))
+        if words < MIN_STANDALONE_CHAPTER_WORDS and i + 1 < len(raw):
+            # Remember where it began; the next real chapter starts here.
+            pending_start = pending_start if pending_start is not None else ch["start_line"]
+            absorbed.append(ch["title"])
+            continue
+        if pending_start is not None:
+            ch = dict(ch, start_line=pending_start)
+            pending_start = None
+        out.append(ch)
+
+    if absorbed:
+        shown = ", ".join(repr(t) for t in absorbed[:3])
+        more = f" and {len(absorbed) - 3} more" if len(absorbed) > 3 else ""
+        console.print(
+            f"[cyan]Stage 02:[/cyan] {len(absorbed)} heading(s) hold no text — "
+            f"treating as part titles, not chapters: {shown}{more}"
+        )
+    return [dict(ch, number=i + 1) for i, ch in enumerate(out)]
+
+
+def _detector_id(config: Config) -> str:
+    return "llm-v1" if config.structure_detector == "llm" else "regex-v1"
+
+
+def _shift_to_absolute(infos: list[ChapterInfo], body_start: int) -> list[ChapterInfo]:
+    """_llm_structure works in body coordinates; the cache stores file lines."""
+    for ci in infos:
+        ci.start_line += body_start
+        ci.end_line += body_start
+    return infos
+
+
+def _regex_structure(
+    body_lines: list[str],
+    body_start: int,
+    config: Config,
+    client: LLMRouter,
+) -> list[ChapterInfo]:
+    """The previous pattern-matching detector, kept for comparison and for runs
+    with no model to hand. Every book that broke it added a rule here."""
+    raw = text_utils.detect_chapters_regex(body_lines)
+    raw = _maybe_prepend_chapter_one(raw, body_lines)
+    if len(raw) < 2:
+        if config.verbose:
+            console.print(
+                f"[yellow]Stage 02:[/yellow] regex found only {len(raw)} chapters, "
+                "falling back to LLM discovery..."
+            )
+        raw = _llm_chapter_discovery(body_lines, config, client)
+    raw = _drop_leading_front_matter(
+        raw, body_lines, include_front_matter=config.include_front_matter)
+    raw = _split_headless_body(raw, body_lines)
+    return _build_chapter_infos(
+        raw, body_lines, body_start, include_back_matter=config.include_back_matter)
+
+
+def _cross_check_against_regex(
+    infos: list[ChapterInfo],
+    body_lines: list[str],
+    body_start: int,
+    config: Config,
+) -> None:
+    """Report where the old detector disagrees, without letting it decide.
+
+    Pure string matching, so it costs nothing, and disagreement is the first
+    place to look when a model regresses on a book that used to work. It is
+    reported only — the regex is what this replaces.
+    """
+    try:
+        regex_starts = {
+            ch["start_line"] + body_start
+            for ch in text_utils.detect_chapters_regex(body_lines)
+        }
+    except Exception:  # the old detector must never break the new one
+        return
+
+    llm_starts = {ci.start_line for ci in infos}
+    only_regex = len(regex_starts - llm_starts)
+    only_llm = len(llm_starts - regex_starts)
+    if not (only_regex or only_llm):
+        return
+    console.print(
+        f"[dim]Stage 02: regex detector differs — {len(regex_starts)} headings vs "
+        f"{len(llm_starts)} chosen ({only_regex} only regex, {only_llm} only model)[/dim]"
+    )
+
+
+# One reprompt is worth it — a repair is a much easier question than the
+# original, because it names the specific objection. Two is where a model that
+# cannot do the book stops pretending it can.
+MAX_STRUCTURE_REPAIRS = 2
+
+# Below this, whatever sits above the first heading is a title page, not a
+# chapter the edition forgot to label.
+MIN_UNLABELLED_CHAPTER_WORDS = 50
+
+
+def _structure_to_raw(
+    verdict: dict,
+    cands: list[candidates.Candidate],
+    body_lines: list[str],
+    config: Config,
+) -> list[dict]:
+    """Turn ordinals into chapter dicts. Every string here comes from the book.
+
+    The model never emits a title or a line number: it picks candidates, and the
+    text is sliced from the candidate it picked. A hallucinated position is
+    impossible because the ordinal is bounded by the schema.
+    """
+    by_ord = {c.ordinal: c for c in cands}
+    keep = {"body"}
+    if config.include_front_matter:
+        keep.add("front")
+    if config.include_back_matter:
+        keep.add("back")
+
+    chosen: list[tuple[int, str, str]] = []   # (line, title, kind)
+    in_toc = 0
+    for h in verdict.get("headings", []):
+        c = by_ord.get(h.get("ordinal"))
+        if c is None or h.get("kind") not in keep:
+            continue
+        # A pick inside a densely packed run is a contents entry whatever the
+        # model called it. PG 2701 returned all 135 contents lines alongside the
+        # 135 real headings; taken at face value the first "chapter" spans the
+        # whole front matter and is named after a contents entry.
+        if "toc-run" in c.flags:
+            in_toc += 1
+            continue
+        chosen.append((c.line, c.text, h["kind"]))
+    chosen.sort()
+    if in_toc:
+        console.print(
+            f"[cyan]Stage 02:[/cyan] ignored {in_toc} heading(s) inside a contents "
+            "listing — they are entries, not the body"
+        )
+
+    raw = [
+        {"number": i + 1, "title": title, "start_line": line + 1,
+         "start_marker": title, "kind": kind}
+        for i, (line, title, kind) in enumerate(chosen)
+    ]
+
+    # The edition prints no heading over its opening chapter (PG 1342). Give the
+    # text before the first heading a chapter of its own rather than losing it —
+    # but only when it is really the story starting. Nearly every book has *some*
+    # text up there: on PG 1260 it is Currer Bell's preface and on PG 2641 the
+    # title page, and taking the model's word for it gave both a spurious extra
+    # chapter one.
+    #
+    # _maybe_prepend_chapter_one already decides this correctly and is worth
+    # keeping: it walks back only as far as the contents listing, then vetoes the
+    # block if it carries a front-matter heading of its own, then requires it to
+    # read as sentences rather than captions. That is three books' worth of
+    # accumulated knowledge and none of it is guesswork the model should redo.
+    if raw and verdict.get("body_starts_before_first_heading"):
+        raw = _maybe_prepend_chapter_one(raw, body_lines)
+    return raw
+
+
+def _llm_structure(
+    body_lines: list[str],
+    config: Config,
+    client: LLMRouter,
+) -> tuple[list[ChapterInfo], dict]:
+    """Classify the whole book's structure at once, then check and repair.
+
+    Structure is a global property: whether a run of heading-shaped lines is a
+    contents listing or the body, and whether a lone all-caps line is a chapter
+    or an inscription, are only answerable by seeing every candidate together.
+    So the book is condensed to its candidate blocks and judged in one pass
+    rather than streamed past the model in chunks, which is what produced the
+    PG 2701, 37106 and 1661 defects in the first place.
+    """
+    cands = candidates.extract(body_lines)
+    rendered = candidates.render(cands)
+    schema = schemas.structure_schema(len(cands))
+    system = prompts.structure_system()
+
+    if config.verbose:
+        console.print(
+            f"[cyan]Stage 02:[/cyan] {len(cands)} candidate blocks "
+            f"(~{int(len(rendered.split()) * 1.4):,} tokens) → {config.structure_model}"
+        )
+
+    user = prompts.structure_user(rendered, len(cands))
+    verdict: dict = {}
+    infos: list[ChapterInfo] = []
+    findings: list = []
+
+    for attempt in range(MAX_STRUCTURE_REPAIRS + 1):
+        data = call_json_with_retries(
+            client, config.structure_model,
+            [{"role": "system", "content": system}, {"role": "user", "content": user}],
+            schema=schema, retries=config.max_retries,
+            what="structure analysis", console=console,
+        )
+        if data is None:
+            raise LLMError("structure analysis exhausted its retries")
+        verdict = data
+
+        raw = _structure_to_raw(verdict, cands, body_lines, config)
+        if not verdict.get("has_chapter_structure", True) or not raw:
+            # A book with no divisions at all is a real answer, not a failure.
+            # Give the body one chapter and let it be cut into parts.
+            start = raw[0]["start_line"] if raw else 1
+            raw = [{"number": 1, "title": raw[0]["title"] if raw else "",
+                    "start_line": start, "start_marker": "", "kind": "body"}]
+        raw = _absorb_part_titles(raw, body_lines)
+        raw = _split_headless_body(raw, body_lines)
+
+        infos = _build_chapter_infos(
+            raw, body_lines, 0, include_back_matter=config.include_back_matter)
+        findings = structure_checks.check(infos, cands, 0)
+        fails = [f for f in findings if f.severity == "fail"]
+        if not fails:
+            return infos, verdict
+
+        if attempt == MAX_STRUCTURE_REPAIRS:
+            break
+        console.print(
+            f"[yellow]Stage 02:[/yellow] {len(fails)} structure problem(s) — "
+            f"re-asking ({attempt + 1}/{MAX_STRUCTURE_REPAIRS})"
+        )
+        user = prompts.structure_repair_user(rendered, [f.message for f in fails])
+
+    return infos, verdict
 
 
 def _build_chapter_infos(

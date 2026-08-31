@@ -127,3 +127,56 @@ CHAPTERS_SCHEMA = {
     "required": ["chapters"],
     "additionalProperties": False,
 }
+
+
+def structure_schema(n_candidates: int) -> dict:
+    """Constrain a structure verdict to choices that exist.
+
+    The model returns *ordinals into the candidate list*, never line numbers and
+    never titles. A bounded integer makes a hallucinated position structurally
+    impossible — the same trick the speaker enum plays on invented characters —
+    and titles are then sliced from the candidate the ordinal names, so the model
+    never has to reproduce text it might alter.
+    """
+    return {
+        "type": "object",
+        "properties": {
+            "work_type": {
+                "type": "string",
+                "enum": ["novel", "story_collection", "history", "philosophy",
+                         "essays", "letters", "memoir", "drama", "poetry", "other"],
+            },
+            "has_chapter_structure": {"type": "boolean"},
+            "body_starts_before_first_heading": {"type": "boolean"},
+            "headings": {
+                "type": "array",
+                # An empty array is a free escape hatch, and models take it.
+                # Measured on PG 3296: unconstrained, DeepSeek reasoned its way to
+                # "Blocks 5-17 are BOOK I through BOOK XIII ... a series of 13
+                # books" and then returned []. With minItems it returns all 13.
+                # A book with no chapter divisions still has a title page to
+                # classify, so requiring one costs nothing.
+                "minItems": 1,
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "ordinal": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": max(0, n_candidates - 1),
+                        },
+                        "kind": {
+                            "type": "string",
+                            "enum": ["body", "front", "back", "title_page",
+                                     "toc", "section_marker"],
+                        },
+                    },
+                    "required": ["ordinal", "kind"],
+                    "additionalProperties": False,
+                },
+            },
+        },
+        "required": ["work_type", "has_chapter_structure",
+                     "body_starts_before_first_heading", "headings"],
+        "additionalProperties": False,
+    }

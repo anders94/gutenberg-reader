@@ -33,7 +33,6 @@ console = Console()
 @click.option("--output", default=None, type=click.Path(), help="Output file path")
 @click.option("--chunk-size", default=1000, show_default=True, type=int,
               help="Words per LLM attribution window")
-@click.option("--overlap", default=150, show_default=True, type=int, help="Overlap words between chunks")
 @click.option("--critic/--no-critic", "critic", default=False,
               help="Run the Stage 06 LLM critic pass (default: off; most useful with a "
                    "larger --validator model)")
@@ -41,6 +40,10 @@ console = Console()
               help="Keep prefaces, introductions, and dedications as chapters (default: skip them)")
 @click.option("--include-back-matter", is_flag=True, default=False,
               help="Keep footnotes, appendices, and indexes as a final chapter (default: trim them)")
+@click.option("--structure", "structure_detector",
+              type=click.Choice(["llm", "regex"]), default="llm", show_default=True,
+              help="How to find chapter boundaries. 'regex' is the previous "
+                   "pattern-matching detector, kept for comparison and offline runs")
 @click.option("--accept-structure-warnings", is_flag=True, default=False,
               help="Ship a book whose detected structure failed its checks "
                    "(default: refuse; a bad structure costs hours of TTS downstream)")
@@ -62,10 +65,10 @@ def main(
     cache_dir: str,
     output: str | None,
     chunk_size: int,
-    overlap: int,
     critic: bool,
     include_front_matter: bool,
     include_back_matter: bool,
+    structure_detector: str,
     accept_structure_warnings: bool,
     force_stage: int | None,
     chapters: str | None,
@@ -99,12 +102,12 @@ def main(
         cache_dir=Path(cache_dir),
         output_file=output_path,
         chunk_size=chunk_size,
-        chunk_overlap=overlap,
         max_retries=max_retries,
         verbose=verbose,
         no_critic=not critic,
         include_front_matter=include_front_matter,
         include_back_matter=include_back_matter,
+        structure_detector=structure_detector,
         accept_structure_warnings=accept_structure_warnings,
         force_stage=force_stage,
         chapters_only=chapters_only,

@@ -194,16 +194,35 @@ class BookMetadata:
         )
 
 
+# Bumped whenever the shape or meaning of discovery.json changes, so
+# cached files from an older detector are recomputed instead of trusted.
+SCHEMA_VERSION = 2
+
+
 @dataclass
 class DiscoveryResult:
     metadata: BookMetadata
     chapters: list[ChapterInfo]
     body_start_line: int = 0
     body_end_line: int = 0
+    # Which detector produced this, so a discovery.json written by an older one
+    # is recomputed rather than silently feeding every later stage its verdict.
+    # PG 1727 and 2641 both have cached files that disagree with the detector
+    # that is supposed to have written them.
+    detector: str = "regex-v1"
+    schema_version: int = SCHEMA_VERSION
+    # What the structure pass concluded about the book as a whole. work_type
+    # travels downstream: a history should not be expected to have a cast.
+    work_type: str = ""
+    has_chapter_structure: bool = True
 
     def to_dict(self) -> dict:
         return {
+            "schema_version": self.schema_version,
+            "detector": self.detector,
             "metadata": self.metadata.to_dict(),
+            "work_type": self.work_type,
+            "has_chapter_structure": self.has_chapter_structure,
             "chapters": [c.to_dict() for c in self.chapters],
             "body_start_line": self.body_start_line,
             "body_end_line": self.body_end_line,
@@ -216,4 +235,8 @@ class DiscoveryResult:
             chapters=[ChapterInfo.from_dict(c) for c in d["chapters"]],
             body_start_line=d.get("body_start_line", 0),
             body_end_line=d.get("body_end_line", 0),
+            detector=d.get("detector", "regex-v1"),
+            schema_version=d.get("schema_version", 1),
+            work_type=d.get("work_type", ""),
+            has_chapter_structure=d.get("has_chapter_structure", True),
         )

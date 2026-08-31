@@ -5,7 +5,7 @@
   "source": "hand-verified from the book's own CONTENTS (body lines 131-153)",
   "has_chapter_structure": true,
   "exact_count": null,
-  "notes": "The shipped detection is 3 chapters — 9,984 / 173,461 / 29,196 words — because the bare-numeral pattern matched the Latin initials in 'D. OCTAVIUS CAESAR AUGUSTUS.' and in the monumental inscription 'M. AGRIPPA. L. F. COS: TERTIUM. FECIT.'. The book's contents list three parts: I. the twelve Caesars, II. Lives of the Grammarians and Historians, III. Lives of the Poets (six named), then FOOTNOTES and INDEX. exact_count is deliberately null: whether the appended Lives should be one chapter each or one per part is a judgment call this fixture does not pretend to settle. What is not a judgment call is that each of the twelve Caesars is its own chapter and the inscription is not a heading.",
+  "notes": "The shipped detection is 3 chapters — 9,984 / 173,461 / 29,196 words — because the bare-numeral pattern matched the Latin initials in 'D. OCTAVIUS CAESAR AUGUSTUS.' and in the monumental inscription 'M. AGRIPPA. L. F. COS: TERTIUM. FECIT.'. The book's contents list three parts: I. the twelve Caesars, II. Lives of the Grammarians and Historians, III. Lives of the Poets (six named), then FOOTNOTES and INDEX. exact_count is deliberately null: whether the appended Lives should be one chapter each or one per part is a judgment call this fixture does not pretend to settle. What is not a judgment call is that each of the twelve Caesars is its own chapter and the inscription is not a heading. max_chapter_words is a coarse guard against the swallowed-chapters failure (the shipped defect put 173,461 words in one chapter), not a claim about chapter length: the Life of Augustus is legitimately ~43,800 words here, verified as containing no other Caesar's heading and no footnote apparatus.",
   "required_body": [
     {
       "line": 133,
@@ -63,5 +63,5 @@
     "FOOTNOTES",
     "INDEX."
   ],
-  "max_chapter_words": 30000
+  "max_chapter_words": 60000
 }

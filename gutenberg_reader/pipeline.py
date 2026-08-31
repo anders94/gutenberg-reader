@@ -43,6 +43,8 @@ def run_pipeline(config: Config) -> Path:
         config.structure_model = client.register(
             config.structure_base_url, config.api_key,
             config.structure_model, config.judgment_timeout,
+            template_kwargs=None if config.structure_thinking
+            else {"enable_thinking": False, "thinking": False},
         )
     except Exception as e:
         console.print(f"[red]Error: {e}[/red]")

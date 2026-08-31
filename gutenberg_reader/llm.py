@@ -38,6 +38,7 @@ class LLMClient:
         base_url: str = "http://localhost:8000/v1",
         api_key: str = "EMPTY",
         timeout: float = 300.0,
+        template_kwargs: dict | None = None,
     ):
         base_url = base_url.rstrip("/")
         # Accept bare host URLs like http://host:8000 — the OpenAI API lives under /v1
@@ -45,6 +46,9 @@ class LLMClient:
             base_url += "/v1"
         self.base_url = base_url
         self.timeout = timeout
+        # Passed through to the server's chat template. Servers ignore keys their
+        # template does not declare, so this is safe to set per endpoint.
+        self.template_kwargs = template_kwargs or {}
         self._client = httpx.Client(
             timeout=timeout,
             headers={"Authorization": f"Bearer {api_key}"},
@@ -93,6 +97,8 @@ class LLMClient:
             "temperature": temperature,
             "stream": False,
         }
+        if self.template_kwargs:
+            payload["chat_template_kwargs"] = self.template_kwargs
         if schema is not None:
             payload["response_format"] = {
                 "type": "json_schema",
@@ -200,12 +206,14 @@ class LLMRouter:
         api_key: str = "EMPTY",
         model: str = "",
         timeout: float = 300.0,
+        template_kwargs: dict | None = None,
     ) -> str:
         """Health-check an endpoint, resolve its model name, and route to it.
 
         Returns the resolved name, which is what callers pass back in.
         """
-        client = LLMClient(base_url=base_url, api_key=api_key, timeout=timeout)
+        client = LLMClient(base_url=base_url, api_key=api_key, timeout=timeout,
+                           template_kwargs=template_kwargs)
         resolved = client.health_check(model or None)
         self._by_model[resolved] = client
         return resolved

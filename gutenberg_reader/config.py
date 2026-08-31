@@ -20,7 +20,6 @@ class Config:
     cache_dir: Path = field(default_factory=lambda: Path("./cache"))
     output_file: Path | None = None
     chunk_size: int = 1000
-    chunk_overlap: int = 150
     max_retries: int = 3
     verbose: bool = False
     no_critic: bool = False
@@ -29,6 +28,13 @@ class Config:
     include_front_matter: bool = False
     include_back_matter: bool = False
     accept_structure_warnings: bool = False
+    structure_detector: str = "llm"   # "llm" | "regex"
+    # Chain-of-thought is waste on the structure pass and costs an order of
+    # magnitude. Measured on goldberry (DeepSeek-V4-Flash) for PG 2641: with
+    # thinking 5,131 completion tokens in 157s, without 316 tokens in 8s — the
+    # same correct 19 chapters. Identifying a series in a list is recognition,
+    # not deduction. Servers ignore template keys they do not declare.
+    structure_thinking: bool = False
     processing_timeout: float = 300.0
     judgment_timeout: float = 1800.0
 

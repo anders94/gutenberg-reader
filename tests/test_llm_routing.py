@@ -18,9 +18,10 @@ from gutenberg_reader.llm import LLMError, LLMRouter, call_json_with_retries
 class _StubClient:
     """Stands in for LLMClient without a server."""
 
-    def __init__(self, base_url, api_key="EMPTY", timeout=300.0):
+    def __init__(self, base_url, api_key="EMPTY", timeout=300.0, template_kwargs=None):
         self.base_url = base_url
         self.timeout = timeout
+        self.template_kwargs = template_kwargs or {}
         self.calls: list[str] = []
 
     def health_check(self, model=None):
@@ -123,3 +124,14 @@ def test_structure_follows_the_validator_endpoint():
                validator_base_url="http://mac:8000/v1")
     assert c.structure_base_url == "http://mac:8000/v1"
     assert c.validator_base_url == "http://mac:8000/v1"
+
+
+def test_template_kwargs_are_per_endpoint(stub):
+    """Chain-of-thought is waste on the structure pass — measured at 5,131
+    completion tokens versus 316 for the same correct answer — but it may be
+    worth having elsewhere, so it is set per endpoint rather than globally."""
+    r = LLMRouter()
+    r.register("http://gpu:8000/v1")
+    r.register("http://mac:8000/v1", template_kwargs={"enable_thinking": False})
+    assert r._client("small-model").template_kwargs == {}
+    assert r._client("big-model").template_kwargs == {"enable_thinking": False}

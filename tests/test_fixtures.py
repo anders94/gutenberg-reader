@@ -54,7 +54,7 @@ def test_6400_golden_records_the_defect_not_the_output():
     assert g["exact_count"] is None          # the appended Lives are unsettled
     assert len(g["required_body"]) == 12
     assert "M. AGRIPPA. L. F. COS: TERTIUM. FECIT." in g["forbidden_titles"]
-    assert g["max_chapter_words"] == 30_000
+    assert g["max_chapter_words"] == 60_000
 
 
 def test_2131_golden_records_a_book_with_no_headings():

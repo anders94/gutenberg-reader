@@ -158,20 +158,69 @@ def test_correct_books_pass_clean(book_id):
     assert not fails, [str(f) for f in fails]
 
 
-def test_6400_is_rejected():
-    """The live failure. Suetonius came out as 3 chapters — 9,984 / 173,461 /
-    29,196 words — because the bare-numeral pattern matched Latin initials and
-    a monumental inscription. Nothing acted on the 17x size warning, so it
-    shipped. The twelve Caesars are still sitting in that middle chapter as
-    unclassified, evenly spaced, same-shaped blocks, and that is detectable."""
-    chapters, body_start = _discovered("6400")
+# The structure PG 6400 actually shipped with, recorded here rather than read
+# from cache/: 9,984 / 173,461 / 29,196 words over three chapters, because the
+# bare-numeral pattern matched the Latin initials in "D. OCTAVIUS CAESAR
+# AUGUSTUS." and in the monumental inscription "M. AGRIPPA. L. F. COS: TERTIUM.
+# FECIT." Keeping it as data means the test still fails the bad structure once
+# the cache holds a good one.
+SHIPPED_6400 = [
+    (1, "Chapter I", 1536, 2461, 9_984),
+    (2, "D. OCTAVIUS CAESAR AUGUSTUS.", 2462, 18702, 173_461),
+    (3, "M. AGRIPPA. L. F. COS: TERTIUM. FECIT.", 18703, 22459, 29_196),
+]
+
+
+def test_6400_shipped_structure_is_rejected():
+    """The live failure. Nothing acted on the 17x size warning, so it shipped.
+    The twelve Caesars were still sitting in that middle chapter as
+    unclassified, evenly spaced, same-shaped blocks — which is detectable."""
+    chapters = [
+        ChapterInfo(number=n, title=t, start_line=a, end_line=b, word_count=w,
+                    start_marker=t)
+        for n, t, a, b, w in SHIPPED_6400
+    ]
     cands = candidates.extract(_body("6400"))
-    fails = [f for f in structure_checks.check(chapters, cands, body_start)
+    fails = [f for f in structure_checks.check(chapters, cands, 29)
              if f.severity == "fail"]
 
-    assert fails, "6400's known-bad structure must not pass"
+    assert fails, "6400's shipped structure must not pass"
     residue = [f for f in fails if f.code == "unexplained_structure"]
     assert residue
-    # The Caesars themselves are among the evidence.
     found = {t for f in residue for t in f.evidence.get("examples", [])}
     assert any("CAESAR" in t.upper() for t in found), found
+
+
+def test_residue_catches_a_swallowed_series_not_every_missing_division():
+    """The sensitivity boundary, pinned honestly.
+
+    The residue check finds an evenly spaced series of same-shaped headings
+    swallowed into one chapter — the failure PG 6400 actually shipped, with
+    eleven Caesars inside a 173,461-word chapter. It does NOT find every missing
+    division: build a structure from only the twelve Caesars and the appended
+    Lives of the Grammarians, Rhetoricians and Poets are left inside the last
+    chapter without complaint, because they are irregular in shape and as little
+    as 184 lines apart. Catching those is the structure pass's job, not the
+    check's; the check is the backstop against the catastrophic case."""
+    from gutenberg_reader.stages.s02_discovery import _build_chapter_infos
+    from tests.fixtures import golden
+
+    body = _body("6400")
+    body_start = 31
+    g = golden("6400")
+    raw = [
+        {"number": i + 1, "title": c["title"], "start_line": c["line"] + 1,
+         "start_marker": c["title"], "kind": "body"}
+        for i, c in enumerate(sorted(g["required_body"], key=lambda c: c["line"]))
+    ]
+    chapters = _build_chapter_infos(raw, body, body_start)
+    fails = [f for f in structure_checks.check(
+        chapters, candidates.extract(body), body_start) if f.severity == "fail"]
+    assert not fails, [str(f) for f in fails]
+
+
+def test_page_markers_are_never_residue_evidence():
+    """A bare parenthesised number recurring every few hundred lines is a page
+    marker, not a missed chapter. PG 6400 prints them throughout, and a long
+    chapter can hold five 200+ lines apart with nothing wrong."""
+    assert "shape:9" in structure_checks.RESIDUE_IGNORED_SHAPES

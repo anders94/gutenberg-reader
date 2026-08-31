@@ -14,7 +14,7 @@ rendered, retaining every heading the book actually prints.
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 
 from gutenberg_reader import text_utils
 
@@ -38,6 +38,15 @@ _PROSE_LOWER_RATIO = 0.5
 _OPENS_QUOTED = ('"', "'", "“", "‘")
 
 _ROMAN = re.compile(r"^[IVXLCDM]+\.?$", re.IGNORECASE)
+
+# A table of contents lists every heading a line or two apart; real chapters are
+# hundreds of lines apart. Moby Dick's contents run 135 entries at a gap of 2.
+TOC_RUN_MAX_GAP = 4
+# Long, because short clusters occur naturally: PG 37106 prints
+# "[Illustration: A Merry Christmas]" two lines above "II." / "A MERRY
+# CHRISTMAS.", which is a three-candidate cluster and a real heading. A contents
+# listing is not three entries long — Moby Dick's is 136, Little Women's 47.
+TOC_RUN_MIN_LEN = 6
 
 
 @dataclass(frozen=True)
@@ -160,6 +169,28 @@ def extract(body_lines: list[str]) -> list[Candidate]:
                 prev_line = i
         i = j
 
+    return _mark_toc_runs(out)
+
+
+def _mark_toc_runs(cands: list[Candidate]) -> list[Candidate]:
+    """Flag candidates belonging to a densely packed run — a contents listing.
+
+    Told in prose that a contents block is densely packed, a model still picks it:
+    on PG 2701 it selected all 135 contents entries *as well as* the 135 body
+    headings. The density is measurable, so measure it and say so on the line.
+    """
+    out = list(cands)
+    i = 0
+    while i < len(out):
+        j = i
+        while (j + 1 < len(out)
+               and out[j + 1].gap_before <= TOC_RUN_MAX_GAP
+               and "illustration" not in out[j + 1].flags):
+            j += 1
+        if j - i + 1 >= TOC_RUN_MIN_LEN:
+            for k in range(i, j + 1):
+                out[k] = replace(out[k], flags=out[k].flags + ("toc-run",))
+        i = j + 1
     return out
 
 

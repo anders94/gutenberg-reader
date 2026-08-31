@@ -39,6 +39,13 @@ SIZE_LOW = 0.2
 RESIDUE_MIN_RUN = 5
 RESIDUE_MIN_GAP = 200
 
+# Shapes that are never a chapter heading however evenly they recur. A bare
+# number is a page marker: PG 6400 prints "(479)", "(506)", "(524)" through the
+# body, and a long chapter can hold five of them 200+ lines apart without
+# anything being wrong. Excluding them costs nothing — 6400's real missed
+# headings are all-caps names, not numerals.
+RESIDUE_IGNORED_SHAPES = {"shape:9", "shape:R", "shape:p"}
+
 
 @dataclass
 class Finding:
@@ -159,7 +166,7 @@ def _unexplained_structure(
             by_shape[shape].append(c)
 
         for shape, group in by_shape.items():
-            if len(group) < RESIDUE_MIN_RUN:
+            if shape in RESIDUE_IGNORED_SHAPES or len(group) < RESIDUE_MIN_RUN:
                 continue
             gaps = [b.line - a.line for a, b in zip(group, group[1:])]
             if gaps and min(gaps) >= RESIDUE_MIN_GAP:

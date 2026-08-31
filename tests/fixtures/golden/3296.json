@@ -3,6 +3,7 @@
   "sha256_book": "4404699fe6288144df30d8972cf82d68414b9c713d195783da2cd414c55356e9",
   "body_lines": 9344,
   "source": "detector (verified by tests/test_structure.py)",
+  "has_chapter_structure": true,
   "exact_count": 13,
   "chapters": [
     {

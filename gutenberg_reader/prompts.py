@@ -398,3 +398,77 @@ Line numbers are 1-indexed. Be thorough and find all chapter divisions.
 
 def llm_chapter_discovery_user(text: str) -> str:
     return f"Find all chapter boundaries in this text (provide 1-indexed line numbers):\n\n{text}"
+
+
+def structure_system() -> str:
+    """What the deterministic detector knew, stated as guidance.
+
+    Everything here was previously a regex that got a vote. Each one was added
+    for one book and then misfired on another: the bare-numeral pattern found
+    PG 1661's stories and also matched Latin initials, turning Suetonius into
+    three chapters. As guidance the model can weigh them; as code they decided.
+    """
+    return """You are given EVERY short standalone block of one book, in document
+order, one per line, as:
+
+    ORDINAL| LINE: text  [flags]
+
+Most blocks are noise — page numbers, footnote markers, verse quotations,
+separators, stray short lines. A few are the book's chapter headings. Identify
+them.
+
+HOW TO TELL:
+
+- Chapter headings form a SERIES. They repeat a pattern at wide, fairly regular
+  intervals through the whole book. A heading-shaped block that appears ONCE is
+  almost never a chapter heading — it is a title page line, a dedication, or an
+  inscription quoted in the text.
+- The flags are EVIDENCE, not instructions. `regex:chapter` means a pattern
+  matched; that pattern has been wrong before. `shape:` is the block's token
+  shape — members of one series usually share it. Weigh the flags against the
+  series test; do not defer to them.
+- A table of contents lists headings a line or two apart near the front of the
+  book. The body spaces them hundreds or thousands of lines apart. Report the
+  BODY headings, not the contents entries. If you see the same series twice,
+  the first, densely packed occurrence is the contents.
+- Some editions put the number and the title on separate lines. Those arrive as
+  one block joined by " / " — treat it as a single heading.
+- Front matter (preface, introduction, dedication, contents, translator's note,
+  list of illustrations) and back matter (footnotes, endnotes, appendix, index,
+  glossary, errata, transcriber's note) are the edition's apparatus, not the
+  work. Label them `front` and `back`. An Epilogue or Prologue is part of the
+  story: label it `body`.
+- A bare numeral or a row of asterisks before a paragraph is an in-story section
+  marker, not a chapter: `section_marker`.
+- The book's title repeated at the very front is the title page: `title_page`.
+
+TWO THINGS TO REPORT SEPARATELY:
+
+- has_chapter_structure: false when the book genuinely has no chapter divisions
+  at all — a single continuous work. Do NOT invent divisions out of the title
+  page to avoid saying this. It is a real and correct answer.
+- body_starts_before_first_heading: true when the work's text begins before the
+  first heading you listed, because the edition prints no heading over its
+  opening chapter.
+
+Be EXHAUSTIVE. If a series has twelve members, return all twelve. A missed
+heading silently merges two chapters into one."""
+
+
+def structure_user(rendered_candidates: str, n: int) -> str:
+    return (
+        f"{n} candidate blocks from this book, in document order.\n"
+        f"Return the ordinals that are headings.\n\n{rendered_candidates}"
+    )
+
+
+def structure_repair_user(rendered_candidates: str, complaints: list[str]) -> str:
+    """Re-ask with the specific objection, which is a far easier question."""
+    issues = "\n".join(f"- {c}" for c in complaints)
+    return (
+        "Your previous answer did not hold up:\n\n"
+        f"{issues}\n\n"
+        "Reconsider and return the full corrected list of heading ordinals — "
+        "not just the changes.\n\n"
+        f"{rendered_candidates}"
+    )
