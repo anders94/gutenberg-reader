@@ -39,7 +39,13 @@ def attribution_schema(char_names: list[str]) -> dict:
 
 
 def critic_schema(char_names: list[str], new_names: list[str] | None = None) -> dict:
-    schema = {
+    """Attribution review for one window. Speaker labels only.
+
+    Roster objections used to ride along here, which meant every window was
+    asked about the same new names and the first verdict won by accident of
+    ordering. They have their own call now — see roster_review_schema.
+    """
+    return {
         "type": "object",
         "properties": {
             "corrections": {
@@ -60,27 +66,42 @@ def critic_schema(char_names: list[str], new_names: list[str] | None = None) -> 
         "required": ["corrections", "overall_quality"],
         "additionalProperties": False,
     }
-    if new_names:
-        # Roster review: the critic may object to names discovery just added.
-        # "name" is constrained to this chapter's additions — the rest of the
-        # roster is settled; "canonical" (for duplicates) to the roster plus
-        # "" for the not_a_character verdict, where it carries no meaning.
-        schema["properties"]["roster_issues"] = {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "name": {"type": "string", "enum": list(dict.fromkeys(new_names))},
-                    "verdict": {"type": "string", "enum": ["not_a_character", "duplicate"]},
-                    "canonical": {"type": "string", "enum": [*dict.fromkeys(char_names), ""]},
-                    "reason": {"type": "string"},
+
+
+def roster_review_schema(char_names: list[str], new_names: list[str]) -> dict:
+    """One verdict per name discovery just added, asked once for the chapter.
+
+    "name" is constrained to this chapter's additions — the rest of the roster is
+    settled. "canonical" is the roster plus "", which is what a not_a_character
+    verdict carries there.
+    """
+    return {
+        "type": "object",
+        "properties": {
+            "roster_issues": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {"type": "string", "enum": list(dict.fromkeys(new_names))},
+                        "verdict": {
+                            "type": "string",
+                            "enum": ["keep", "not_a_character", "duplicate"],
+                        },
+                        "canonical": {
+                            "type": "string",
+                            "enum": [*dict.fromkeys(char_names), ""],
+                        },
+                        "reason": {"type": "string"},
+                    },
+                    "required": ["name", "verdict", "canonical", "reason"],
+                    "additionalProperties": False,
                 },
-                "required": ["name", "verdict", "canonical", "reason"],
-                "additionalProperties": False,
             },
-        }
-        schema["required"].append("roster_issues")
-    return schema
+        },
+        "required": ["roster_issues"],
+        "additionalProperties": False,
+    }
 
 
 CHARACTERS_SCHEMA = {

@@ -147,6 +147,11 @@ class CriticReport:
     overall_quality: float = 1.0
     needs_reprocessing: bool = False
     fixed_segments: list[Segment] | None = None
+    # Windows whose review failed every retry. Recorded because a quality score
+    # computed only from the windows that answered is a score for work nobody
+    # looked at — invisible while the critic was opt-in, systematic once it is
+    # the default.
+    unreviewed_windows: list[list[int]] = field(default_factory=list)
 
     def to_dict(self) -> dict:
         return {
@@ -156,6 +161,7 @@ class CriticReport:
             "name_inconsistencies": self.name_inconsistencies,
             "overall_quality": self.overall_quality,
             "needs_reprocessing": self.needs_reprocessing,
+            "unreviewed_windows": self.unreviewed_windows,
             "fixed_segments": [s.to_dict() for s in self.fixed_segments] if self.fixed_segments else None,
         }
 
@@ -168,6 +174,7 @@ class CriticReport:
             name_inconsistencies=d.get("name_inconsistencies", []),
             overall_quality=d.get("overall_quality", 1.0),
             needs_reprocessing=d.get("needs_reprocessing", False),
+            unreviewed_windows=d.get("unreviewed_windows", []),
             fixed_segments=[Segment.from_dict(s) for s in d["fixed_segments"]] if d.get("fixed_segments") else None,
         )
 

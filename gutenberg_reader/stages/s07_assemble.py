@@ -67,6 +67,9 @@ def run(
     total_segments = 0
     quality_scores: list[float] = []
 
+    needs_review: list[int] = []
+    unreviewed_windows = 0
+
     for num in sorted(accepted.keys()):
         processed, report = accepted[num]
         ci = info_by_num.get(num)
@@ -84,6 +87,10 @@ def run(
             },
             "processed": processed.to_dict(),
             "validation": report.to_dict() if report else None,
+            # Visible in the output rather than only in a log line: a chapter the
+            # critic scored poorly, or only partly saw, is the one worth listening
+            # to before it becomes an hour of synthesis.
+            "needs_review": bool(report and report.needs_reprocessing),
         }
         chapters_out.append(chapter_entry)
 
@@ -93,6 +100,9 @@ def run(
 
         if report:
             quality_scores.append(report.overall_quality)
+            if report.needs_reprocessing:
+                needs_review.append(num)
+            unreviewed_windows += len(report.unreviewed_windows)
 
     # The rolling roster is authoritative — per-chapter discovered_characters
     # are provenance only. Re-adding them here would resurrect every entry the
@@ -140,7 +150,10 @@ def run(
             "total_segments": total_segments,
             "total_characters": len(final_chars),
             "processing_time_seconds": round(elapsed, 2),
-            "validation_performed": not config.no_critic,
+            "validation_performed": config.critic,
+            # A quality figure means nothing without saying what it covers.
+            "chapters_needing_review": needs_review,
+            "unreviewed_critic_windows": unreviewed_windows,
             "pipeline_version": PIPELINE_VERSION,
             "discovery_confidence": {
                 "avg_confidence": avg_quality,

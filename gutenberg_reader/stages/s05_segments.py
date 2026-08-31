@@ -71,7 +71,7 @@ def run(
     """
     stage_dir = config.stage_dir(5)
     nums = chapter_nums if chapter_nums is not None else sorted(chapter_paths.keys())
-    critic_on = not config.no_critic
+    critic_on = config.critic
 
     roster: list[CharacterInfo] = []
     protected: set[str] = set()  # lowercase anchor-established names
@@ -172,7 +172,81 @@ def _run_critic(
     if applied and config.verbose:
         for line in applied:
             console.print(f"  [dim]roster: {line}[/dim]")
+
+    if report.needs_reprocessing:
+        final_chapter, report = _reattribute_and_recheck(
+            config, client, final_chapter, report, roster, protected
+        )
     return final_chapter, report, roster, protected
+
+
+def _reattribute_and_recheck(
+    config: Config,
+    client: LLMRouter,
+    chapter: ProcessedChapter,
+    report: CriticReport,
+    roster: list[CharacterInfo],
+    protected: set[str],
+) -> tuple[ProcessedChapter, CriticReport]:
+    """Give a chapter the critic was unhappy with exactly one more pass.
+
+    needs_reprocessing was set and never read, so a chapter the critic scored
+    0.6 shipped identically to one it scored 1.0. What gets redone is the
+    low-confidence part — the segments the critic corrected, and the ones still
+    Unknown — on the validator model, followed by a single re-critique.
+
+    Deliberately capped at one attempt. A loop here is a way to spend a whole
+    night on the chapter the model happens to disagree with itself about.
+    """
+    segments = [s.to_dict() for s in chapter.segments]
+    retry = {
+        i for i, seg in enumerate(segments)
+        if seg.get("type") == "dialogue"
+        and (seg.get("speaker") in (None, "Unknown"))
+    }
+    corrected = {
+        int(line.split()[1].rstrip(":"))
+        for line in report.attribution_issues
+        if line.startswith("segment ") and line.split()[1].rstrip(":").isdigit()
+    }
+    retry |= {i for i in corrected if 0 <= i < len(segments)}
+    if not retry:
+        return chapter, report
+
+    console.print(
+        f"  [yellow]chapter {chapter.chapter_number}: quality "
+        f"{report.overall_quality:.2f}"
+        + (f", {len(report.unreviewed_windows)} window(s) unreviewed"
+           if report.unreviewed_windows else "")
+        + f" — re-attributing {len(retry)} segment(s)[/yellow]"
+    )
+
+    char_names = [c.name for c in roster]
+    answers = _llm_window_pass(
+        segments, retry, char_names, config, client,
+        config.validation_model,
+        prompts.verify_attribution_system(char_names),
+        prompts.verify_attribution_user,
+    )
+    for idx, speaker in answers.items():
+        segments[idx]["speaker"] = speaker
+
+    reworked = ProcessedChapter(
+        chapter_number=chapter.chapter_number,
+        chapter_title=chapter.chapter_title,
+        segments=[Segment.from_dict(s) for s in segments],
+        discovered_characters=chapter.discovered_characters,
+        word_count=chapter.word_count,
+    )
+    # One re-critique, and the roster is already settled, so no new names.
+    rechecked, second, _ = s06_critic.run_chapter(
+        config, client, reworked, roster, [], force=True
+    )
+    if second.overall_quality < report.overall_quality:
+        # The second opinion is worse than the first; keep what we had rather
+        # than churn the chapter toward whichever pass was luckier.
+        return chapter, report
+    return rechecked, second
 
 
 def _load_cached(

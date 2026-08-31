@@ -22,7 +22,9 @@ class Config:
     chunk_size: int = 1000
     max_retries: int = 3
     verbose: bool = False
-    no_critic: bool = False
+    # On by default: the critic is where a wrong speaker gets caught before it
+    # becomes a voice in an audiobook. Point --validator at a larger model.
+    critic: bool = True
     force_stage: int | None = None
     chapters_only: list[int] | None = None
     include_front_matter: bool = False

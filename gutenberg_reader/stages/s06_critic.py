@@ -37,6 +37,7 @@ def run_chapter(
     chapter: ProcessedChapter,
     roster: list[CharacterInfo],
     new_names: list[str],
+    force: bool = False,
 ) -> tuple[ProcessedChapter, CriticReport, list[dict]]:
     """Critique one chapter. Returns (accepted_chapter, report, roster_issues).
 
@@ -47,7 +48,8 @@ def run_chapter(
     num = chapter.chapter_number
     out_path = chapter_file(config.stage_dir(6), num)
 
-    if stage_complete(out_path) and (config.force_stage is None or config.force_stage > 6):
+    if not force and stage_complete(out_path) and (
+            config.force_stage is None or config.force_stage > 6):
         if config.verbose:
             console.print(f"[dim]Stage 06: chapter {num:02d} already complete[/dim]")
         data = read_json(out_path)
@@ -131,6 +133,63 @@ def apply_roster_issues(
     return list(by_name.values()), applied
 
 
+# Characters per roster-review call, and how much text to show for each. A few
+# hundred characters either side of a mention is what settles whether a name is
+# a person, a ship or a cited author.
+ROSTER_EVIDENCE_SNIPPETS = 3
+ROSTER_EVIDENCE_CHARS = 120
+
+
+def _roster_evidence(chapter: ProcessedChapter, name: str) -> list[str]:
+    """Where this name actually appears, sliced by code from the chapter."""
+    parts: list[str] = []
+    needle = name.lower()
+    for seg in chapter.segments:
+        low = seg.text.lower()
+        pos = low.find(needle)
+        if pos < 0:
+            continue
+        a = max(0, pos - ROSTER_EVIDENCE_CHARS)
+        b = min(len(seg.text), pos + len(name) + ROSTER_EVIDENCE_CHARS)
+        parts.append(seg.text[a:b].replace("\n", " "))
+        if len(parts) >= ROSTER_EVIDENCE_SNIPPETS:
+            break
+    return parts
+
+
+def _review_roster(
+    chapter: ProcessedChapter,
+    char_names: list[str],
+    new_names: list[str],
+    config: Config,
+    client: LLMRouter,
+) -> list[dict]:
+    """One verdict per new name, asked once with the passages that mention it.
+
+    Attached to the attribution windows this was asked five or ten times a
+    chapter, and issues_by_name.setdefault meant the first window's answer won by
+    accident of ordering rather than by being the best-informed.
+    """
+    if not new_names:
+        return []
+    evidence = {n: _roster_evidence(chapter, n) for n in dict.fromkeys(new_names)}
+    data = call_json_with_retries(
+        client, config.validation_model,
+        [{"role": "system", "content": prompts.roster_review_system()},
+         {"role": "user", "content": prompts.roster_review_user(
+             chapter.chapter_title, evidence)}],
+        schema=schemas.roster_review_schema(char_names, new_names),
+        retries=config.max_retries, what="roster review", console=console,
+    )
+    if data is None:
+        return []
+    # "keep" is a verdict, not an objection — only the rest travel onward.
+    return [
+        i for i in data.get("roster_issues", [])
+        if isinstance(i, dict) and i.get("verdict") in ("not_a_character", "duplicate")
+    ]
+
+
 def _critique_chapter(
     chapter: ProcessedChapter,
     roster: list[CharacterInfo],
@@ -149,9 +208,12 @@ def _critique_chapter(
 
     # LLM critique: returns per-segment speaker corrections and roster
     # objections, never text. Segment text is deterministic and untouchable.
-    corrections, quality, roster_issues = _llm_critique(
+    corrections, quality, unreviewed = _llm_critique(
         chapter, char_names, new_names, config, client
     )
+    # Asked once for the chapter, with evidence, rather than once per window
+    # from memory.
+    roster_issues = _review_roster(chapter, char_names, new_names, config, client)
 
     # Named anchors ("said Mr. Bennet" adjacent to the dialogue) outrank the critic
     named_anchors = text_utils.extract_attribution_anchors(
@@ -180,7 +242,11 @@ def _critique_chapter(
         attribution_issues=applied,
         name_inconsistencies=name_issues,
         overall_quality=quality,
-        needs_reprocessing=bool(coverage_issues),
+        unreviewed_windows=unreviewed,
+        # Coverage is an assertion in stage 05 now, so an empty segment cannot
+        # reach here. What can is a chapter the critic thinks is poor, or one it
+        # only partly saw — both are worth another pass.
+        needs_reprocessing=quality < QUALITY_THRESHOLD or bool(unreviewed),
     )
 
     final_chapter = ProcessedChapter(
@@ -224,22 +290,22 @@ def _llm_critique(
     new_names: list[str],
     config: Config,
     client: LLMRouter,
-) -> tuple[list[dict], float, list[dict]]:
-    """Call LLM to review attribution. Returns (corrections, quality, roster_issues).
+) -> tuple[list[dict], float, list[list[int]]]:
+    """Review attribution window by window.
+
+    Returns (corrections, quality, unreviewed_windows).
 
     Runs window by window, like the attribution passes in stage 05: a whole
     chapter in one prompt overruns the server's context window on long chapters
     (Moby Dick's longest is 7,918 words), and the request fails outright.
     """
     segments_data = [s.to_dict() for s in chapter.segments]
-    system_msg = prompts.critic_system(char_names, new_names)
-    schema = schemas.critic_schema(char_names, new_names)
+    system_msg = prompts.critic_system(char_names, None)
+    schema = schemas.critic_schema(char_names)
 
     corrections: list[dict] = []
     qualities: list[tuple[float, int]] = []  # (quality, dialogue segments judged)
-    # Every window sees the same NEW-name list, so objections repeat; the first
-    # verdict for a name wins (windows are read in order, like the chapter).
-    issues_by_name: dict[str, dict] = {}
+    unreviewed: list[list[int]] = []
 
     for start, end in text_utils.build_segment_windows(segments_data, config.chunk_size):
         ctx_start = max(0, start - CONTEXT_SEGMENTS)
@@ -262,6 +328,7 @@ def _llm_critique(
             retries=config.max_retries, what="critic window", console=console,
         )
         if data is None:
+            unreviewed.append([start, end])
             continue
 
         # Corrections aimed at [CONTEXT] lines belong to the window that owned
@@ -270,20 +337,18 @@ def _llm_critique(
             c for c in data.get("corrections", [])
             if isinstance(c, dict) and isinstance(c.get("index"), int) and start <= c["index"] < end
         )
-        for issue in data.get("roster_issues", []):
-            if isinstance(issue, dict) and issue.get("name"):
-                issues_by_name.setdefault(issue["name"], issue)
         n_dialogue = sum(1 for s in segments_data[start:end] if s.get("type") == "dialogue")
         qualities.append((float(data.get("overall_quality", 1.0)), n_dialogue))
 
     if not qualities:
-        # Every window failed — report a passing score so we don't block the
-        # pipeline on an unreachable critic.
-        return [], 1.0, []
+        # Every window failed. A passing score here would be a lie about work
+        # that never happened; 0.0 with the windows recorded is what it is, and
+        # needs_reprocessing acts on it.
+        return [], 0.0, unreviewed
 
     judged = sum(n for _, n in qualities)
     if judged == 0:
         quality = sum(q for q, _ in qualities) / len(qualities)
     else:
         quality = sum(q * n for q, n in qualities) / judged
-    return corrections, quality, list(issues_by_name.values())
+    return corrections, quality, unreviewed

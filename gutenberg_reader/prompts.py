@@ -505,3 +505,41 @@ def span_type_user(passages: str, n: int) -> str:
     return (
         f"{n} marked spans. Label every one.\n\n{passages}"
     )
+
+
+def roster_review_system() -> str:
+    """Judge the chapter's new names once, with evidence rather than memory.
+
+    The old form attached this to every attribution window, so the model was
+    asked about the same names five or ten times a chapter and answered from
+    whatever run happened to be in front of it. Here it sees where each name
+    actually appears.
+    """
+    return """Characters were just discovered in this chapter. For each name you
+are shown the passages where it appears. Decide what it is:
+
+- keep            — a real character: a person (or a speaking creature) who
+                    exists in the story.
+- not_a_character — a ship, a place, a book, a cited author, a god invoked in
+                    passing, a title with nobody behind it, a group or a crowd.
+- duplicate       — the same person as someone already in the roster under a
+                    different form. Give the canonical name.
+
+Judge who the name REFERS TO, not how it is spelled: "The Narrator" and
+"Dr. Watson" can be one man while sharing no words. A description can name a
+real and distinct person — "Narrator's Wife" is somebody — so do not merge on
+resemblance alone.
+
+Keep is the safe answer. Striking a real character loses every line they speak
+for the rest of the book."""
+
+
+def roster_review_user(chapter_title: str, evidence: dict[str, list[str]]) -> str:
+    blocks = []
+    for name, snippets in evidence.items():
+        shown = "\n".join(f"    ...{s}..." for s in snippets) or "    (no direct mention found)"
+        blocks.append(f"{name}\n{shown}")
+    return (
+        f"Chapter: {chapter_title}\n"
+        f"New names, with where they appear:\n\n" + "\n\n".join(blocks)
+    )

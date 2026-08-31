@@ -94,7 +94,7 @@ def run_pipeline(config: Config) -> Path:
     # rolling roster, segment, attribute, and (unless --no-critic) critique —
     # the critic can prune roster additions before later chapters see them.
     _log_stage(5, "Read, Discover & Attribute", config)
-    if config.no_critic:
+    if not config.critic:
         console.print("[dim]critic: off (--no-critic)[/dim]")
     chapter_nums = [ci.number for ci in chapter_infos]
     accepted, characters = s05_segments.run(
@@ -104,6 +104,18 @@ def run_pipeline(config: Config) -> Path:
         if discovery.quote_open else None,
     )
     console.print(f"  [dim]{len(characters)} characters identified[/dim]")
+    flagged = [n for n, (_, r) in accepted.items() if r and r.needs_reprocessing]
+    unreviewed = sum(len(r.unreviewed_windows) for _, r in accepted.values() if r)
+    if flagged:
+        console.print(
+            f"  [yellow]{len(flagged)} chapter(s) still below the quality "
+            f"threshold after a second pass: {sorted(flagged)[:10]}[/yellow]"
+        )
+    if unreviewed:
+        console.print(
+            f"  [yellow]{unreviewed} critic window(s) were never reviewed — "
+            "their segments are unchecked[/yellow]"
+        )
 
     # ── Stage 07: Assembly ────────────────────────────────────────────────────
     _log_stage(7, "Assembly", config)

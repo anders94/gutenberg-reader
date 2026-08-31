@@ -33,9 +33,10 @@ console = Console()
 @click.option("--output", default=None, type=click.Path(), help="Output file path")
 @click.option("--chunk-size", default=1000, show_default=True, type=int,
               help="Words per LLM attribution window")
-@click.option("--critic/--no-critic", "critic", default=False,
-              help="Run the Stage 06 LLM critic pass (default: off; most useful with a "
-                   "larger --validator model)")
+@click.option("--critic/--no-critic", "critic", default=True, show_default=True,
+              help="Run the Stage 06 LLM critic pass: reviews speaker attribution and "
+                   "the characters discovery just added. Most useful with a larger "
+                   "--validator model")
 @click.option("--include-front-matter", is_flag=True, default=False,
               help="Keep prefaces, introductions, and dedications as chapters (default: skip them)")
 @click.option("--include-back-matter", is_flag=True, default=False,
@@ -108,7 +109,7 @@ def main(
         chunk_size=chunk_size,
         max_retries=max_retries,
         verbose=verbose,
-        no_critic=not critic,
+        critic=critic,
         include_front_matter=include_front_matter,
         include_back_matter=include_back_matter,
         span_review=span_review,
