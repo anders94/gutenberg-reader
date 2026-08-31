@@ -8,6 +8,7 @@ ever sees it as an option.
 """
 
 from __future__ import annotations
+from dataclasses import replace
 
 from rich.console import Console
 
@@ -168,13 +169,10 @@ def _critique_chapter(
         if seg.type != "dialogue" or idx in named_anchors or seg.speaker == speaker:
             continue
         applied.append(f"segment {idx}: {seg.speaker} -> {speaker} ({corr.get('reason', '')})")
-        final_segs[idx] = Segment(
-            type=seg.type,
-            text=seg.text,
-            speaker=speaker,
-            pronunciation_hints=seg.pronunciation_hints,
-            notes=seg.notes,
-        )
+        # replace() rather than rebuilding field by field: the critic changes a
+        # speaker label and nothing else, and a hand-listed constructor silently
+        # drops whatever was added to the model since it was written.
+        final_segs[idx] = replace(seg, speaker=speaker)
 
     report = CriticReport(
         chapter_number=chapter.chapter_number,

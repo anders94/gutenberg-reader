@@ -180,3 +180,40 @@ def structure_schema(n_candidates: int) -> dict:
                      "body_starts_before_first_heading", "headings"],
         "additionalProperties": False,
     }
+
+
+def span_type_schema(n_spans: int) -> dict:
+    """Constrain a verdict on what each quoted span is.
+
+    Ordinals again, never text: the model says which spans are speech, and code
+    decides where the boundaries fall. A `term` verdict removes a boundary, so
+    the surrounding narration re-forms with its punctuation intact — there is
+    nothing to repair because nothing was taken apart.
+    """
+    return {
+        "type": "object",
+        "properties": {
+            "spans": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "ordinal": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": max(0, n_spans - 1),
+                        },
+                        "label": {
+                            "type": "string",
+                            "enum": ["speech", "term", "title", "citation", "unsure"],
+                        },
+                    },
+                    "required": ["ordinal", "label"],
+                    "additionalProperties": False,
+                },
+            },
+        },
+        "required": ["spans"],
+        "additionalProperties": False,
+    }

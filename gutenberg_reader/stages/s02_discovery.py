@@ -13,7 +13,7 @@ from gutenberg_reader.models import (
 from gutenberg_reader.llm import LLMError, LLMRouter, call_json_with_retries
 from gutenberg_reader import prompts, schemas
 from gutenberg_reader import text_utils
-from gutenberg_reader import candidates, structure_checks
+from gutenberg_reader import candidates, segmenter, structure_checks
 
 console = Console()
 
@@ -84,6 +84,10 @@ def run(config: Config, client: LLMRouter) -> DiscoveryResult:
 
     _enforce_structure(chapter_infos, body_lines, body_start, config)
 
+    # Detected over the whole body: a single chapter can be too short, or too
+    # apostrophe-heavy, to call the edition's convention correctly.
+    quote_pair = segmenter.detect_quote_pair("\n".join(body_lines)) or ("", "")
+
     result = DiscoveryResult(
         metadata=metadata,
         chapters=chapter_infos,
@@ -92,6 +96,8 @@ def run(config: Config, client: LLMRouter) -> DiscoveryResult:
         detector=_detector_id(config),
         work_type=verdict.get("work_type", ""),
         has_chapter_structure=verdict.get("has_chapter_structure", True),
+        quote_open=quote_pair[0],
+        quote_close=quote_pair[1],
     )
 
     atomic_write_json(out_path, result.to_dict())

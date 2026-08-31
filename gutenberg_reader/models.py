@@ -12,6 +12,11 @@ class Segment:
     speaker: str | None
     pronunciation_hints: list[str] = field(default_factory=list)
     notes: str | None = None
+    # Offsets into the chapter's reading_text. text is always that slice, cut by
+    # code — the renderer consumes text, but nothing assembles it, which is what
+    # makes coverage an exact property instead of a diff.
+    start: int = -1
+    end: int = -1
 
     def to_dict(self) -> dict:
         return {
@@ -20,6 +25,8 @@ class Segment:
             "speaker": self.speaker,
             "pronunciation_hints": self.pronunciation_hints,
             "notes": self.notes,
+            "start": self.start,
+            "end": self.end,
         }
 
     @classmethod
@@ -30,6 +37,8 @@ class Segment:
             speaker=d.get("speaker"),
             pronunciation_hints=d.get("pronunciation_hints", []),
             notes=d.get("notes"),
+            start=d.get("start", -1),
+            end=d.get("end", -1),
         )
 
 
@@ -215,6 +224,11 @@ class DiscoveryResult:
     # travels downstream: a history should not be expected to have a cast.
     work_type: str = ""
     has_chapter_structure: bool = True
+    # Quote convention is a property of the edition, not of a chapter. Detected
+    # per chapter, a chapter whose only quotes are apostrophes flips style, and
+    # one containing a single long speech has too few opening quotes to call it.
+    quote_open: str = ""
+    quote_close: str = ""
 
     def to_dict(self) -> dict:
         return {
@@ -223,6 +237,8 @@ class DiscoveryResult:
             "metadata": self.metadata.to_dict(),
             "work_type": self.work_type,
             "has_chapter_structure": self.has_chapter_structure,
+            "quote_open": self.quote_open,
+            "quote_close": self.quote_close,
             "chapters": [c.to_dict() for c in self.chapters],
             "body_start_line": self.body_start_line,
             "body_end_line": self.body_end_line,
@@ -239,4 +255,6 @@ class DiscoveryResult:
             schema_version=d.get("schema_version", 1),
             work_type=d.get("work_type", ""),
             has_chapter_structure=d.get("has_chapter_structure", True),
+            quote_open=d.get("quote_open", ""),
+            quote_close=d.get("quote_close", ""),
         )

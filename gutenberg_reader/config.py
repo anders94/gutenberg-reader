@@ -35,6 +35,9 @@ class Config:
     # same correct 19 chapters. Identifying a series in a list is recognition,
     # not deduction. Servers ignore template keys they do not declare.
     structure_thinking: bool = False
+    # Ask what an ambiguous quoted span actually is before treating it as
+    # speech. Off, every scare-quoted term is dialogue needing a speaker.
+    span_review: bool = True
     processing_timeout: float = 300.0
     judgment_timeout: float = 1800.0
 

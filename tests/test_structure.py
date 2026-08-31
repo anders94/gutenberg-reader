@@ -217,21 +217,21 @@ def test_odyssey_structure():
 # ── Regressions on the other cached books ────────────────────────────────────
 
 def test_pride_and_prejudice_unchanged_except_kind():
-    """P&P's unlabeled chapter 1 must still be detected, preface excluded."""
-    raw_path = CACHE / "1342" / "01-raw" / "book.txt"
-    disc_path = CACHE / "1342" / "02-discovery" / "discovery.json"
-    if not raw_path.exists() or not disc_path.exists():
-        pytest.skip("cache/1342 fixture not present")
+    """P&P's unlabeled chapter 1 must still be detected, preface excluded.
 
-    lines = raw_path.read_text(encoding="utf-8").splitlines()
-    start, _end = text_utils.find_body_bounds(lines)
-    infos = _discover(_body_lines("1342"))
-    cached = json.load(open(disc_path))["chapters"]
+    Compared against the committed golden rather than cache/02-discovery: that
+    file is rewritten by any run, so an LLM-detected structure landing there made
+    this test compare the regex detector against the model's answer.
+    """
+    from tests.fixtures import golden
 
-    assert len(infos) == len(cached) == 61
+    body = _body_lines("1342")
+    infos = _discover(body)
+    g = golden("1342")
+
+    assert len(infos) == g["exact_count"] == 61
     assert infos[0].title == "Chapter I"
-    # Same boundaries as the shipped discovery (relative → absolute line shift).
-    assert [ci.start_line + start for ci in infos] == [c["start_line"] for c in cached]
+    assert [ci.start_line - 1 for ci in infos] == [c["line"] for c in g["chapters"]]
 
 
 def test_monte_cristo_footnotes_trimmed():

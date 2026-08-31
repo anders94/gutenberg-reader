@@ -334,70 +334,77 @@ class TestSplitSentences:
 
 
 class TestSplitLongNarration:
-    def _seg(self, text, kind="narration", para=0):
-        return {
-            "type": kind, "text": text, "speaker": None,
-            "pronunciation_hints": [], "notes": None, "para": para,
-        }
+    """Long narration is split for TTS voice stability — now on offsets.
+
+    Segments carry (start, end) into reading_text and their text is a slice of
+    it, so these tests build a real chapter and check the spans rather than
+    hand-assembling dicts.
+    """
+
+    def _segmented(self, text, quote_pair=None):
+        from gutenberg_reader.segmenter import segment_text
+        return segment_text(text, quote_pair)
 
     def test_short_narration_untouched(self):
-        from gutenberg_reader.segmenter import split_long_narration
-
-        segs = [self._seg("A short line.")]
-        assert split_long_narration(segs) == segs
+        rt, segs = self._segmented("A short line.")
+        assert [rt[s["start"]:s["end"]] for s in segs] == ["A short line."]
 
     def test_long_narration_packs_to_limit(self):
-        from gutenberg_reader.segmenter import split_long_narration
-
         sentence = "This sentence is exactly fifty characters long!!! "
-        segs = [self._seg((sentence * 12).strip())]  # ~600 chars
-        out = split_long_narration(segs, max_chars=400)
-        assert len(out) > 1
-        assert all(len(s["text"]) <= 400 for s in out)
-        # No text lost, order preserved
-        rejoined = " ".join(s["text"] for s in out)
-        assert rejoined == segs[0]["text"]
-        # Chunks are packed, not one-sentence-each
-        assert any(len(s["text"]) > 200 for s in out)
+        rt, segs = self._segmented((sentence * 12).strip())
+        assert len(segs) > 1
+        assert all(s["end"] - s["start"] <= 400 for s in segs)
+        # Packed, not one sentence each.
+        assert any(s["end"] - s["start"] > 200 for s in segs)
+        # And nothing is lost between the pieces.
+        assert rt[segs[0]["start"]:segs[-1]["end"]].split() == rt.split()
 
     def test_monster_sentence_stays_whole(self):
-        from gutenberg_reader.segmenter import split_long_narration
-
-        monster = "and so on, " * 60  # one 700-char "sentence", no terminals
-        segs = [self._seg("Short opener. " + monster.strip() + ".")]
-        out = split_long_narration(segs, max_chars=400)
-        assert any(len(s["text"]) > 400 for s in out)  # lenient: not cut mid-sentence
+        """Lenient over eager: a missed break leaves a chunk long, a false break
+        cuts a name in half."""
+        monster = "and so on, " * 60          # one ~700-char run, no terminals
+        rt, segs = self._segmented("Short opener. " + monster.strip() + ".")
+        assert any(s["end"] - s["start"] > 400 for s in segs)
 
     def test_dialogue_never_split(self):
-        from gutenberg_reader.segmenter import split_long_narration
-
-        long_speech = "“" + ("I will talk. " * 60).strip() + "”"
-        segs = [self._seg(long_speech, kind="dialogue")]
-        assert split_long_narration(segs, max_chars=400) == segs
+        """Its speaker label, quote-continues note and adjacency to attribution
+        tags all assume the quoted span is one segment."""
+        long_speech = "\u201c" + ("I will talk. " * 60).strip() + "\u201d"
+        # The style is given explicitly: detect_quote_pair wants two opening
+        # quotes to call a style dominant, and one long speech has one.
+        rt, segs = self._segmented(long_speech, ("\u201c", "\u201d"))
+        dialogue = [s for s in segs if s["type"] == "dialogue"]
+        assert len(dialogue) == 1
+        assert dialogue[0]["end"] - dialogue[0]["start"] > 400
 
     def test_pieces_keep_paragraph_and_type(self):
-        from gutenberg_reader.segmenter import split_long_narration
-
         text = " ".join(f"Sentence number {i} is here." for i in range(30))
-        out = split_long_narration([self._seg(text, para=7)], max_chars=400)
-        assert all(s["para"] == 7 and s["type"] == "narration" for s in out)
+        rt, segs = self._segmented(text)
+        assert len(segs) > 1
+        assert all(s["para"] == 0 and s["type"] == "narration" for s in segs)
 
-    def test_segment_text_coverage_still_exact(self):
-        from gutenberg_reader.segmenter import segment_text
-
+    def test_segment_text_coverage_is_exact(self):
         text = (
             "It is a truth universally acknowledged, that a single man in "
             "possession of a good fortune, must be in want of a wife. " * 6
-            + "\n\n“Come here,” said Mr. Bennet. “Now go.”"
+            + "\n\n\u201cCome here,\u201d said Mr. Bennet. \u201cNow go.\u201d"
         )
-        segs = segment_text(text)
-        ok, issues = text_utils.verify_segment_coverage(text, segs)
-        assert ok, issues
+        rt, segs = self._segmented(text)
+        assert text_utils.verify_reading_text(text, rt) == (True, [])
+        assert text_utils.verify_span_coverage(rt, segs) == (True, [])
         assert any(s["type"] == "dialogue" for s in segs)
-        assert all(
-            len(s["text"]) <= 400 for s in segs if s["type"] == "narration"
-        )
+        assert all(s["end"] - s["start"] <= 400
+                   for s in segs if s["type"] == "narration")
 
+    def test_a_quoted_term_no_longer_reports_altered_text(self):
+        """The defect this replaces. Segments were rejoined with " ".join() to
+        check coverage, so a quoted word segmented on its own came back as
+        '"Deserters" :' against an original '"Deserters":' and was reported as
+        altered text — a bug in the check, not in the data."""
+        text = 'They were called "Deserters": and this is the reason.'
+        rt, segs = self._segmented(text)
+        assert text_utils.verify_span_coverage(rt, segs) == (True, [])
+        assert '"Deserters"' in [s["text"] for s in segs]
 
 class TestCanonicalNamePreference:
     def test_descriptive_primary_demoted_to_alias(self):

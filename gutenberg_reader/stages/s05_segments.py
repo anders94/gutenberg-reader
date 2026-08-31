@@ -39,6 +39,7 @@ from rich.console import Console
 
 from gutenberg_reader.cache import (
     atomic_write_json,
+    atomic_write_text,
     chapter_file,
     read_json,
     read_text,
@@ -62,6 +63,7 @@ def run(
     chapter_paths: dict[int, Path],
     chapter_nums: list[int] | None = None,
     chapter_titles: dict[int, str] | None = None,
+    quote_pair: tuple[str, str] | None = None,
 ) -> tuple[dict[int, tuple[ProcessedChapter, CriticReport | None]], list[CharacterInfo]]:
     """Process chapters in reading order.
 
@@ -117,6 +119,7 @@ def run(
         processed, roster, chapter_anchors = _segment_chapter(
             num, chapter_text, roster, config, client,
             title=(chapter_titles or {}).get(num),
+            quote_pair=quote_pair,
         )
         protected = protected | chapter_anchors
 
@@ -204,6 +207,7 @@ def _segment_chapter(
     config: Config,
     client: LLMRouter,
     title: str | None = None,
+    quote_pair: tuple[str, str] | None = None,
 ) -> tuple[ProcessedChapter, list[CharacterInfo], set[str]]:
     """Segment and attribute one chapter.
 
@@ -220,15 +224,32 @@ def _segment_chapter(
         (l.strip() for l in lines if l.strip()), f"Chapter {chapter_num}"
     )
 
-    # Tier 0: deterministic segmentation
-    segments = segmenter.segment_text(chapter_text)
+    # Tier 0: deterministic segmentation. Segments carry offsets into
+    # reading_text and their text is a slice of it, so coverage is an exact
+    # property rather than a reconstruction that has to be diffed.
+    reading_text, segments = segmenter.segment_text(chapter_text, quote_pair)
 
-    ok, issues = text_utils.verify_segment_coverage(chapter_text, segments)
-    if not ok:
-        # Should be impossible; if it happens, the segmenter has a bug worth surfacing
-        console.print(
-            f"  [yellow]Coverage warning in chapter {chapter_num}: {issues[:2]}[/yellow]"
-        )
+    ok, issues = text_utils.verify_reading_text(chapter_text, reading_text)
+    assert ok, f"chapter {chapter_num}: normalisation changed the text — {issues}"
+    ok, issues = text_utils.verify_span_coverage(reading_text, segments)
+    assert ok, f"chapter {chapter_num}: segments do not tile the chapter — {issues}"
+
+    # Tier 0b: quotation marks mark speech and several things that are not.
+    # Settle what the sentence says plainly, ask about the rest, and let a
+    # verdict remove a boundary rather than rewrite any text.
+    settled, ask = segmenter.classify_spans_deterministically(segments, reading_text)
+    if config.span_review and ask:
+        settled.update(_review_spans(segments, reading_text, ask, config, client))
+    demoted = sum(1 for v in settled.values() if v in ("term", "title"))
+    if demoted:
+        segments = segmenter.apply_span_labels(segments, reading_text, settled)
+        ok, issues = text_utils.verify_span_coverage(reading_text, segments)
+        assert ok, f"chapter {chapter_num}: span review broke the tiling — {issues}"
+        if config.verbose:
+            console.print(
+                f"  [dim]span review: {demoted} quoted span(s) were terms or "
+                f"titles, not speech ({len(ask)} asked)[/dim]"
+            )
 
     # Tier 1: deterministic attribution anchors ("said Mr. Bennet" adjacent to dialogue)
     anchors = text_utils.extract_attribution_anchors(segments, roster)
@@ -312,6 +333,11 @@ def _segment_chapter(
             f"{len(disputes)} disputed, {n_unknown} unknown[/dim]"
         )
 
+    # The canonical string every offset indexes, written once so the spans in
+    # the output point at something inspectable rather than at a reconstruction.
+    atomic_write_text(
+        chapter_file(config.stage_dir(5), chapter_num, ".text"), reading_text)
+
     processed = ProcessedChapter(
         chapter_number=chapter_num,
         chapter_title=chapter_title,
@@ -319,6 +345,71 @@ def _segment_chapter(
         word_count=text_utils.word_count(chapter_text),
     )
     return processed, roster, anchor_names
+
+
+# Marked spans per request. Small: the model is judging one short span at a
+# time and the surrounding sentence is what it needs, not a whole chapter.
+SPAN_REVIEW_BATCH = 40
+
+
+def _render_span_passages(
+    segments: list[dict], reading_text: str, ask: list[int]
+) -> str:
+    """One line per span: its paragraph with the span itself bracketed.
+
+    The model sees the sentence around the span, which is the evidence, and
+    answers with ordinals — it never repeats the text back.
+    """
+    by_para: dict[int, list[int]] = {}
+    for i, seg in enumerate(segments):
+        by_para.setdefault(seg.get("para", 0), []).append(i)
+
+    lines = []
+    for ordinal, idx in enumerate(ask):
+        para = segments[idx].get("para", 0)
+        parts = []
+        for j in by_para.get(para, []):
+            piece = reading_text[segments[j]["start"]:segments[j]["end"]]
+            if j == idx:
+                parts.append(f"\u27e6{ordinal}\u27e7{piece}\u27e6/{ordinal}\u27e7")
+            else:
+                parts.append(piece)
+        lines.append(f"{ordinal}| {' '.join(parts)[:600]}")
+    return "\n".join(lines)
+
+
+def _review_spans(
+    segments: list[dict],
+    reading_text: str,
+    ask: list[int],
+    config: Config,
+    client: LLMRouter,
+) -> dict[int, str]:
+    """Ask what the ambiguous quoted spans actually are.
+
+    Quotation marks mark speech and several things that are not speech, and the
+    segmenter cannot tell them apart. In PG 2131 most "dialogue" is scare-quoted
+    terminology, which is why 12 of its 29 dialogue segments had no speaker to
+    find. A verdict here removes a boundary rather than rewriting anything.
+    """
+    labels: dict[int, str] = {}
+    for start in range(0, len(ask), SPAN_REVIEW_BATCH):
+        batch = ask[start:start + SPAN_REVIEW_BATCH]
+        passages = _render_span_passages(segments, reading_text, batch)
+        data = call_json_with_retries(
+            client, config.validation_model,
+            [{"role": "system", "content": prompts.span_type_system()},
+             {"role": "user", "content": prompts.span_type_user(passages, len(batch))}],
+            schema=schemas.span_type_schema(len(batch)),
+            retries=config.max_retries, what="span review", console=console,
+        )
+        if data is None:
+            continue          # these spans keep the segmenter's verdict
+        for item in data.get("spans", []):
+            o = item.get("ordinal")
+            if isinstance(o, int) and 0 <= o < len(batch):
+                labels[batch[o]] = item["label"]
+    return labels
 
 
 def _llm_window_pass(

@@ -345,42 +345,67 @@ def normalize_whitespace(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
-def verify_segment_coverage(
-    original_text: str,
-    segments: list[dict],
-) -> tuple[bool, list[str]]:
-    """Verify that segment texts cover the original exactly.
+def verify_reading_text(chapter_text: str, reading_text: str) -> tuple[bool, list[str]]:
+    """reading_text must be the chapter with nothing but whitespace changed.
 
-    Returns (is_valid, list_of_issues).
+    Pure word-sequence equality — no diff heuristics, no tolerance. Unwrapping
+    Gutenberg's line breaks is the only transformation allowed, so anything else
+    is a bug in normalisation rather than something to report and continue past.
     """
-    reconstructed = " ".join(s["text"] for s in segments)
-
-    orig_norm = normalize_whitespace(original_text)
-    recon_norm = normalize_whitespace(reconstructed)
-
-    if orig_norm == recon_norm:
+    original = strip_illustration_blocks(chapter_text).split()
+    reading = reading_text.split()
+    if original == reading:
         return True, []
 
-    # Find diffs
-    orig_words = orig_norm.split()
-    recon_words = recon_norm.split()
-
-    matcher = difflib.SequenceMatcher(None, recon_words, orig_words)
     issues = []
-
+    matcher = difflib.SequenceMatcher(None, reading, original)
     for tag, i1, i2, j1, j2 in matcher.get_opcodes():
-        if tag == "delete":
-            added = " ".join(recon_words[i1:i2])
-            issues.append(f"Extra text in segments (not in original): '{added[:100]}'")
-        elif tag == "insert":
-            missing = " ".join(orig_words[j1:j2])
-            issues.append(f"Missing from segments: '{missing[:100]}'")
-        elif tag == "replace":
-            orig_span = " ".join(orig_words[j1:j2])
-            recon_span = " ".join(recon_words[i1:i2])
-            issues.append(f"Text altered: original='{orig_span[:80]}' got='{recon_span[:80]}'")
+        if tag == "equal":
+            continue
+        issues.append(
+            f"{tag}: reading_text has {' '.join(reading[i1:i2])[:60]!r} "
+            f"where the chapter has {' '.join(original[j1:j2])[:60]!r}"
+        )
+    return False, issues[:5]
 
-    return False, issues
+
+def verify_span_coverage(
+    reading_text: str, segments: list[dict]
+) -> tuple[bool, list[str]]:
+    """Segment spans must be ordered, non-overlapping, and cover every word.
+
+    This replaces reconstructing the chapter from segment strings and diffing it.
+    That reconstruction joined segments with a space, so a quoted word segmented
+    on its own came back as '"Deserters" :' against an original '"Deserters":'
+    and was reported as altered text — a defect in the check, not in the data.
+    Gaps between spans are allowed only where the source has whitespace.
+    """
+    issues: list[str] = []
+    pos = 0
+    for i, seg in enumerate(segments):
+        a, b = seg["start"], seg["end"]
+        if a < pos:
+            issues.append(f"segment {i} starts at {a}, inside the previous span")
+        elif reading_text[pos:a].strip():
+            issues.append(
+                f"text before segment {i} is in no segment: "
+                f"{reading_text[pos:a].strip()[:60]!r}"
+            )
+        if b <= a:
+            issues.append(f"segment {i} spans nothing ({a}, {b})")
+        if seg.get("text") is not None and seg["text"] != reading_text[a:b]:
+            issues.append(
+                f"segment {i} text is not its own span: {seg['text'][:40]!r}"
+            )
+        pos = max(pos, b)
+
+    if reading_text[pos:].strip():
+        issues.append(
+            f"text after the last segment is in no segment: "
+            f"{reading_text[pos:].strip()[:60]!r}"
+        )
+    return not issues, issues[:5]
+
 def word_count(text: str) -> int:
     return len(text.split())
 

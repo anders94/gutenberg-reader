@@ -40,6 +40,9 @@ console = Console()
               help="Keep prefaces, introductions, and dedications as chapters (default: skip them)")
 @click.option("--include-back-matter", is_flag=True, default=False,
               help="Keep footnotes, appendices, and indexes as a final chapter (default: trim them)")
+@click.option("--span-review/--no-span-review", default=True, show_default=True,
+              help="Ask whether an ambiguous quoted span is speech, a term being "
+                   "discussed, or a title. Off, every quoted phrase is dialogue")
 @click.option("--structure", "structure_detector",
               type=click.Choice(["llm", "regex"]), default="llm", show_default=True,
               help="How to find chapter boundaries. 'regex' is the previous "
@@ -68,6 +71,7 @@ def main(
     critic: bool,
     include_front_matter: bool,
     include_back_matter: bool,
+    span_review: bool,
     structure_detector: str,
     accept_structure_warnings: bool,
     force_stage: int | None,
@@ -107,6 +111,7 @@ def main(
         no_critic=not critic,
         include_front_matter=include_front_matter,
         include_back_matter=include_back_matter,
+        span_review=span_review,
         structure_detector=structure_detector,
         accept_structure_warnings=accept_structure_warnings,
         force_stage=force_stage,

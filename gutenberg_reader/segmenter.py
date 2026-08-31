@@ -9,10 +9,19 @@ for the splitting step. This guarantees:
     own narration segments
 
 Speaker attribution is done afterwards (deterministic anchors + LLM review).
+
+Segments carry offsets into a canonical `reading_text`, and their text is always
+a slice of it rather than a string anyone assembled. That is what makes coverage
+checkable exactly: spans either tile the chapter or they do not. The previous
+check rebuilt the chapter with `" ".join(segment texts)` and compared, which is
+lossy — a quoted word segmented on its own came back as `"Deserters" :` against
+an original `"Deserters":`, and reported text corruption where there was none.
 """
 
 from __future__ import annotations
 import re
+
+from gutenberg_reader import text_utils
 
 # note value set on a dialogue segment whose quotation continues into the
 # next paragraph (Gutenberg convention: no closing quote at paragraph end,
@@ -44,6 +53,28 @@ def split_paragraphs(text: str) -> list[str]:
     return [" ".join(p.split()) for p in paras if p.strip()]
 
 
+def normalize_chapter(chapter_text: str) -> tuple[str, list[tuple[int, int]]]:
+    """Return (reading_text, paragraph spans).
+
+    reading_text is the chapter with Gutenberg's line wrapping undone and
+    paragraphs joined by a blank line. It is the canonical string every offset
+    indexes, because the wrapping means a segment is not a substring of the file
+    on disk. Written once per chapter so the offsets have something stable and
+    inspectable to point at.
+    """
+    # Illustration captions are not read aloud, and stage 03 already strips them
+    # from the chapter files. Doing it here too makes the invariant hold for any
+    # caller rather than only for the pipeline's own path, and it is idempotent.
+    chapter_text = text_utils.strip_illustration_blocks(chapter_text)
+    paras = split_paragraphs(chapter_text)
+    spans: list[tuple[int, int]] = []
+    pos = 0
+    for para in paras:
+        spans.append((pos, pos + len(para)))
+        pos += len(para) + 2          # the "\n\n" join
+    return "\n\n".join(paras), spans
+
+
 def detect_quote_pair(text: str) -> tuple[str, str] | None:
     """Pick the dominant dialogue quote style for this text.
 
@@ -72,19 +103,30 @@ def _is_close_quote(text: str, i: int, close_q: str) -> bool:
     return not (prev_alpha and next_alpha)
 
 
-def segment_paragraph(para: str, open_q: str, close_q: str) -> list[dict]:
-    """Split one (unwrapped) paragraph into narration/dialogue segments."""
+def segment_paragraph(
+    para: str, open_q: str, close_q: str, base: int = 0
+) -> list[dict]:
+    """Split one (unwrapped) paragraph into narration/dialogue segments.
+
+    Offsets are absolute: base is where this paragraph begins in reading_text.
+    """
     segments: list[dict] = []
     straight = open_q == close_q
     in_quote = False
     span_start = 0
 
     def emit(kind: str, start: int, end: int, note: str | None = None) -> None:
-        chunk = para[start:end].strip()
-        if chunk:
+        # Trim to the non-space content, but record where it actually sits
+        # rather than handing back a detached string.
+        chunk = para[start:end]
+        lead = len(chunk) - len(chunk.lstrip())
+        trail = len(chunk) - len(chunk.rstrip())
+        s_, e_ = start + lead, end - trail
+        if e_ > s_:
             segments.append({
                 "type": kind,
-                "text": chunk,
+                "start": base + s_,
+                "end": base + e_,
                 "speaker": None,
                 "pronunciation_hints": [],
                 "notes": note,
@@ -125,7 +167,17 @@ def split_sentences(text: str) -> list[str]:
     Wrong-but-conservative beats eager: a missed break merely leaves a chunk
     longer, while a false break cuts a name in half.
     """
-    sentences: list[str] = []
+    return [text[a:b] for a, b in sentence_spans(text)]
+
+
+def sentence_spans(text: str) -> list[tuple[int, int]]:
+    """Sentence boundaries as (start, end) offsets into text, whitespace trimmed.
+
+    Same rules as split_sentences, which is now a thin wrapper: a break needs
+    terminal punctuation and whitespace, and is vetoed after an abbreviation, a
+    single-letter initial, or before a lowercase word.
+    """
+    spans: list[tuple[int, int]] = []
     start = 0
     for m in _SENTENCE_END_RE.finditer(text):
         # Token carrying the terminal punctuation
@@ -139,15 +191,25 @@ def split_sentences(text: str) -> list[str]:
         nxt = text[m.end():m.end() + 1]
         if nxt.islower():
             continue
-        sentences.append(text[start:m.end()].strip())
+        spans.append(_trimmed(text, start, m.end()))
         start = m.end()
-    tail = text[start:].strip()
-    if tail:
-        sentences.append(tail)
-    return sentences
+    if text[start:].strip():
+        spans.append(_trimmed(text, start, len(text)))
+    return [sp for sp in spans if sp[1] > sp[0]]
 
 
-def split_long_narration(segments: list[dict], max_chars: int = MAX_NARRATION_CHARS) -> list[dict]:
+def _trimmed(text: str, start: int, end: int) -> tuple[int, int]:
+    chunk = text[start:end]
+    lead = len(chunk) - len(chunk.lstrip())
+    trail = len(chunk) - len(chunk.rstrip())
+    return start + lead, end - trail
+
+
+def split_long_narration(
+    segments: list[dict],
+    reading_text: str,
+    max_chars: int = MAX_NARRATION_CHARS,
+) -> list[dict]:
     """Split narration segments longer than max_chars at sentence boundaries.
 
     Sentences pack greedily up to max_chars per chunk; a single sentence over
@@ -157,45 +219,162 @@ def split_long_narration(segments: list[dict], max_chars: int = MAX_NARRATION_CH
     """
     out: list[dict] = []
     for seg in segments:
-        if seg["type"] != "narration" or len(seg["text"]) <= max_chars:
+        length = seg["end"] - seg["start"]
+        if seg["type"] != "narration" or length <= max_chars:
             out.append(seg)
             continue
-        chunks: list[str] = []
-        cur = ""
-        for sentence in split_sentences(seg["text"]):
-            if cur and len(cur) + 1 + len(sentence) > max_chars:
-                chunks.append(cur)
-                cur = sentence
+        base = seg["start"]
+        body = reading_text[seg["start"]:seg["end"]]
+        chunk: tuple[int, int] | None = None
+        for a, b in sentence_spans(body):
+            if chunk and (b - chunk[0]) > max_chars:
+                out.append({**seg, "start": base + chunk[0], "end": base + chunk[1]})
+                chunk = (a, b)
             else:
-                cur = f"{cur} {sentence}" if cur else sentence
-        if cur:
-            chunks.append(cur)
-        for chunk in chunks:
-            out.append({**seg, "text": chunk})
+                chunk = (chunk[0], b) if chunk else (a, b)
+        if chunk:
+            out.append({**seg, "start": base + chunk[0], "end": base + chunk[1]})
     return out
 
 
-def segment_text(text: str, quote_pair: tuple[str, str] | None = None) -> list[dict]:
-    """Segment a chapter's text into narration/dialogue segment dicts."""
+def segment_text(
+    text: str, quote_pair: tuple[str, str] | None = None
+) -> tuple[str, list[dict]]:
+    """Segment a chapter into (reading_text, segments).
+
+    Every segment carries start/end offsets into reading_text and a "text" that
+    is exactly that slice — derived here, never assembled.
+    """
     if quote_pair is None:
         quote_pair = detect_quote_pair(text)
 
+    reading_text, para_spans = normalize_chapter(text)
+    # Paragraphs are sliced from reading_text, not re-derived from the input:
+    # normalize_chapter strips illustration blocks, so splitting the original
+    # again would hand back paragraphs that no longer line up with the spans.
     segments: list[dict] = []
-    for para_idx, para in enumerate(split_paragraphs(text)):
+    for para_idx, (base, end) in enumerate(para_spans):
+        para = reading_text[base:end]
         if quote_pair is None:
             para_segments = [{
                 "type": "narration",
-                "text": para,
+                "start": base,
+                "end": end,
                 "speaker": None,
                 "pronunciation_hints": [],
                 "notes": None,
             }]
         else:
-            para_segments = segment_paragraph(para, *quote_pair)
+            para_segments = segment_paragraph(para, *quote_pair, base=base)
         # Which paragraph a segment came from is real typographic evidence for
         # attribution (narration and a quote sharing a paragraph usually share
         # a subject); kept on the working dicts, dropped from the final model.
         for seg in para_segments:
             seg["para"] = para_idx
         segments.extend(para_segments)
-    return split_long_narration(segments)
+
+    segments = split_long_narration(segments, reading_text)
+    for seg in segments:
+        seg["text"] = reading_text[seg["start"]:seg["end"]]
+    return reading_text, segments
+
+
+# A speech verb next to a quoted span is strong evidence it is speech; a very
+# short span with no speech verb anywhere in its paragraph is almost always a
+# term. Only what falls between the two is worth asking about.
+_SPEECH_VERB_RE = re.compile(
+    r"\b(said|says|say|saying|cried|cries|replied|answered|asked|asks|"
+    r"exclaimed|shouted|whispered|murmured|added|continued|declared|"
+    r"remarked|observed|responded|retorted|urged|begged|inquired)\b",
+    re.IGNORECASE,
+)
+# Being the object of one of these marks the quoted span as a name, not speech.
+_NAMING_VERB_RE = re.compile(
+    r"\b(called|call|calls|named|names|termed|term|terms|styled|"
+    r"known as|word|words|phrase|meaning|means)\b",
+    re.IGNORECASE,
+)
+UNAMBIGUOUS_TERM_WORDS = 2
+
+
+def classify_spans_deterministically(
+    segments: list[dict], reading_text: str
+) -> tuple[dict[int, str], list[int]]:
+    """Split dialogue segments into the settled ones and the ones worth asking.
+
+    Returns ({segment index: label}, [indices needing judgment]). Cheap and
+    conservative: it only settles a span when the sentence around it says plainly
+    what the span is.
+    """
+    settled: dict[int, str] = {}
+    ask: list[int] = []
+    by_para: dict[int, list[int]] = {}
+    for i, seg in enumerate(segments):
+        by_para.setdefault(seg.get("para", 0), []).append(i)
+
+    for i, seg in enumerate(segments):
+        if seg["type"] != "dialogue":
+            continue
+        para_text = " ".join(
+            reading_text[segments[j]["start"]:segments[j]["end"]]
+            for j in by_para.get(seg.get("para", 0), [])
+        )
+        words = len(reading_text[seg["start"]:seg["end"]].split())
+        speech_verb = bool(_SPEECH_VERB_RE.search(para_text))
+        naming_verb = bool(_NAMING_VERB_RE.search(para_text))
+
+        # Only the unambiguous cases are settled here; anything with evidence
+        # pointing both ways, or none, is worth a question.
+        if speech_verb and not naming_verb:
+            settled[i] = "speech"
+        elif naming_verb and not speech_verb and words <= UNAMBIGUOUS_TERM_WORDS:
+            settled[i] = "term"
+        else:
+            ask.append(i)
+    return settled, ask
+
+
+def apply_span_labels(
+    segments: list[dict], reading_text: str, labels: dict[int, str]
+) -> list[dict]:
+    """Turn a `term`/`title` verdict into the removal of a boundary.
+
+    The span stops being its own segment and re-forms with the narration around
+    it, punctuation and all — so `"Deserters":` comes back whole. Nothing is
+    repaired because nothing was rebuilt: the merged segment is simply a wider
+    slice of the same reading_text.
+
+    Only the narration touching a demoted span is joined. Merging every adjacent
+    narration pair would undo split_long_narration, which exists to keep the TTS
+    voice stable, so the length limit is re-applied afterwards in case a merge
+    produced an over-long run.
+    """
+    out: list[dict] = []
+    for i, seg in enumerate(segments):
+        demote = seg["type"] == "dialogue" and labels.get(i) in ("term", "title")
+        if not demote:
+            if labels.get(i) == "citation":
+                seg = {**seg, "notes": "citation"}
+            # Absorb narration that follows a just-demoted span.
+            if (out and out[-1].pop("_demoted", False)
+                    and seg["type"] == "narration"
+                    and seg["para"] == out[-1]["para"]
+                    and not reading_text[out[-1]["end"]:seg["start"]].strip()):
+                out[-1] = {**out[-1], "end": seg["end"]}
+                continue
+            out.append(dict(seg))
+            continue
+
+        if (out and out[-1]["type"] == "narration"
+                and out[-1]["para"] == seg["para"]):
+            out[-1] = {**out[-1], "end": seg["end"], "_demoted": True}
+        else:
+            out.append({**seg, "type": "narration", "speaker": None, "_demoted": True})
+
+    for seg in out:
+        seg.pop("_demoted", None)
+
+    out = split_long_narration(out, reading_text)
+    for seg in out:
+        seg["text"] = reading_text[seg["start"]:seg["end"]]
+    return out

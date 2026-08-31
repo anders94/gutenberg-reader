@@ -472,3 +472,36 @@ def structure_repair_user(rendered_candidates: str, complaints: list[str]) -> st
         "not just the changes.\n\n"
         f"{rendered_candidates}"
     )
+
+
+def span_type_system() -> str:
+    """Quotation marks mark speech *and* several things that are not speech.
+
+    The segmenter treats every quoted span as dialogue, so in a history like
+    Herodotus a scare-quoted term becomes a dialogue segment that then demands a
+    speaker: 12 of 29 dialogue segments in PG 2131 landed on "Unknown" because
+    most of them were never speech at all.
+    """
+    return """Each marked span in the passages below is enclosed in quotation
+marks. Decide what each one IS. Answer with its ordinal and a label:
+
+- speech    — someone is speaking or writing these words as their own.
+              Includes speech reported inside another speech.
+- term      — a word or phrase being named or discussed rather than said:
+              scare quotes, a foreign word, a term being defined.
+              "They were called \u27e60\u27e7"Deserters"\u27e6/0\u27e7" is a term.
+- title     — the name of a book, ship, song, newspaper or similar.
+- citation  — a document, inscription, letter or oracle quoted as text rather
+              than spoken aloud by a character in the scene.
+- unsure    — you genuinely cannot tell.
+
+Judge from the surrounding sentence. A speech verb nearby ("said", "cried",
+"answered") points to speech; being the object of a verb like "called",
+"named", "termed" points to a term. Do not guess a label to be helpful — unsure
+is a real answer and costs nothing."""
+
+
+def span_type_user(passages: str, n: int) -> str:
+    return (
+        f"{n} marked spans. Label every one.\n\n{passages}"
+    )

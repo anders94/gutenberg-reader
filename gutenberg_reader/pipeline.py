@@ -100,6 +100,8 @@ def run_pipeline(config: Config) -> Path:
     accepted, characters = s05_segments.run(
         config, client, chapter_paths, chapter_nums,
         chapter_titles={ci.number: ci.title for ci in chapter_infos},
+        quote_pair=(discovery.quote_open, discovery.quote_close)
+        if discovery.quote_open else None,
     )
     console.print(f"  [dim]{len(characters)} characters identified[/dim]")
 
