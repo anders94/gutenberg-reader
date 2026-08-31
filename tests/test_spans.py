@@ -233,3 +233,29 @@ def test_hearsay_stripping_does_not_swallow_a_real_said():
     reading, segs = _seg('He said "come here now" to her.', ('"', '"'))
     settled, _ = segmenter.classify_spans_deterministically(segs, reading)
     assert set(settled.values()) == {"speech"}
+
+
+def test_a_segment_cache_entry_is_rejected_when_the_boundaries_moved():
+    """A cache entry is keyed by chapter number, and the number means nothing on
+    its own. Re-running PG 6400 after its structure was fixed would otherwise
+    load "chapter 2" from the broken 3-chapter split — a 173,461-word span — as
+    chapter 2 of the corrected twenty, and nothing would say so."""
+    from gutenberg_reader.stages.s05_segments import SEGMENT_FORMAT, _load_cached
+    from gutenberg_reader.cache import atomic_write_json
+    from gutenberg_reader.config import Config
+    import tempfile, pathlib
+
+    with tempfile.TemporaryDirectory() as d:
+        path = pathlib.Path(d) / "chapter-02.json"
+        stamp = {"start_line": 165, "end_line": 2461, "format": SEGMENT_FORMAT}
+        atomic_write_json(path, {
+            "chapter_number": 2, "chapter_title": "x", "segments": [],
+            "word_count": 1, "roster_after": [], "anchor_names": [],
+            "source": stamp,
+        })
+        cfg = Config(book_id="0")
+        assert _load_cached(path, cfg, stamp) is not None
+        moved = {"start_line": 2462, "end_line": 6636, "format": SEGMENT_FORMAT}
+        assert _load_cached(path, cfg, moved) is None
+        older = {**stamp, "format": SEGMENT_FORMAT - 1}
+        assert _load_cached(path, cfg, older) is None

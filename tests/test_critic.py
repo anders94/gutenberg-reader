@@ -219,3 +219,25 @@ def test_temperature_reaches_the_client():
     from gutenberg_reader.llm import call_json_with_retries
     call_json_with_retries(_T(), "m", [], temperature=0.0)
     assert seen["t"] == 0.0
+
+
+# ── Cache entries must know what they are about ──────────────────────────────
+
+def test_a_critic_cache_entry_is_rejected_when_the_chapter_changed(tmp_path):
+    """run_chapter returns the accepted chapter as well as the verdict, so a
+    stale entry does not merely mis-report — it hands back the old chapter and
+    the freshly segmented one is discarded. On PG 6400 the corrected
+    25,197-word "CAIUS JULIUS CASAR." was computed and then replaced by the
+    173,461-word span from the structure that had just been fixed."""
+    old = _chapter([_seg("“old.”", "Ahab")], title="D. OCTAVIUS CAESAR AUGUSTUS.")
+    new = _chapter([_seg("“new.”", "Ahab"), _seg("“more.”", "Ahab")],
+                   title="CAIUS JULIUS CASAR.")
+    assert s06_critic._fingerprint(old) != s06_critic._fingerprint(new)
+
+
+def test_fingerprint_tracks_title_length_and_words():
+    a = _chapter([_seg("“x.”")])
+    b = _chapter([_seg("“x.”")], title="Another")
+    c = _chapter([_seg("“x.”"), _seg("“y.”")])
+    assert s06_critic._fingerprint(a) != s06_critic._fingerprint(b)
+    assert s06_critic._fingerprint(a) != s06_critic._fingerprint(c)

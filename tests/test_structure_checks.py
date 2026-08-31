@@ -30,11 +30,30 @@ def _body(book_id: str) -> list[str]:
 
 
 def _discovered(book_id: str) -> tuple[list[ChapterInfo], int]:
-    p = CACHE / book_id / "02-discovery" / "discovery.json"
-    if not p.exists():
-        pytest.skip(f"cache/{book_id} discovery not present")
-    d = json.loads(p.read_text())
-    return [ChapterInfo.from_dict(c) for c in d["chapters"]], d["body_start_line"]
+    """Chapters from the committed golden, not from cache/02-discovery.
+
+    That file is rewritten by any run and deleted by any cache clear, so reading
+    it made these tests skip silently the moment the cache was cleaned — which is
+    precisely the disappearing-coverage problem the goldens exist to end. The
+    golden stores body-relative line numbers, so body_start is 0 here.
+    """
+    from tests.fixtures import golden
+
+    g = golden(book_id)
+    body = _body(book_id)
+    entries = g.get("chapters") or [
+        {**c, "kind": "body", "words": 0} for c in g["required_body"]
+    ]
+    infos: list[ChapterInfo] = []
+    for i, c in enumerate(entries):
+        end = (entries[i + 1]["line"] - 1) if i + 1 < len(entries) else len(body) - 1
+        infos.append(ChapterInfo(
+            number=i + 1, title=c["title"], start_line=c["line"] + 1,
+            end_line=end + 1, word_count=c.get("words", 0),
+            start_marker="" if c.get("synthetic") else c["title"],
+            kind=c.get("kind", "body"),
+        ))
+    return infos, 0
 
 
 def _info(number, words, start=None, end=None, title="T"):

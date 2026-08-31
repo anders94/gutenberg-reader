@@ -37,6 +37,22 @@ CONTEXT_SEGMENTS = 8
 CRITIC_TEMPERATURE = 0.0
 
 
+def _fingerprint(chapter: ProcessedChapter) -> dict:
+    """What the cached report was a report *about*.
+
+    run_chapter returns the accepted chapter as well as the verdict, so a stale
+    entry does not merely mis-report — it hands back the old chapter and the
+    freshly segmented one is discarded. On PG 6400 that meant the corrected
+    25,197-word "CAIUS JULIUS CASAR." was computed and then replaced by the
+    173,461-word span from the structure that had just been fixed.
+    """
+    return {
+        "title": chapter.chapter_title,
+        "segments": len(chapter.segments),
+        "word_count": chapter.word_count,
+    }
+
+
 def run_chapter(
     config: Config,
     client: LLMRouter,
@@ -56,14 +72,15 @@ def run_chapter(
 
     if not force and stage_complete(out_path) and (
             config.force_stage is None or config.force_stage > 6):
-        if config.verbose:
-            console.print(f"[dim]Stage 06: chapter {num:02d} already complete[/dim]")
         data = read_json(out_path)
-        return (
-            ProcessedChapter.from_dict(data["chapter"]),
-            CriticReport.from_dict(data["report"]),
-            data.get("roster_issues", []),
-        )
+        if data.get("source") == _fingerprint(chapter):
+            if config.verbose:
+                console.print(f"[dim]Stage 06: chapter {num:02d} already complete[/dim]")
+            return (
+                ProcessedChapter.from_dict(data["chapter"]),
+                CriticReport.from_dict(data["report"]),
+                data.get("roster_issues", []),
+            )
 
     if config.verbose:
         console.print(f"[cyan]Stage 06:[/cyan] Critiquing chapter {num:02d}...")
@@ -73,6 +90,7 @@ def run_chapter(
     )
 
     data = {
+        "source": _fingerprint(chapter),
         "chapter": final_chapter.to_dict(),
         "report": report.to_dict(),
         "roster_issues": roster_issues,

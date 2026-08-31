@@ -56,6 +56,10 @@ console = Console()
 # Segments from the previous window included (read-only) for continuity
 CONTEXT_SEGMENTS = 8
 
+# Bumped when a cached chapter's segments stop being usable as they are.
+# 2: segments carry start/end offsets into a reading_text written beside them.
+SEGMENT_FORMAT = 2
+
 
 def run(
     config: Config,
@@ -63,6 +67,7 @@ def run(
     chapter_paths: dict[int, Path],
     chapter_nums: list[int] | None = None,
     chapter_titles: dict[int, str] | None = None,
+    chapter_bounds: dict[int, tuple[int, int]] | None = None,
     quote_pair: tuple[str, str] | None = None,
 ) -> tuple[dict[int, tuple[ProcessedChapter, CriticReport | None]], list[CharacterInfo]]:
     """Process chapters in reading order.
@@ -73,6 +78,13 @@ def run(
     nums = chapter_nums if chapter_nums is not None else sorted(chapter_paths.keys())
     critic_on = config.critic
 
+    def fingerprint(n: int) -> dict | None:
+        bounds = (chapter_bounds or {}).get(n)
+        if bounds is None:
+            return None
+        return {"start_line": bounds[0], "end_line": bounds[1],
+                "format": SEGMENT_FORMAT}
+
     roster: list[CharacterInfo] = []
     protected: set[str] = set()  # lowercase anchor-established names
     accepted: dict[int, tuple[ProcessedChapter, CriticReport | None]] = {}
@@ -80,7 +92,7 @@ def run(
     for num in nums:
         out_path = chapter_file(stage_dir, num)
 
-        cached = _load_cached(out_path, config)
+        cached = _load_cached(out_path, config, fingerprint(num))
         if cached is not None:
             chapter, roster, protected = cached
             if config.verbose:
@@ -140,6 +152,7 @@ def run(
         data = processed.to_dict()
         data["roster_after"] = [c.to_dict() for c in roster]
         data["anchor_names"] = sorted(protected)
+        data["source"] = fingerprint(num)
         atomic_write_json(out_path, data)
 
         accepted[num] = (final_chapter, report)
@@ -253,13 +266,20 @@ def _reattribute_and_recheck(
 def _load_cached(
     out_path: Path,
     config: Config,
+    fingerprint: dict | None = None,
 ) -> tuple[ProcessedChapter, list[CharacterInfo], set[str]] | None:
-    """Load a chapter's cache entry, or None if absent/forced/pre-snapshot.
+    """Load a chapter's cache entry, or None if it cannot be trusted as it is.
 
-    Returns (chapter, roster_after, anchor_names). Files without a
-    roster_after snapshot predate the rolling-roster design: without the
-    snapshot the next chapter's inputs are unrecoverable, so they count as
-    incomplete and the chapter re-runs.
+    Returns (chapter, roster_after, anchor_names). Rejected when:
+
+    - there is no roster_after snapshot. Those files predate the rolling-roster
+      design, and without the snapshot the next chapter's inputs are lost.
+    - the fingerprint differs. A cache entry is keyed by chapter number, and the
+      number means nothing on its own: re-running PG 6400 after its structure was
+      fixed would otherwise load "chapter 2" from the broken 3-chapter split — a
+      173,461-word span — as chapter 2 of the corrected twenty. Nothing would say
+      so. The fingerprint carries the chapter's line range and the segment
+      format, so a changed structure or an older format re-runs instead.
     """
     if not stage_complete(out_path):
         return None
@@ -267,6 +287,8 @@ def _load_cached(
         return None
     data = read_json(out_path)
     if "roster_after" not in data:
+        return None
+    if fingerprint is not None and data.get("source") != fingerprint:
         return None
     return (
         ProcessedChapter.from_dict(data),
