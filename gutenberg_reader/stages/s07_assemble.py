@@ -74,7 +74,10 @@ def run(
         chapter_entry = {
             "chapter": {
                 "number": processed.chapter_number,
-                "title": processed.chapter_title,
+                # Stage 02 is the authority on titles; a chapter processed
+                # before that was threaded through stage 05 carries whatever
+                # its first non-blank line said ("I." for a two-line heading).
+                "title": ci.title if ci else processed.chapter_title,
                 "text": "",  # raw text omitted from final output
                 "word_count": processed.word_count,
                 "start_marker": ci.start_marker if ci else processed.chapter_title,

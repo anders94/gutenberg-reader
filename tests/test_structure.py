@@ -67,9 +67,12 @@ def test_classify_heading(title, kind):
 
 # ── Synthetic book: back-matter trim and front-matter guard ──────────────────
 
-PREFACE_WORDS = " ".join(["preface"] * 60)
-CHAPTER_WORDS = " ".join(["story"] * 60)
-FOOTNOTE_WORDS = " ".join(["footnote"] * 60)
+# Sentence-shaped: _maybe_prepend_chapter_one only promotes a block that reads
+# as prose, so punctuation-free filler would make these fixtures pass (or fail)
+# for reasons unrelated to what each test is checking.
+PREFACE_WORDS = " ".join(["preface"] * 30) + ". " + " ".join(["preface"] * 30) + "."
+CHAPTER_WORDS = " ".join(["story"] * 30) + ". " + " ".join(["story"] * 30) + "."
+FOOTNOTE_WORDS = " ".join(["footnote"] * 30) + ". " + " ".join(["footnote"] * 30) + "."
 
 SYNTHETIC = f"""DEDICATION
 
@@ -307,6 +310,7 @@ def test_indented_numeral_contents_entries_are_toc():
 @pytest.mark.parametrize("book_id,expected", [
     ("1184", 117), ("1260", 38), ("1342", 61), ("1661", 12),
     ("1727", 24), ("2641", 19), ("2701", 136), ("3296", 13),
+    ("37106", 47),
 ])
 def test_chapter_counts_pinned(book_id, expected):
     """Every cached book's chapter count, pinned. The bare-numeral pattern is
@@ -347,3 +351,62 @@ def test_named_division_headings():
     # A named division belongs to the story, never the apparatus.
     assert text_utils.classify_heading("Epilogue") == "body"
     assert text_utils.classify_heading("Prologue") == "body"
+
+
+def test_little_women_two_line_headings():
+    """37106 centres the numeral and its title on separate lines:
+
+            I.
+
+        PLAYING PILGRIMS.
+
+    Neither line is a heading alone, so none of the 47 body headings matched,
+    drop_toc_clusters discarded the contents listing that did, and the
+    "never discard everything" fallback handed the whole TOC back — 46 chapters
+    holding just their own title and one holding all 188,656 remaining words."""
+    body = _body_lines("37106")
+    infos = _discover(body)
+
+    assert len(infos) == 47
+    assert infos[0].title == "I. PLAYING PILGRIMS."
+    assert infos[-1].title == "XLVII. HARVEST TIME."
+    # Every chapter is a real chapter, not a contents entry.
+    assert min(ci.word_count for ci in infos) > 500
+    med = statistics.median(ci.word_count for ci in infos)
+    assert max(ci.word_count for ci in infos) < 3 * med
+
+
+def test_bare_numeral_needs_all_caps_title_below():
+    """A bare numeral followed by prose is an in-story section marker (1661 has
+    "I." mid-story); followed by an all-caps title it is a chapter heading."""
+    heading = ["I.", "", "PLAYING PILGRIMS.", "", "Prose begins here."]
+    assert text_utils._two_line_heading(heading, 0) == ("I. PLAYING PILGRIMS.", 2)
+
+    marker = ["I.", "", "To Sherlock Holmes she is always the woman.", ""]
+    assert text_utils._two_line_heading(marker, 0) is None
+
+    # Same line, not a two-line pair.
+    assert text_utils._two_line_heading(["I. PLAYING PILGRIMS."], 0) is None
+    # A caps line that opens a paragraph is not a standalone heading.
+    running = ["I.", "", "PLAYING PILGRIMS", "and then the story continued on."]
+    assert text_utils._two_line_heading(running, 0) is None
+
+
+def test_prose_gate_separates_narrative_from_caption_lists():
+    from gutenberg_reader.stages.s02_discovery import _reads_as_prose
+
+    narrative = [
+        "It is a truth universally acknowledged, that a single man in "
+        "possession of a good fortune, must be in want of a wife.",
+        "However little known the feelings of such a man may be.",
+    ]
+    captions = [
+        "Mr. Laurence waving his hat",
+        "Now, Miss Jo, I'll settle you",
+        "A very merry lunch it was",
+        "He went prancing down a quiet street",
+    ]
+    assert _reads_as_prose(narrative)
+    assert not _reads_as_prose(captions)
+    assert not _reads_as_prose([])
+

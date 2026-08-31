@@ -77,7 +77,10 @@ def run_pipeline(config: Config) -> Path:
     if config.no_critic:
         console.print("[dim]critic: off (--no-critic)[/dim]")
     chapter_nums = [ci.number for ci in chapter_infos]
-    accepted, characters = s05_segments.run(config, client, chapter_paths, chapter_nums)
+    accepted, characters = s05_segments.run(
+        config, client, chapter_paths, chapter_nums,
+        chapter_titles={ci.number: ci.title for ci in chapter_infos},
+    )
     console.print(f"  [dim]{len(characters)} characters identified[/dim]")
 
     # ── Stage 07: Assembly ────────────────────────────────────────────────────

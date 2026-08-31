@@ -61,6 +61,7 @@ def run(
     client: LLMClient,
     chapter_paths: dict[int, Path],
     chapter_nums: list[int] | None = None,
+    chapter_titles: dict[int, str] | None = None,
 ) -> tuple[dict[int, tuple[ProcessedChapter, CriticReport | None]], list[CharacterInfo]]:
     """Process chapters in reading order.
 
@@ -114,7 +115,8 @@ def run(
 
         # Segment and attribute (may add anchor-named characters to the roster).
         processed, roster, chapter_anchors = _segment_chapter(
-            num, chapter_text, roster, config, client
+            num, chapter_text, roster, config, client,
+            title=(chapter_titles or {}).get(num),
         )
         protected = protected | chapter_anchors
 
@@ -201,6 +203,7 @@ def _segment_chapter(
     roster: list[CharacterInfo],
     config: Config,
     client: LLMClient,
+    title: str | None = None,
 ) -> tuple[ProcessedChapter, list[CharacterInfo], set[str]]:
     """Segment and attribute one chapter.
 
@@ -209,7 +212,13 @@ def _segment_chapter(
     anchored by explicit attribution tags in this chapter.
     """
     lines = chapter_text.splitlines()
-    chapter_title = next((l.strip() for l in lines if l.strip()), f"Chapter {chapter_num}")
+    # Stage 02 is the authority on titles. Reading the first non-blank line back
+    # out of the text only agrees when the heading is one line: PG 37106 centres
+    # the numeral above the title, so that guess yields "I." for a chapter
+    # discovery correctly called "I. PLAYING PILGRIMS.".
+    chapter_title = title or next(
+        (l.strip() for l in lines if l.strip()), f"Chapter {chapter_num}"
+    )
 
     # Tier 0: deterministic segmentation
     segments = segmenter.segment_text(chapter_text)

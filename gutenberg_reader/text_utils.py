@@ -216,6 +216,38 @@ def drop_toc_clusters(matches: list[dict]) -> list[dict]:
     return filtered or matches
 
 
+BARE_NUMERAL_RE = re.compile(r"^[IVXLCDM]+\.?$")
+
+# How many blank lines may sit between the numeral and its title before they
+# stop reading as one heading. Editions centre them a line or two apart.
+_TWO_LINE_HEADING_GAP = 3
+
+
+def _two_line_heading(lines: list[str], i: int) -> tuple[str, int] | None:
+    """Recognize a numeral line whose title sits on the next non-blank line.
+
+    Returns (combined title, index of the title line), or None. The numeral
+    must be alone on its line and the title must be ALL CAPS — a bare numeral
+    followed by prose is an in-story section marker, not a chapter heading.
+    """
+    if not BARE_NUMERAL_RE.match(lines[i].strip()):
+        return None
+
+    j = i + 1
+    while j < len(lines) and not lines[j].strip() and j - i <= _TWO_LINE_HEADING_GAP:
+        j += 1
+    if j >= len(lines) or j == i + 1:  # title must be separated by a blank line
+        return None
+
+    title = lines[j].strip()
+    if not re.fullmatch(_ALL_CAPS_TITLE, title):
+        return None
+    # A heading stands alone; a caps line opening a paragraph does not.
+    if j + 1 < len(lines) and lines[j + 1].strip():
+        return None
+    return f"{lines[i].strip().rstrip('.')}. {title}", j
+
+
 def detect_chapters_regex(lines: list[str]) -> list[dict]:
     """Detect chapter boundaries using ordered regex patterns.
 
@@ -226,6 +258,21 @@ def detect_chapters_regex(lines: list[str]) -> list[dict]:
     matches = []
     for i, line in enumerate(lines):
         stripped = line.strip()
+
+        # Two-line form: a numeral alone, then the title on its own line.
+        #     I.
+        #
+        #     PLAYING PILGRIMS.
+        # Neither line is a heading by itself, so PG 37106 matched none of its
+        # 47 body headings and fell back to its contents listing. Bare numerals
+        # are also in-story section markers (PG 1661 has "I." mid-story), so the
+        # all-caps title on the next non-blank line is what separates the two.
+        pair = _two_line_heading(lines, i)
+        if pair is not None:
+            title, end_idx = pair
+            matches.append({"line_idx": i, "title": title, "block_len": 1})
+            continue
+
         for pattern in CHAPTER_PATTERNS:
             if pattern.match(stripped):
                 # How far the contiguous non-blank block starting here runs: a

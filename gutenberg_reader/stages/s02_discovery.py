@@ -333,14 +333,25 @@ def _maybe_prepend_chapter_one(
 
     # Collect all text in [block_start, first_chapter_start_idx) excluding illustrations
     pre_text_words = []
+    paragraphs: list[str] = []
+    current: list[str] = []
     for j in range(block_start, first_chapter_start_idx):
         if j in illustration_lines:
             continue
         stripped = body_lines[j].strip()
         if stripped and not is_toc(body_lines[j]):
             pre_text_words.extend(stripped.split())
+            current.append(stripped)
+        elif current:
+            paragraphs.append(" ".join(current))
+            current = []
+    if current:
+        paragraphs.append(" ".join(current))
 
     if len(pre_text_words) < MIN_CHAPTER_WORDS:
+        return raw_chapters
+
+    if not _reads_as_prose(paragraphs):
         return raw_chapters
 
     # Advance block_start past any leading TOC/blank lines to find actual prose start
@@ -365,6 +376,22 @@ def _maybe_prepend_chapter_one(
     for i, ch in enumerate(raw_chapters):
         renumbered.append(dict(ch, number=i + 2))
     return [synthetic] + renumbered
+
+
+def _reads_as_prose(paragraphs: list[str], min_ratio: float = 0.5) -> bool:
+    """True if a block is narrative rather than a list of entries.
+
+    An unlabeled chapter one is made of sentences; a list of illustrations or a
+    contents block is made of captions. Measured on PG 1342's genuine chapter
+    one, 34 of 34 paragraphs end in sentence punctuation (median 21 words); on
+    PG 37106's list of illustrations, 7 of 141 do (median 5 words). That gap is
+    what separates them — the front-matter heading that would otherwise name the
+    block sits behind a TOC line the backward walk stops on, so it is never seen.
+    """
+    if not paragraphs:
+        return False
+    ended = sum(1 for p in paragraphs if p.rstrip().endswith((".", "!", "?", '"', "”", "’", "—")))
+    return ended / len(paragraphs) >= min_ratio
 
 
 def _find_illustration_lines(body_lines: list[str], start: int, end: int) -> set[int]:
