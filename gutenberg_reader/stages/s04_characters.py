@@ -19,7 +19,7 @@ from rich.console import Console
 
 from gutenberg_reader.config import Config
 from gutenberg_reader.models import CharacterInfo
-from gutenberg_reader.llm import LLMClient
+from gutenberg_reader.llm import LLMRouter, call_json_with_retries
 from gutenberg_reader import prompts, schemas, text_utils
 
 console = Console()
@@ -36,7 +36,7 @@ def discover_in_chapter(
     text: str,
     chapter_num: int,
     config: Config,
-    client: LLMClient,
+    client: LLMRouter,
 ) -> list[CharacterInfo]:
     """Discover characters in one chapter's text.
 
@@ -73,7 +73,7 @@ def _discover(
     text: str,
     chapter_num: int,
     config: Config,
-    client: LLMClient,
+    client: LLMRouter,
 ) -> list[CharacterInfo]:
     """One discovery call. Returns [] on LLM failure."""
     messages = [
@@ -81,11 +81,14 @@ def _discover(
         {"role": "user", "content": prompts.character_discovery_user(text)},
     ]
 
-    try:
-        data = client.chat_json(config.processing_model, messages, schema=schemas.CHARACTERS_SCHEMA)
-    except Exception as e:
-        # One bad window costs its text, not the roster built so far.
-        console.print(f"  [red]Stage 04: character discovery failed for chapter {chapter_num}: {e}[/red]")
+    # One bad window costs its text, not the roster built so far — but it is
+    # worth retrying before giving up on it.
+    data = call_json_with_retries(
+        client, config.processing_model, messages, schema=schemas.CHARACTERS_SCHEMA,
+        retries=config.max_retries,
+        what=f"character discovery (chapter {chapter_num})", console=console,
+    )
+    if data is None:
         return []
 
     chars = [

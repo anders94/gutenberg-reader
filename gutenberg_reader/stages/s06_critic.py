@@ -19,7 +19,7 @@ from gutenberg_reader.cache import (
 )
 from gutenberg_reader.config import Config
 from gutenberg_reader.models import CharacterInfo, CriticReport, ProcessedChapter, Segment
-from gutenberg_reader.llm import LLMClient, LLMError
+from gutenberg_reader.llm import LLMRouter, call_json_with_retries
 from gutenberg_reader import prompts, schemas, text_utils
 
 console = Console()
@@ -32,7 +32,7 @@ CONTEXT_SEGMENTS = 8
 
 def run_chapter(
     config: Config,
-    client: LLMClient,
+    client: LLMRouter,
     chapter: ProcessedChapter,
     roster: list[CharacterInfo],
     new_names: list[str],
@@ -135,7 +135,7 @@ def _critique_chapter(
     roster: list[CharacterInfo],
     new_names: list[str],
     config: Config,
-    client: LLMClient,
+    client: LLMRouter,
 ) -> tuple[CriticReport, ProcessedChapter, list[dict]]:
     """Run code-level checks and LLM critique."""
     char_names = [c.name for c in roster]
@@ -225,7 +225,7 @@ def _llm_critique(
     char_names: list[str],
     new_names: list[str],
     config: Config,
-    client: LLMClient,
+    client: LLMRouter,
 ) -> tuple[list[dict], float, list[dict]]:
     """Call LLM to review attribution. Returns (corrections, quality, roster_issues).
 
@@ -256,11 +256,14 @@ def _llm_critique(
             },
         ]
 
-        try:
-            data = client.chat_json(config.validation_model, messages, schema=schema)
-        except LLMError as e:
-            console.print(f"  [red]Stage 06: LLM critique failed: {e}[/red]")
-            # Skip this window rather than the chapter: the rest still reviews.
+        # Skip a window rather than the chapter: the rest still reviews. Phase 5
+        # records what was skipped so a chapter cannot report a quality score
+        # for work no one looked at.
+        data = call_json_with_retries(
+            client, config.validation_model, messages, schema=schema,
+            retries=config.max_retries, what="critic window", console=console,
+        )
+        if data is None:
             continue
 
         # Corrections aimed at [CONTEXT] lines belong to the window that owned

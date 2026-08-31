@@ -143,3 +143,87 @@ class LLMClient:
 
     def __exit__(self, *args):
         self.close()
+
+
+# A window that fails is worth retrying; a window that fails silently is not.
+# Only the attribution pass ever retried, and only it noticed — stage 02, the
+# critic and character discovery each swallowed the error and lost that window.
+DEFAULT_RETRIES = 3
+
+
+def call_json_with_retries(
+    client: "LLMClient | LLMRouter",
+    model: str,
+    messages: list[dict],
+    schema: dict | None = None,
+    retries: int = DEFAULT_RETRIES,
+    what: str = "LLM call",
+    console=None,
+) -> Any | None:
+    """chat_json with retries. Returns None once every attempt has failed.
+
+    Returning None rather than raising is deliberate: one bad window should cost
+    its own text, not the chapter. But the caller must then *record* the loss —
+    a skipped critic window that still counts toward a quality score is how a
+    review reports 0.94 on work it never looked at.
+    """
+    last: Exception | None = None
+    for attempt in range(1, retries + 1):
+        try:
+            return client.chat_json(model, messages, schema=schema)
+        except LLMError as e:
+            last = e
+            if console is not None:
+                console.print(
+                    f"  [red]{what} failed (attempt {attempt}/{retries}): {e}[/red]"
+                )
+    if console is not None:
+        console.print(f"  [red]{what} gave up after {retries} attempts: {last}[/red]")
+    return None
+
+
+class LLMRouter:
+    """Dispatches by model name to whichever endpoint serves that model.
+
+    The pipeline runs bulk work on one server and the judgment calls — verify,
+    tie-break, critic, structure — on another, usually a much larger model on
+    different hardware. Every call site already passes a model name, so routing
+    on that name means none of them have to learn about endpoints.
+    """
+
+    def __init__(self) -> None:
+        self._by_model: dict[str, LLMClient] = {}
+
+    def register(
+        self,
+        base_url: str,
+        api_key: str = "EMPTY",
+        model: str = "",
+        timeout: float = 300.0,
+    ) -> str:
+        """Health-check an endpoint, resolve its model name, and route to it.
+
+        Returns the resolved name, which is what callers pass back in.
+        """
+        client = LLMClient(base_url=base_url, api_key=api_key, timeout=timeout)
+        resolved = client.health_check(model or None)
+        self._by_model[resolved] = client
+        return resolved
+
+    def endpoint_for(self, model: str) -> str:
+        return self._by_model[model].base_url
+
+    def _client(self, model: str) -> "LLMClient":
+        try:
+            return self._by_model[model]
+        except KeyError:
+            raise LLMError(
+                f"No endpoint registered for model {model!r}. "
+                f"Registered: {', '.join(sorted(self._by_model)) or '(none)'}"
+            ) from None
+
+    def chat(self, model: str, messages: list[dict], **kw) -> str:
+        return self._client(model).chat(model, messages, **kw)
+
+    def chat_json(self, model: str, messages: list[dict], **kw) -> Any:
+        return self._client(model).chat_json(model, messages, **kw)

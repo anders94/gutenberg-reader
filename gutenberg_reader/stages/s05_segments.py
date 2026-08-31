@@ -46,7 +46,7 @@ from gutenberg_reader.cache import (
 )
 from gutenberg_reader.config import Config
 from gutenberg_reader.models import CharacterInfo, CriticReport, ProcessedChapter, Segment
-from gutenberg_reader.llm import LLMClient, LLMError
+from gutenberg_reader.llm import LLMRouter, call_json_with_retries
 from gutenberg_reader import prompts, schemas, segmenter, text_utils
 from gutenberg_reader.stages import s04_characters, s06_critic
 
@@ -58,7 +58,7 @@ CONTEXT_SEGMENTS = 8
 
 def run(
     config: Config,
-    client: LLMClient,
+    client: LLMRouter,
     chapter_paths: dict[int, Path],
     chapter_nums: list[int] | None = None,
     chapter_titles: dict[int, str] | None = None,
@@ -153,7 +153,7 @@ def run(
 
 def _run_critic(
     config: Config,
-    client: LLMClient,
+    client: LLMRouter,
     chapter: ProcessedChapter,
     roster: list[CharacterInfo],
     protected: set[str],
@@ -202,7 +202,7 @@ def _segment_chapter(
     chapter_text: str,
     roster: list[CharacterInfo],
     config: Config,
-    client: LLMClient,
+    client: LLMRouter,
     title: str | None = None,
 ) -> tuple[ProcessedChapter, list[CharacterInfo], set[str]]:
     """Segment and attribute one chapter.
@@ -325,7 +325,7 @@ def _llm_window_pass(
     segments: list[dict],
     flagged_all: set[int],
     config: Config,
-    client: LLMClient,
+    client: LLMRouter,
     system_msg: str,
     user_fn,
     schema: dict,
@@ -354,17 +354,16 @@ def _llm_window_pass(
             {"role": "user", "content": user_fn(window, ctx_start, flagged, start - ctx_start)},
         ]
 
-        for attempt in range(config.max_retries):
-            try:
-                data = client.chat_json(model, messages, schema=schema)
-            except LLMError as e:
-                console.print(f"  [red]LLM pass error (attempt {attempt+1}): {e}[/red]")
-                continue
-            for a in data.get("attributions", []):
-                idx = a.get("index")
-                if idx in flagged and a.get("speaker"):
-                    results[idx] = a["speaker"]
-            break
+        data = call_json_with_retries(
+            client, model, messages, schema=schema,
+            retries=config.max_retries, what="attribution window", console=console,
+        )
+        if data is None:
+            continue
+        for a in data.get("attributions", []):
+            idx = a.get("index")
+            if idx in flagged and a.get("speaker"):
+                results[idx] = a["speaker"]
 
     return results
 
@@ -374,7 +373,7 @@ def _resolve_nameless_tags(
     characters: list[CharacterInfo],
     char_names: list[str],
     config: Config,
-    client: LLMClient,
+    client: LLMRouter,
 ) -> int:
     """Resolve attribution tags that lack a character name and anchor adjacent dialogue.
 

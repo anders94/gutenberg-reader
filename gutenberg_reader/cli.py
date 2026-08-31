@@ -21,6 +21,13 @@ console = Console()
                    "critic (default: same as --model)")
 @click.option("--base-url", default="http://localhost:8000/v1", show_default=True,
               help="OpenAI-compatible API base URL (vLLM, llama.cpp server, LM Studio, ...)")
+@click.option("--validator-base-url", default="",
+              help="API base URL serving --validator (default: --base-url). Point this "
+                   "at a second server to run the judgment passes on a larger model")
+@click.option("--structure-base-url", default="",
+              help="API base URL for chapter-structure analysis (default: --validator-base-url)")
+@click.option("--structure-model", default="",
+              help="Model for chapter-structure analysis (default: --validator)")
 @click.option("--api-key", default="EMPTY", help="API key, if the server requires one")
 @click.option("--cache-dir", default="./cache", show_default=True, type=click.Path(), help="Cache directory")
 @click.option("--output", default=None, type=click.Path(), help="Output file path")
@@ -48,6 +55,9 @@ def main(
     model: str,
     validator: str,
     base_url: str,
+    validator_base_url: str,
+    structure_base_url: str,
+    structure_model: str,
     api_key: str,
     cache_dir: str,
     output: str | None,
@@ -83,6 +93,9 @@ def main(
         api_key=api_key,
         processing_model=model,
         validation_model=validator or model,
+        validator_base_url=validator_base_url,
+        structure_base_url=structure_base_url,
+        structure_model=structure_model,
         cache_dir=Path(cache_dir),
         output_file=output_path,
         chunk_size=chunk_size,

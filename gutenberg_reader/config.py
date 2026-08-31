@@ -12,6 +12,11 @@ class Config:
     api_key: str = "EMPTY"
     processing_model: str = ""  # empty = auto-detect from the server
     validation_model: str = ""
+    # Judgment work — verify, tie-break, critic, structure — can run on another
+    # box entirely. Empty inherits from the endpoint above it.
+    validator_base_url: str = ""
+    structure_base_url: str = ""
+    structure_model: str = ""
     cache_dir: Path = field(default_factory=lambda: Path("./cache"))
     output_file: Path | None = None
     chunk_size: int = 1000
@@ -24,10 +29,18 @@ class Config:
     include_front_matter: bool = False
     include_back_matter: bool = False
     accept_structure_warnings: bool = False
+    processing_timeout: float = 300.0
+    judgment_timeout: float = 1800.0
 
     def __post_init__(self):
         if not self.validation_model:
             self.validation_model = self.processing_model
+        if not self.validator_base_url:
+            self.validator_base_url = self.base_url
+        if not self.structure_base_url:
+            self.structure_base_url = self.validator_base_url
+        if not self.structure_model:
+            self.structure_model = self.validation_model
         self.cache_dir = Path(self.cache_dir)
 
     @property

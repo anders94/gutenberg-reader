@@ -8,7 +8,7 @@ from rich.console import Console
 from gutenberg_reader.cache import atomic_write_json, read_text, stage_complete
 from gutenberg_reader.config import Config
 from gutenberg_reader.models import BookMetadata, ChapterInfo, DiscoveryResult
-from gutenberg_reader.llm import LLMClient
+from gutenberg_reader.llm import LLMError, LLMRouter, call_json_with_retries
 from gutenberg_reader import prompts, schemas
 from gutenberg_reader import text_utils
 from gutenberg_reader import candidates, structure_checks
@@ -16,7 +16,7 @@ from gutenberg_reader import candidates, structure_checks
 console = Console()
 
 
-def run(config: Config, client: LLMClient) -> DiscoveryResult:
+def run(config: Config, client: LLMRouter) -> DiscoveryResult:
     """Run discovery and return DiscoveryResult."""
     stage_dir = config.stage_dir(2)
     out_path = stage_dir / "discovery.json"
@@ -655,7 +655,7 @@ def _validate_llm_chapters(
 def _llm_chapter_discovery(
     body_lines: list[str],
     config: Config,
-    client: LLMClient,
+    client: LLMRouter,
 ) -> list[dict]:
     """Fall back to LLM for chapter detection."""
     # Send at most first 500 lines to keep context manageable
@@ -669,7 +669,12 @@ def _llm_chapter_discovery(
     ]
 
     try:
-        data = client.chat_json(config.processing_model, messages, schema=schemas.CHAPTERS_SCHEMA)
+        data = call_json_with_retries(
+            client, config.structure_model, messages, schema=schemas.CHAPTERS_SCHEMA,
+            retries=config.max_retries, what="chapter discovery", console=console,
+        )
+        if data is None:
+            raise LLMError("chapter discovery exhausted its retries")
         chapters = data.get("chapters", [])
         chapters = _validate_llm_chapters(chapters, len(body_lines), config)
         # Normalize to our format. Numbering is positional, not taken from the

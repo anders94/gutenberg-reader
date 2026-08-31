@@ -8,7 +8,7 @@ from rich.console import Console
 from rich.progress import Progress, SpinnerColumn, TextColumn, TimeElapsedColumn
 
 from gutenberg_reader.config import Config
-from gutenberg_reader.llm import LLMClient
+from gutenberg_reader.llm import LLMRouter
 from gutenberg_reader.stages import (
     s01_download,
     s02_discovery,
@@ -24,20 +24,38 @@ def run_pipeline(config: Config) -> Path:
     """Run the full pipeline and return path to final output."""
     start_time = time.time()
 
-    # Create LLM client and verify connectivity; auto-detect the model if unset
-    client = LLMClient(base_url=config.base_url, api_key=config.api_key)
+    # Register every endpoint the run will use and resolve its model name.
+    # Each role is health-checked against the server that actually serves it:
+    # validation_model used to be checked against the *processing* endpoint, so
+    # pointing --validator at a model only the second box serves killed the run
+    # at startup.
+    client = LLMRouter()
 
     try:
-        config.processing_model = client.health_check(config.processing_model or None)
-        if not config.validation_model:
-            config.validation_model = config.processing_model
-        else:
-            config.validation_model = client.health_check(config.validation_model)
+        config.processing_model = client.register(
+            config.base_url, config.api_key,
+            config.processing_model, config.processing_timeout,
+        )
+        config.validation_model = client.register(
+            config.validator_base_url, config.api_key,
+            config.validation_model, config.judgment_timeout,
+        )
+        config.structure_model = client.register(
+            config.structure_base_url, config.api_key,
+            config.structure_model, config.judgment_timeout,
+        )
     except Exception as e:
         console.print(f"[red]Error: {e}[/red]")
         raise SystemExit(1) from None
 
     console.print(f"[bold]gutenberg-reader[/bold] book_id={config.book_id} model={config.processing_model}")
+    if config.validation_model != config.processing_model or (
+        client.endpoint_for(config.validation_model) != client.endpoint_for(config.processing_model)
+    ):
+        console.print(
+            f"  [dim]judgment passes: {config.validation_model} "
+            f"@ {client.endpoint_for(config.validation_model)}[/dim]"
+        )
 
     # Set up stage dirs
     for stage_num in range(1, 8):
