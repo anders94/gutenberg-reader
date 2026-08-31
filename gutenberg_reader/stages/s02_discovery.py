@@ -70,6 +70,15 @@ def run(config: Config, client: LLMClient) -> DiscoveryResult:
             )
         raw_chapters = _llm_chapter_discovery(body_lines, config, client)
 
+    # Runs after both paths: the title-page split is what a heading-less source
+    # produces, and either detector can land on it.
+    raw_chapters = _drop_leading_front_matter(
+        raw_chapters, body_lines, include_front_matter=config.include_front_matter,
+    )
+
+    # Last resort: a body that really has no headings still needs to come apart.
+    raw_chapters = _split_headless_body(raw_chapters, body_lines)
+
     if config.verbose:
         console.print(f"[cyan]Stage 02:[/cyan] Found {len(raw_chapters)} chapters")
 
@@ -207,15 +216,35 @@ def _warn_on_size_outliers(
     infos: list[ChapterInfo],
     high: float = 2.5,
     low: float = 0.2,
+    pair_high: float = 10.0,
 ) -> None:
     """Warn when a chapter is wildly larger or smaller than the median.
 
     A chapter several times the median usually means swallowed front or back
     matter, and it costs real TTS time downstream before anyone hears it.
+
+    Two chapters have no useful median — each sits at it — so they are compared
+    against each other instead. That is not a corner case but the worst one:
+    PG 2131 (Herodotus) carries no chapter headings at all, so discovery split
+    it on the only repeated line in the file, its own title, giving a 647-word
+    front-matter note and the entire 36,916-word book. The median test could
+    never see it.
     """
     import statistics
 
-    if len(infos) < 3:
+    if len(infos) < 2:
+        return
+
+    if len(infos) == 2:
+        larger, smaller = sorted(infos, key=lambda ci: ci.word_count, reverse=True)
+        if smaller.word_count > 0 and larger.word_count / smaller.word_count < pair_high:
+            return
+        console.print(
+            f"[yellow]Stage 02: warning —[/yellow] the book split into 2 chapters of "
+            f"{larger.word_count:,} and {smaller.word_count:,} words. A split this "
+            "lopsided usually means the source carries no chapter headings and "
+            "detection matched its title page instead."
+        )
         return
 
     median = statistics.median(ci.word_count for ci in infos)
@@ -231,6 +260,187 @@ def _warn_on_size_outliers(
                 f"({ci.word_count:,} vs {median:,.0f} words). "
                 "Check for swallowed front or back matter."
             )
+
+
+# A title page and the editor's note under it run to a few hundred words; a real
+# opening chapter runs to thousands. Past this, a leading block is body text
+# whatever its headings look like.
+MAX_LEADING_FRONT_MATTER_WORDS = 2000
+# Below this a block holds no prose at all — just its own heading and a byline.
+MIN_LEADING_BODY_WORDS = 20
+
+
+def _leading_front_matter_reason(
+    raw_chapters: list[dict],
+    body_lines: list[str],
+) -> tuple[str, int] | None:
+    """Why the first of raw_chapters is the edition's matter, and its word count.
+
+    Size alone does not identify it; plenty of books open with a short chapter.
+    What does is a *small leading* block that repeats the next chapter's title
+    verbatim, carries an apparatus heading (NOTE, PREFACE, ...) of its own, or
+    holds no prose at all.
+    """
+    if len(raw_chapters) < 2:
+        return None
+
+    first, second = raw_chapters[0], raw_chapters[1]
+    lead_start = first["start_line"] - 1
+    lead_end = second["start_line"] - 1  # exclusive: the next heading's own line
+    lead_lines = body_lines[lead_start:lead_end]
+
+    lead_words = text_utils.word_count(
+        text_utils.strip_illustration_blocks("\n".join(lead_lines))
+    )
+    if lead_words == 0 or lead_words > MAX_LEADING_FRONT_MATTER_WORDS:
+        return None
+
+    # The rest of the book has to dwarf it, or this is simply a short chapter one.
+    rest_words = text_utils.word_count(
+        text_utils.strip_illustration_blocks("\n".join(body_lines[lead_end:]))
+    )
+    if rest_words < 4 * lead_words:
+        return None
+
+    if (first.get("title", "").strip().casefold()
+            == second.get("title", "").strip().casefold()):
+        return "repeats the next chapter's title", lead_words
+    if any(text_utils.FRONT_MATTER_RE.match(line.strip())
+           or text_utils.BACK_MATTER_RE.match(line.strip())
+           for line in lead_lines):
+        return "carries an apparatus heading", lead_words
+    if lead_words < MIN_LEADING_BODY_WORDS:
+        return "holds no prose of its own", lead_words
+    return None
+
+
+def _drop_leading_front_matter(
+    raw_chapters: list[dict],
+    body_lines: list[str],
+    include_front_matter: bool = False,
+) -> list[dict]:
+    """Drop leading "chapters" that are really the edition's title page.
+
+    A source with no chapter headings leaves the detector only the book's own
+    front page to match on. PG 2131 (Herodotus, "An Account of Egypt") splits
+    there, and not once: the title page with the editor's NOTE under it, the
+    title repeated over the text, and the subtitle line below that all read as
+    headings, so the whole book lands in a chapter sitting behind two stubs.
+    Each is stripped in turn — removing one exposes the next.
+    """
+    kept = list(raw_chapters)
+    dropped: list[dict] = []
+
+    while (found := _leading_front_matter_reason(kept, body_lines)) is not None:
+        reason, lead_words = found
+        head = kept.pop(0)
+        dropped.append(dict(head, kind="front"))
+        console.print(
+            f"[cyan]Stage 02:[/cyan] {head.get('title', '')!r} ({lead_words:,} words) "
+            f"is front matter — it {reason}"
+        )
+
+    if not dropped:
+        return raw_chapters
+
+    result = dropped + kept if include_front_matter else kept
+    return [dict(ch, number=i + 1) for i, ch in enumerate(result)]
+
+
+# A synthesized part aims for the length of an ordinary chapter: long enough to
+# be worth its own track, short enough that one attribution pass can hold it.
+# P&P runs ~2,000 words a chapter, the Odyssey ~4,500.
+TARGET_PART_WORDS = 2500
+# Below this a body is a long short story, not an unbroken book; leave it whole.
+MIN_HEADLESS_SPLIT_WORDS = 3 * TARGET_PART_WORDS
+
+
+def _paragraph_spans(
+    body_lines: list[str], start: int, end: int
+) -> list[tuple[int, int]]:
+    """(first line index, word count) for each blank-line-separated paragraph."""
+    spans: list[tuple[int, int]] = []
+    i = start
+    while i < end:
+        if not body_lines[i].strip():
+            i += 1
+            continue
+        para_start, words = i, 0
+        while i < end and body_lines[i].strip():
+            words += len(body_lines[i].split())
+            i += 1
+        spans.append((para_start, words))
+    return spans
+
+
+def _split_headless_body(
+    raw_chapters: list[dict],
+    body_lines: list[str],
+    target_words: int = TARGET_PART_WORDS,
+) -> list[dict]:
+    """Split a body with no chapter structure into parts at paragraph boundaries.
+
+    Some editions carry no chapter heading anywhere. PG 2131 prints Herodotus'
+    Book II as one unbroken 36,916-word run — its 182 canonical sections are
+    unnumbered in this translation — so there is genuinely nothing to detect and
+    discovery correctly returns a single chapter. Every later stage then treats
+    the whole book as one unit: one attribution pass over 37k words, a cast
+    discovered from a single window (88 names for 2131), one enormous track.
+
+    Only a body with *no* structure is split. A long chapter inside a book that
+    has chapters is a long chapter — Moby-Dick's "Cetology" runs 3.6x the median
+    and is genuinely one — so this never touches a multi-chapter result.
+    """
+    # Exactly one body chapter, running to the end. Front matter kept by
+    # --include-front-matter sits ahead of it and is left alone.
+    body_idx = [
+        i for i, ch in enumerate(raw_chapters) if ch.get("kind", "body") == "body"
+    ]
+    if len(body_idx) != 1 or body_idx[0] != len(raw_chapters) - 1:
+        return raw_chapters
+
+    head = raw_chapters[:body_idx[0]]
+    rel_start = raw_chapters[body_idx[0]]["start_line"] - 1
+    spans = _paragraph_spans(body_lines, rel_start, len(body_lines))
+    total = sum(words for _, words in spans)
+    if total < MIN_HEADLESS_SPLIT_WORDS:
+        return raw_chapters
+
+    # Greedy fill: a part closes once it reaches the target, so every cut lands
+    # on a paragraph boundary and the parts tile the body exactly.
+    groups: list[list[int]] = []  # [first line index, words so far]
+    for line_idx, words in spans:
+        if not groups or groups[-1][1] >= target_words:
+            groups.append([line_idx, words])
+        else:
+            groups[-1][1] += words
+
+    # A runt tail is worse than one long part: fold it back.
+    if len(groups) > 1 and groups[-1][1] < target_words // 2:
+        tail = groups.pop()
+        groups[-1][1] += tail[1]
+
+    if len(groups) < 2:
+        return raw_chapters
+
+    # Keep the original opening line — the title sits above the first paragraph.
+    groups[0][0] = rel_start
+
+    console.print(
+        f"[cyan]Stage 02:[/cyan] no chapter headings in {total:,} words — "
+        f"splitting into {len(groups)} parts at paragraph boundaries"
+    )
+    parts = [
+        {
+            "number": 0,  # renumbered below, across any kept front matter
+            "title": f"Part {i + 1}",
+            "start_line": line_idx + 1,  # 1-indexed within body_lines
+            "start_marker": "",
+            "kind": "body",
+        }
+        for i, (line_idx, _words) in enumerate(groups)
+    ]
+    return [dict(ch, number=i + 1) for i, ch in enumerate(head + parts)]
 
 
 def _maybe_prepend_chapter_one(

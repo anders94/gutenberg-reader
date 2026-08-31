@@ -16,10 +16,15 @@ import pytest
 from gutenberg_reader import text_utils
 from gutenberg_reader.stages.s02_discovery import (
     _build_chapter_infos,
+    _drop_leading_front_matter,
     _maybe_prepend_chapter_one,
+    _split_headless_body,
     _validate_llm_chapters,
+    _warn_on_size_outliers,
+    TARGET_PART_WORDS,
 )
 from gutenberg_reader.config import Config
+from gutenberg_reader.models import ChapterInfo
 
 CACHE = Path(__file__).resolve().parent.parent / "cache"
 
@@ -28,6 +33,8 @@ def _discover(body_lines: list[str], include_back_matter: bool = False):
     """Run the regex discovery path the way stage 02 does."""
     raw = text_utils.detect_chapters_regex(body_lines)
     raw = _maybe_prepend_chapter_one(raw, body_lines)
+    raw = _drop_leading_front_matter(raw, body_lines)
+    raw = _split_headless_body(raw, body_lines)
     return _build_chapter_infos(raw, body_lines, 0,
                                 include_back_matter=include_back_matter)
 
@@ -410,3 +417,137 @@ def test_prose_gate_separates_narrative_from_caption_lists():
     assert not _reads_as_prose(captions)
     assert not _reads_as_prose([])
 
+
+# ── PG 2131 (Herodotus) — a source with no chapter headings ──────────────────
+
+# 2131's body carries no chapter heading anywhere, so the LLM fallback matches
+# the front page instead. Both splits below are runs it actually produced:
+# the title page (with the editor's NOTE under it), the title repeated over the
+# text, and the subtitle line beneath that.
+def _herodotus(*starts: int) -> list[dict]:
+    titles = {
+        11: "AN ACCOUNT OF EGYPT",
+        88: "AN ACCOUNT OF EGYPT",
+        95: "BEING THE SECOND BOOK OF HIS HISTORIES CALLED EUTERPE",
+    }
+    return [
+        {"number": i + 1, "title": titles[s], "start_line": s,
+         "start_marker": titles[s], "kind": "body"}
+        for i, s in enumerate(starts)
+    ]
+
+
+@pytest.mark.parametrize("starts,body_start", [
+    ((11, 88), 88),        # title page + NOTE, then the text
+    ((11, 88, 95), 95),    # ...and the subtitle split off too
+])
+def test_herodotus_front_page_dropped(starts, body_start):
+    """2131 shipped as a 647-word "chapter 1" of title page and editor's NOTE
+    plus a 36,916-word chapter 2 holding the rest. Every stub carries the book's
+    own title, so classify_heading saw body matter in each."""
+    body = _body_lines("2131")
+    raw = _drop_leading_front_matter(_herodotus(*starts), body)
+
+    assert len(raw) == 1
+    assert raw[0]["number"] == 1          # renumbered; chapter numbers key the caches
+    assert raw[0]["start_line"] == body_start
+
+    infos = _build_chapter_infos(raw, body, 0)
+    text = "\n".join(body[infos[0].start_line - 1:infos[0].end_line])
+    assert "HERODOTUS was born at Halicarnassus" not in text   # the NOTE is gone
+    assert "When Cyrus had brought his life to an end" in text  # the book is not
+
+
+def test_herodotus_front_page_kept_with_flag():
+    body = _body_lines("2131")
+    raw = _drop_leading_front_matter(
+        _herodotus(11, 88, 95), body, include_front_matter=True)
+
+    assert [ch["kind"] for ch in raw] == ["front", "front", "body"]
+    assert [ch["number"] for ch in raw] == [1, 2, 3]
+
+
+def test_herodotus_headless_body_split_into_parts():
+    """With the front page gone 2131 is one 36,916-word chapter — correct, and
+    useless: stage 05 reads it in a single pass, so there is no parallelism, the
+    cast is discovered from one window, and it assembles as one track."""
+    body = _body_lines("2131")
+    raw = _drop_leading_front_matter(_herodotus(11, 88), body)
+    parts = _split_headless_body(raw, body)
+
+    assert len(parts) == 13
+    assert [ch["number"] for ch in parts] == list(range(1, 14))
+    assert [ch["title"] for ch in parts[:2]] == ["Part 1", "Part 2"]
+    assert parts[0]["start_line"] == raw[0]["start_line"]  # nothing lost off the front
+    # Every cut lands on a paragraph, never mid-sentence.
+    assert all(body[ch["start_line"] - 1].strip() for ch in parts)
+
+    infos = _build_chapter_infos(parts, body, 0)
+    sizes = [ci.word_count for ci in infos]
+    assert min(sizes) > TARGET_PART_WORDS // 2      # no runt tail
+    assert max(sizes) < 2 * TARGET_PART_WORDS
+    # The parts tile the body: no line dropped, none read twice.
+    assert [ci.start_line for ci in infos[1:]] == [ci.end_line + 1 for ci in infos[:-1]]
+    assert sum(sizes) == 36916
+
+
+def test_headless_split_leaves_front_matter_alone():
+    body = _body_lines("2131")
+    raw = _drop_leading_front_matter(
+        _herodotus(11, 88), body, include_front_matter=True)
+    parts = _split_headless_body(raw, body)
+
+    assert parts[0]["kind"] == "front"
+    assert parts[0]["title"] == "AN ACCOUNT OF EGYPT"
+    assert [ch["title"] for ch in parts[1:3]] == ["Part 1", "Part 2"]
+    assert [ch["number"] for ch in parts] == list(range(1, len(parts) + 1))
+
+
+def test_headless_split_only_when_there_is_no_structure():
+    """A long chapter inside a book that has chapters is a long chapter —
+    Moby-Dick's "Cetology" runs several times the median and is genuinely one."""
+    body = _body_lines("2701")
+    raw = text_utils.detect_chapters_regex(body)
+    assert _split_headless_body(raw, body) == raw
+
+
+def test_short_headless_body_left_whole():
+    """A long short story is not an unbroken book; splitting it invents structure."""
+    lines = (f"{CHAPTER_WORDS}\n\n" * 4).splitlines()
+    raw = [{"number": 1, "title": "T", "start_line": 1,
+            "start_marker": "", "kind": "body"}]
+    assert _split_headless_body(raw, lines) == raw
+
+
+def test_leading_block_kept_when_it_reads_as_a_chapter():
+    """A short opening chapter is ordinary — only a repeated title or an
+    apparatus heading marks the leading block as the edition's own matter."""
+    lines = f"""CHAPTER I.
+
+{CHAPTER_WORDS}
+
+CHAPTER II.
+
+{CHAPTER_WORDS}
+{CHAPTER_WORDS}
+{CHAPTER_WORDS}
+{CHAPTER_WORDS}
+{CHAPTER_WORDS}
+""".splitlines()
+    raw = text_utils.detect_chapters_regex(lines)
+    assert _drop_leading_front_matter(raw, lines) == raw
+
+
+def test_two_chapter_split_warns(capsys):
+    """The median test cannot see a two-chapter book: each chapter sits at the
+    median. 2131 shipped silently because of it."""
+    def _info(number, words):
+        return ChapterInfo(number=number, title="T", start_line=number,
+                           end_line=number, word_count=words)
+
+    _warn_on_size_outliers([_info(1, 647), _info(2, 36916)])
+    assert "warning" in capsys.readouterr().out
+
+    # An ordinary two-chapter split stays quiet.
+    _warn_on_size_outliers([_info(1, 5000), _info(2, 7000)])
+    assert "warning" not in capsys.readouterr().out
