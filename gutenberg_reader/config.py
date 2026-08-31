@@ -23,6 +23,7 @@ class Config:
     chapters_only: list[int] | None = None
     include_front_matter: bool = False
     include_back_matter: bool = False
+    accept_structure_warnings: bool = False
 
     def __post_init__(self):
         if not self.validation_model:

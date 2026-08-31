@@ -20,7 +20,6 @@ from gutenberg_reader.stages.s02_discovery import (
     _maybe_prepend_chapter_one,
     _split_headless_body,
     _validate_llm_chapters,
-    _warn_on_size_outliers,
     TARGET_PART_WORDS,
 )
 from gutenberg_reader.config import Config
@@ -538,16 +537,18 @@ CHAPTER II.
     assert _drop_leading_front_matter(raw, lines) == raw
 
 
-def test_two_chapter_split_warns(capsys):
+def test_two_chapter_split_fails_the_structure_check():
     """The median test cannot see a two-chapter book: each chapter sits at the
-    median. 2131 shipped silently because of it."""
+    median. 2131 shipped silently because of it — and because a warning was all
+    it would have produced. This now fails the run."""
+    from gutenberg_reader import structure_checks
+
     def _info(number, words):
         return ChapterInfo(number=number, title="T", start_line=number,
                            end_line=number, word_count=words)
 
-    _warn_on_size_outliers([_info(1, 647), _info(2, 36916)])
-    assert "warning" in capsys.readouterr().out
+    codes = [f.code for f in structure_checks.check([_info(1, 647), _info(2, 36916)])]
+    assert "pair_lopsided" in codes
 
-    # An ordinary two-chapter split stays quiet.
-    _warn_on_size_outliers([_info(1, 5000), _info(2, 7000)])
-    assert "warning" not in capsys.readouterr().out
+    # An ordinary two-chapter split passes clean.
+    assert not structure_checks.check([_info(1, 5000), _info(2, 7000)])

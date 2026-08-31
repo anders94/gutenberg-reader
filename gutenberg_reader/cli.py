@@ -34,6 +34,9 @@ console = Console()
               help="Keep prefaces, introductions, and dedications as chapters (default: skip them)")
 @click.option("--include-back-matter", is_flag=True, default=False,
               help="Keep footnotes, appendices, and indexes as a final chapter (default: trim them)")
+@click.option("--accept-structure-warnings", is_flag=True, default=False,
+              help="Ship a book whose detected structure failed its checks "
+                   "(default: refuse; a bad structure costs hours of TTS downstream)")
 @click.option("--force-stage", default=None, type=int, metavar="STAGE",
               help="Re-run from this stage (1-7; discovery/segmentation/critic share one "
                    "loop, so 4 and 5 are equivalent)")
@@ -53,6 +56,7 @@ def main(
     critic: bool,
     include_front_matter: bool,
     include_back_matter: bool,
+    accept_structure_warnings: bool,
     force_stage: int | None,
     chapters: str | None,
     max_retries: int,
@@ -88,6 +92,7 @@ def main(
         no_critic=not critic,
         include_front_matter=include_front_matter,
         include_back_matter=include_back_matter,
+        accept_structure_warnings=accept_structure_warnings,
         force_stage=force_stage,
         chapters_only=chapters_only,
     )

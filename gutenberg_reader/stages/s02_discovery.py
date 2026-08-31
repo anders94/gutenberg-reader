@@ -11,6 +11,7 @@ from gutenberg_reader.models import BookMetadata, ChapterInfo, DiscoveryResult
 from gutenberg_reader.llm import LLMClient
 from gutenberg_reader import prompts, schemas
 from gutenberg_reader import text_utils
+from gutenberg_reader import candidates, structure_checks
 
 console = Console()
 
@@ -29,8 +30,8 @@ def run(config: Config, client: LLMClient) -> DiscoveryResult:
         # discovery.json written by an older detector stays on disk and silently
         # feeds every later stage a table of contents (see PG 2701). The checks
         # are pure, so running them on the cached path costs nothing.
-        _warn_on_degenerate_chapters(cached.chapters)
-        _warn_on_size_outliers(cached.chapters)
+        body_lines = _body_lines(config)
+        _enforce_structure(cached.chapters, body_lines, cached.body_start_line, config)
         return cached
 
     raw_path = config.stage_dir(1) / "book.txt"
@@ -87,8 +88,7 @@ def run(config: Config, client: LLMClient) -> DiscoveryResult:
         raw_chapters, body_lines, body_start,
         include_back_matter=config.include_back_matter,
     )
-    _warn_on_degenerate_chapters(chapter_infos)
-    _warn_on_size_outliers(chapter_infos)
+    _enforce_structure(chapter_infos, body_lines, body_start, config)
 
     result = DiscoveryResult(
         metadata=metadata,
@@ -192,74 +192,47 @@ def _find_back_matter_heading(body_lines: list[str], start: int, end: int) -> in
     return None
 
 
-def _warn_on_degenerate_chapters(infos: list[ChapterInfo], min_words: int = 20) -> None:
-    """Warn when many chapters hold nothing but their own heading.
-
-    This is what a table of contents mistaken for the body looks like, and it is
-    otherwise invisible until the final JSON comes out nearly empty.
-    """
-    if not infos:
-        return
-
-    degenerate = [ci for ci in infos if ci.word_count < min_words]
-    if len(degenerate) * 5 < len(infos):  # under 20% — nothing systematic
-        return
-
-    console.print(
-        f"[yellow]Stage 02: warning —[/yellow] {len(degenerate)} of {len(infos)} chapters "
-        f"contain fewer than {min_words} words. Chapter detection may have matched a "
-        "table of contents or an index rather than the book body."
-    )
+def _body_lines(config: Config) -> list[str]:
+    """The book body, for checks that need to see the text behind a decision."""
+    lines = read_text(config.stage_dir(1) / "book.txt").splitlines()
+    start, end = text_utils.find_body_bounds(lines)
+    return lines[start:end]
 
 
-def _warn_on_size_outliers(
-    infos: list[ChapterInfo],
-    high: float = 2.5,
-    low: float = 0.2,
-    pair_high: float = 10.0,
+def _enforce_structure(
+    chapters: list[ChapterInfo],
+    body_lines: list[str],
+    body_start: int,
+    config: Config,
 ) -> None:
-    """Warn when a chapter is wildly larger or smaller than the median.
+    """Run the structure checks and refuse to continue on a failure.
 
-    A chapter several times the median usually means swallowed front or back
-    matter, and it costs real TTS time downstream before anyone hears it.
-
-    Two chapters have no useful median — each sits at it — so they are compared
-    against each other instead. That is not a corner case but the worst one:
-    PG 2131 (Herodotus) carries no chapter headings at all, so discovery split
-    it on the only repeated line in the file, its own title, giving a 647-word
-    front-matter note and the entire 36,916-word book. The median test could
-    never see it.
+    Warnings used to print and be ignored, which is how PG 6400 shipped with
+    173,461 words in one chapter and PG 1727 shipped 87 minutes of footnotes to
+    the synthesiser. A re-run is cheap; those were not.
     """
-    import statistics
+    findings = structure_checks.check(
+        chapters, candidates.extract(body_lines), body_start
+    )
+    for f in findings:
+        colour = "red" if f.severity == "fail" else "yellow"
+        console.print(f"[{colour}]Stage 02 {f.severity}:[/{colour}] {f.message}")
 
-    if len(infos) < 2:
+    fails = [f for f in findings if f.severity == "fail"]
+    if not fails:
         return
-
-    if len(infos) == 2:
-        larger, smaller = sorted(infos, key=lambda ci: ci.word_count, reverse=True)
-        if smaller.word_count > 0 and larger.word_count / smaller.word_count < pair_high:
-            return
+    if config.accept_structure_warnings:
         console.print(
-            f"[yellow]Stage 02: warning —[/yellow] the book split into 2 chapters of "
-            f"{larger.word_count:,} and {smaller.word_count:,} words. A split this "
-            "lopsided usually means the source carries no chapter headings and "
-            "detection matched its title page instead."
+            f"[yellow]Stage 02:[/yellow] continuing past {len(fails)} structure "
+            "failure(s) — --accept-structure-warnings was given"
         )
         return
-
-    median = statistics.median(ci.word_count for ci in infos)
-    if median == 0:
-        return
-
-    for ci in infos:
-        ratio = ci.word_count / median
-        if ratio > high or ratio < low:
-            console.print(
-                f"[yellow]Stage 02: warning —[/yellow] chapter {ci.number} "
-                f"({ci.title!r}) is {ratio:.1f}× the median chapter size "
-                f"({ci.word_count:,} vs {median:,.0f} words). "
-                "Check for swallowed front or back matter."
-            )
+    console.print(
+        f"[red]Stage 02: refusing to continue —[/red] {len(fails)} structure "
+        "check(s) failed. Fix detection, or pass --accept-structure-warnings to "
+        "ship this structure anyway."
+    )
+    raise SystemExit(2)
 
 
 # A title page and the editor's note under it run to a few hundred words; a real
