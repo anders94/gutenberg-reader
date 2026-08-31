@@ -1,0 +1,177 @@
+{
+  "book_id": "1727",
+  "sha256_book": "a6c3adec321585e9563e34093491c3bc3608505d166e391bb2bf8a6be1830b69",
+  "body_lines": 11866,
+  "source": "detector (verified by tests/test_structure.py)",
+  "exact_count": 24,
+  "chapters": [
+    {
+      "line": 345,
+      "title": "BOOK I",
+      "kind": "body",
+      "words": 4126,
+      "synthetic": false
+    },
+    {
+      "line": 711,
+      "title": "BOOK II",
+      "kind": "body",
+      "words": 4210,
+      "synthetic": false
+    },
+    {
+      "line": 1087,
+      "title": "BOOK III",
+      "kind": "body",
+      "words": 4709,
+      "synthetic": false
+    },
+    {
+      "line": 1514,
+      "title": "BOOK IV",
+      "kind": "body",
+      "words": 8062,
+      "synthetic": false
+    },
+    {
+      "line": 2244,
+      "title": "BOOK V",
+      "kind": "body",
+      "words": 4675,
+      "synthetic": false
+    },
+    {
+      "line": 2651,
+      "title": "BOOK VI",
+      "kind": "body",
+      "words": 3443,
+      "synthetic": false
+    },
+    {
+      "line": 2951,
+      "title": "BOOK VII",
+      "kind": "body",
+      "words": 3358,
+      "synthetic": false
+    },
+    {
+      "line": 3256,
+      "title": "BOOK VIII",
+      "kind": "body",
+      "words": 5599,
+      "synthetic": false
+    },
+    {
+      "line": 3764,
+      "title": "BOOK IX",
+      "kind": "body",
+      "words": 5813,
+      "synthetic": false
+    },
+    {
+      "line": 4261,
+      "title": "BOOK X",
+      "kind": "body",
+      "words": 5690,
+      "synthetic": false
+    },
+    {
+      "line": 4759,
+      "title": "BOOK XI",
+      "kind": "body",
+      "words": 6023,
+      "synthetic": false
+    },
+    {
+      "line": 5289,
+      "title": "BOOK XII",
+      "kind": "body",
+      "words": 4601,
+      "synthetic": false
+    },
+    {
+      "line": 5690,
+      "title": "BOOK XIII",
+      "kind": "body",
+      "words": 4201,
+      "synthetic": false
+    },
+    {
+      "line": 6069,
+      "title": "BOOK XIV",
+      "kind": "body",
+      "words": 5384,
+      "synthetic": false
+    },
+    {
+      "line": 6522,
+      "title": "BOOK XV",
+      "kind": "body",
+      "words": 5414,
+      "synthetic": false
+    },
+    {
+      "line": 7002,
+      "title": "BOOK XVI",
+      "kind": "body",
+      "words": 4548,
+      "synthetic": false
+    },
+    {
+      "line": 7413,
+      "title": "BOOK XVII",
+      "kind": "body",
+      "words": 5857,
+      "synthetic": false
+    },
+    {
+      "line": 7952,
+      "title": "BOOK XVIII",
+      "kind": "body",
+      "words": 4160,
+      "synthetic": false
+    },
+    {
+      "line": 8336,
+      "title": "BOOK XIX",
+      "kind": "body",
+      "words": 6014,
+      "synthetic": false
+    },
+    {
+      "line": 8849,
+      "title": "BOOK XX",
+      "kind": "body",
+      "words": 3836,
+      "synthetic": false
+    },
+    {
+      "line": 9205,
+      "title": "BOOK XXI",
+      "kind": "body",
+      "words": 4254,
+      "synthetic": false
+    },
+    {
+      "line": 9588,
+      "title": "BOOK XXII",
+      "kind": "body",
+      "words": 4558,
+      "synthetic": false
+    },
+    {
+      "line": 10017,
+      "title": "BOOK XXIII",
+      "kind": "body",
+      "words": 3697,
+      "synthetic": false
+    },
+    {
+      "line": 10344,
+      "title": "BOOK XXIV",
+      "kind": "body",
+      "words": 5200,
+      "synthetic": false
+    }
+  ]
+}

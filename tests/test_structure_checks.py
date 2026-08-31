@@ -14,8 +14,9 @@ from pathlib import Path
 
 import pytest
 
-from gutenberg_reader import candidates, structure_checks, text_utils
+from gutenberg_reader import candidates, structure_checks
 from gutenberg_reader.models import ChapterInfo
+from tests.fixtures import body_lines as _fixture_body
 
 CACHE = Path(__file__).resolve().parent.parent / "cache"
 
@@ -25,12 +26,7 @@ CORRECT_BOOKS = ["1184", "1260", "1342", "1661", "1727", "2131", "2641", "2701",
 
 
 def _body(book_id: str) -> list[str]:
-    p = CACHE / book_id / "01-raw" / "book.txt"
-    if not p.exists():
-        pytest.skip(f"cache/{book_id} fixture not present")
-    lines = p.read_text(encoding="utf-8").splitlines()
-    start, end = text_utils.find_body_bounds(lines)
-    return lines[start:end]
+    return _fixture_body(book_id)
 
 
 def _discovered(book_id: str) -> tuple[list[ChapterInfo], int]:

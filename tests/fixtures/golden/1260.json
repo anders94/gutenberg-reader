@@ -1,0 +1,275 @@
+{
+  "book_id": "1260",
+  "sha256_book": "2988664342a69c6d5352501e1630b54d5bea8f47b50181cc84cedffaa279512d",
+  "body_lines": 21005,
+  "source": "detector (verified by tests/test_structure.py)",
+  "exact_count": 38,
+  "chapters": [
+    {
+      "line": 144,
+      "title": "CHAPTER I",
+      "kind": "body",
+      "words": 1929,
+      "synthetic": false
+    },
+    {
+      "line": 373,
+      "title": "CHAPTER II",
+      "kind": "body",
+      "words": 2736,
+      "synthetic": false
+    },
+    {
+      "line": 662,
+      "title": "CHAPTER III",
+      "kind": "body",
+      "words": 3191,
+      "synthetic": false
+    },
+    {
+      "line": 1060,
+      "title": "CHAPTER IV",
+      "kind": "body",
+      "words": 5800,
+      "synthetic": false
+    },
+    {
+      "line": 1709,
+      "title": "CHAPTER V",
+      "kind": "body",
+      "words": 4988,
+      "synthetic": false
+    },
+    {
+      "line": 2285,
+      "title": "CHAPTER VI",
+      "kind": "body",
+      "words": 2904,
+      "synthetic": false
+    },
+    {
+      "line": 2620,
+      "title": "CHAPTER VII",
+      "kind": "body",
+      "words": 3576,
+      "synthetic": false
+    },
+    {
+      "line": 2995,
+      "title": "CHAPTER VIII",
+      "kind": "body",
+      "words": 2990,
+      "synthetic": false
+    },
+    {
+      "line": 3326,
+      "title": "CHAPTER IX",
+      "kind": "body",
+      "words": 3242,
+      "synthetic": false
+    },
+    {
+      "line": 3679,
+      "title": "CHAPTER X",
+      "kind": "body",
+      "words": 4354,
+      "synthetic": false
+    },
+    {
+      "line": 4154,
+      "title": "CHAPTER XI",
+      "kind": "body",
+      "words": 6456,
+      "synthetic": false
+    },
+    {
+      "line": 4849,
+      "title": "CHAPTER XII",
+      "kind": "body",
+      "words": 4173,
+      "synthetic": false
+    },
+    {
+      "line": 5294,
+      "title": "CHAPTER XIII",
+      "kind": "body",
+      "words": 4023,
+      "synthetic": false
+    },
+    {
+      "line": 5826,
+      "title": "CHAPTER XIV",
+      "kind": "body",
+      "words": 4893,
+      "synthetic": false
+    },
+    {
+      "line": 6381,
+      "title": "CHAPTER XV",
+      "kind": "body",
+      "words": 4996,
+      "synthetic": false
+    },
+    {
+      "line": 6898,
+      "title": "CHAPTER XVI",
+      "kind": "body",
+      "words": 3734,
+      "synthetic": false
+    },
+    {
+      "line": 7320,
+      "title": "CHAPTER XVII",
+      "kind": "body",
+      "words": 8049,
+      "synthetic": false
+    },
+    {
+      "line": 8200,
+      "title": "CHAPTER XVIII",
+      "kind": "body",
+      "words": 5845,
+      "synthetic": false
+    },
+    {
+      "line": 8839,
+      "title": "CHAPTER XIX",
+      "kind": "body",
+      "words": 3765,
+      "synthetic": false
+    },
+    {
+      "line": 9359,
+      "title": "CHAPTER XX",
+      "kind": "body",
+      "words": 5759,
+      "synthetic": false
+    },
+    {
+      "line": 10082,
+      "title": "CHAPTER XXI",
+      "kind": "body",
+      "words": 8737,
+      "synthetic": false
+    },
+    {
+      "line": 11062,
+      "title": "CHAPTER XXII",
+      "kind": "body",
+      "words": 2890,
+      "synthetic": false
+    },
+    {
+      "line": 11345,
+      "title": "CHAPTER XXIII",
+      "kind": "body",
+      "words": 3893,
+      "synthetic": false
+    },
+    {
+      "line": 11830,
+      "title": "CHAPTER XXIV",
+      "kind": "body",
+      "words": 7113,
+      "synthetic": false
+    },
+    {
+      "line": 12684,
+      "title": "CHAPTER XXV",
+      "kind": "body",
+      "words": 4994,
+      "synthetic": false
+    },
+    {
+      "line": 13239,
+      "title": "CHAPTER XXVI",
+      "kind": "body",
+      "words": 4229,
+      "synthetic": false
+    },
+    {
+      "line": 13720,
+      "title": "CHAPTER XXVII",
+      "kind": "body",
+      "words": 11067,
+      "synthetic": false
+    },
+    {
+      "line": 14827,
+      "title": "CHAPTER XXVIII",
+      "kind": "body",
+      "words": 6853,
+      "synthetic": false
+    },
+    {
+      "line": 15586,
+      "title": "CHAPTER XXIX",
+      "kind": "body",
+      "words": 4531,
+      "synthetic": false
+    },
+    {
+      "line": 16133,
+      "title": "CHAPTER XXX",
+      "kind": "body",
+      "words": 3695,
+      "synthetic": false
+    },
+    {
+      "line": 16549,
+      "title": "CHAPTER XXXI",
+      "kind": "body",
+      "words": 3092,
+      "synthetic": false
+    },
+    {
+      "line": 16878,
+      "title": "CHAPTER XXXII",
+      "kind": "body",
+      "words": 4555,
+      "synthetic": false
+    },
+    {
+      "line": 17358,
+      "title": "CHAPTER XXXIII",
+      "kind": "body",
+      "words": 4765,
+      "synthetic": false
+    },
+    {
+      "line": 17962,
+      "title": "CHAPTER XXXIV",
+      "kind": "body",
+      "words": 9219,
+      "synthetic": false
+    },
+    {
+      "line": 18933,
+      "title": "CHAPTER XXXV",
+      "kind": "body",
+      "words": 4309,
+      "synthetic": false
+    },
+    {
+      "line": 19414,
+      "title": "CHAPTER XXXVI",
+      "kind": "body",
+      "words": 3888,
+      "synthetic": false
+    },
+    {
+      "line": 19844,
+      "title": "CHAPTER XXXVII",
+      "kind": "body",
+      "words": 7406,
+      "synthetic": false
+    },
+    {
+      "line": 20823,
+      "title": "CHAPTER XXXVIII—CONCLUSION",
+      "kind": "body",
+      "words": 1813,
+      "synthetic": false
+    }
+  ]
+}

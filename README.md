@@ -323,6 +323,32 @@ segment text is never touched by any model. Disable with `--no-critic`.
 
 ---
 
+## Tests and fixtures
+
+```bash
+pytest                                  # fixtures that are missing are skipped
+GUTENBERG_FIXTURES=required pytest      # missing fixtures fail instead (use in CI)
+python scripts/fetch_fixtures.py        # restore the books the tests are built on
+python scripts/build_fixtures.py        # regenerate goldens + candidate lists
+```
+
+The regression suite is built on real books, but `cache/` is gitignored, so the
+books themselves are not in the repo — only what is *derived* from them:
+
+- `tests/fixtures/golden/<id>.json` — where the chapters are, per book.
+- `tests/fixtures/candidates/<id>.txt` — the condensed view a structure pass is
+  shown. Committed so a change to candidate extraction shows up as a reviewable
+  diff rather than a silent shift in what the model sees.
+- `tests/fixtures/manifest.json` — a SHA-256 per book. A re-download that differs
+  is reported instead of being used, since a re-issued text moves every boundary
+  in its golden.
+
+Fetch the books with `scripts/fetch_fixtures.py` before relying on a green run.
+Without them the fixture-backed tests skip by default, which is quiet enough to
+miss — `GUTENBERG_FIXTURES=required` turns that into a failure.
+
+---
+
 ## Limitations
 
 - Requires a locally running OpenAI-compatible LLM server

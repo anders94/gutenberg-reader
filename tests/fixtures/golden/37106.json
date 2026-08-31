@@ -1,0 +1,338 @@
+{
+  "book_id": "37106",
+  "sha256_book": "d5cb85d3c01420dc7985122ca1eeb5bdd169bde57c6e005303ca454794d0b636",
+  "body_lines": 22472,
+  "source": "detector (verified by tests/test_structure.py)",
+  "exact_count": 47,
+  "chapters": [
+    {
+      "line": 623,
+      "title": "I. PLAYING PILGRIMS.",
+      "kind": "body",
+      "words": 4145,
+      "synthetic": false
+    },
+    {
+      "line": 1106,
+      "title": "II. A MERRY CHRISTMAS.",
+      "kind": "body",
+      "words": 4037,
+      "synthetic": false
+    },
+    {
+      "line": 1565,
+      "title": "III. THE LAURENCE BOY.",
+      "kind": "body",
+      "words": 3888,
+      "synthetic": false
+    },
+    {
+      "line": 2067,
+      "title": "IV. BURDENS.",
+      "kind": "body",
+      "words": 4761,
+      "synthetic": false
+    },
+    {
+      "line": 2546,
+      "title": "V. BEING NEIGHBORLY.",
+      "kind": "body",
+      "words": 4426,
+      "synthetic": false
+    },
+    {
+      "line": 3093,
+      "title": "VI. BETH FINDS THE PALACE BEAUTIFUL.",
+      "kind": "body",
+      "words": 2695,
+      "synthetic": false
+    },
+    {
+      "line": 3385,
+      "title": "VII. AMY'S VALLEY OF HUMILIATION.",
+      "kind": "body",
+      "words": 2616,
+      "synthetic": false
+    },
+    {
+      "line": 3697,
+      "title": "VIII. JO MEETS APOLLYON.",
+      "kind": "body",
+      "words": 4260,
+      "synthetic": false
+    },
+    {
+      "line": 4172,
+      "title": "IX. MEG GOES TO VANITY FAIR.",
+      "kind": "body",
+      "words": 6300,
+      "synthetic": false
+    },
+    {
+      "line": 4898,
+      "title": "X. THE P. C. AND P. O.",
+      "kind": "body",
+      "words": 3370,
+      "synthetic": false
+    },
+    {
+      "line": 5378,
+      "title": "XI. EXPERIMENTS.",
+      "kind": "body",
+      "words": 4226,
+      "synthetic": false
+    },
+    {
+      "line": 5848,
+      "title": "XII. CAMP LAURENCE.",
+      "kind": "body",
+      "words": 7325,
+      "synthetic": false
+    },
+    {
+      "line": 6748,
+      "title": "XIII. CASTLES IN THE AIR.",
+      "kind": "body",
+      "words": 3539,
+      "synthetic": false
+    },
+    {
+      "line": 7167,
+      "title": "XIV. SECRETS.",
+      "kind": "body",
+      "words": 3325,
+      "synthetic": false
+    },
+    {
+      "line": 7627,
+      "title": "XV. A TELEGRAM.",
+      "kind": "body",
+      "words": 3312,
+      "synthetic": false
+    },
+    {
+      "line": 8015,
+      "title": "XVI. LETTERS.",
+      "kind": "body",
+      "words": 2883,
+      "synthetic": false
+    },
+    {
+      "line": 8360,
+      "title": "XVII. LITTLE FAITHFUL.",
+      "kind": "body",
+      "words": 2638,
+      "synthetic": false
+    },
+    {
+      "line": 8699,
+      "title": "XVIII. DARK DAYS.",
+      "kind": "body",
+      "words": 3265,
+      "synthetic": false
+    },
+    {
+      "line": 9041,
+      "title": "XIX. AMY'S WILL.",
+      "kind": "body",
+      "words": 3250,
+      "synthetic": false
+    },
+    {
+      "line": 9392,
+      "title": "XX. CONFIDENTIAL.",
+      "kind": "body",
+      "words": 2748,
+      "synthetic": false
+    },
+    {
+      "line": 9679,
+      "title": "XXI. LAURIE MAKES MISCHIEF, AND JO MAKES PEACE.",
+      "kind": "body",
+      "words": 4434,
+      "synthetic": false
+    },
+    {
+      "line": 10207,
+      "title": "XXII. PLEASANT MEADOWS.",
+      "kind": "body",
+      "words": 2487,
+      "synthetic": false
+    },
+    {
+      "line": 10491,
+      "title": "XXIII. AUNT MARCH SETTLES THE QUESTION.",
+      "kind": "body",
+      "words": 4321,
+      "synthetic": false
+    },
+    {
+      "line": 10996,
+      "title": "XXIV. GOSSIP.",
+      "kind": "body",
+      "words": 4384,
+      "synthetic": false
+    },
+    {
+      "line": 11479,
+      "title": "XXV. THE FIRST WEDDING.",
+      "kind": "body",
+      "words": 2484,
+      "synthetic": false
+    },
+    {
+      "line": 11745,
+      "title": "XXVI. ARTISTIC ATTEMPTS.",
+      "kind": "body",
+      "words": 3914,
+      "synthetic": false
+    },
+    {
+      "line": 12176,
+      "title": "XXVII. LITERARY LESSONS.",
+      "kind": "body",
+      "words": 3014,
+      "synthetic": false
+    },
+    {
+      "line": 12483,
+      "title": "XXVIII. DOMESTIC EXPERIENCES.",
+      "kind": "body",
+      "words": 5739,
+      "synthetic": false
+    },
+    {
+      "line": 13075,
+      "title": "XXIX. CALLS.",
+      "kind": "body",
+      "words": 4862,
+      "synthetic": false
+    },
+    {
+      "line": 13617,
+      "title": "XXX. CONSEQUENCES.",
+      "kind": "body",
+      "words": 4422,
+      "synthetic": false
+    },
+    {
+      "line": 14109,
+      "title": "XXXI. OUR FOREIGN CORRESPONDENT.",
+      "kind": "body",
+      "words": 3903,
+      "synthetic": false
+    },
+    {
+      "line": 14523,
+      "title": "XXXII. TENDER TROUBLES.",
+      "kind": "body",
+      "words": 4386,
+      "synthetic": false
+    },
+    {
+      "line": 15049,
+      "title": "XXXIII. JO'S JOURNAL.",
+      "kind": "body",
+      "words": 5013,
+      "synthetic": false
+    },
+    {
+      "line": 15610,
+      "title": "XXXIV. A FRIEND.",
+      "kind": "body",
+      "words": 5907,
+      "synthetic": false
+    },
+    {
+      "line": 16227,
+      "title": "XXXV. HEARTACHE.",
+      "kind": "body",
+      "words": 4035,
+      "synthetic": false
+    },
+    {
+      "line": 16708,
+      "title": "XXXVI. BETH'S SECRET.",
+      "kind": "body",
+      "words": 2223,
+      "synthetic": false
+    },
+    {
+      "line": 16934,
+      "title": "XXXVII. NEW IMPRESSIONS.",
+      "kind": "body",
+      "words": 4194,
+      "synthetic": false
+    },
+    {
+      "line": 17406,
+      "title": "XXXVIII. ON THE SHELF.",
+      "kind": "body",
+      "words": 4803,
+      "synthetic": false
+    },
+    {
+      "line": 17937,
+      "title": "XXXIX. LAZY LAURENCE.",
+      "kind": "body",
+      "words": 5068,
+      "synthetic": false
+    },
+    {
+      "line": 18567,
+      "title": "XL. THE VALLEY OF THE SHADOW.",
+      "kind": "body",
+      "words": 2071,
+      "synthetic": false
+    },
+    {
+      "line": 18803,
+      "title": "XLI. LEARNING TO FORGET.",
+      "kind": "body",
+      "words": 4900,
+      "synthetic": false
+    },
+    {
+      "line": 19273,
+      "title": "XLII. ALL ALONE.",
+      "kind": "body",
+      "words": 3147,
+      "synthetic": false
+    },
+    {
+      "line": 19591,
+      "title": "XLIII. SURPRISES.",
+      "kind": "body",
+      "words": 6191,
+      "synthetic": false
+    },
+    {
+      "line": 20275,
+      "title": "XLIV. MY LORD AND LADY.",
+      "kind": "body",
+      "words": 1922,
+      "synthetic": false
+    },
+    {
+      "line": 20500,
+      "title": "XLV. DAISY AND DEMI.",
+      "kind": "body",
+      "words": 2199,
+      "synthetic": false
+    },
+    {
+      "line": 20773,
+      "title": "XLVI. UNDER THE UMBRELLA.",
+      "kind": "body",
+      "words": 5054,
+      "synthetic": false
+    },
+    {
+      "line": 21400,
+      "title": "XLVII. HARVEST TIME.",
+      "kind": "body",
+      "words": 5439,
+      "synthetic": false
+    }
+  ]
+}

@@ -1,0 +1,961 @@
+{
+  "book_id": "2701",
+  "sha256_book": "3b2284d14993ee4fba06eb6bdb4d97f89e14ef09261bb9c2e81a3c2a6205f856",
+  "body_lines": 21936,
+  "source": "detector (verified by tests/test_structure.py)",
+  "exact_count": 136,
+  "chapters": [
+    {
+      "line": 816,
+      "title": "CHAPTER 1. Loomings.",
+      "kind": "body",
+      "words": 2193,
+      "synthetic": false
+    },
+    {
+      "line": 1017,
+      "title": "CHAPTER 2. The Carpet-Bag.",
+      "kind": "body",
+      "words": 1420,
+      "synthetic": false
+    },
+    {
+      "line": 1151,
+      "title": "CHAPTER 3. The Spouter-Inn.",
+      "kind": "body",
+      "words": 5787,
+      "synthetic": false
+    },
+    {
+      "line": 1721,
+      "title": "CHAPTER 4. The Counterpane.",
+      "kind": "body",
+      "words": 1644,
+      "synthetic": false
+    },
+    {
+      "line": 1865,
+      "title": "CHAPTER 5. Breakfast.",
+      "kind": "body",
+      "words": 737,
+      "synthetic": false
+    },
+    {
+      "line": 1943,
+      "title": "CHAPTER 6. The Street.",
+      "kind": "body",
+      "words": 811,
+      "synthetic": false
+    },
+    {
+      "line": 2028,
+      "title": "CHAPTER 7. The Chapel.",
+      "kind": "body",
+      "words": 944,
+      "synthetic": false
+    },
+    {
+      "line": 2122,
+      "title": "CHAPTER 8. The Pulpit.",
+      "kind": "body",
+      "words": 947,
+      "synthetic": false
+    },
+    {
+      "line": 2214,
+      "title": "CHAPTER 9. The Sermon.",
+      "kind": "body",
+      "words": 3556,
+      "synthetic": false
+    },
+    {
+      "line": 2545,
+      "title": "CHAPTER 10. A Bosom Friend.",
+      "kind": "body",
+      "words": 1549,
+      "synthetic": false
+    },
+    {
+      "line": 2687,
+      "title": "CHAPTER 11. Nightgown.",
+      "kind": "body",
+      "words": 724,
+      "synthetic": false
+    },
+    {
+      "line": 2751,
+      "title": "CHAPTER 12. Biographical.",
+      "kind": "body",
+      "words": 878,
+      "synthetic": false
+    },
+    {
+      "line": 2837,
+      "title": "CHAPTER 13. Wheelbarrow.",
+      "kind": "body",
+      "words": 1676,
+      "synthetic": false
+    },
+    {
+      "line": 3001,
+      "title": "CHAPTER 14. Nantucket.",
+      "kind": "body",
+      "words": 755,
+      "synthetic": false
+    },
+    {
+      "line": 3073,
+      "title": "CHAPTER 15. Chowder.",
+      "kind": "body",
+      "words": 1181,
+      "synthetic": false
+    },
+    {
+      "line": 3194,
+      "title": "CHAPTER 16. The Ship.",
+      "kind": "body",
+      "words": 5422,
+      "synthetic": false
+    },
+    {
+      "line": 3755,
+      "title": "CHAPTER 17. The Ramadan.",
+      "kind": "body",
+      "words": 2255,
+      "synthetic": false
+    },
+    {
+      "line": 3983,
+      "title": "CHAPTER 18. His Mark.",
+      "kind": "body",
+      "words": 1348,
+      "synthetic": false
+    },
+    {
+      "line": 4135,
+      "title": "CHAPTER 19. The Prophet.",
+      "kind": "body",
+      "words": 1199,
+      "synthetic": false
+    },
+    {
+      "line": 4284,
+      "title": "CHAPTER 20. All Astir.",
+      "kind": "body",
+      "words": 921,
+      "synthetic": false
+    },
+    {
+      "line": 4373,
+      "title": "CHAPTER 21. Going Aboard.",
+      "kind": "body",
+      "words": 1068,
+      "synthetic": false
+    },
+    {
+      "line": 4521,
+      "title": "CHAPTER 22. Merry Christmas.",
+      "kind": "body",
+      "words": 1614,
+      "synthetic": false
+    },
+    {
+      "line": 4690,
+      "title": "CHAPTER 23. The Lee Shore.",
+      "kind": "body",
+      "words": 364,
+      "synthetic": false
+    },
+    {
+      "line": 4730,
+      "title": "CHAPTER 24. The Advocate.",
+      "kind": "body",
+      "words": 1649,
+      "synthetic": false
+    },
+    {
+      "line": 4906,
+      "title": "CHAPTER 25. Postscript.",
+      "kind": "body",
+      "words": 280,
+      "synthetic": false
+    },
+    {
+      "line": 4939,
+      "title": "CHAPTER 26. Knights and Squires.",
+      "kind": "body",
+      "words": 1221,
+      "synthetic": false
+    },
+    {
+      "line": 5052,
+      "title": "CHAPTER 27. Knights and Squires.",
+      "kind": "body",
+      "words": 1665,
+      "synthetic": false
+    },
+    {
+      "line": 5206,
+      "title": "CHAPTER 28. Ahab.",
+      "kind": "body",
+      "words": 1396,
+      "synthetic": false
+    },
+    {
+      "line": 5335,
+      "title": "CHAPTER 29. Enter Ahab; to Him, Stubb.",
+      "kind": "body",
+      "words": 1187,
+      "synthetic": false
+    },
+    {
+      "line": 5448,
+      "title": "CHAPTER 30. The Pipe.",
+      "kind": "body",
+      "words": 291,
+      "synthetic": false
+    },
+    {
+      "line": 5479,
+      "title": "CHAPTER 31. Queen Mab.",
+      "kind": "body",
+      "words": 846,
+      "synthetic": false
+    },
+    {
+      "line": 5554,
+      "title": "CHAPTER 32. Cetology.",
+      "kind": "body",
+      "words": 5110,
+      "synthetic": false
+    },
+    {
+      "line": 6055,
+      "title": "CHAPTER 33. The Specksnyder.",
+      "kind": "body",
+      "words": 966,
+      "synthetic": false
+    },
+    {
+      "line": 6153,
+      "title": "CHAPTER 34. The Cabin-Table.",
+      "kind": "body",
+      "words": 2193,
+      "synthetic": false
+    },
+    {
+      "line": 6355,
+      "title": "CHAPTER 35. The Mast-Head.",
+      "kind": "body",
+      "words": 2535,
+      "synthetic": false
+    },
+    {
+      "line": 6594,
+      "title": "CHAPTER 36. The Quarter-Deck.",
+      "kind": "body",
+      "words": 2773,
+      "synthetic": false
+    },
+    {
+      "line": 6899,
+      "title": "CHAPTER 37. Sunset.",
+      "kind": "body",
+      "words": 501,
+      "synthetic": false
+    },
+    {
+      "line": 6948,
+      "title": "CHAPTER 38. Dusk.",
+      "kind": "body",
+      "words": 391,
+      "synthetic": false
+    },
+    {
+      "line": 6987,
+      "title": "CHAPTER 39. First Night-Watch.",
+      "kind": "body",
+      "words": 258,
+      "synthetic": false
+    },
+    {
+      "line": 7021,
+      "title": "CHAPTER 40. Midnight, Forecastle.",
+      "kind": "body",
+      "words": 1513,
+      "synthetic": false
+    },
+    {
+      "line": 7231,
+      "title": "CHAPTER 41. Moby Dick.",
+      "kind": "body",
+      "words": 3761,
+      "synthetic": false
+    },
+    {
+      "line": 7589,
+      "title": "CHAPTER 42. The Whiteness of the Whale.",
+      "kind": "body",
+      "words": 3608,
+      "synthetic": false
+    },
+    {
+      "line": 7944,
+      "title": "CHAPTER 43. Hark!",
+      "kind": "body",
+      "words": 298,
+      "synthetic": false
+    },
+    {
+      "line": 7992,
+      "title": "CHAPTER 44. The Chart.",
+      "kind": "body",
+      "words": 2026,
+      "synthetic": false
+    },
+    {
+      "line": 8189,
+      "title": "CHAPTER 45. The Affidavit.",
+      "kind": "body",
+      "words": 3540,
+      "synthetic": false
+    },
+    {
+      "line": 8518,
+      "title": "CHAPTER 46. Surmises.",
+      "kind": "body",
+      "words": 992,
+      "synthetic": false
+    },
+    {
+      "line": 8616,
+      "title": "CHAPTER 47. The Mat-Maker.",
+      "kind": "body",
+      "words": 918,
+      "synthetic": false
+    },
+    {
+      "line": 8717,
+      "title": "CHAPTER 48. The First Lowering.",
+      "kind": "body",
+      "words": 3912,
+      "synthetic": false
+    },
+    {
+      "line": 9119,
+      "title": "CHAPTER 49. The Hyena.",
+      "kind": "body",
+      "words": 834,
+      "synthetic": false
+    },
+    {
+      "line": 9203,
+      "title": "CHAPTER 50. Ahab’s Boat and Crew. Fedallah.",
+      "kind": "body",
+      "words": 1007,
+      "synthetic": false
+    },
+    {
+      "line": 9300,
+      "title": "CHAPTER 51. The Spirit-Spout.",
+      "kind": "body",
+      "words": 1504,
+      "synthetic": false
+    },
+    {
+      "line": 9448,
+      "title": "CHAPTER 52. The Albatross.",
+      "kind": "body",
+      "words": 715,
+      "synthetic": false
+    },
+    {
+      "line": 9520,
+      "title": "CHAPTER 53. The Gam.",
+      "kind": "body",
+      "words": 1605,
+      "synthetic": false
+    },
+    {
+      "line": 9671,
+      "title": "CHAPTER 54. The Town-Ho’s Story.",
+      "kind": "body",
+      "words": 7918,
+      "synthetic": false
+    },
+    {
+      "line": 10486,
+      "title": "CHAPTER 55. Of the Monstrous Pictures of Whales.",
+      "kind": "body",
+      "words": 1884,
+      "synthetic": false
+    },
+    {
+      "line": 10669,
+      "title": "CHAPTER 56. Of the Less Erroneous Pictures of Whales, and the True",
+      "kind": "body",
+      "words": 1306,
+      "synthetic": false
+    },
+    {
+      "line": 10794,
+      "title": "CHAPTER 57. Of Whales in Paint; in Teeth; in Wood; in Sheet-Iron; in",
+      "kind": "body",
+      "words": 944,
+      "synthetic": false
+    },
+    {
+      "line": 10895,
+      "title": "CHAPTER 58. Brit.",
+      "kind": "body",
+      "words": 1009,
+      "synthetic": false
+    },
+    {
+      "line": 10996,
+      "title": "CHAPTER 59. Squid.",
+      "kind": "body",
+      "words": 920,
+      "synthetic": false
+    },
+    {
+      "line": 11094,
+      "title": "CHAPTER 60. The Line.",
+      "kind": "body",
+      "words": 1456,
+      "synthetic": false
+    },
+    {
+      "line": 11229,
+      "title": "CHAPTER 61. Stubb Kills a Whale.",
+      "kind": "body",
+      "words": 1950,
+      "synthetic": false
+    },
+    {
+      "line": 11425,
+      "title": "CHAPTER 62. The Dart.",
+      "kind": "body",
+      "words": 568,
+      "synthetic": false
+    },
+    {
+      "line": 11481,
+      "title": "CHAPTER 63. The Crotch.",
+      "kind": "body",
+      "words": 476,
+      "synthetic": false
+    },
+    {
+      "line": 11532,
+      "title": "CHAPTER 64. Stubb’s Supper.",
+      "kind": "body",
+      "words": 2967,
+      "synthetic": false
+    },
+    {
+      "line": 11857,
+      "title": "CHAPTER 65. The Whale as a Dish.",
+      "kind": "body",
+      "words": 987,
+      "synthetic": false
+    },
+    {
+      "line": 11950,
+      "title": "CHAPTER 66. The Shark Massacre.",
+      "kind": "body",
+      "words": 630,
+      "synthetic": false
+    },
+    {
+      "line": 12011,
+      "title": "CHAPTER 67. Cutting In.",
+      "kind": "body",
+      "words": 731,
+      "synthetic": false
+    },
+    {
+      "line": 12078,
+      "title": "CHAPTER 68. The Blanket.",
+      "kind": "body",
+      "words": 1195,
+      "synthetic": false
+    },
+    {
+      "line": 12191,
+      "title": "CHAPTER 69. The Funeral.",
+      "kind": "body",
+      "words": 433,
+      "synthetic": false
+    },
+    {
+      "line": 12240,
+      "title": "CHAPTER 70. The Sphynx.",
+      "kind": "body",
+      "words": 867,
+      "synthetic": false
+    },
+    {
+      "line": 12332,
+      "title": "CHAPTER 71. The Jeroboam’s Story.",
+      "kind": "body",
+      "words": 2236,
+      "synthetic": false
+    },
+    {
+      "line": 12571,
+      "title": "CHAPTER 72. The Monkey-Rope.",
+      "kind": "body",
+      "words": 1621,
+      "synthetic": false
+    },
+    {
+      "line": 12737,
+      "title": "CHAPTER 73. Stubb and Flask kill a Right Whale; and Then Have a Talk",
+      "kind": "body",
+      "words": 2159,
+      "synthetic": false
+    },
+    {
+      "line": 12968,
+      "title": "CHAPTER 74. The Sperm Whale’s Head—Contrasted View.",
+      "kind": "body",
+      "words": 1626,
+      "synthetic": false
+    },
+    {
+      "line": 13121,
+      "title": "CHAPTER 75. The Right Whale’s Head—Contrasted View.",
+      "kind": "body",
+      "words": 1223,
+      "synthetic": false
+    },
+    {
+      "line": 13239,
+      "title": "CHAPTER 76. The Battering-Ram.",
+      "kind": "body",
+      "words": 867,
+      "synthetic": false
+    },
+    {
+      "line": 13321,
+      "title": "CHAPTER 77. The Great Heidelburgh Tun.",
+      "kind": "body",
+      "words": 636,
+      "synthetic": false
+    },
+    {
+      "line": 13392,
+      "title": "CHAPTER 78. Cistern and Buckets.",
+      "kind": "body",
+      "words": 1633,
+      "synthetic": false
+    },
+    {
+      "line": 13552,
+      "title": "CHAPTER 79. The Prairie.",
+      "kind": "body",
+      "words": 931,
+      "synthetic": false
+    },
+    {
+      "line": 13643,
+      "title": "CHAPTER 80. The Nut.",
+      "kind": "body",
+      "words": 896,
+      "synthetic": false
+    },
+    {
+      "line": 13731,
+      "title": "CHAPTER 81. The Pequod Meets The Virgin.",
+      "kind": "body",
+      "words": 4281,
+      "synthetic": false
+    },
+    {
+      "line": 14155,
+      "title": "CHAPTER 82. The Honor and Glory of Whaling.",
+      "kind": "body",
+      "words": 1150,
+      "synthetic": false
+    },
+    {
+      "line": 14265,
+      "title": "CHAPTER 83. Jonah Historically Regarded.",
+      "kind": "body",
+      "words": 771,
+      "synthetic": false
+    },
+    {
+      "line": 14340,
+      "title": "CHAPTER 84. Pitchpoling.",
+      "kind": "body",
+      "words": 805,
+      "synthetic": false
+    },
+    {
+      "line": 14423,
+      "title": "CHAPTER 85. The Fountain.",
+      "kind": "body",
+      "words": 2056,
+      "synthetic": false
+    },
+    {
+      "line": 14610,
+      "title": "CHAPTER 86. The Tail.",
+      "kind": "body",
+      "words": 1843,
+      "synthetic": false
+    },
+    {
+      "line": 14786,
+      "title": "CHAPTER 87. The Grand Armada.",
+      "kind": "body",
+      "words": 4725,
+      "synthetic": false
+    },
+    {
+      "line": 15239,
+      "title": "CHAPTER 88. Schools and Schoolmasters.",
+      "kind": "body",
+      "words": 1185,
+      "synthetic": false
+    },
+    {
+      "line": 15360,
+      "title": "CHAPTER 89. Fast-Fish and Loose-Fish.",
+      "kind": "body",
+      "words": 1395,
+      "synthetic": false
+    },
+    {
+      "line": 15504,
+      "title": "CHAPTER 90. Heads or Tails.",
+      "kind": "body",
+      "words": 1046,
+      "synthetic": false
+    },
+    {
+      "line": 15626,
+      "title": "CHAPTER 91. The Pequod Meets The Rose-Bud.",
+      "kind": "body",
+      "words": 2484,
+      "synthetic": false
+    },
+    {
+      "line": 15906,
+      "title": "CHAPTER 92. Ambergris.",
+      "kind": "body",
+      "words": 969,
+      "synthetic": false
+    },
+    {
+      "line": 15998,
+      "title": "CHAPTER 93. The Castaway.",
+      "kind": "body",
+      "words": 1600,
+      "synthetic": false
+    },
+    {
+      "line": 16154,
+      "title": "CHAPTER 94. A Squeeze of the Hand.",
+      "kind": "body",
+      "words": 1262,
+      "synthetic": false
+    },
+    {
+      "line": 16282,
+      "title": "CHAPTER 95. The Cassock.",
+      "kind": "body",
+      "words": 498,
+      "synthetic": false
+    },
+    {
+      "line": 16331,
+      "title": "CHAPTER 96. The Try-Works.",
+      "kind": "body",
+      "words": 1811,
+      "synthetic": false
+    },
+    {
+      "line": 16500,
+      "title": "CHAPTER 97. The Lamp.",
+      "kind": "body",
+      "words": 242,
+      "synthetic": false
+    },
+    {
+      "line": 16527,
+      "title": "CHAPTER 98. Stowing Down and Clearing Up.",
+      "kind": "body",
+      "words": 1015,
+      "synthetic": false
+    },
+    {
+      "line": 16626,
+      "title": "CHAPTER 99. The Doubloon.",
+      "kind": "body",
+      "words": 2405,
+      "synthetic": false
+    },
+    {
+      "line": 16851,
+      "title": "CHAPTER 100. Leg and Arm.",
+      "kind": "body",
+      "words": 2652,
+      "synthetic": false
+    },
+    {
+      "line": 17129,
+      "title": "CHAPTER 101. The Decanter.",
+      "kind": "body",
+      "words": 1751,
+      "synthetic": false
+    },
+    {
+      "line": 17295,
+      "title": "CHAPTER 102. A Bower in the Arsacides.",
+      "kind": "body",
+      "words": 1531,
+      "synthetic": false
+    },
+    {
+      "line": 17449,
+      "title": "CHAPTER 103. Measurement of The Whale’s Skeleton.",
+      "kind": "body",
+      "words": 922,
+      "synthetic": false
+    },
+    {
+      "line": 17541,
+      "title": "CHAPTER 104. The Fossil Whale.",
+      "kind": "body",
+      "words": 1416,
+      "synthetic": false
+    },
+    {
+      "line": 17681,
+      "title": "CHAPTER 105. Does the Whale’s Magnitude Diminish?—Will He Perish?",
+      "kind": "body",
+      "words": 1549,
+      "synthetic": false
+    },
+    {
+      "line": 17836,
+      "title": "CHAPTER 106. Ahab’s Leg.",
+      "kind": "body",
+      "words": 922,
+      "synthetic": false
+    },
+    {
+      "line": 17926,
+      "title": "CHAPTER 107. The Carpenter.",
+      "kind": "body",
+      "words": 1034,
+      "synthetic": false
+    },
+    {
+      "line": 18027,
+      "title": "CHAPTER 108. Ahab and the Carpenter.",
+      "kind": "body",
+      "words": 1549,
+      "synthetic": false
+    },
+    {
+      "line": 18206,
+      "title": "CHAPTER 109. Ahab and Starbuck in the Cabin.",
+      "kind": "body",
+      "words": 904,
+      "synthetic": false
+    },
+    {
+      "line": 18312,
+      "title": "CHAPTER 110. Queequeg in His Coffin.",
+      "kind": "body",
+      "words": 2231,
+      "synthetic": false
+    },
+    {
+      "line": 18524,
+      "title": "CHAPTER 111. The Pacific.",
+      "kind": "body",
+      "words": 419,
+      "synthetic": false
+    },
+    {
+      "line": 18569,
+      "title": "CHAPTER 112. The Blacksmith.",
+      "kind": "body",
+      "words": 926,
+      "synthetic": false
+    },
+    {
+      "line": 18664,
+      "title": "CHAPTER 113. The Forge.",
+      "kind": "body",
+      "words": 1210,
+      "synthetic": false
+    },
+    {
+      "line": 18804,
+      "title": "CHAPTER 114. The Gilder.",
+      "kind": "body",
+      "words": 636,
+      "synthetic": false
+    },
+    {
+      "line": 18876,
+      "title": "CHAPTER 115. The Pequod Meets The Bachelor.",
+      "kind": "body",
+      "words": 873,
+      "synthetic": false
+    },
+    {
+      "line": 18974,
+      "title": "CHAPTER 116. The Dying Whale.",
+      "kind": "body",
+      "words": 512,
+      "synthetic": false
+    },
+    {
+      "line": 19029,
+      "title": "CHAPTER 117. The Whale Watch.",
+      "kind": "body",
+      "words": 467,
+      "synthetic": false
+    },
+    {
+      "line": 19088,
+      "title": "CHAPTER 118. The Quadrant.",
+      "kind": "body",
+      "words": 885,
+      "synthetic": false
+    },
+    {
+      "line": 19175,
+      "title": "CHAPTER 119. The Candles.",
+      "kind": "body",
+      "words": 2515,
+      "synthetic": false
+    },
+    {
+      "line": 19441,
+      "title": "CHAPTER 120. The Deck Towards the End of the First Night Watch.",
+      "kind": "body",
+      "words": 179,
+      "synthetic": false
+    },
+    {
+      "line": 19468,
+      "title": "CHAPTER 121. Midnight.—The Forecastle Bulwarks.",
+      "kind": "body",
+      "words": 619,
+      "synthetic": false
+    },
+    {
+      "line": 19528,
+      "title": "CHAPTER 122. Midnight Aloft.—Thunder and Lightning.",
+      "kind": "body",
+      "words": 50,
+      "synthetic": false
+    },
+    {
+      "line": 19537,
+      "title": "CHAPTER 123. The Musket.",
+      "kind": "body",
+      "words": 1197,
+      "synthetic": false
+    },
+    {
+      "line": 19658,
+      "title": "CHAPTER 124. The Needle.",
+      "kind": "body",
+      "words": 1195,
+      "synthetic": false
+    },
+    {
+      "line": 19790,
+      "title": "CHAPTER 125. The Log and Line.",
+      "kind": "body",
+      "words": 1097,
+      "synthetic": false
+    },
+    {
+      "line": 19925,
+      "title": "CHAPTER 126. The Life-Buoy.",
+      "kind": "body",
+      "words": 1353,
+      "synthetic": false
+    },
+    {
+      "line": 20065,
+      "title": "CHAPTER 127. The Deck.",
+      "kind": "body",
+      "words": 696,
+      "synthetic": false
+    },
+    {
+      "line": 20160,
+      "title": "CHAPTER 128. The Pequod Meets The Rachel.",
+      "kind": "body",
+      "words": 1374,
+      "synthetic": false
+    },
+    {
+      "line": 20304,
+      "title": "CHAPTER 129. The Cabin.",
+      "kind": "body",
+      "words": 574,
+      "synthetic": false
+    },
+    {
+      "line": 20366,
+      "title": "CHAPTER 130. The Hat.",
+      "kind": "body",
+      "words": 1672,
+      "synthetic": false
+    },
+    {
+      "line": 20530,
+      "title": "CHAPTER 131. The Pequod Meets The Delight.",
+      "kind": "body",
+      "words": 421,
+      "synthetic": false
+    },
+    {
+      "line": 20584,
+      "title": "CHAPTER 132. The Symphony.",
+      "kind": "body",
+      "words": 1581,
+      "synthetic": false
+    },
+    {
+      "line": 20743,
+      "title": "CHAPTER 133. The Chase—First Day.",
+      "kind": "body",
+      "words": 3492,
+      "synthetic": false
+    },
+    {
+      "line": 21112,
+      "title": "CHAPTER 134. The Chase—Second Day.",
+      "kind": "body",
+      "words": 3236,
+      "synthetic": false
+    },
+    {
+      "line": 21450,
+      "title": "CHAPTER 135. The Chase.—Third Day.",
+      "kind": "body",
+      "words": 4451,
+      "synthetic": false
+    },
+    {
+      "line": 21905,
+      "title": "Epilogue",
+      "kind": "body",
+      "words": 267,
+      "synthetic": false
+    }
+  ]
+}

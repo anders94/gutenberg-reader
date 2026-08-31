@@ -1,0 +1,100 @@
+{
+  "book_id": "3296",
+  "sha256_book": "4404699fe6288144df30d8972cf82d68414b9c713d195783da2cd414c55356e9",
+  "body_lines": 9344,
+  "source": "detector (verified by tests/test_structure.py)",
+  "exact_count": 13,
+  "chapters": [
+    {
+      "line": 18,
+      "title": "BOOK I",
+      "kind": "body",
+      "words": 7056,
+      "synthetic": false
+    },
+    {
+      "line": 616,
+      "title": "BOOK II",
+      "kind": "body",
+      "words": 3783,
+      "synthetic": false
+    },
+    {
+      "line": 939,
+      "title": "BOOK III",
+      "kind": "body",
+      "words": 5467,
+      "synthetic": false
+    },
+    {
+      "line": 1401,
+      "title": "BOOK IV",
+      "kind": "body",
+      "words": 6975,
+      "synthetic": false
+    },
+    {
+      "line": 1983,
+      "title": "BOOK V",
+      "kind": "body",
+      "words": 6697,
+      "synthetic": false
+    },
+    {
+      "line": 2544,
+      "title": "BOOK VI",
+      "kind": "body",
+      "words": 7840,
+      "synthetic": false
+    },
+    {
+      "line": 3202,
+      "title": "BOOK VII",
+      "kind": "body",
+      "words": 8411,
+      "synthetic": false
+    },
+    {
+      "line": 3894,
+      "title": "BOOK VIII",
+      "kind": "body",
+      "words": 8125,
+      "synthetic": false
+    },
+    {
+      "line": 4569,
+      "title": "BOOK IX",
+      "kind": "body",
+      "words": 8821,
+      "synthetic": false
+    },
+    {
+      "line": 5315,
+      "title": "BOOK X",
+      "kind": "body",
+      "words": 16317,
+      "synthetic": false
+    },
+    {
+      "line": 6651,
+      "title": "BOOK XI",
+      "kind": "body",
+      "words": 9503,
+      "synthetic": false
+    },
+    {
+      "line": 7422,
+      "title": "BOOK XII",
+      "kind": "body",
+      "words": 10207,
+      "synthetic": false
+    },
+    {
+      "line": 8288,
+      "title": "BOOK XIII",
+      "kind": "body",
+      "words": 12599,
+      "synthetic": false
+    }
+  ]
+}

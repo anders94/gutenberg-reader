@@ -1,0 +1,828 @@
+{
+  "book_id": "1184",
+  "sha256_book": "e2f45e042c78ed952685570d1f1cd2bcf3a2686fe00e045f5ced023a96aa55cd",
+  "body_lines": 61301,
+  "source": "detector (verified by tests/test_structure.py)",
+  "exact_count": 117,
+  "chapters": [
+    {
+      "line": 147,
+      "title": "Chapter 1. Marseilles—The Arrival",
+      "kind": "body",
+      "words": 3131,
+      "synthetic": false
+    },
+    {
+      "line": 601,
+      "title": "Chapter 2. Father and Son",
+      "kind": "body",
+      "words": 2485,
+      "synthetic": false
+    },
+    {
+      "line": 978,
+      "title": "Chapter 3. The Catalans",
+      "kind": "body",
+      "words": 3872,
+      "synthetic": false
+    },
+    {
+      "line": 1440,
+      "title": "Chapter 4. Conspiracy",
+      "kind": "body",
+      "words": 2210,
+      "synthetic": false
+    },
+    {
+      "line": 1765,
+      "title": "Chapter 5. The Marriage Feast",
+      "kind": "body",
+      "words": 5515,
+      "synthetic": false
+    },
+    {
+      "line": 2464,
+      "title": "Chapter 6. The Deputy Procureur du Roi",
+      "kind": "body",
+      "words": 4175,
+      "synthetic": false
+    },
+    {
+      "line": 2972,
+      "title": "Chapter 7. The Examination",
+      "kind": "body",
+      "words": 3473,
+      "synthetic": false
+    },
+    {
+      "line": 3423,
+      "title": "Chapter 8. The Château d’If",
+      "kind": "body",
+      "words": 3177,
+      "synthetic": false
+    },
+    {
+      "line": 3863,
+      "title": "Chapter 9. The Evening of the Betrothal",
+      "kind": "body",
+      "words": 1825,
+      "synthetic": false
+    },
+    {
+      "line": 4113,
+      "title": "Chapter 10. The King’s Closet at the Tuileries",
+      "kind": "body",
+      "words": 2767,
+      "synthetic": false
+    },
+    {
+      "line": 4520,
+      "title": "Chapter 11. The Corsican Ogre",
+      "kind": "body",
+      "words": 2893,
+      "synthetic": false
+    },
+    {
+      "line": 4921,
+      "title": "Chapter 12. Father and Son",
+      "kind": "body",
+      "words": 2541,
+      "synthetic": false
+    },
+    {
+      "line": 5256,
+      "title": "Chapter 13. The Hundred Days",
+      "kind": "body",
+      "words": 2455,
+      "synthetic": false
+    },
+    {
+      "line": 5585,
+      "title": "Chapter 14. The Two Prisoners",
+      "kind": "body",
+      "words": 3098,
+      "synthetic": false
+    },
+    {
+      "line": 6035,
+      "title": "Chapter 15. Number 34 and Number 27",
+      "kind": "body",
+      "words": 5357,
+      "synthetic": false
+    },
+    {
+      "line": 6684,
+      "title": "Chapter 16. A Learned Italian",
+      "kind": "body",
+      "words": 4156,
+      "synthetic": false
+    },
+    {
+      "line": 7185,
+      "title": "Chapter 17. The Abbé’s Chamber",
+      "kind": "body",
+      "words": 7703,
+      "synthetic": false
+    },
+    {
+      "line": 8224,
+      "title": "Chapter 18. The Treasure",
+      "kind": "body",
+      "words": 4589,
+      "synthetic": false
+    },
+    {
+      "line": 8779,
+      "title": "Chapter 19. The Third Attack",
+      "kind": "body",
+      "words": 3909,
+      "synthetic": false
+    },
+    {
+      "line": 9227,
+      "title": "Chapter 20. The Cemetery of the Château d’If",
+      "kind": "body",
+      "words": 1949,
+      "synthetic": false
+    },
+    {
+      "line": 9461,
+      "title": "Chapter 21. The Island of Tiboulen",
+      "kind": "body",
+      "words": 3704,
+      "synthetic": false
+    },
+    {
+      "line": 9905,
+      "title": "Chapter 22. The Smugglers",
+      "kind": "body",
+      "words": 2929,
+      "synthetic": false
+    },
+    {
+      "line": 10198,
+      "title": "Chapter 23. The Island of Monte Cristo",
+      "kind": "body",
+      "words": 3025,
+      "synthetic": false
+    },
+    {
+      "line": 10533,
+      "title": "Chapter 24. The Secret Cave",
+      "kind": "body",
+      "words": 3167,
+      "synthetic": false
+    },
+    {
+      "line": 10897,
+      "title": "Chapter 25. The Unknown",
+      "kind": "body",
+      "words": 3142,
+      "synthetic": false
+    },
+    {
+      "line": 11243,
+      "title": "Chapter 26. The Pont du Gard Inn",
+      "kind": "body",
+      "words": 5524,
+      "synthetic": false
+    },
+    {
+      "line": 11954,
+      "title": "Chapter 27. The Story",
+      "kind": "body",
+      "words": 5107,
+      "synthetic": false
+    },
+    {
+      "line": 12614,
+      "title": "Chapter 28. The Prison Register",
+      "kind": "body",
+      "words": 2314,
+      "synthetic": false
+    },
+    {
+      "line": 12962,
+      "title": "Chapter 29. The House of Morrel & Son",
+      "kind": "body",
+      "words": 4302,
+      "synthetic": false
+    },
+    {
+      "line": 13526,
+      "title": "Chapter 30. The Fifth of September",
+      "kind": "body",
+      "words": 5612,
+      "synthetic": false
+    },
+    {
+      "line": 14223,
+      "title": "Chapter 31. Italy: Sinbad the Sailor",
+      "kind": "body",
+      "words": 8590,
+      "synthetic": false
+    },
+    {
+      "line": 15290,
+      "title": "Chapter 32. The Waking",
+      "kind": "body",
+      "words": 2264,
+      "synthetic": false
+    },
+    {
+      "line": 15550,
+      "title": "Chapter 33. Roman Bandits",
+      "kind": "body",
+      "words": 10960,
+      "synthetic": false
+    },
+    {
+      "line": 16907,
+      "title": "Chapter 34. The Colosseum",
+      "kind": "body",
+      "words": 10758,
+      "synthetic": false
+    },
+    {
+      "line": 18231,
+      "title": "Chapter 35. La Mazzolata",
+      "kind": "body",
+      "words": 5282,
+      "synthetic": false
+    },
+    {
+      "line": 18870,
+      "title": "Chapter 36. The Carnival at Rome",
+      "kind": "body",
+      "words": 6347,
+      "synthetic": false
+    },
+    {
+      "line": 19668,
+      "title": "Chapter 37. The Catacombs of Saint Sebastian",
+      "kind": "body",
+      "words": 5976,
+      "synthetic": false
+    },
+    {
+      "line": 20536,
+      "title": "Chapter 38. The Rendezvous",
+      "kind": "body",
+      "words": 3074,
+      "synthetic": false
+    },
+    {
+      "line": 20919,
+      "title": "Chapter 39. The Guests",
+      "kind": "body",
+      "words": 2720,
+      "synthetic": false
+    },
+    {
+      "line": 21276,
+      "title": "Chapter 40. The Breakfast",
+      "kind": "body",
+      "words": 8253,
+      "synthetic": false
+    },
+    {
+      "line": 22395,
+      "title": "Chapter 41. The Presentation",
+      "kind": "body",
+      "words": 5056,
+      "synthetic": false
+    },
+    {
+      "line": 22978,
+      "title": "Chapter 42. Monsieur Bertuccio",
+      "kind": "body",
+      "words": 1584,
+      "synthetic": false
+    },
+    {
+      "line": 23220,
+      "title": "Chapter 43. The House at Auteuil",
+      "kind": "body",
+      "words": 2347,
+      "synthetic": false
+    },
+    {
+      "line": 23553,
+      "title": "Chapter 44. The Vendetta",
+      "kind": "body",
+      "words": 8345,
+      "synthetic": false
+    },
+    {
+      "line": 24558,
+      "title": "Chapter 45. The Rain of Blood",
+      "kind": "body",
+      "words": 5326,
+      "synthetic": false
+    },
+    {
+      "line": 25146,
+      "title": "Chapter 46. Unlimited Credit",
+      "kind": "body",
+      "words": 5049,
+      "synthetic": false
+    },
+    {
+      "line": 25804,
+      "title": "Chapter 47. The Dappled Grays",
+      "kind": "body",
+      "words": 5153,
+      "synthetic": false
+    },
+    {
+      "line": 26426,
+      "title": "Chapter 48. Ideology",
+      "kind": "body",
+      "words": 4498,
+      "synthetic": false
+    },
+    {
+      "line": 26923,
+      "title": "Chapter 49. Haydée",
+      "kind": "body",
+      "words": 1896,
+      "synthetic": false
+    },
+    {
+      "line": 27159,
+      "title": "Chapter 50. The Morrel Family",
+      "kind": "body",
+      "words": 3420,
+      "synthetic": false
+    },
+    {
+      "line": 27588,
+      "title": "Chapter 51. Pyramus and Thisbe",
+      "kind": "body",
+      "words": 4897,
+      "synthetic": false
+    },
+    {
+      "line": 28098,
+      "title": "Chapter 52. Toxicology",
+      "kind": "body",
+      "words": 6274,
+      "synthetic": false
+    },
+    {
+      "line": 28859,
+      "title": "Chapter 53. Robert le Diable",
+      "kind": "body",
+      "words": 6107,
+      "synthetic": false
+    },
+    {
+      "line": 29735,
+      "title": "Chapter 54. A Flurry in Stocks",
+      "kind": "body",
+      "words": 4068,
+      "synthetic": false
+    },
+    {
+      "line": 30289,
+      "title": "Chapter 55. Major Cavalcanti",
+      "kind": "body",
+      "words": 3512,
+      "synthetic": false
+    },
+    {
+      "line": 30930,
+      "title": "Chapter 56. Andrea Cavalcanti",
+      "kind": "body",
+      "words": 4365,
+      "synthetic": false
+    },
+    {
+      "line": 31578,
+      "title": "Chapter 57. In the Lucern Patch",
+      "kind": "body",
+      "words": 4394,
+      "synthetic": false
+    },
+    {
+      "line": 32115,
+      "title": "Chapter 58. M. Noirtier de Villefort",
+      "kind": "body",
+      "words": 3279,
+      "synthetic": false
+    },
+    {
+      "line": 32550,
+      "title": "Chapter 59. The Will",
+      "kind": "body",
+      "words": 3034,
+      "synthetic": false
+    },
+    {
+      "line": 33004,
+      "title": "Chapter 60. The Telegraph",
+      "kind": "body",
+      "words": 3609,
+      "synthetic": false
+    },
+    {
+      "line": 33503,
+      "title": "Chapter 61. How a Gardener May Get Rid of the Dormice that Eat His",
+      "kind": "body",
+      "words": 3028,
+      "synthetic": false
+    },
+    {
+      "line": 34018,
+      "title": "Chapter 62. Ghosts",
+      "kind": "body",
+      "words": 2871,
+      "synthetic": false
+    },
+    {
+      "line": 34437,
+      "title": "Chapter 63. The Dinner",
+      "kind": "body",
+      "words": 3373,
+      "synthetic": false
+    },
+    {
+      "line": 34914,
+      "title": "Chapter 64. The Beggar",
+      "kind": "body",
+      "words": 3042,
+      "synthetic": false
+    },
+    {
+      "line": 35350,
+      "title": "Chapter 65. A Conjugal Scene",
+      "kind": "body",
+      "words": 3570,
+      "synthetic": false
+    },
+    {
+      "line": 35801,
+      "title": "Chapter 66. Matrimonial Projects",
+      "kind": "body",
+      "words": 3269,
+      "synthetic": false
+    },
+    {
+      "line": 36309,
+      "title": "Chapter 67. The Office of the King’s Attorney",
+      "kind": "body",
+      "words": 4227,
+      "synthetic": false
+    },
+    {
+      "line": 36814,
+      "title": "Chapter 68. A Summer Ball",
+      "kind": "body",
+      "words": 2207,
+      "synthetic": false
+    },
+    {
+      "line": 37213,
+      "title": "Chapter 69. The Inquiry",
+      "kind": "body",
+      "words": 3099,
+      "synthetic": false
+    },
+    {
+      "line": 37696,
+      "title": "Chapter 70. The Ball",
+      "kind": "body",
+      "words": 3037,
+      "synthetic": false
+    },
+    {
+      "line": 38184,
+      "title": "Chapter 71. Bread and Salt",
+      "kind": "body",
+      "words": 1325,
+      "synthetic": false
+    },
+    {
+      "line": 38403,
+      "title": "Chapter 72. Madame de Saint-Méran",
+      "kind": "body",
+      "words": 4146,
+      "synthetic": false
+    },
+    {
+      "line": 38985,
+      "title": "Chapter 73. The Promise",
+      "kind": "body",
+      "words": 9256,
+      "synthetic": false
+    },
+    {
+      "line": 40229,
+      "title": "Chapter 74. The Villefort Family Vault",
+      "kind": "body",
+      "words": 3147,
+      "synthetic": false
+    },
+    {
+      "line": 40637,
+      "title": "Chapter 75. A Signed Statement",
+      "kind": "body",
+      "words": 3730,
+      "synthetic": false
+    },
+    {
+      "line": 41128,
+      "title": "Chapter 76. Progress of Cavalcanti the Younger",
+      "kind": "body",
+      "words": 3381,
+      "synthetic": false
+    },
+    {
+      "line": 41634,
+      "title": "Chapter 77. Haydée",
+      "kind": "body",
+      "words": 8052,
+      "synthetic": false
+    },
+    {
+      "line": 42645,
+      "title": "Chapter 78. We hear From Yanina",
+      "kind": "body",
+      "words": 7229,
+      "synthetic": false
+    },
+    {
+      "line": 43694,
+      "title": "Chapter 79. The Lemonade",
+      "kind": "body",
+      "words": 4010,
+      "synthetic": false
+    },
+    {
+      "line": 44325,
+      "title": "Chapter 80. The Accusation",
+      "kind": "body",
+      "words": 1983,
+      "synthetic": false
+    },
+    {
+      "line": 44581,
+      "title": "Chapter 81. The Room of the Retired Baker",
+      "kind": "body",
+      "words": 5634,
+      "synthetic": false
+    },
+    {
+      "line": 45552,
+      "title": "Chapter 82. The Burglary",
+      "kind": "body",
+      "words": 4453,
+      "synthetic": false
+    },
+    {
+      "line": 46235,
+      "title": "Chapter 83. The Hand of God",
+      "kind": "body",
+      "words": 1993,
+      "synthetic": false
+    },
+    {
+      "line": 46521,
+      "title": "Chapter 84. Beauchamp",
+      "kind": "body",
+      "words": 2087,
+      "synthetic": false
+    },
+    {
+      "line": 46831,
+      "title": "Chapter 85. The Journey",
+      "kind": "body",
+      "words": 3414,
+      "synthetic": false
+    },
+    {
+      "line": 47344,
+      "title": "Chapter 86. The Trial",
+      "kind": "body",
+      "words": 4519,
+      "synthetic": false
+    },
+    {
+      "line": 47867,
+      "title": "Chapter 87. The Challenge",
+      "kind": "body",
+      "words": 2213,
+      "synthetic": false
+    },
+    {
+      "line": 48167,
+      "title": "Chapter 88. The Insult",
+      "kind": "body",
+      "words": 3257,
+      "synthetic": false
+    },
+    {
+      "line": 48623,
+      "title": "Chapter 89. The Night",
+      "kind": "body",
+      "words": 2975,
+      "synthetic": false
+    },
+    {
+      "line": 48975,
+      "title": "Chapter 90. The Meeting",
+      "kind": "body",
+      "words": 4090,
+      "synthetic": false
+    },
+    {
+      "line": 49552,
+      "title": "Chapter 91. Mother and Son",
+      "kind": "body",
+      "words": 2227,
+      "synthetic": false
+    },
+    {
+      "line": 49816,
+      "title": "Chapter 92. The Suicide",
+      "kind": "body",
+      "words": 3075,
+      "synthetic": false
+    },
+    {
+      "line": 50229,
+      "title": "Chapter 93. Valentine",
+      "kind": "body",
+      "words": 2550,
+      "synthetic": false
+    },
+    {
+      "line": 50568,
+      "title": "Chapter 94. Maximilian’s Avowal",
+      "kind": "body",
+      "words": 3873,
+      "synthetic": false
+    },
+    {
+      "line": 51129,
+      "title": "Chapter 95. Father and Daughter",
+      "kind": "body",
+      "words": 3265,
+      "synthetic": false
+    },
+    {
+      "line": 51527,
+      "title": "Chapter 96. The Contract",
+      "kind": "body",
+      "words": 3698,
+      "synthetic": false
+    },
+    {
+      "line": 52057,
+      "title": "Chapter 97. The Departure for Belgium",
+      "kind": "body",
+      "words": 2163,
+      "synthetic": false
+    },
+    {
+      "line": 52373,
+      "title": "Chapter 98. The Bell and Bottle Tavern",
+      "kind": "body",
+      "words": 4420,
+      "synthetic": false
+    },
+    {
+      "line": 52904,
+      "title": "Chapter 99. The Law",
+      "kind": "body",
+      "words": 3412,
+      "synthetic": false
+    },
+    {
+      "line": 53354,
+      "title": "Chapter 100. The Apparition",
+      "kind": "body",
+      "words": 2427,
+      "synthetic": false
+    },
+    {
+      "line": 53657,
+      "title": "Chapter 101. Locusta",
+      "kind": "body",
+      "words": 1903,
+      "synthetic": false
+    },
+    {
+      "line": 53919,
+      "title": "Chapter 102. Valentine",
+      "kind": "body",
+      "words": 1994,
+      "synthetic": false
+    },
+    {
+      "line": 54177,
+      "title": "Chapter 103. Maximilian",
+      "kind": "body",
+      "words": 2976,
+      "synthetic": false
+    },
+    {
+      "line": 54583,
+      "title": "Chapter 104. Danglars’ Signature",
+      "kind": "body",
+      "words": 3513,
+      "synthetic": false
+    },
+    {
+      "line": 55146,
+      "title": "Chapter 105. The Cemetery of Père-Lachaise",
+      "kind": "body",
+      "words": 4463,
+      "synthetic": false
+    },
+    {
+      "line": 55748,
+      "title": "Chapter 106. Dividing the Proceeds",
+      "kind": "body",
+      "words": 5277,
+      "synthetic": false
+    },
+    {
+      "line": 56432,
+      "title": "Chapter 107. The Lions’ Den",
+      "kind": "body",
+      "words": 2617,
+      "synthetic": false
+    },
+    {
+      "line": 56795,
+      "title": "Chapter 108. The Judge",
+      "kind": "body",
+      "words": 3413,
+      "synthetic": false
+    },
+    {
+      "line": 57256,
+      "title": "Chapter 109. The Assizes",
+      "kind": "body",
+      "words": 1973,
+      "synthetic": false
+    },
+    {
+      "line": 57561,
+      "title": "Chapter 110. The Indictment",
+      "kind": "body",
+      "words": 2577,
+      "synthetic": false
+    },
+    {
+      "line": 57898,
+      "title": "Chapter 111. Expiation",
+      "kind": "body",
+      "words": 3050,
+      "synthetic": false
+    },
+    {
+      "line": 58290,
+      "title": "Chapter 112. The Departure",
+      "kind": "body",
+      "words": 5170,
+      "synthetic": false
+    },
+    {
+      "line": 58914,
+      "title": "Chapter 113. The Past",
+      "kind": "body",
+      "words": 4216,
+      "synthetic": false
+    },
+    {
+      "line": 59490,
+      "title": "Chapter 114. Peppino",
+      "kind": "body",
+      "words": 3713,
+      "synthetic": false
+    },
+    {
+      "line": 59965,
+      "title": "Chapter 115. Luigi Vampa’s Bill of Fare",
+      "kind": "body",
+      "words": 2146,
+      "synthetic": false
+    },
+    {
+      "line": 60283,
+      "title": "Chapter 116. The Pardon",
+      "kind": "body",
+      "words": 1701,
+      "synthetic": false
+    },
+    {
+      "line": 60548,
+      "title": "Chapter 117. The Fifth of October",
+      "kind": "body",
+      "words": 4907,
+      "synthetic": false
+    }
+  ]
+}

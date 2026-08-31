@@ -1,0 +1,67 @@
+{
+  "book_id": "6400",
+  "sha256_book": "1d20865c1a6004dd1b78d4906d215790402676a396f840911b1de9a96142fe0d",
+  "body_lines": 23053,
+  "source": "hand-verified from the book's own CONTENTS (body lines 131-153)",
+  "has_chapter_structure": true,
+  "exact_count": null,
+  "notes": "The shipped detection is 3 chapters — 9,984 / 173,461 / 29,196 words — because the bare-numeral pattern matched the Latin initials in 'D. OCTAVIUS CAESAR AUGUSTUS.' and in the monumental inscription 'M. AGRIPPA. L. F. COS: TERTIUM. FECIT.'. The book's contents list three parts: I. the twelve Caesars, II. Lives of the Grammarians and Historians, III. Lives of the Poets (six named), then FOOTNOTES and INDEX. exact_count is deliberately null: whether the appended Lives should be one chapter each or one per part is a judgment call this fixture does not pretend to settle. What is not a judgment call is that each of the twelve Caesars is its own chapter and the inscription is not a heading.",
+  "required_body": [
+    {
+      "line": 133,
+      "title": "CAIUS JULIUS CASAR."
+    },
+    {
+      "line": 2430,
+      "title": "D. OCTAVIUS CAESAR AUGUSTUS."
+    },
+    {
+      "line": 6605,
+      "title": "TIBERIUS NERO CAESAR."
+    },
+    {
+      "line": 8576,
+      "title": "CAIUS CAESAR CALIGULA."
+    },
+    {
+      "line": 9956,
+      "title": "TIBERIUS CLAUDIUS DRUSUS CAESAR. [465]"
+    },
+    {
+      "line": 11261,
+      "title": "NERO CLAUDIUS CAESAR."
+    },
+    {
+      "line": 13378,
+      "title": "SERGIUS SULPICIUS GALBA."
+    },
+    {
+      "line": 13901,
+      "title": "A.  SALVIUS OTHO."
+    },
+    {
+      "line": 14213,
+      "title": "AULUS VITELLIUS."
+    },
+    {
+      "line": 14648,
+      "title": "T. FLAVIUS VESPASIANUS AUGUSTUS."
+    },
+    {
+      "line": 15314,
+      "title": "TITUS FLAVIUS VESPASIANUS AUGUSTUS."
+    },
+    {
+      "line": 15729,
+      "title": "TITUS FLAVIUS DOMITIANUS."
+    }
+  ],
+  "forbidden_titles": [
+    "M. AGRIPPA. L. F. COS: TERTIUM. FECIT."
+  ],
+  "required_back": [
+    "FOOTNOTES",
+    "INDEX."
+  ],
+  "max_chapter_words": 30000
+}

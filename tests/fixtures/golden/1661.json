@@ -1,0 +1,93 @@
+{
+  "book_id": "1661",
+  "sha256_book": "51bf912e17919195e50cfa25458a6660ef35e00a5f44598b221196285c2220a5",
+  "body_lines": 11932,
+  "source": "detector (verified by tests/test_structure.py)",
+  "exact_count": 12,
+  "chapters": [
+    {
+      "line": 27,
+      "title": "I. A SCANDAL IN BOHEMIA",
+      "kind": "body",
+      "words": 8526,
+      "synthetic": false
+    },
+    {
+      "line": 1107,
+      "title": "II. THE RED-HEADED LEAGUE",
+      "kind": "body",
+      "words": 9109,
+      "synthetic": false
+    },
+    {
+      "line": 2143,
+      "title": "III. A CASE OF IDENTITY",
+      "kind": "body",
+      "words": 6980,
+      "synthetic": false
+    },
+    {
+      "line": 2894,
+      "title": "IV. THE BOSCOMBE VALLEY MYSTERY",
+      "kind": "body",
+      "words": 9620,
+      "synthetic": false
+    },
+    {
+      "line": 3948,
+      "title": "V. THE FIVE ORANGE PIPS",
+      "kind": "body",
+      "words": 7319,
+      "synthetic": false
+    },
+    {
+      "line": 4785,
+      "title": "VI. THE MAN WITH THE TWISTED LIP",
+      "kind": "body",
+      "words": 9206,
+      "synthetic": false
+    },
+    {
+      "line": 5827,
+      "title": "VII. THE ADVENTURE OF THE BLUE CARBUNCLE",
+      "kind": "body",
+      "words": 7815,
+      "synthetic": false
+    },
+    {
+      "line": 6755,
+      "title": "VIII. THE ADVENTURE OF THE SPECKLED BAND",
+      "kind": "body",
+      "words": 9812,
+      "synthetic": false
+    },
+    {
+      "line": 7894,
+      "title": "IX. THE ADVENTURE OF THE ENGINEER’S THUMB",
+      "kind": "body",
+      "words": 8290,
+      "synthetic": false
+    },
+    {
+      "line": 8803,
+      "title": "X. THE ADVENTURE OF THE NOBLE BACHELOR",
+      "kind": "body",
+      "words": 8109,
+      "synthetic": false
+    },
+    {
+      "line": 9780,
+      "title": "XI. THE ADVENTURE OF THE BERYL CORONET",
+      "kind": "body",
+      "words": 9686,
+      "synthetic": false
+    },
+    {
+      "line": 10846,
+      "title": "XII. THE ADVENTURE OF THE COPPER BEECHES",
+      "kind": "body",
+      "words": 9951,
+      "synthetic": false
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "book_id": "2641",
+  "sha256_book": "274a506dfb2625ec17cbaaf32484e5341d310a2a96d4a53eeed666f549fbdc24",
+  "body_lines": 8733,
+  "source": "detector (verified by tests/test_structure.py)",
+  "exact_count": 19,
+  "chapters": [
+    {
+      "line": 50,
+      "title": "Chapter I",
+      "kind": "body",
+      "words": 3849,
+      "synthetic": false
+    },
+    {
+      "line": 541,
+      "title": "Chapter II",
+      "kind": "body",
+      "words": 4901,
+      "synthetic": false
+    },
+    {
+      "line": 1141,
+      "title": "Chapter III",
+      "kind": "body",
+      "words": 3397,
+      "synthetic": false
+    },
+    {
+      "line": 1528,
+      "title": "Chapter IV",
+      "kind": "body",
+      "words": 2069,
+      "synthetic": false
+    },
+    {
+      "line": 1811,
+      "title": "Chapter V",
+      "kind": "body",
+      "words": 7476,
+      "synthetic": false
+    },
+    {
+      "line": 2746,
+      "title": "Chapter VII",
+      "kind": "body",
+      "words": 3598,
+      "synthetic": false
+    },
+    {
+      "line": 3228,
+      "title": "Chapter VIII",
+      "kind": "body",
+      "words": 4656,
+      "synthetic": false
+    },
+    {
+      "line": 3821,
+      "title": "Chapter IX",
+      "kind": "body",
+      "words": 4149,
+      "synthetic": false
+    },
+    {
+      "line": 4423,
+      "title": "Chapter X",
+      "kind": "body",
+      "words": 2754,
+      "synthetic": false
+    },
+    {
+      "line": 4777,
+      "title": "Chapter XI",
+      "kind": "body",
+      "words": 1717,
+      "synthetic": false
+    },
+    {
+      "line": 4987,
+      "title": "Chapter XII",
+      "kind": "body",
+      "words": 2879,
+      "synthetic": false
+    },
+    {
+      "line": 5431,
+      "title": "Chapter XIII",
+      "kind": "body",
+      "words": 2511,
+      "synthetic": false
+    },
+    {
+      "line": 5781,
+      "title": "Chapter XIV",
+      "kind": "body",
+      "words": 1958,
+      "synthetic": false
+    },
+    {
+      "line": 6039,
+      "title": "Chapter XV",
+      "kind": "body",
+      "words": 4289,
+      "synthetic": false
+    },
+    {
+      "line": 6606,
+      "title": "Chapter XVI",
+      "kind": "body",
+      "words": 2630,
+      "synthetic": false
+    },
+    {
+      "line": 6958,
+      "title": "Chapter XVII",
+      "kind": "body",
+      "words": 1986,
+      "synthetic": false
+    },
+    {
+      "line": 7196,
+      "title": "Chapter XVIII",
+      "kind": "body",
+      "words": 5073,
+      "synthetic": false
+    },
+    {
+      "line": 7853,
+      "title": "Chapter XIX",
+      "kind": "body",
+      "words": 4991,
+      "synthetic": false
+    },
+    {
+      "line": 8518,
+      "title": "Chapter XX",
+      "kind": "body",
+      "words": 1541,
+      "synthetic": false
+    }
+  ]
+}

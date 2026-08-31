@@ -1,0 +1,104 @@
+{
+  "book_id": "2131",
+  "sha256_book": "ac731105a030e4b851eb49ea9d19c17980076da2ac6f9313480f012b4ccc17f2",
+  "body_lines": 3038,
+  "source": "hand-verified",
+  "has_chapter_structure": false,
+  "exact_count": 13,
+  "total_words": 36916,
+  "notes": "Macaulay's translation prints Herodotus Book II as one unbroken run; its 182 canonical sections are unnumbered, so the source carries no chapter heading anywhere. The only repeated line is the book's own title, on the title page and again over the text. A structure pass must report has_chapter_structure=false rather than split there; the body is then cut into parts at paragraph boundaries. Body begins at body-relative line 87.",
+  "body_start_line": 87,
+  "chapters": [
+    {
+      "line": 87,
+      "title": "Part 1",
+      "kind": "body",
+      "words": 2809,
+      "synthetic": true
+    },
+    {
+      "line": 317,
+      "title": "Part 2",
+      "kind": "body",
+      "words": 3258,
+      "synthetic": true
+    },
+    {
+      "line": 570,
+      "title": "Part 3",
+      "kind": "body",
+      "words": 2664,
+      "synthetic": true
+    },
+    {
+      "line": 782,
+      "title": "Part 4",
+      "kind": "body",
+      "words": 2594,
+      "synthetic": true
+    },
+    {
+      "line": 987,
+      "title": "Part 5",
+      "kind": "body",
+      "words": 2885,
+      "synthetic": true
+    },
+    {
+      "line": 1213,
+      "title": "Part 6",
+      "kind": "body",
+      "words": 2626,
+      "synthetic": true
+    },
+    {
+      "line": 1422,
+      "title": "Part 7",
+      "kind": "body",
+      "words": 3298,
+      "synthetic": true
+    },
+    {
+      "line": 1688,
+      "title": "Part 8",
+      "kind": "body",
+      "words": 2645,
+      "synthetic": true
+    },
+    {
+      "line": 1908,
+      "title": "Part 9",
+      "kind": "body",
+      "words": 3014,
+      "synthetic": true
+    },
+    {
+      "line": 2137,
+      "title": "Part 10",
+      "kind": "body",
+      "words": 2652,
+      "synthetic": true
+    },
+    {
+      "line": 2347,
+      "title": "Part 11",
+      "kind": "body",
+      "words": 2647,
+      "synthetic": true
+    },
+    {
+      "line": 2560,
+      "title": "Part 12",
+      "kind": "body",
+      "words": 2714,
+      "synthetic": true
+    },
+    {
+      "line": 2778,
+      "title": "Part 13",
+      "kind": "body",
+      "words": 3110,
+      "synthetic": true
+    }
+  ]
+}
