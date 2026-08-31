@@ -582,9 +582,20 @@ def is_narrator_role(name: str) -> bool:
     return bool(NARRATOR_ROLE_RE.match(name) or NARRATOR_PRONOUN_RE.match(name))
 
 
+# Quoted text that nobody in the scene is speaking: an oracle, an inscription,
+# a letter read out, a line of Homer the historian is citing. It is still quoted
+# text and still wants a distinct reading voice, but it has no speaker to find,
+# so forcing it through attribution only ever produces "Unknown".
+CITATION_SPEAKER = "Citation"
+
+
 def is_reserved_character_name(name: str) -> bool:
     """True for names that must never become roster entries."""
-    return is_placeholder_name(name) or is_narrator_role(name)
+    return (
+        is_placeholder_name(name)
+        or is_narrator_role(name)
+        or name.strip().casefold() == CITATION_SPEAKER.casefold()
+    )
 
 
 def merge_rosters(roster: list, found: list) -> list:

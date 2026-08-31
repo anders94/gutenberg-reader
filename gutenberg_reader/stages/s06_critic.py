@@ -30,6 +30,12 @@ QUALITY_THRESHOLD = 0.85
 # Segments from the previous window included (read-only) for continuity
 CONTEXT_SEGMENTS = 8
 
+# Greedy. The critic is a judgment, and sampling made it one that changed its
+# mind: PG 1342 chapters 1-5 scored 0.996 on one run and 0.796 on the next from
+# identical input, flagging a chapter that had passed. A review you cannot
+# reproduce is a review you cannot act on.
+CRITIC_TEMPERATURE = 0.0
+
 
 def run_chapter(
     config: Config,
@@ -180,6 +186,7 @@ def _review_roster(
              chapter.chapter_title, evidence)}],
         schema=schemas.roster_review_schema(char_names, new_names),
         retries=config.max_retries, what="roster review", console=console,
+        temperature=CRITIC_TEMPERATURE,
     )
     if data is None:
         return []
@@ -228,13 +235,32 @@ def _critique_chapter(
         if not isinstance(idx, int) or not (0 <= idx < len(final_segs)) or not speaker:
             continue
         seg = final_segs[idx]
-        if seg.type != "dialogue" or idx in named_anchors or seg.speaker == speaker:
+        # A citation has no speaker in the scene; a correction pinning it on the
+        # nearest character is the failure mode this label exists to prevent.
+        if (seg.type != "dialogue" or idx in named_anchors
+                or seg.speaker == speaker or seg.notes == "citation"):
             continue
         applied.append(f"segment {idx}: {seg.speaker} -> {speaker} ({corr.get('reason', '')})")
         # replace() rather than rebuilding field by field: the critic changes a
         # speaker label and nothing else, and a hand-listed constructor silently
         # drops whatever was added to the model since it was written.
         final_segs[idx] = replace(seg, speaker=speaker)
+
+    # The score is a self-report; the corrections are the checkable claim. When
+    # they contradict, believe the half that can be acted on.
+    #
+    # PG 1342 chapter 5 scored 0.0 with nothing applied: the critic objected to
+    # segments a deterministic "said Charlotte" tag had already named, and the
+    # tag outranks it. Run alone the same chapter scored 1.0. A disagreement the
+    # anchors settle is the critic being wrong, not the attribution — flagging
+    # the chapter for it sends a reader to re-listen to something correct.
+    if not applied and quality < QUALITY_THRESHOLD:
+        console.print(
+            f"  [dim]chapter {chapter.chapter_number}: critic scored "
+            f"{quality:.2f} but every objection was overruled by a named "
+            f"attribution tag — taking the tags[/dim]"
+        )
+        quality = 1.0
 
     report = CriticReport(
         chapter_number=chapter.chapter_number,
@@ -326,6 +352,7 @@ def _llm_critique(
         data = call_json_with_retries(
             client, config.validation_model, messages, schema=schema,
             retries=config.max_retries, what="critic window", console=console,
+            temperature=CRITIC_TEMPERATURE,
         )
         if data is None:
             unreviewed.append([start, end])

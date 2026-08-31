@@ -165,6 +165,7 @@ def call_json_with_retries(
     retries: int = DEFAULT_RETRIES,
     what: str = "LLM call",
     console=None,
+    temperature: float = 0.1,
 ) -> Any | None:
     """chat_json with retries. Returns None once every attempt has failed.
 
@@ -176,7 +177,8 @@ def call_json_with_retries(
     last: Exception | None = None
     for attempt in range(1, retries + 1):
         try:
-            return client.chat_json(model, messages, schema=schema)
+            return client.chat_json(
+                model, messages, schema=schema, temperature=temperature)
         except LLMError as e:
             last = e
             if console is not None:

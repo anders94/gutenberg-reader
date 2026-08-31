@@ -143,3 +143,93 @@ def test_a_single_long_speech_has_too_few_quotes_to_call_a_style():
     assert segmenter.detect_quote_pair(one_speech) is None
     reading, segs = _seg(one_speech, CURLY)
     assert any(s["type"] == "dialogue" for s in segs)
+
+
+# ── Citations: quoted text with nobody in the scene saying it ────────────────
+
+def test_present_tense_attribution_is_asked_about_not_assumed_to_be_speech():
+    """Prose narrates speech in the past ("said", "cried") and cites a source in
+    the present ("Homer says"), because the source goes on saying it. Not
+    conclusive — present-tense narration exists — so it forces the question
+    rather than deciding it."""
+    reading, segs = _seg("Homer says “the Aigyptian Thon gave her drugs.”", CURLY)
+    settled, ask = segmenter.classify_spans_deterministically(segs, reading)
+    assert ask and not settled
+
+
+@pytest.mark.parametrize("text", [
+    "The oracle answered “thou shalt not return.”",
+    "The inscription reads “I am Sesostris, king of kings.”",
+])
+def test_citation_cues_force_the_question(text):
+    reading, segs = _seg(text, CURLY)
+    _, ask = segmenter.classify_spans_deterministically(segs, reading)
+    assert ask
+
+
+def test_ordinary_speech_is_still_settled_without_asking():
+    """The cue must not swallow normal dialogue — that would put every quoted
+    line in a novel through an extra call for nothing."""
+    reading, segs = _seg("“Go now,” said the priest, “before the tide turns.”", CURLY)
+    settled, ask = segmenter.classify_spans_deterministically(segs, reading)
+    assert not ask and set(settled.values()) == {"speech"}
+
+
+def test_a_citation_gets_a_speaker_rather_than_going_looking_for_one():
+    """It stays dialogue, so it is still read as quoted text and can still get
+    its own voice — but attribution has nothing to find, and running it through
+    the passes only ever yields Unknown."""
+    text = "Homer says “the Aigyptian Thon gave her drugs of healing.” And so it was."
+    reading, segs = _seg(text, CURLY)
+    out = segmenter.apply_span_labels(segs, reading, {1: "citation"})
+
+    cited = [s for s in out if s.get("notes") == "citation"]
+    assert len(cited) == 1
+    assert cited[0]["type"] == "dialogue"
+    assert cited[0]["speaker"] == text_utils.CITATION_SPEAKER
+    assert text_utils.verify_span_coverage(reading, out) == (True, [])
+
+
+def test_the_citation_label_can_never_become_a_character():
+    assert text_utils.is_reserved_character_name(text_utils.CITATION_SPEAKER)
+    assert text_utils.is_reserved_character_name("citation")
+
+
+def test_a_citation_is_not_offered_to_the_attribution_passes():
+    """The unresolved set is what passes A, B and C try to name."""
+    segments = [
+        {"type": "dialogue", "speaker": None, "notes": None},
+        {"type": "dialogue", "speaker": None, "notes": "citation"},
+        {"type": "narration", "speaker": None, "notes": None},
+    ]
+    unresolved = {
+        i for i, s in enumerate(segments)
+        if s["type"] == "dialogue" and not s.get("speaker")
+        and s.get("notes") != "citation"
+    }
+    assert unresolved == {0}
+
+
+@pytest.mark.parametrize("text,expected", [
+    # "is said to be" reports hearsay about the world, not speech by anyone.
+    # Read as an attribution tag it made a scare-quoted term look spoken, and
+    # PG 2131 shipped '"Deserters"' as dialogue with speaker Unknown.
+    ('This city is said to be the mother-city of all. '
+     'They were called "Deserters" then.', "term"),
+    # A gloss can be a whole clause, so unlike the other term signals this one
+    # settles at any length. Herodotus does it constantly.
+    ('this word signifies, when translated, '
+     '"those who stand on the left hand of the king."', "term"),
+    ('Now _piromis_ means in the tongue of Hellas "honourable and good man."', "term"),
+])
+def test_glosses_and_hearsay_are_not_speech(text, expected):
+    reading, segs = _seg(text, ('"', '"'))
+    settled, ask = segmenter.classify_spans_deterministically(segs, reading)
+    assert set(settled.values()) == {expected}, (settled, ask)
+
+
+def test_hearsay_stripping_does_not_swallow_a_real_said():
+    """Only the passive and impersonal forms are hearsay; "he said" is not."""
+    reading, segs = _seg('He said "come here now" to her.', ('"', '"'))
+    settled, _ = segmenter.classify_spans_deterministically(segs, reading)
+    assert set(settled.values()) == {"speech"}

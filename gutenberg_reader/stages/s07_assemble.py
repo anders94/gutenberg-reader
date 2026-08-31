@@ -119,7 +119,8 @@ def run(
     for entry in chapters_out:
         for seg in entry["processed"]["segments"]:
             speaker = seg.get("speaker")
-            if speaker and speaker not in ("Unknown", "Narrator"):
+            if speaker and speaker not in (
+                    "Unknown", "Narrator", text_utils.CITATION_SPEAKER):
                 canonical = alias_map.get(speaker.lower())
                 if canonical is None:
                     # Attributed to a name the critic later struck from the

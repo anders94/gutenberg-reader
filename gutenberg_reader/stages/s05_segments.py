@@ -202,6 +202,7 @@ def _reattribute_and_recheck(
     retry = {
         i for i, seg in enumerate(segments)
         if seg.get("type") == "dialogue"
+        and seg.get("notes") != "citation"
         and (seg.get("speaker") in (None, "Unknown"))
     }
     corrected = {
@@ -347,9 +348,14 @@ def _segment_chapter(
     n_tag = _resolve_nameless_tags(segments, roster, char_names, config, client)
 
     # Pass A (opportunistic): best-guess LLM attribution for unanchored dialogue
+    # Citations are quoted text with no speaker to find — an oracle, an
+    # inscription, a line of Homer the historian is citing. Running them through
+    # attribution only ever yields "Unknown", and worse, tempts a pass into
+    # pinning them on whoever is nearest.
     unresolved = {
         i for i, s in enumerate(segments)
         if s["type"] == "dialogue" and not s.get("speaker")
+        and s.get("notes") != "citation"
     }
     proposed = _llm_window_pass(
         segments, unresolved, config, client,
@@ -393,9 +399,15 @@ def _segment_chapter(
             # more honest than either guess.
             segments[idx]["speaker"] = broken.get(idx, "Unknown")
 
-    n_unknown = 0
+    n_unknown = n_cited = 0
     for s in segments:
-        if s["type"] == "dialogue" and not s.get("speaker"):
+        if s["type"] != "dialogue" or s.get("speaker"):
+            n_cited += s.get("notes") == "citation"
+            continue
+        if s.get("notes") == "citation":
+            s["speaker"] = text_utils.CITATION_SPEAKER
+            n_cited += 1
+        else:
             s["speaker"] = "Unknown"
             n_unknown += 1
 
@@ -404,7 +416,7 @@ def _segment_chapter(
         console.print(
             f"  [dim]{len(segments)} segments, {n_dialogue} dialogue: "
             f"{len(anchors)} anchored, {n_tag} tag-resolved, {len(proposed)} proposed, "
-            f"{len(disputes)} disputed, {n_unknown} unknown[/dim]"
+            f"{len(disputes)} disputed, {n_cited} cited, {n_unknown} unknown[/dim]"
         )
 
     # The canonical string every offset indexes, written once so the spans in

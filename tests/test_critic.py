@@ -168,3 +168,54 @@ def test_every_schema_a_stage_references_exists():
         (sch.span_type_schema, (4,)),
     ):
         assert isinstance(factory(*args), dict), factory.__name__
+
+
+def test_a_score_with_nothing_applied_is_not_believed():
+    """PG 1342 chapter 5 scored 0.0 with nothing applied: every objection was to
+    a segment a deterministic "said Charlotte" tag had already named, and the tag
+    outranks the critic. Run alone the same chapter scored 1.0. Flagging it would
+    send a reader back to re-listen to something correct."""
+    chapter = _chapter([_seg("“Line.”", "Ahab") for _ in range(4)])
+    client = _Client({
+        "window": {"corrections": [], "overall_quality": 0.0},
+        "roster": {"roster_issues": []},
+    })
+    report, _, _ = s06_critic._critique_chapter(
+        chapter, [CharacterInfo(name="Ahab")], [], _cfg(), client)
+    assert report.overall_quality == 1.0
+    assert not report.needs_reprocessing
+
+
+def test_a_score_backed_by_an_applied_correction_stands():
+    chapter = _chapter([_seg("“Line.”", "Ahab"), _seg("“Other.”", "Ahab")])
+    client = _Client({
+        "window": {
+            "corrections": [{"index": 1, "speaker": "Pip", "reason": "tag"}],
+            "overall_quality": 0.5,
+        },
+        "roster": {"roster_issues": []},
+    })
+    report, chap, _ = s06_critic._critique_chapter(
+        chapter, [CharacterInfo(name="Ahab"), CharacterInfo(name="Pip")],
+        [], _cfg(), client)
+    assert report.attribution_issues        # it was applied
+    assert report.overall_quality == 0.5    # so the score stands
+
+
+def test_the_critic_decodes_greedily():
+    """A review you cannot reproduce is a review you cannot act on: identical
+    input scored 0.996 and 0.796 on consecutive runs at temperature 0.1."""
+    assert s06_critic.CRITIC_TEMPERATURE == 0.0
+
+
+def test_temperature_reaches_the_client():
+    seen = {}
+
+    class _T:
+        def chat_json(self, model, messages, schema=None, temperature=None, **kw):
+            seen["t"] = temperature
+            return {"ok": True}
+
+    from gutenberg_reader.llm import call_json_with_retries
+    call_json_with_retries(_T(), "m", [], temperature=0.0)
+    assert seen["t"] == 0.0

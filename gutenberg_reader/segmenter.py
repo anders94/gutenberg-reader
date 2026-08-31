@@ -294,6 +294,36 @@ _NAMING_VERB_RE = re.compile(
     r"known as|word|words|phrase|meaning|means)\b",
     re.IGNORECASE,
 )
+# A speech verb usually settles a span as speech, but these turn the same
+# sentence into a citation: "Homer says" in a history is a source being quoted,
+# not a character speaking in the scene.
+# Present-tense attribution is the tell. Prose narrates speech in the past
+# ("said", "cried", "replied") and cites a source in the present ("Homer says",
+# "Herodotus tells us"), because the source goes on saying it. Not conclusive —
+# present-tense narration exists — so this only forces the question rather than
+# deciding it.
+_CITATION_CUE_RE = re.compile(
+    r"\b(says|say|writes|write|tells|relates|records|reports|calls it|"
+    r"wrote|written|recorded|according to|"
+    r"oracle|inscription|epitaph|verse|verses|poem|poet|quoted|quotes|"
+    r"scripture|proverb|epigram|letter ran|runs thus|as follows)\b",
+    re.IGNORECASE,
+)
+# A gloss: the quoted span is what a foreign word means. Herodotus does this
+# constantly — "_Asmach_ signifies 'those who stand on the left hand of the
+# king'" — and the span can be a whole clause, so unlike the other term signals
+# this one settles at any length.
+_GLOSS_RE = re.compile(
+    r"\b(signifies|signifying|means|meaning|translated|rendered|"
+    r"in the tongue of|is to say|equivalent to)\b",
+    re.IGNORECASE,
+)
+# "This city is said to be the mother-city" is not an attribution tag. Passive
+# and impersonal forms of "say" report hearsay about the world, not speech by
+# anyone, and reading them as speech verbs made a scare-quoted term look spoken.
+_HEARSAY_RE = re.compile(
+    r"\b(is|are|was|were|it\s+is|they\s+are)\s+said\b", re.IGNORECASE
+)
 UNAMBIGUOUS_TERM_WORDS = 2
 
 
@@ -320,12 +350,19 @@ def classify_spans_deterministically(
             for j in by_para.get(seg.get("para", 0), [])
         )
         words = len(reading_text[seg["start"]:seg["end"]].split())
-        speech_verb = bool(_SPEECH_VERB_RE.search(para_text))
+        # Hearsay first: strip "is said to be" before looking for a speech verb,
+        # or the passive supplies one that nobody spoke.
+        speech_verb = bool(_SPEECH_VERB_RE.search(_HEARSAY_RE.sub(" ", para_text)))
         naming_verb = bool(_NAMING_VERB_RE.search(para_text))
 
         # Only the unambiguous cases are settled here; anything with evidence
         # pointing both ways, or none, is worth a question.
-        if speech_verb and not naming_verb:
+        if _GLOSS_RE.search(para_text) and not speech_verb:
+            # A definition, whatever its length.
+            settled[i] = "term"
+        elif _CITATION_CUE_RE.search(para_text):
+            ask.append(i)
+        elif speech_verb and not naming_verb:
             settled[i] = "speech"
         elif naming_verb and not speech_verb and words <= UNAMBIGUOUS_TERM_WORDS:
             settled[i] = "term"
@@ -353,8 +390,12 @@ def apply_span_labels(
     for i, seg in enumerate(segments):
         demote = seg["type"] == "dialogue" and labels.get(i) in ("term", "title")
         if not demote:
-            if labels.get(i) == "citation":
-                seg = {**seg, "notes": "citation"}
+            if labels.get(i) == "citation" and seg["type"] == "dialogue":
+                # Quoted, so still read as quoted text — but there is nobody in
+                # the scene saying it, so it is settled here rather than being
+                # sent through attribution to come back "Unknown".
+                seg = {**seg, "notes": "citation",
+                       "speaker": text_utils.CITATION_SPEAKER}
             # Absorb narration that follows a just-demoted span.
             if (out and out[-1].pop("_demoted", False)
                     and seg["type"] == "narration"
