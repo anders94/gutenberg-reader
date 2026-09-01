@@ -237,10 +237,11 @@ def _reattribute_and_recheck(
 
     char_names = [c.name for c in roster]
     answers = _llm_window_pass(
-        segments, retry, char_names, config, client,
-        config.validation_model,
-        prompts.verify_attribution_system(char_names),
-        prompts.verify_attribution_user,
+        segments, retry, config, client,
+        system_msg=prompts.verify_attribution_system(char_names),
+        user_fn=prompts.verify_attribution_user,
+        schema=schemas.attribution_schema(char_names),
+        model=config.validation_model,
     )
     for idx, speaker in answers.items():
         segments[idx]["speaker"] = speaker

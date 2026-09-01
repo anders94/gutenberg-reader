@@ -176,3 +176,12 @@ def test_structure_verdict_round_trips():
     back = DiscoveryResult.from_dict(d.to_dict())
     assert (back.detector, back.work_type, back.has_chapter_structure) == \
            ("llm-v1", "history", False)
+
+
+def test_the_structure_pass_decodes_greedily():
+    """PG 6400 returned 19 chapters on one run and 20 on the next from identical
+    candidates. A structure you cannot reproduce cannot be checked against a
+    golden, which makes "did this book come out right?" unanswerable."""
+    from gutenberg_reader.stages.s02_discovery import STRUCTURE_TEMPERATURE
+
+    assert STRUCTURE_TEMPERATURE == 0.0

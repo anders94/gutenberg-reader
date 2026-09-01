@@ -221,6 +221,12 @@ def _cross_check_against_regex(
 # cannot do the book stops pretending it can.
 MAX_STRUCTURE_REPAIRS = 2
 
+# Greedy, for the same reason the critic is: a structure you cannot reproduce is
+# one you cannot check against a golden. PG 6400 returned 19 chapters on one run
+# and 20 on the next from identical candidates, which makes "did this book come
+# out right?" unanswerable.
+STRUCTURE_TEMPERATURE = 0.0
+
 # Below this, whatever sits above the first heading is a title page, not a
 # chapter the edition forgot to label.
 MIN_UNLABELLED_CHAPTER_WORDS = 50
@@ -325,6 +331,7 @@ def _llm_structure(
             [{"role": "system", "content": system}, {"role": "user", "content": user}],
             schema=schema, retries=config.max_retries,
             what="structure analysis", console=console,
+            temperature=STRUCTURE_TEMPERATURE,
         )
         if data is None:
             raise LLMError("structure analysis exhausted its retries")

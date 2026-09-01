@@ -9,6 +9,8 @@ five or ten times a chapter and the first answer won by accident of ordering.
 
 from __future__ import annotations
 
+import json
+
 import pytest
 
 from gutenberg_reader import prompts, schemas
@@ -241,3 +243,61 @@ def test_fingerprint_tracks_title_length_and_words():
     c = _chapter([_seg("“x.”"), _seg("“y.”")])
     assert s06_critic._fingerprint(a) != s06_critic._fingerprint(b)
     assert s06_critic._fingerprint(a) != s06_critic._fingerprint(c)
+
+
+# ── The re-attribution path, with work actually to do ────────────────────────
+
+def test_reattribution_runs_when_a_chapter_is_flagged(tmp_path):
+    """This path shipped broken: _llm_window_pass was called with char_names
+    where config belongs, so it died on 'list' object has no attribute
+    'chunk_size'. Every existing test reached it with an empty retry set, which
+    returns before the call, so the whole suite stayed green while a full
+    rebuild failed on six books in a row.
+    """
+    from gutenberg_reader.stages.s05_segments import _reattribute_and_recheck
+
+    class _Both:
+        def __init__(self):
+            self.models: list[str] = []
+
+        def chat_json(self, model, messages, schema=None, **kw):
+            self.models.append(model)
+            system = messages[0]["content"]
+            if "Characters were just discovered" in system:
+                return {"roster_issues": []}
+            if "attributions" in json.dumps(schema or {}):
+                return {"attributions": [{"index": 0, "speaker": "Ahab"}]}
+            return {"corrections": [], "overall_quality": 1.0}
+
+    chapter = _chapter([_seg("“Line one.”", None), _seg("“Line two.”", "Ahab")])
+    report = CriticReport(chapter_number=1, overall_quality=0.4,
+                          needs_reprocessing=True)
+    client = _Both()
+    cfg = Config(book_id="0", max_retries=1, cache_dir=tmp_path,
+                 validation_model="validator")
+    for stage in range(1, 8):
+        cfg.stage_dir(stage).mkdir(parents=True, exist_ok=True)
+
+    out, second = _reattribute_and_recheck(
+        cfg, client, chapter, report, [CharacterInfo(name="Ahab")], set())
+
+    assert client.models, "the re-attribution pass never called the model"
+    assert "validator" in client.models, "it must run on the validator model"
+    assert second.overall_quality >= report.overall_quality
+    assert out.segments[0].speaker == "Ahab"
+
+
+def test_reattribution_returns_early_with_nothing_to_redo():
+    """The case every other test happened to hit."""
+    from gutenberg_reader.stages.s05_segments import _reattribute_and_recheck
+
+    class _Never:
+        def chat_json(self, *a, **kw):
+            raise AssertionError("should not be called")
+
+    chapter = _chapter([_seg("“Line.”", "Ahab")])
+    report = CriticReport(chapter_number=1, overall_quality=0.4,
+                          needs_reprocessing=True)
+    out, back = _reattribute_and_recheck(
+        _cfg(), _Never(), chapter, report, [CharacterInfo(name="Ahab")], set())
+    assert out is chapter and back is report
