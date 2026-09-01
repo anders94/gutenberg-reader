@@ -30,6 +30,10 @@ class Config:
     include_front_matter: bool = False
     include_back_matter: bool = False
     accept_structure_warnings: bool = False
+    # Where a finished book is filed for committing. Only a complete run
+    # installs; a --chapters run is a fragment and stays in cache/.
+    library_dir: Path = field(default_factory=lambda: Path('./library'))
+    install_to_library: bool = True
     structure_detector: str = "llm"   # "llm" | "regex"
     # Chain-of-thought is waste on the structure pass and costs an order of
     # magnitude. Measured on goldberry (DeepSeek-V4-Flash) for PG 2641: with
@@ -53,6 +57,7 @@ class Config:
         if not self.structure_model:
             self.structure_model = self.validation_model
         self.cache_dir = Path(self.cache_dir)
+        self.library_dir = Path(self.library_dir)
 
     @property
     def book_cache_dir(self) -> Path:

@@ -29,6 +29,13 @@ console = Console()
 @click.option("--structure-model", default="",
               help="Model for chapter-structure analysis (default: --validator)")
 @click.option("--api-key", default="EMPTY", help="API key, if the server requires one")
+@click.option("--library-dir", default="./library", show_default=True,
+              type=click.Path(),
+              help="Where a completed book is installed for committing")
+@click.option("--library/--no-library", "install_to_library", default=True,
+              show_default=True,
+              help="Install a completed book into the library. A partial "
+                   "--chapters run is never installed")
 @click.option("--cache-dir", default="./cache", show_default=True, type=click.Path(), help="Cache directory")
 @click.option("--output", default=None, type=click.Path(), help="Output file path")
 @click.option("--chunk-size", default=1000, show_default=True, type=int,
@@ -66,6 +73,8 @@ def main(
     structure_base_url: str,
     structure_model: str,
     api_key: str,
+    library_dir: str,
+    install_to_library: bool,
     cache_dir: str,
     output: str | None,
     chunk_size: int,
@@ -105,6 +114,8 @@ def main(
         structure_base_url=structure_base_url,
         structure_model=structure_model,
         cache_dir=Path(cache_dir),
+        library_dir=Path(library_dir),
+        install_to_library=install_to_library,
         output_file=output_path,
         chunk_size=chunk_size,
         max_retries=max_retries,

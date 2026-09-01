@@ -323,6 +323,26 @@ segment text is never touched by any model. Disable with `--no-critic`.
 
 ---
 
+## Library
+
+A completed run installs the finished book into `library/` under a slugged name:
+
+```
+library/1342-pride-and-prejudice.json
+library/2701-moby-dick.json
+```
+
+`cache/` is scratch — gitignored, rewritten by every run, safe to delete. `library/`
+is the opposite: the finished work, committed, so re-processing a title shows up as a
+reviewable diff against the last time it was good. The run's own timing is dropped on
+the way in, so an unchanged analysis produces an unchanged file.
+
+A partial `--chapters` run is never installed — it is a fragment, and filing it would
+overwrite a whole book with a piece of one. `--no-library` skips the step;
+`scripts/install_library.py` backfills books processed before the library existed.
+
+---
+
 ## Tests and fixtures
 
 ```bash

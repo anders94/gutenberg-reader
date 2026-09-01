@@ -6,6 +6,7 @@ from pathlib import Path
 
 from rich.console import Console
 
+from gutenberg_reader import library
 from gutenberg_reader.cache import atomic_write_json
 from gutenberg_reader.config import Config
 from gutenberg_reader import text_utils
@@ -170,6 +171,7 @@ def run(
     }
 
     atomic_write_json(out_path, output)
+    _install_to_library(config, out_path)
 
     if config.verbose:
         console.print(
@@ -178,3 +180,24 @@ def run(
         )
 
     return out_path
+
+
+def _install_to_library(config: Config, out_path: Path) -> None:
+    """File a completed book under library/ for committing.
+
+    Only a complete run: a --chapters run is a fragment, and installing it would
+    overwrite a whole book with a piece of one.
+
+    Nothing here may raise. This runs at the end of a job that can take hours,
+    and a filename or a permission problem must not be able to throw away the
+    result that is already safely written to cache/.
+    """
+    if not config.install_to_library or config.chapters_only:
+        return
+    try:
+        installed = library.install(out_path, config.library_dir)
+        console.print(f"  [dim]installed → {installed}[/dim]")
+    except Exception as e:  # never lose a finished book to a bookkeeping step
+        console.print(
+            f"  [yellow]could not install into {config.library_dir}: {e}[/yellow]"
+        )
