@@ -103,6 +103,7 @@ def run_pipeline(config: Config) -> Path:
         chapter_bounds={ci.number: (ci.start_line, ci.end_line) for ci in chapter_infos},
         quote_pair=(discovery.quote_open, discovery.quote_close)
         if discovery.quote_open else None,
+        narrator_name=discovery.narrator_name,
     )
     console.print(f"  [dim]{len(characters)} characters identified[/dim]")
     flagged = [n for n, (_, r) in accepted.items() if r and r.needs_reprocessing]

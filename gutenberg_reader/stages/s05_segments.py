@@ -69,6 +69,7 @@ def run(
     chapter_titles: dict[int, str] | None = None,
     chapter_bounds: dict[int, tuple[int, int]] | None = None,
     quote_pair: tuple[str, str] | None = None,
+    narrator_name: str = "",
 ) -> tuple[dict[int, tuple[ProcessedChapter, CriticReport | None]], list[CharacterInfo]]:
     """Process chapters in reading order.
 
@@ -87,6 +88,16 @@ def run(
 
     roster: list[CharacterInfo] = []
     protected: set[str] = set()  # lowercase anchor-established names
+
+    # A first-person narrator is a character like any other, and their own speech
+    # needs a label the enum can carry. Seeded before chapter one because
+    # discovery only finds names the text states, and a memoir rarely names its
+    # own author: Augustine speaks 26 times in the Confessions and is mentioned
+    # by name never.
+    if narrator_name:
+        roster = [CharacterInfo(name=narrator_name)]
+        protected = {narrator_name.lower()}
+        console.print(f"  [dim]narrator seeded into the roster: {narrator_name}[/dim]")
     accepted: dict[int, tuple[ProcessedChapter, CriticReport | None]] = {}
 
     for num in nums:
@@ -100,7 +111,7 @@ def run(
             report = None
             if critic_on:
                 chapter, report, roster, protected = _run_critic(
-                    config, client, chapter, roster, protected
+                    config, client, chapter, roster, protected, narrator_name
                 )
             accepted[num] = (chapter, report)
             continue
@@ -132,6 +143,7 @@ def run(
             num, chapter_text, roster, config, client,
             title=(chapter_titles or {}).get(num),
             quote_pair=quote_pair,
+            narrator_name=narrator_name,
         )
         protected = protected | chapter_anchors
 
@@ -144,7 +156,7 @@ def run(
         final_chapter = processed
         if critic_on:
             final_chapter, report, roster, protected = _run_critic(
-                config, client, processed, roster, protected
+                config, client, processed, roster, protected, narrator_name
             )
 
         # Snapshot after the critic so chapter N+1 resumes from the exact
@@ -173,11 +185,12 @@ def _run_critic(
     chapter: ProcessedChapter,
     roster: list[CharacterInfo],
     protected: set[str],
+    narrator_name: str = "",
 ) -> tuple[ProcessedChapter, CriticReport, list[CharacterInfo], set[str]]:
     """Critique one chapter and apply its roster objections (forward-only)."""
     new_names = [c.name for c in chapter.discovered_characters]
     final_chapter, report, issues = s06_critic.run_chapter(
-        config, client, chapter, roster, new_names
+        config, client, chapter, roster, new_names, narrator_name=narrator_name
     )
     # Idempotent: on a resumed chapter whose snapshot already reflects these
     # issues, the entries are gone and every issue is a no-op.
@@ -188,7 +201,7 @@ def _run_critic(
 
     if report.needs_reprocessing:
         final_chapter, report = _reattribute_and_recheck(
-            config, client, final_chapter, report, roster, protected
+            config, client, final_chapter, report, roster, protected, narrator_name
         )
     return final_chapter, report, roster, protected
 
@@ -200,6 +213,7 @@ def _reattribute_and_recheck(
     report: CriticReport,
     roster: list[CharacterInfo],
     protected: set[str],
+    narrator_name: str = "",
 ) -> tuple[ProcessedChapter, CriticReport]:
     """Give a chapter the critic was unhappy with exactly one more pass.
 
@@ -236,11 +250,17 @@ def _reattribute_and_recheck(
     )
 
     char_names = [c.name for c in roster]
+    # The narrator reaches dialogue only through a first-person tag, never
+    # through the free attribution passes. Offered in the enum, they become the
+    # sink for everything unattributable: on PG 3296 "Augustine" collected 105
+    # lines of which roughly seventy were a personified abstraction, a quoted
+    # term, or his mother speaking. A tag is evidence; being plausible is not.
+    attributable = text_utils.attributable_names(char_names, narrator_name)
     answers = _llm_window_pass(
         segments, retry, config, client,
-        system_msg=prompts.verify_attribution_system(char_names),
+        system_msg=prompts.verify_attribution_system(attributable),
         user_fn=prompts.verify_attribution_user,
-        schema=schemas.attribution_schema(char_names),
+        schema=schemas.attribution_schema(attributable),
         model=config.validation_model,
     )
     for idx, speaker in answers.items():
@@ -255,7 +275,8 @@ def _reattribute_and_recheck(
     )
     # One re-critique, and the roster is already settled, so no new names.
     rechecked, second, _ = s06_critic.run_chapter(
-        config, client, reworked, roster, [], force=True
+        config, client, reworked, roster, [], force=True,
+        narrator_name=narrator_name,
     )
     if second.overall_quality < report.overall_quality:
         # The second opinion is worse than the first; keep what we had rather
@@ -306,6 +327,7 @@ def _segment_chapter(
     client: LLMRouter,
     title: str | None = None,
     quote_pair: tuple[str, str] | None = None,
+    narrator_name: str = "",
 ) -> tuple[ProcessedChapter, list[CharacterInfo], set[str]]:
     """Segment and attribute one chapter.
 
@@ -351,6 +373,9 @@ def _segment_chapter(
 
     # Tier 1: deterministic attribution anchors ("said Mr. Bennet" adjacent to dialogue)
     anchors = text_utils.extract_attribution_anchors(segments, roster)
+    # And the narrator's own, which no named tag can reach: a first-person
+    # narrator is never named by a tag in their own narration.
+    anchors.update(text_utils.extract_first_person_anchors(segments, narrator_name))
     for idx, name in anchors.items():
         segments[idx]["speaker"] = name
 
@@ -363,12 +388,15 @@ def _segment_chapter(
         [CharacterInfo(name=n, first_appearance_chapter=chapter_num) for n in extra_names],
     )
     char_names = [c.name for c in roster]
+    # The narrator reaches dialogue only through a first-person tag, never
+    # through the free attribution passes below.
+    attributable = text_utils.attributable_names(char_names, narrator_name)
     anchor_names = {n.lower() for n in anchors.values()}
 
     # Tier 1b: LLM-resolve nameless attribution tags ("said his lady", "returned she")
     # to character names — a much easier task than free attribution — then anchor
     # the adjacent dialogue exactly as named tags do.
-    n_tag = _resolve_nameless_tags(segments, roster, char_names, config, client)
+    n_tag = _resolve_nameless_tags(segments, roster, attributable, config, client)
 
     # Pass A (opportunistic): best-guess LLM attribution for unanchored dialogue
     # Citations are quoted text with no speaker to find — an oracle, an
@@ -382,9 +410,9 @@ def _segment_chapter(
     }
     proposed = _llm_window_pass(
         segments, unresolved, config, client,
-        system_msg=prompts.attribution_system(char_names),
+        system_msg=prompts.attribution_system(attributable),
         user_fn=prompts.attribution_user,
-        schema=schemas.attribution_schema(char_names),
+        schema=schemas.attribution_schema(attributable),
     )
     for idx, speaker in proposed.items():
         segments[idx]["speaker"] = speaker
@@ -395,9 +423,9 @@ def _segment_chapter(
     # matters, and decorrelates the two passes' errors even at equal size.
     verified = _llm_window_pass(
         segments, unresolved, config, client,
-        system_msg=prompts.verify_attribution_system(char_names),
+        system_msg=prompts.verify_attribution_system(attributable),
         user_fn=prompts.verify_attribution_user,
-        schema=schemas.attribution_schema(char_names),
+        schema=schemas.attribution_schema(attributable),
         model=config.validation_model,
     )
     disputes: dict[int, tuple[str, str]] = {}
@@ -412,9 +440,9 @@ def _segment_chapter(
     if disputes:
         broken = _llm_window_pass(
             segments, set(disputes), config, client,
-            system_msg=prompts.tiebreak_system(char_names),
+            system_msg=prompts.tiebreak_system(attributable),
             user_fn=lambda w, s, f, c: prompts.tiebreak_user(w, s, f, c, disputes),
-            schema=schemas.attribution_schema(char_names),
+            schema=schemas.attribution_schema(attributable),
             model=config.validation_model,
         )
         for idx in disputes:
@@ -511,6 +539,10 @@ def _review_spans(
              {"role": "user", "content": prompts.span_type_user(passages, len(batch))}],
             schema=schemas.span_type_schema(len(batch)),
             retries=config.max_retries, what="span review", console=console,
+            # Greedy, like the structure pass and the critic. Left sampling, the
+            # same chapter demoted a different set of spans on each run, which
+            # made two runs of a change impossible to compare.
+            temperature=0.0,
         )
         if data is None:
             continue          # these spans keep the segmenter's verdict

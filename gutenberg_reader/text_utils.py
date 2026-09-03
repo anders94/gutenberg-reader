@@ -606,6 +606,61 @@ def is_narrator_role(name: str) -> bool:
 CITATION_SPEAKER = "Citation"
 
 
+# God addressed as an interlocutor, and personified abstractions given a line to
+# say, are rhetorical devices rather than people in a scene. The span classifier
+# already demotes the ones it recognises (see the "rhetorical" label), but the
+# ones that reach attribution need a speaker, and the model reaches for the
+# nearest plausible name. On PG 3296 that made "The Lord" the sink Augustine had
+# been: 28 lines, most of them fragments of Augustine's own reasoning in quotes.
+#
+# Whole-name only, and every token must be divine or abstract. "Lord Wilmore",
+# "Lord Ingram", "Lord Backwater" and "Godfrey Norton" are real people whose
+# names merely contain one of these words, and all of them survive: checked
+# against every roster in the library, this matches three names in one book.
+_DIVINE_QUALIFIER = (
+    r"(?:the|a|an|thy|thine|my|our|your|his|its|o|good|great|most|high"
+    r"|almighty|holy|eternal|unchangeable|blessed|true|living|very|own"
+    r"|same|one|only|dear|sweet|mighty)"
+)
+_DIVINE_NOUN = (
+    r"(?:god|godhead|lord|christ|jesus|saviour|savior|redeemer|creator"
+    r"|almighty|providence|deity|trinity|ghost|spirit|word|heaven|heavens"
+    r"|truth|wisdom|mercy|justice|conscience|memory|reason|nature|soul"
+    r"|flesh|beauty|law|life|death|time|eternity|fortune|fate|love"
+    r"|habit|light|darkness|world|earth|air|sea|sky|creation|voice"
+    r"|sense|senses|things)"
+)
+RHETORICAL_SPEAKER_RE = re.compile(
+    rf"^\s*(?:{_DIVINE_QUALIFIER}\s+)*(?:{_DIVINE_NOUN}\s*)+$", re.IGNORECASE
+)
+
+
+def is_rhetorical_speaker(name: str) -> bool:
+    """True for a deity or personified abstraction addressed as a speaker.
+
+    Not a reserved name: it stays in the roster, because the text really does
+    put words in its mouth and a reader may want to know that. It is simply
+    never on offer as an answer, for the same reason the narrator is not —
+    giving an abstraction its own voice confuses a listener rather than helping,
+    which is the same judgment the "rhetorical" span label already encodes.
+    """
+    return bool(RHETORICAL_SPEAKER_RE.match(name))
+
+
+def attributable_names(char_names: list[str], narrator_name: str = "") -> list[str]:
+    """The roster names a free attribution pass may actually choose from.
+
+    One function rather than a filter repeated at each call site: the narrator
+    exclusion was written into stage 05 and not into the critic, and the critic
+    quietly handed back 61 of the 64 lines stage 05 had just withheld. Every
+    pass that offers a speaker enum goes through here.
+    """
+    return [
+        n for n in char_names
+        if n != narrator_name and not is_rhetorical_speaker(n)
+    ]
+
+
 def is_reserved_character_name(name: str) -> bool:
     """True for names that must never become roster entries."""
     parts = [p for p in _ROLE_SEPARATOR_RE.split(name) if p.strip()]
@@ -805,6 +860,63 @@ def extract_attribution_anchors(
                 named_anchors[i + 1] = canonical
 
     return named_anchors
+
+
+# "I answered", "said I", "we asked" — the narrator attributing speech to
+# themselves. A first-person narrator is never named by a tag in their own
+# narration, so the named-anchor path cannot see them at all.
+FIRST_PERSON_TAG_RE = re.compile(
+    r"^\s*(?:and\s+|but\s+|so\s+|then\s+)?"
+    r"(?:I|we)\b[^.;:!?]{0,28}?\b(?:said|answered|replied|asked|cried|"
+    r"exclaimed|added|returned|rejoined|urged|objected|say|answer|ask|reply|"
+    r"cry|add|return|demand|demanded|enquired|inquired)\b"
+    r"|\b(?:said|answered|replied|asked|cried|exclaimed|rejoined)\s+(?:I|we)\b",
+    re.IGNORECASE,
+)
+
+
+def extract_first_person_anchors(
+    segments: list[dict],
+    narrator_name: str,
+) -> dict[int, str]:
+    """Anchor dialogue that the narrator attributes to themselves.
+
+    Same adjacency rules as the named anchors: the preceding dialogue is always
+    taken, the following only when the tag ends on continuation punctuation.
+
+    This is deliberately the *only* way the narrator becomes a speaker. Put into
+    the attribution enum instead, a first-person narrator becomes a sink for
+    everything unattributable: on PG 3296, "Augustine" collected 105 lines of
+    which roughly seventy belonged to a personified abstraction, a quoted term or
+    to his mother. A tag is evidence; being plausible is not.
+    """
+    if not narrator_name:
+        return {}
+
+    anchors: dict[int, str] = {}
+    for i, seg in enumerate(segments):
+        # Its own gate rather than _is_attribution_narration, which wants a
+        # sentence LEADING with a speech verb. A first-person tag often puts the
+        # verb further in — "I was wont to ask them", "I could only answer" —
+        # and that path is tuned for the named anchors it serves.
+        if seg.get("type") != "narration":
+            continue
+        text = seg.get("text", "")
+        if len(text.split()) > 20:
+            continue
+        sentences = _split_sentences(text)
+
+        if (i > 0 and segments[i - 1].get("type") == "dialogue"
+                and FIRST_PERSON_TAG_RE.search(sentences[0])):
+            anchors[i - 1] = narrator_name
+
+        if (i < len(segments) - 1
+                and segments[i + 1].get("type") == "dialogue"
+                and text.strip().endswith((",", ";", ":"))
+                and FIRST_PERSON_TAG_RE.search(sentences[-1])):
+            anchors[i + 1] = narrator_name
+
+    return anchors
 
 
 def _tag_speaker(sentence: str, alias_map: dict[str, str]) -> str | None:

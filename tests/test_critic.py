@@ -13,7 +13,7 @@ import json
 
 import pytest
 
-from gutenberg_reader import prompts, schemas
+from gutenberg_reader import prompts, schemas, text_utils
 from gutenberg_reader.config import Config
 from gutenberg_reader.models import (
     CharacterInfo, CriticReport, ProcessedChapter, Segment,
@@ -301,3 +301,239 @@ def test_reattribution_returns_early_with_nothing_to_redo():
     out, back = _reattribute_and_recheck(
         _cfg(), _Never(), chapter, report, [CharacterInfo(name="Ahab")], set())
     assert out is chapter and back is report
+
+
+# ── Names that are not names ─────────────────────────────────────────────────
+
+@pytest.mark.parametrize("name", [
+    # Barred from answering "Narrator", the model offered this on PG 3296 and it
+    # absorbed 109 attributions belonging to Augustine or to nobody.
+    "Self/Narrator", "Narrator/Self", "narrator or author",
+    # Asked in the prompt for proper names since the roster work; asking is not
+    # enough, the same lesson as "Unnamed narrator".
+    "Wise man", "The builder",
+    "Narrator", "Unnamed narrator", "N/A", "Unknown",
+])
+def test_a_role_or_a_description_is_never_a_character(name):
+    from gutenberg_reader import text_utils
+    assert text_utils.is_reserved_character_name(name)
+
+
+@pytest.mark.parametrize("name", [
+    "Augustine", "Jane Eyre", "Mr. Sherlock Holmes",
+    # A person described by relation is still a person, and ends on the noun
+    # that names her.
+    "Narrator's Wife",
+    # Particles and lowercase first words are ordinary in real names.
+    "young Lucas", "Joan of Arc", "de Winter",
+])
+def test_a_real_name_survives_the_guards(name):
+    from gutenberg_reader import text_utils
+    assert not text_utils.is_reserved_character_name(name)
+
+
+def test_no_function_uses_a_name_it_never_defines():
+    """Three separate bugs this session came from an unanchored replace leaving a
+    name undefined in one scope while tests stayed green: char_names passed where
+    config belonged, a dedented return, and `attributable` used in
+    _segment_chapter but assigned only in _reattribute_and_recheck. Reading the
+    module for it costs nothing and catches all three shapes."""
+    import ast
+    import builtins
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parent.parent / "gutenberg_reader"
+    builtin_names = set(dir(builtins))
+
+    for path in sorted(root.rglob("*.py")):
+        tree = ast.parse(path.read_text())
+        # Only genuinely module-level bindings. Walking into function bodies for
+        # these was the flaw in the first version of this check: every local
+        # assignment anywhere in the file counted as global, so a name defined in
+        # one function looked defined in all of them — which is exactly the bug
+        # being hunted, and it went unreported.
+        module_level = {
+            n.name for n in tree.body
+            if isinstance(n, (ast.FunctionDef, ast.ClassDef))
+        } | {
+            (a.asname or a.name).split(".")[0]
+            for n in ast.walk(tree) if isinstance(n, (ast.Import, ast.ImportFrom))
+            for a in n.names
+        }
+        for stmt in tree.body:
+            if isinstance(stmt, (ast.FunctionDef, ast.ClassDef)):
+                continue
+            for t in ast.walk(stmt):
+                if isinstance(t, ast.Name) and isinstance(t.ctx, ast.Store):
+                    module_level.add(t.id)
+        # Only outermost functions: walking one already collects what its nested
+        # functions bind, and checking a closure on its own reports every name it
+        # legitimately captures from the scope around it.
+        nested = {
+            inner for n in ast.walk(tree)
+            if isinstance(n, ast.FunctionDef)
+            for inner in ast.walk(n)
+            if isinstance(inner, ast.FunctionDef) and inner is not n
+        }
+        for fn in [n for n in ast.walk(tree)
+                   if isinstance(n, ast.FunctionDef) and n not in nested]:
+            bound: set[str] = set()
+            # Nested functions and lambdas bind their own parameters; collect
+            # every signature inside this one, not just the outer.
+            for scope in ast.walk(fn):
+                if isinstance(scope, (ast.FunctionDef, ast.AsyncFunctionDef,
+                                      ast.Lambda)):
+                    a = scope.args
+                    bound |= {x.arg for x in a.args + a.kwonlyargs + a.posonlyargs}
+                    if a.vararg:
+                        bound.add(a.vararg.arg)
+                    if a.kwarg:
+                        bound.add(a.kwarg.arg)
+            for node in ast.walk(fn):
+                if isinstance(node, ast.Name) and isinstance(node.ctx, ast.Store):
+                    bound.add(node.id)
+                elif isinstance(node, (ast.FunctionDef, ast.ClassDef)):
+                    bound.add(node.name)
+                elif isinstance(node, ast.ExceptHandler) and node.name:
+                    bound.add(node.name)
+                elif isinstance(node, (ast.Import, ast.ImportFrom)):
+                    for a in node.names:
+                        bound.add((a.asname or a.name).split(".")[0])
+                elif isinstance(node, (ast.comprehension,)):
+                    for t in ast.walk(node.target):
+                        if isinstance(t, ast.Name):
+                            bound.add(t.id)
+            used = {
+                n.id for n in ast.walk(fn)
+                if isinstance(n, ast.Name) and isinstance(n.ctx, ast.Load)
+            }
+            unknown = used - bound - module_level - builtin_names
+            assert not unknown, f"{path.name}:{fn.name} uses undefined {sorted(unknown)}"
+
+
+# ── The narrator is a roster entry, not an available answer ──────────────────
+
+def test_the_critic_is_not_offered_the_narrator():
+    """Stage 05 excludes the narrator from the attribution enum, but the critic
+    built its own list straight off the roster and undid it: on PG 3296 stage 05
+    left Augustine the 17 lines that had a first-person tag and the critic handed
+    him back 61 more out of Unknown, landing within one line of the unfixed run."""
+    seen: dict[str, list[str]] = {}
+
+    def _capture(chapter, char_names, new_names, config, client):
+        seen["names"] = list(char_names)
+        return [], 1.0, []
+
+    real = s06_critic._llm_critique
+    s06_critic._llm_critique = _capture
+    try:
+        chapter = _chapter([_seg("“Line.”", "Unknown")])
+        s06_critic._critique_chapter(
+            chapter,
+            [CharacterInfo(name="Augustine"), CharacterInfo(name="Alypius")],
+            [], _cfg(), _Client({"roster": {"roster_issues": []}}),
+            narrator_name="Augustine",
+        )
+    finally:
+        s06_critic._llm_critique = real
+
+    assert seen["names"] == ["Alypius"]
+
+
+def test_the_narrator_is_still_offered_when_the_book_has_none():
+    """Third-person books pass narrator_name="" and must be unaffected."""
+    seen: dict[str, list[str]] = {}
+
+    def _capture(chapter, char_names, new_names, config, client):
+        seen["names"] = list(char_names)
+        return [], 1.0, []
+
+    real = s06_critic._llm_critique
+    s06_critic._llm_critique = _capture
+    try:
+        s06_critic._critique_chapter(
+            _chapter([_seg("“Line.”", "Ahab")]),
+            [CharacterInfo(name="Ahab"), CharacterInfo(name="Pip")],
+            [], _cfg(), _Client({"roster": {"roster_issues": []}}))
+    finally:
+        s06_critic._llm_critique = real
+
+    assert seen["names"] == ["Ahab", "Pip"]
+
+
+def test_a_first_person_tag_outranks_a_critic_correction():
+    """"said I" is evidence of the same kind as "said Alypius" and gets the same
+    standing: the critic may not move the line off the narrator."""
+    chapter = _chapter([
+        _seg("“Thou art great, O Lord.”", "Augustine"),
+        _seg("said I, and was silent.", None, kind="narration"),
+    ])
+    client = _Client({
+        "window": {
+            "corrections": [{"index": 0, "speaker": "Alypius", "reason": "guess"}],
+            "overall_quality": 0.5,
+        },
+        "roster": {"roster_issues": []},
+    })
+    _, chap, _ = s06_critic._critique_chapter(
+        chapter,
+        [CharacterInfo(name="Augustine"), CharacterInfo(name="Alypius")],
+        [], _cfg(), client, narrator_name="Augustine")
+    assert chap.segments[0].speaker == "Augustine"
+
+
+# ── A deity or an abstraction is not a castable speaker ──────────────────────
+
+@pytest.mark.parametrize("name", [
+    "The Lord", "Lord God", "The Holy Ghost", "God", "Truth", "O Truth",
+    "Thy Lord", "The Good God", "The Spirit", "The Unchangeable Truth",
+])
+def test_a_deity_or_an_abstraction_is_not_on_offer(name):
+    """Closing the narrator leak moved the sink rather than draining it: with
+    Augustine withheld, "The Lord" collected 28 lines on PG 3296, most of them
+    fragments of Augustine's own reasoning in quotation marks."""
+    assert text_utils.is_rhetorical_speaker(name)
+
+
+@pytest.mark.parametrize("name", [
+    "Lord Wilmore", "Lord Ingram", "Lord Backwater", "Godfrey Norton",
+    "Landlord", "Lady Catherine de Bourgh", "Lord Robert Walsingham de Vere St. Simon",
+    "Ctimene", "Mrs. Fairfax",
+])
+def test_a_real_person_whose_name_contains_one_survives(name):
+    """Every one of these is a real character in the library. A whole-name rule
+    is what separates them from "The Lord"."""
+    assert not text_utils.is_rhetorical_speaker(name)
+
+
+def test_a_rhetorical_speaker_is_withheld_but_not_struck_from_the_roster():
+    """Withheld, not reserved: the text really does put words in its mouth, so
+    the roster entry stands and only the enum loses it."""
+    assert not text_utils.is_reserved_character_name("The Lord")
+    assert text_utils.attributable_names(
+        ["Augustine", "The Lord", "Alypius"], "Augustine") == ["Alypius"]
+
+
+def test_attributable_names_is_the_only_gate():
+    """Every pass that offers a speaker enum goes through one function. Written
+    as a filter at each call site, the narrator exclusion reached stage 05 and
+    not the critic, which handed back 61 of the 64 lines stage 05 withheld."""
+    import ast
+    import pathlib
+    offenders = []
+    for path in pathlib.Path("gutenberg_reader").rglob("*.py"):
+        tree = ast.parse(path.read_text())
+        # The definition itself is the one place allowed to spell the filter out.
+        exempt = {
+            id(c)
+            for fn in ast.walk(tree)
+            if isinstance(fn, (ast.FunctionDef, ast.AsyncFunctionDef))
+            and fn.name == "attributable_names"
+            for c in ast.walk(fn)
+            if isinstance(c, ast.ListComp)
+        }
+        for node in ast.walk(tree):
+            if (isinstance(node, ast.ListComp) and id(node) not in exempt
+                    and "narrator_name" in ast.dump(node)):
+                offenders.append(f"{path}:{node.lineno}")
+    assert not offenders, f"hand-rolled narrator filter: {offenders}"

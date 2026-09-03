@@ -60,6 +60,7 @@ def run_chapter(
     roster: list[CharacterInfo],
     new_names: list[str],
     force: bool = False,
+    narrator_name: str = "",
 ) -> tuple[ProcessedChapter, CriticReport, list[dict]]:
     """Critique one chapter. Returns (accepted_chapter, report, roster_issues).
 
@@ -86,7 +87,7 @@ def run_chapter(
         console.print(f"[cyan]Stage 06:[/cyan] Critiquing chapter {num:02d}...")
 
     report, final_chapter, roster_issues = _critique_chapter(
-        chapter, roster, new_names, config, client
+        chapter, roster, new_names, config, client, narrator_name
     )
 
     data = {
@@ -221,9 +222,16 @@ def _critique_chapter(
     new_names: list[str],
     config: Config,
     client: LLMRouter,
+    narrator_name: str = "",
 ) -> tuple[CriticReport, ProcessedChapter, list[dict]]:
     """Run code-level checks and LLM critique."""
     char_names = [c.name for c in roster]
+    # Same rule as the stage 05 attribution passes: the narrator is a roster
+    # entry so anchors and the spell-check can see them, but they are not on
+    # offer as an answer. Without this the critic undid the whole change --
+    # stage 05 left Augustine with the 17 lines he had evidence for and the
+    # critic handed him back 61 more out of Unknown.
+    attributable = text_utils.attributable_names(char_names, narrator_name)
 
     # Code-level: coverage check
     coverage_issues = _check_coverage(chapter)
@@ -234,16 +242,21 @@ def _critique_chapter(
     # LLM critique: returns per-segment speaker corrections and roster
     # objections, never text. Segment text is deterministic and untouchable.
     corrections, quality, unreviewed = _llm_critique(
-        chapter, char_names, new_names, config, client
+        chapter, attributable, new_names, config, client
     )
     # Asked once for the chapter, with evidence, rather than once per window
     # from memory.
     roster_issues = _review_roster(chapter, char_names, new_names, config, client)
 
     # Named anchors ("said Mr. Bennet" adjacent to the dialogue) outrank the critic
-    named_anchors = text_utils.extract_attribution_anchors(
-        [s.to_dict() for s in chapter.segments], roster
-    )
+    seg_dicts = [s.to_dict() for s in chapter.segments]
+    named_anchors = text_utils.extract_attribution_anchors(seg_dicts, roster)
+    # A first-person tag ("said I") is evidence of the same kind as "said
+    # Alypius", so it outranks a critic correction the same way.
+    if narrator_name:
+        named_anchors.update(
+            text_utils.extract_first_person_anchors(seg_dicts, narrator_name)
+        )
 
     final_segs = list(chapter.segments)
     applied: list[str] = []
