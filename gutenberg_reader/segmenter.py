@@ -66,6 +66,10 @@ def normalize_chapter(chapter_text: str) -> tuple[str, list[tuple[int, int]]]:
     # from the chapter files. Doing it here too makes the invariant hold for any
     # caller rather than only for the pipeline's own path, and it is idempotent.
     chapter_text = text_utils.strip_illustration_blocks(chapter_text)
+    # Page markup — italic underscores, redacted names, ASCII em-dashes — is
+    # turned into words here, before the paragraph spans are measured, so every
+    # offset indexes text as it will actually be read.
+    chapter_text = text_utils.normalize_typography(chapter_text)
     paras = split_paragraphs(chapter_text)
     spans: list[tuple[int, int]] = []
     pos = 0

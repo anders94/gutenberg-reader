@@ -314,3 +314,140 @@ def test_ordinary_speech_still_settles(text):
     reading, segs = _seg(text, CURLY)
     settled, ask = segmenter.classify_spans_deterministically(segs, reading)
     assert not ask and set(settled.values()) == {"speech"}
+
+
+# ── Page markup a voice would otherwise read out loud ────────────────────────
+
+@pytest.mark.parametrize("raw,said", [
+    ("_You_ may well be surprised", "You may well be surprised"),
+    ("=Little Women=; or Meg, Jo", "Little Women; or Meg, Jo"),
+    ("the ----shire militia", "the blankshire militia"),
+    ("a lieutenant's commission in the ----shire.",
+     "a lieutenant's commission in the blankshire."),
+    ("said,--and then she left", "said,—and then she left"),
+    ("better acquainted----”", "better acquainted—”"),
+    ("--As he was returning", "—As he was returning"),
+    # The discriminator: a dash run mid-line before a CAPITAL is an em-dash
+    # opening a clause, not a redacted name. Both of these are from PG 6400.
+    ("whom we have this tradition: --As he was returning",
+     "whom we have this tradition: —As he was returning"),
+    ("the old goat-------- and then", "the old goat and then"),
+    ("------------------When a picture", "When a picture"),
+])
+def test_page_markup_becomes_words(raw, said):
+    assert text_utils.normalize_typography(raw) == said
+
+
+@pytest.mark.parametrize("text", [
+    "a well-known man", "snake_case_name", "the semi-detached house",
+    "nothing to change here",
+])
+def test_ordinary_text_is_left_alone(text):
+    assert text_utils.normalize_typography(text) == text
+
+
+def test_normalizing_twice_changes_nothing_more():
+    raw = "_You_ may, in the ----shire,--see =this=."
+    once = text_utils.normalize_typography(raw)
+    assert text_utils.normalize_typography(once) == once
+
+
+def test_the_reading_text_check_still_catches_a_dropped_word():
+    """The check now normalises both sides, so it must still be exact about
+    everything else: loosening it to allow an italic underscore through would be
+    worthless if it also let a lost word through."""
+    reading, _ = segmenter.normalize_chapter("One _two_ three.")
+    assert text_utils.verify_reading_text("One _two_ three.", reading)[0]
+    ok, issues = text_utils.verify_reading_text("One _two_ three four.", reading)
+    assert not ok and issues
+
+
+# ── A publisher's catalogue is not the end of the book ───────────────────────
+
+CATALOGUE = """The last line of the story, spoken with feeling.
+
+Louisa M. Alcott's Writings
+
+THE LITTLE WOMEN SERIES.
+
+Little Women; or Meg, Jo, Beth, and Amy. Illustrated. 16mo. $1.50.
+
+Little Men. Life at Plumfield. Illustrated. 16mo. $1.50.
+
+An Old-Fashioned Girl. Illustrated. 16mo. $1.50.
+
+Eight Cousins; or, The Aunt-Hill. Illustrated. 16mo. $1.50.
+
+The above eight volumes, uniformly bound in cloth, gilt, in box, $12.00.
+
+LITTLE, BROWN, & COMPANY, Publishers
+""".splitlines()
+
+
+def test_a_trailing_catalogue_is_found_at_its_heading():
+    i = text_utils.find_publisher_matter(CATALOGUE, 0, len(CATALOGUE) - 1)
+    assert CATALOGUE[i] == "Louisa M. Alcott's Writings"
+
+
+def test_a_printers_colophon_is_found():
+    lines = ["Darcy, as well as Elizabeth, really loved them.", "", "",
+             "CHISWICK PRESS:--CHARLES WHITTINGHAM AND CO.",
+             "TOOKS COURT, CHANCERY LANE, LONDON.", "",
+             "*** END OF THE PROJECT GUTENBERG EBOOK ***"]
+    i = text_utils.find_publisher_matter(lines, 0, len(lines) - 1)
+    assert lines[i].startswith("CHISWICK PRESS")
+
+
+@pytest.mark.parametrize("lines", [
+    # a novel that merely mentions a publisher, mid-prose
+    ["He sent immediately for a cabriolet, and hastened to the publisher's office.",
+     "There he found nobody, and returned home in the rain."],
+    # a book that ends on its own words, in capitals
+    ["But Thou, being the Good which needeth no good, art ever at rest.",
+     "", "GRATIAS TIBI DOMINE"],
+    ["Some think that he was killed by his slave.", "",
+     "THE END OF LIVES OF THE POETS."],
+])
+def test_ordinary_endings_are_not_trimmed(lines):
+    assert text_utils.find_publisher_matter(lines, 0, len(lines) - 1) is None
+
+
+# ── What the renderer's pacing engine depends on (UPSTREAM #6) ───────────────
+
+def test_offsets_and_notes_survive_segmentation():
+    """tts-audiobook v2 derives pacing from these: adjacent offsets plus
+    non-terminal punctuation mean a mid-sentence split and a tight gap, an
+    offset gap means a scene break, and "quote-continues" means a paragraph
+    pause inside one speech. Dropping or renumbering any of it degrades the
+    audiobook silently, so it is pinned here rather than left to convention."""
+    # Gutenberg's convention for a speech that runs past a paragraph break: no
+    # closing quote at the end, and the next paragraph re-opens with one.
+    text = ('“I shall go, and nothing will stop me.\n\n'
+            '“Not you, nor anyone else.”\n\n'
+            'She went, and the house was quiet.')
+    reading, segs = _seg(text, CURLY)
+    assert all("start" in s and "end" in s for s in segs)
+    for s in segs:
+        assert reading[s["start"]:s["end"]] == s["text"]
+    assert [s["start"] for s in segs] == sorted(s["start"] for s in segs)
+    assert any(s.get("notes") == "quote-continues" for s in segs)
+
+
+def test_normalize_chapter_applies_the_typography_pass():
+    """The function existing is not the point; the pipeline calling it is."""
+    reading, _ = segmenter.normalize_chapter("_You_ may see the ----shire.")
+    assert reading == "You may see the blankshire."
+
+
+def test_a_few_catalogue_words_are_not_a_catalogue():
+    """The hit count and density are what stop this trimming a real chapter, so
+    they need a case with genuine hits that must survive. Four books in the
+    library mention a publisher in ordinary prose."""
+    lines = [
+        "The book was Illustrated. He turned the page and read on.",
+        "",
+        "It had cost him fifty cents, which he could ill afford.",
+        "",
+        "And so the long evening closed, and he slept.",
+    ]
+    assert text_utils.find_publisher_matter(lines, 0, len(lines) - 1) is None

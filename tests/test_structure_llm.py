@@ -225,3 +225,27 @@ def test_the_seeded_narrator_is_protected_from_the_critic():
     ]
     kept, _ = s06_critic.apply_roster_issues(roster, issues, {"augustine"})
     assert [c.name for c in kept] == ["Augustine"]
+
+
+def test_stage_02_trims_a_publisher_catalogue_from_the_final_chapter():
+    """The detector existing is not the point; _build_chapter_infos calling it
+    is. Little Women otherwise ends with 110 segments of advertising."""
+    from gutenberg_reader.stages import s02_discovery
+
+    body = (["CHAPTER I.", "", "The story begins here and runs on."]
+            + ["It continues for a while." for _ in range(4)]
+            + ["", "Louisa M. Alcott's Writings", "",
+               "Little Women. Illustrated. 16mo. $1.50.",
+               "Little Men. Illustrated. 16mo. $1.50.",
+               "An Old-Fashioned Girl. Illustrated. 16mo. $1.50.",
+               "Eight Cousins. Illustrated. 16mo. $1.50.",
+               "The above volumes, uniformly bound in cloth, gilt, in box, $12.00.",
+               "LITTLE, BROWN, & COMPANY, Publishers"])
+    infos = s02_discovery._build_chapter_infos(
+        [{"number": 1, "title": "CHAPTER I.", "start_line": 1, "kind": "body"}],
+        body, body_start=0,
+    )
+    # ChapterInfo line numbers are 1-indexed; stage 03 slices them this way.
+    kept = "\n".join(body[infos[-1].start_line - 1:infos[-1].end_line])
+    assert "The story begins here" in kept
+    assert "Alcott" not in kept and "$1.50" not in kept

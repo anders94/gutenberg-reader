@@ -449,6 +449,19 @@ def _build_chapter_infos(
                     f"{'keeping' if include_back_matter else 'trimming'} {trimmed:,} trailing lines"
                 )
                 rel_end = back_matter_start - 1
+            # A publisher's catalogue carries no heading of its own, so the
+            # rule above cannot see it. Little Women otherwise ends with 110
+            # segments of advertising read aloud in the narrator's voice.
+            if not include_back_matter:
+                ads = text_utils.find_publisher_matter(
+                    body_lines, rel_start + 1, rel_end)
+                if ads is not None:
+                    console.print(
+                        f"[cyan]Stage 02:[/cyan] final chapter ends at "
+                        f"publisher's matter {body_lines[ads].strip()[:48]!r} — "
+                        f"trimming {rel_end - ads + 1:,} trailing lines"
+                    )
+                    rel_end = ads - 1
 
         if rel_end < rel_start:
             console.print(

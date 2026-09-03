@@ -18,6 +18,41 @@ END_MARKER_RE = re.compile(
 ILLUSTRATION_RE = re.compile(r"\[Illustration[^\[\]]*\]", re.IGNORECASE)
 
 
+# Project Gutenberg typography that a voice has to read out loud. All of it is
+# markup for a printed page, and a TTS engine either stumbles over it or
+# performs it: P&P alone carries 467 italic underscores.
+#
+# Applied in normalize_chapter, before offsets are taken, because the offsets
+# index reading_text and the downstream pacing engine depends on them lining up
+# (see UPSTREAM-SUGGESTIONS #6). Normalising anywhere later would shift every
+# offset out from under the renderer.
+_ITALIC_RE = re.compile(r"(?<!\w)_([^_\n]{1,200})_(?!\w)")
+_BOLD_RE = re.compile(r"(?<!\w)=([^=\n]{1,200})=(?!\w)")
+# A redacted proper noun: "the ----shire militia", "Colonel F----d". The run is
+# attached to the word it hides, so a LOWERCASE letter follows it — which is
+# what separates it from an em-dash opening a sentence ("--As he was
+# returning") or a run of leader dashes before a line of verse.
+_REDACTION_RE = re.compile(r"(?<=\s)-{2,8}(?=[a-z])")
+# Eight or more is a printer's rule or a verse indent, not punctuation.
+_TYPOGRAPHIC_RULE_RE = re.compile(r"-{8,}")
+# Everything else is Gutenberg's ASCII em-dash: "said,--" and "acquainted----".
+_ASCII_EM_DASH_RE = re.compile(r"-{2,7}")
+# What a redacted name is read as. The alternative is leaving a dash run for the
+# engine to guess at, which is the complaint this answers; "blankshire" is the
+# established way of saying "----shire" aloud.
+REDACTION_WORD = "blank"
+
+
+def normalize_typography(text: str) -> str:
+    """Turn page markup into words a voice can read. Idempotent."""
+    text = _ITALIC_RE.sub(r"\1", text)
+    text = _BOLD_RE.sub(r"\1", text)
+    text = _REDACTION_RE.sub(REDACTION_WORD, text)
+    text = _TYPOGRAPHIC_RULE_RE.sub("", text)
+    text = _ASCII_EM_DASH_RE.sub("\u2014", text)
+    return text
+
+
 def strip_illustration_blocks(text: str) -> str:
     """Remove [Illustration: ...] blocks, handling nested brackets."""
     result = []
@@ -156,6 +191,93 @@ BACK_MATTER_RE = re.compile(
     r"BIBLIOGRAPHY|ERRATA|COLOPHON|(?:\w+\s+)?TRANSCRIBER.?S?\s+NOTES?)\b[:.]?\s*$",
     re.IGNORECASE,
 )
+
+
+# A publisher's catalogue bound in after the last chapter. BACK_MATTER_RE finds
+# it only when it carries a heading, and often it does not: Little Women ends
+# with 110 segments of advertising that the narrator performs to the listener
+# ("A quaint little fable in which the young heroine visits Candy-land"), and
+# P&P closes on its printer's imprint. Prices and binding formats are what the
+# catalogue has and the story does not.
+_CATALOGUE_RE = re.compile(
+    r"""( \$\s?\d+\.\d{2} | \b\d{1,2}mo\b | \b\d{1,3}\s+cents\b
+        | \bIllustrated\. | \buniformly\s+bound\b | \bIn\s+box,
+        | \bnew\s+plates\b | \bcloth,\s+gilt\b )""",
+    re.IGNORECASE | re.VERBOSE,
+)
+_IMPRINT_RE = re.compile(
+    r"""( \bPRESS: | \bPRINTED\s+BY\b | \bPublishers?\b\s*[,.]?\s*$
+        | ^\s*[A-Z][A-Za-z.]*(?:,\s*[A-Z][A-Za-z.]*)*\s*&\s*(?:CO|COMPANY)\b )""",
+    re.IGNORECASE | re.VERBOSE,
+)
+_PG_MARKER_RE = re.compile(r"^\s*\*\*\*")
+# Five hits at a third of the lines is a catalogue; one or two is a novel that
+# mentions a publisher. Measured across the library, the loose pattern alone
+# fires four times in 60,000 segments of ordinary prose, and never in a run.
+CATALOGUE_MIN_HITS = 5
+CATALOGUE_MIN_DENSITY = 0.30
+# How far back to reach for the heading that introduces the block
+# ("Louisa M. Alcott's Writings"), which carries no price of its own.
+CATALOGUE_HEADING_LOOKBACK = 3
+CATALOGUE_HEADING_CHARS = 60
+
+
+def _is_heading_shaped(line: str) -> bool:
+    """Short, and capitalised like a title rather than written like a sentence."""
+    t = line.strip()
+    if not t or len(t) > CATALOGUE_HEADING_CHARS:
+        return False
+    letters = [c for c in t if c.isalpha()]
+    if letters and all(c.isupper() for c in letters):
+        return True
+    words = [w for w in t.split() if len(w) >= 4]
+    return bool(words) and all(w[:1].isupper() for w in words)
+
+
+def find_publisher_matter(lines: list[str], start: int, end: int) -> int | None:
+    """Index where a trailing publisher's catalogue or printer's imprint begins.
+
+    None when the range ends in the book. Deliberately restricted to a trailing
+    run: the same patterns appear once or twice mid-book in ordinary prose ("he
+    hastened to the publisher's office") and must not trim a chapter there.
+    """
+    idx = [
+        i for i in range(start, end + 1)
+        if lines[i].strip() and not _PG_MARKER_RE.match(lines[i])
+    ]
+    if not idx:
+        return None
+    hits = {
+        i for i in idx
+        if _CATALOGUE_RE.search(lines[i]) or _IMPRINT_RE.search(lines[i])
+    }
+    if not hits:
+        return None
+
+    first = None
+    for i in sorted(hits):
+        rest = [j for j in idx if j >= i]
+        n = len(hits.intersection(rest))
+        if n >= CATALOGUE_MIN_HITS and n / len(rest) >= CATALOGUE_MIN_DENSITY:
+            first = i
+            break
+    if first is None:
+        # A printer's colophon is one line, not a block: "CHISWICK PRESS:--".
+        tail = idx[-CATALOGUE_HEADING_LOOKBACK:]
+        imprints = [j for j in tail if _IMPRINT_RE.search(lines[j])]
+        if not imprints:
+            return None
+        first = min(imprints)
+
+    # Reach back over the heading that introduces the block.
+    pos = idx.index(first)
+    for _ in range(CATALOGUE_HEADING_LOOKBACK):
+        if pos == 0:
+            break
+        if not _is_heading_shaped(lines[idx[pos - 1]]):
+            break
+        pos -= 1
+    return idx[pos]
 
 
 def classify_heading(title: str) -> str:
@@ -346,13 +468,18 @@ def normalize_whitespace(text: str) -> str:
 
 
 def verify_reading_text(chapter_text: str, reading_text: str) -> tuple[bool, list[str]]:
-    """reading_text must be the chapter with nothing but whitespace changed.
+    """reading_text must be the chapter with nothing but whitespace and page
+    markup changed.
 
     Pure word-sequence equality — no diff heuristics, no tolerance. Unwrapping
-    Gutenberg's line breaks is the only transformation allowed, so anything else
-    is a bug in normalisation rather than something to report and continue past.
+    Gutenberg's line breaks and normalising its typography are the only
+    transformations allowed, so anything else is a bug in normalisation rather
+    than something to report and continue past. The comparison applies the same
+    typography pass to the original, which keeps the check exact: it still
+    catches a dropped or altered word, it simply no longer counts an italic
+    underscore as one.
     """
-    original = strip_illustration_blocks(chapter_text).split()
+    original = normalize_typography(strip_illustration_blocks(chapter_text)).split()
     reading = reading_text.split()
     if original == reading:
         return True, []
