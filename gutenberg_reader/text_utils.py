@@ -560,11 +560,28 @@ def is_placeholder_name(name: str) -> bool:
 NARRATOR_ROLE_RE = re.compile(
     r"^\s*(?:(?:the|a|an|our|its|this|unnamed|anonymous|unidentified|main|primary"
     r"|first[-\s]person)\s+)*"
-    r"(?:narrator|storyteller|author|writer|speaker)\s*$",
+    r"(?:narrator|storyteller|author|writer|speaker|self)\s*$",
     re.IGNORECASE,
 )
+# Compounds get past a whole-name test: barred from answering "Narrator", the
+# model offered "Self/Narrator" on PG 3296 and it absorbed 109 attributions that
+# belonged to Augustine or to nobody. A name every part of which is a role is
+# still a role, whatever joins them.
+_ROLE_SEPARATOR_RE = re.compile(r"\s*[/\\|]\s*|\s+(?:and|or)\s+", re.IGNORECASE)
 # Pronouns stay strict — no qualifiers — so "Mary" and "Io" are untouched.
 NARRATOR_PRONOUN_RE = re.compile(r"^\s*(?:i|me|myself|my)\s*$", re.IGNORECASE)
+
+
+def is_descriptive_name(name: str) -> bool:
+    """True for a description standing in for a name: "Wise man", "The builder".
+
+    A proper name ends on a capitalised word. "Joan of Arc" and "de Winter" do;
+    "Wise man" does not, and it became a legal speaker for a whole book. The
+    prompt has asked for proper names since the roster work, and PG 3296 shows
+    asking is not enough — the same lesson as "Unnamed narrator".
+    """
+    words = name.split()
+    return len(words) > 1 and words[-1][:1].islower()
 
 
 def is_narrator_role(name: str) -> bool:
@@ -591,9 +608,13 @@ CITATION_SPEAKER = "Citation"
 
 def is_reserved_character_name(name: str) -> bool:
     """True for names that must never become roster entries."""
+    parts = [p for p in _ROLE_SEPARATOR_RE.split(name) if p.strip()]
+    if len(parts) > 1 and all(is_narrator_role(p) for p in parts):
+        return True
     return (
         is_placeholder_name(name)
         or is_narrator_role(name)
+        or is_descriptive_name(name)
         or name.strip().casefold() == CITATION_SPEAKER.casefold()
     )
 

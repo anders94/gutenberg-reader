@@ -543,3 +543,27 @@ def roster_review_user(chapter_title: str, evidence: dict[str, list[str]]) -> st
         f"Chapter: {chapter_title}\n"
         f"New names, with where they appear:\n\n" + "\n\n".join(blocks)
     )
+
+
+def narration_system() -> str:
+    return """You are told a book's title, author and opening. Say how it is
+narrated, and if someone is telling it in their own voice, name them.
+
+- person: first_person when a character narrates ("I saw", "we sailed");
+  third_limited or third_omniscient when the narration stands outside the story;
+  epistolary for letters and diaries; mixed when it genuinely changes.
+- narrator_name: the narrator's PROPER NAME, if the story is told in the first
+  person. Ishmael for Moby-Dick, Jane Eyre for Jane Eyre, Dr. Watson for the
+  Sherlock Holmes stories, Augustine for the Confessions.
+
+  Use the name the book itself would use, even when the narrator never states
+  it — a memoir rarely introduces its own author by name. Give "" for
+  third-person narration, and never answer with a role or a pronoun: "the
+  narrator", "the author", "I" are all wrong.
+- confidence: low if you are guessing at the name rather than recognising it."""
+
+
+def narration_user(title: str, author: str, opening: str) -> str:
+    return (
+        f"Title: {title}\nAuthor: {author}\n\nOpening:\n{opening}"
+    )

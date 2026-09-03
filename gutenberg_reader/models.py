@@ -236,6 +236,11 @@ class DiscoveryResult:
     # one containing a single long speech has too few opening quotes to call it.
     quote_open: str = ""
     quote_close: str = ""
+    # How the book is told, and the name to file its narrator under. A
+    # first-person narrator is a character like any other and needs a roster
+    # entry, or their own speech has no label the enum can carry.
+    narration_person: str = ""
+    narrator_name: str = ""
 
     def to_dict(self) -> dict:
         return {
@@ -246,6 +251,8 @@ class DiscoveryResult:
             "has_chapter_structure": self.has_chapter_structure,
             "quote_open": self.quote_open,
             "quote_close": self.quote_close,
+            "narration_person": self.narration_person,
+            "narrator_name": self.narrator_name,
             "chapters": [c.to_dict() for c in self.chapters],
             "body_start_line": self.body_start_line,
             "body_end_line": self.body_end_line,
@@ -264,4 +271,6 @@ class DiscoveryResult:
             has_chapter_structure=d.get("has_chapter_structure", True),
             quote_open=d.get("quote_open", ""),
             quote_close=d.get("quote_close", ""),
+            narration_person=d.get("narration_person", ""),
+            narrator_name=d.get("narrator_name", ""),
         )

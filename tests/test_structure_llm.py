@@ -185,3 +185,43 @@ def test_the_structure_pass_decodes_greedily():
     from gutenberg_reader.stages.s02_discovery import STRUCTURE_TEMPERATURE
 
     assert STRUCTURE_TEMPERATURE == 0.0
+
+
+# ── Who is telling the book ──────────────────────────────────────────────────
+
+def test_narration_schema_asks_for_a_name_not_a_role():
+    from gutenberg_reader.schemas import narration_schema
+
+    props = narration_schema()["properties"]
+    assert "first_person" in props["person"]["enum"]
+    assert "third_omniscient" in props["person"]["enum"]
+    assert set(narration_schema()["required"]) == {
+        "person", "narrator_name", "confidence"}
+
+
+@pytest.mark.parametrize("name", ["Narrator", "the narrator", "I", "Unknown"])
+def test_a_role_is_never_seeded_as_the_narrator(name):
+    """Told plainly not to answer "Narrator", an earlier model in this pipeline
+    replied "Unnamed narrator" instead, so the check lives in code as well as in
+    the prompt."""
+    from gutenberg_reader import text_utils
+
+    assert text_utils.is_reserved_character_name(name)
+
+
+def test_the_seeded_narrator_is_protected_from_the_critic():
+    """Seeded before chapter one and anchor-protected: the critic strikes roster
+    entries it does not recognise, and a narrator the text never names by name is
+    exactly the entry it would strike."""
+    from gutenberg_reader.stages import s06_critic
+    from gutenberg_reader.models import CharacterInfo
+
+    roster = [CharacterInfo(name="Augustine"), CharacterInfo(name="Pequod")]
+    issues = [
+        {"name": "Augustine", "verdict": "not_a_character", "canonical": "",
+         "reason": "never named in the text"},
+        {"name": "Pequod", "verdict": "not_a_character", "canonical": "",
+         "reason": "a ship"},
+    ]
+    kept, _ = s06_critic.apply_roster_issues(roster, issues, {"augustine"})
+    assert [c.name for c in kept] == ["Augustine"]

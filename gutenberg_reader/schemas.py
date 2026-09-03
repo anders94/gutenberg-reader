@@ -238,3 +238,32 @@ def span_type_schema(n_spans: int) -> dict:
         "required": ["spans"],
         "additionalProperties": False,
     }
+
+
+def narration_schema() -> dict:
+    """Who is telling the book, and under what name.
+
+    The speaker enum is the roster, so a first-person narrator who is never named
+    in their own text cannot be attributed at all: guided decoding has no token
+    for them. PG 3296 is the case — the Confessions is addressed to God and
+    Augustine never writes "Augustine said", so 18 of his own 26 first-person
+    lines came back Unknown while Jane Eyre's 186 and Ishmael's 56 were all
+    correct, because those two are named by other characters.
+    """
+    return {
+        "type": "object",
+        "properties": {
+            "person": {
+                "type": "string",
+                "enum": ["first_person", "third_limited", "third_omniscient",
+                         "epistolary", "mixed"],
+            },
+            # The name to file the narrator under, empty when nobody is telling
+            # the story in their own voice. Never a role: "the narrator" and "I"
+            # are rejected downstream.
+            "narrator_name": {"type": "string"},
+            "confidence": {"type": "string", "enum": ["high", "medium", "low"]},
+        },
+        "required": ["person", "narrator_name", "confidence"],
+        "additionalProperties": False,
+    }

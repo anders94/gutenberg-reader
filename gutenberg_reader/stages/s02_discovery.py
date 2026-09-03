@@ -87,6 +87,7 @@ def run(config: Config, client: LLMRouter) -> DiscoveryResult:
     # Detected over the whole body: a single chapter can be too short, or too
     # apostrophe-heavy, to call the edition's convention correctly.
     quote_pair = segmenter.detect_quote_pair("\n".join(body_lines)) or ("", "")
+    person, narrator = _detect_narration(body_lines, metadata, config, client)
 
     result = DiscoveryResult(
         metadata=metadata,
@@ -98,6 +99,8 @@ def run(config: Config, client: LLMRouter) -> DiscoveryResult:
         has_chapter_structure=verdict.get("has_chapter_structure", True),
         quote_open=quote_pair[0],
         quote_close=quote_pair[1],
+        narration_person=person,
+        narrator_name=narrator,
     )
 
     atomic_write_json(out_path, result.to_dict())
@@ -147,6 +150,54 @@ def _absorb_part_titles(raw: list[dict], body_lines: list[str]) -> list[dict]:
             f"treating as part titles, not chapters: {shown}{more}"
         )
     return [dict(ch, number=i + 1) for i, ch in enumerate(out)]
+
+
+# Enough opening prose to tell "I" from "he", without paying for a whole chapter.
+NARRATION_SAMPLE_WORDS = 400
+
+
+def _detect_narration(
+    body_lines: list[str],
+    metadata: BookMetadata,
+    config: Config,
+    client: LLMRouter,
+) -> tuple[str, str]:
+    """How the book is told, and the name to file its narrator under.
+
+    Returns (person, narrator_name); narrator_name is "" unless someone tells the
+    story in their own voice. This exists because the speaker enum is the roster:
+    a first-person narrator missing from it cannot be attributed at all, since
+    guided decoding has no token for them. Jane Eyre, Ishmael and Dr. Watson are
+    all named by other characters and so get discovered; Augustine never names
+    himself in his own Confessions, and 18 of his 26 first-person lines came back
+    Unknown.
+    """
+    opening = " ".join(" ".join(body_lines).split()[:NARRATION_SAMPLE_WORDS])
+    data = call_json_with_retries(
+        client, config.structure_model,
+        [{"role": "system", "content": prompts.narration_system()},
+         {"role": "user", "content": prompts.narration_user(
+             metadata.title, metadata.author, opening)}],
+        schema=schemas.narration_schema(), retries=config.max_retries,
+        what="narration analysis", console=console,
+        temperature=STRUCTURE_TEMPERATURE,
+    )
+    if data is None:
+        return "", ""
+
+    person = data.get("person", "")
+    name = (data.get("narrator_name") or "").strip()
+    # A role is not a name. The model is told this, and told plainly it still
+    # answered "Unnamed narrator" in an earlier incarnation of this pipeline, so
+    # the check is here rather than only in the prompt.
+    if person != "first_person" or text_utils.is_reserved_character_name(name):
+        name = ""
+    if name:
+        console.print(
+            f"[cyan]Stage 02:[/cyan] narrated in the first person by {name!r} "
+            f"(confidence {data.get('confidence', '?')})"
+        )
+    return person, name
 
 
 def _detector_id(config: Config) -> str:
