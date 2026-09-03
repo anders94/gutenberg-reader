@@ -259,3 +259,58 @@ def test_a_segment_cache_entry_is_rejected_when_the_boundaries_moved():
         assert _load_cached(path, cfg, moved) is None
         older = {**stamp, "format": SEGMENT_FORMAT - 1}
         assert _load_cached(path, cfg, older) is None
+
+
+@pytest.mark.parametrize("label", ["term", "title", "rhetorical"])
+def test_labels_that_lose_their_boundary(label):
+    """A rhetorical utterance is quoted but nobody in the scene says it — an
+    abstraction, a personified thing, an imagined objector. Giving it a voice of
+    its own would confuse a listener, so it reads as narration like the others."""
+    text = 'And truth saith unto me “thou art not God” and I heard it.'
+    reading, segs = _seg(text, CURLY)
+    out = segmenter.apply_span_labels(segs, reading, {1: label})
+
+    assert [s["type"] for s in out] == ["narration"]
+    assert out[0]["text"] == text
+    assert text_utils.verify_span_coverage(reading, out) == (True, [])
+
+
+def test_a_citation_keeps_its_boundary_and_a_rhetorical_one_does_not():
+    """The two are deliberately different: a quoted document or verse is worth
+    reading differently, an imagined objector is not."""
+    text = 'He wrote “the sea was calm” and habit whispered “stay here now”.'
+    reading, segs = _seg(text, CURLY)
+    dialogue = [i for i, s in enumerate(segs) if s["type"] == "dialogue"]
+
+    cited = segmenter.apply_span_labels(segs, reading, {dialogue[0]: "citation"})
+    assert any(s.get("notes") == "citation" for s in cited)
+
+    rhet = segmenter.apply_span_labels(segs, reading, {dialogue[1]: "rhetorical"})
+    assert all(s.get("notes") != "rhetorical" for s in rhet)
+
+
+@pytest.mark.parametrize("text", [
+    "And truth saith unto me “thou art not God” and I heard it.",
+    "The whole air answered “Anaximenes was deceived, I am not God.”",
+    "A violent habit whispered “canst thou live without them?”",
+])
+def test_speech_given_to_an_abstraction_is_asked_about(text):
+    """A speech verb usually settles a span, and that hid the whole category:
+    "the air answered" and "a violent habit whispered" never reached the model at
+    all, so `rhetorical` fired on 16 spans of PG 3296 instead of the dozens it
+    should have. No lexical rule separates "the air" from "the priest", so the
+    cue asks rather than decides — adding a word to it can cost a call, never an
+    answer."""
+    reading, segs = _seg(text, CURLY)
+    settled, ask = segmenter.classify_spans_deterministically(segs, reading)
+    assert ask and not settled
+
+
+@pytest.mark.parametrize("text", [
+    "“Go now,” said the priest, “before the tide turns.”",
+    "“Yes,” she said.",
+])
+def test_ordinary_speech_still_settles(text):
+    reading, segs = _seg(text, CURLY)
+    settled, ask = segmenter.classify_spans_deterministically(segs, reading)
+    assert not ask and set(settled.values()) == {"speech"}

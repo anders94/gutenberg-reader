@@ -324,6 +324,19 @@ _GLOSS_RE = re.compile(
 _HEARSAY_RE = re.compile(
     r"\b(is|are|was|were|it\s+is|they\s+are)\s+said\b", re.IGNORECASE
 )
+# Things that get given speech in devotional and philosophical writing without
+# anyone being present to say it: "truth saith unto me", "a violent habit
+# whispered", "the whole air answered". A speech verb beside one of these settles
+# nothing — the span goes to the model, which decides whether it is rhetorical.
+# Deliberately a cue to ASK rather than a cue to decide: adding a word here can
+# only cost a call, never produce a wrong answer, which is what separates this
+# from the pattern list that broke chapter detection.
+_ABSTRACT_SPEAKER_RE = re.compile(
+    r"\b(truth|habit|reason|wisdom|conscience|memory|soul|spirit|nature|"
+    r"world|heaven|earth|air|sea|sky|light|darkness|sense|senses|flesh|"
+    r"law|justice|beauty|time|death|life|voice|creation|things)\b",
+    re.IGNORECASE,
+)
 UNAMBIGUOUS_TERM_WORDS = 2
 
 
@@ -357,12 +370,14 @@ def classify_spans_deterministically(
 
         # Only the unambiguous cases are settled here; anything with evidence
         # pointing both ways, or none, is worth a question.
+        abstract_subject = bool(_ABSTRACT_SPEAKER_RE.search(para_text))
+
         if _GLOSS_RE.search(para_text) and not speech_verb:
             # A definition, whatever its length.
             settled[i] = "term"
         elif _CITATION_CUE_RE.search(para_text):
             ask.append(i)
-        elif speech_verb and not naming_verb:
+        elif speech_verb and not naming_verb and not abstract_subject:
             settled[i] = "speech"
         elif naming_verb and not speech_verb and words <= UNAMBIGUOUS_TERM_WORDS:
             settled[i] = "term"
@@ -388,7 +403,12 @@ def apply_span_labels(
     """
     out: list[dict] = []
     for i, seg in enumerate(segments):
-        demote = seg["type"] == "dialogue" and labels.get(i) in ("term", "title")
+        # A rhetorical utterance joins term and title in losing its boundary:
+        # it is quoted, but nobody in the scene is saying it, and giving an
+        # abstraction its own voice would confuse a listener rather than help.
+        # It reads in the narrator's voice, which is whose rhetoric it is.
+        demote = seg["type"] == "dialogue" and labels.get(i) in (
+            "term", "title", "rhetorical")
         if not demote:
             if labels.get(i) == "citation" and seg["type"] == "dialogue":
                 # Quoted, so still read as quoted text — but there is nobody in

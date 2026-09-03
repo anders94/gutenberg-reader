@@ -227,7 +227,8 @@ def span_type_schema(n_spans: int) -> dict:
                         },
                         "label": {
                             "type": "string",
-                            "enum": ["speech", "term", "title", "citation", "unsure"],
+                            "enum": ["speech", "term", "title", "citation",
+                                     "rhetorical", "unsure"],
                         },
                     },
                     "required": ["ordinal", "label"],

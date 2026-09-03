@@ -493,6 +493,12 @@ marks. Decide what each one IS. Answer with its ordinal and a label:
 - title     — the name of a book, ship, song, newspaper or similar.
 - citation  — a document, inscription, letter or oracle quoted as text rather
               than spoken aloud by a character in the scene.
+- rhetorical — words put in the mouth of something that cannot speak in the
+              scene: an abstraction ("truth saith unto me"), a personified thing
+              ("a violent habit whispered"), an imagined objector ("if any should
+              ask, \u27e60\u27e7\"How knowest thou?\"\u27e6/0\u27e7"), or a hypothetical
+              answer the writer supplies for someone. Common in philosophical and
+              devotional writing. Nobody is present saying it.
 - unsure    — you genuinely cannot tell.
 
 Judge from the surrounding sentence. A speech verb nearby ("said", "cried",
