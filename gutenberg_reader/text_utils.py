@@ -694,7 +694,12 @@ NARRATOR_ROLE_RE = re.compile(
 # model offered "Self/Narrator" on PG 3296 and it absorbed 109 attributions that
 # belonged to Augustine or to nobody. A name every part of which is a role is
 # still a role, whatever joins them.
-_ROLE_SEPARATOR_RE = re.compile(r"\s*[/\\|]\s*|\s+(?:and|or)\s+", re.IGNORECASE)
+# Parentheses join a role to a role as readily as a slash does: barred from
+# "Self/Narrator", the model returned "Self (Narrator)" on the next run of PG
+# 3296 and it took 77 lines. is_descriptive_name misses it because the last
+# word starts with "(" rather than a lowercase letter.
+_ROLE_SEPARATOR_RE = re.compile(
+    r"\s*[/\\|()\[\]]\s*|\s+(?:and|or)\s+", re.IGNORECASE)
 # Pronouns stay strict — no qualifiers — so "Mary" and "Io" are untouched.
 NARRATOR_PRONOUN_RE = re.compile(r"^\s*(?:i|me|myself|my)\s*$", re.IGNORECASE)
 

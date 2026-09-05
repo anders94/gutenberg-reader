@@ -537,3 +537,22 @@ def test_attributable_names_is_the_only_gate():
                     and "narrator_name" in ast.dump(node)):
                 offenders.append(f"{path}:{node.lineno}")
     assert not offenders, f"hand-rolled narrator filter: {offenders}"
+
+
+@pytest.mark.parametrize("name", [
+    "Self (Narrator)", "Self/Narrator", "Narrator (the author)",
+    "Self | Narrator", "Narrator and Author",
+])
+def test_a_role_joined_to_a_role_is_still_a_role(name):
+    """Barred from "Self/Narrator", the model returned "Self (Narrator)" on the
+    next run and it took 77 of the Confessions' 203 dialogue segments. Whatever
+    joins them, a name every part of which is a role is a role."""
+    assert text_utils.is_reserved_character_name(name)
+
+
+@pytest.mark.parametrize("name", [
+    "Elizabeth Bennet", "Jean-Luc Picard", "Sir Harry Otway", "Countess G——",
+    "Mrs. Fairfax", "Queequeg",
+])
+def test_a_real_name_survives_the_separator_split(name):
+    assert not text_utils.is_reserved_character_name(name)
