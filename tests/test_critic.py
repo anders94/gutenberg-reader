@@ -556,3 +556,61 @@ def test_a_role_joined_to_a_role_is_still_a_role(name):
 ])
 def test_a_real_name_survives_the_separator_split(name):
     assert not text_utils.is_reserved_character_name(name)
+
+
+# ── Whether the narrator is withheld is decided from the book ────────────────
+
+@pytest.mark.parametrize("text,withhold", [
+    # a meditation: nobody is named as a speaker anywhere
+    ("And I said unto my soul, whence is evil? " * 60, True),
+    # a novel: speech is attributed to people by name
+    ('"Indeed," said Elizabeth, and Darcy replied gravely. ' * 60, False),
+])
+def test_withholding_is_decided_by_how_the_book_names_its_speakers(text, withhold):
+    """Withholding is right for PG 3296, where the narrator otherwise takes 119
+    lines of which 110 are his mother, a quotation or the Manichees, and wrong
+    for PG 1260, where it moved 1,082 of Jane Eyre's lines onto "Jane Leaven"
+    and "Jane Elliott". Measured per 10,000 words the corpus splits 1.6-4.0
+    against 11.4-66.1, so the threshold sits in a gap."""
+    assert (not text_utils.names_its_speakers(text)) is withhold
+
+
+def test_the_measured_rates_still_straddle_the_threshold():
+    lo = text_utils.NAMES_ITS_SPEAKERS_PER_10K
+    assert 4.0 < lo < 11.4, "the corpus gap moved; re-measure before changing this"
+
+
+def test_the_withholding_decision_ignores_which_chapters_are_being_run(tmp_path):
+    """Measured over Jane Eyre's first three chapters the rate is 29.3 and over
+    the whole book 11.4. Deciding from the subset would make a --chapters run
+    disagree with a full one, which is the same defect as a cache keyed on a
+    chapter number: the answer has to be a property of the book."""
+    from gutenberg_reader.stages import s05_segments
+    cfg_probe = Config(book_id="x", cache_dir=str(tmp_path))
+    stage3 = cfg_probe.stage_dir(3)
+    stage3.mkdir(parents=True, exist_ok=True)
+    # dialogue-heavy opening, then a long stretch that names nobody
+    (stage3 / "chapter-01.txt").write_text(
+        '"Indeed," said Elizabeth. ' + "word " * 200, encoding="utf-8")
+    (stage3 / "chapter-02.txt").write_text("word " * 5000, encoding="utf-8")
+    cfg = Config(book_id="x", cache_dir=str(tmp_path))
+    only_first = {1: stage3 / "chapter-01.txt"}
+    # the dialogue-heavy opening on its own would say "do not withhold"
+    assert text_utils.names_its_speakers(
+        (stage3 / "chapter-01.txt").read_text(encoding="utf-8"))
+    # the decision reads every chapter, so it says the opposite
+    assert s05_segments._decide_withholding(cfg, only_first, "Jane Eyre") is True
+
+
+def test_the_withholding_flag_overrides_the_measurement(tmp_path):
+    from gutenberg_reader.stages import s05_segments
+    cfg = Config(book_id="x", cache_dir=str(tmp_path), withhold_narrator=False)
+    assert s05_segments._decide_withholding(cfg, {}, "Jane Eyre") is False
+    cfg = Config(book_id="x", cache_dir=str(tmp_path), withhold_narrator=True)
+    assert s05_segments._decide_withholding(cfg, {}, "Jane Eyre") is True
+
+
+def test_a_third_person_book_never_withholds(tmp_path):
+    from gutenberg_reader.stages import s05_segments
+    cfg = Config(book_id="x", cache_dir=str(tmp_path))
+    assert s05_segments._decide_withholding(cfg, {}, "") is False

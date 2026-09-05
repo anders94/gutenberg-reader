@@ -61,6 +61,7 @@ def run_chapter(
     new_names: list[str],
     force: bool = False,
     narrator_name: str = "",
+    withhold: bool = True,
 ) -> tuple[ProcessedChapter, CriticReport, list[dict]]:
     """Critique one chapter. Returns (accepted_chapter, report, roster_issues).
 
@@ -87,7 +88,7 @@ def run_chapter(
         console.print(f"[cyan]Stage 06:[/cyan] Critiquing chapter {num:02d}...")
 
     report, final_chapter, roster_issues = _critique_chapter(
-        chapter, roster, new_names, config, client, narrator_name
+        chapter, roster, new_names, config, client, narrator_name, withhold
     )
 
     data = {
@@ -223,6 +224,7 @@ def _critique_chapter(
     config: Config,
     client: LLMRouter,
     narrator_name: str = "",
+    withhold: bool = True,
 ) -> tuple[CriticReport, ProcessedChapter, list[dict]]:
     """Run code-level checks and LLM critique."""
     char_names = [c.name for c in roster]
@@ -231,7 +233,8 @@ def _critique_chapter(
     # offer as an answer. Without this the critic undid the whole change --
     # stage 05 left Augustine with the 17 lines he had evidence for and the
     # critic handed him back 61 more out of Unknown.
-    attributable = text_utils.attributable_names(char_names, narrator_name)
+    attributable = text_utils.attributable_names(
+        char_names, narrator_name, withhold)
 
     # Code-level: coverage check
     coverage_issues = _check_coverage(chapter)

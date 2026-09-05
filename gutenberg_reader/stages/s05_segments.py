@@ -61,6 +61,40 @@ CONTEXT_SEGMENTS = 8
 SEGMENT_FORMAT = 2
 
 
+def _decide_withholding(
+    config: Config, chapter_paths: dict[int, Path], narrator_name: str
+) -> bool:
+    """Whether the narrator is reachable only through a first-person tag.
+
+    Decided once for the book, from how often it attributes speech to someone by
+    name. Right for a meditation — offered in the enum, PG 3296's narrator takes
+    119 lines of which 110 are his mother, a quotation, or the Manichees — and
+    wrong for a novel, where it moved 1,082 of Jane Eyre's lines onto "Jane
+    Leaven" and "Jane Elliott".
+
+    Read from every chapter on disk rather than the ones this run happens to be
+    processing: over --chapters 1,2,3 Jane Eyre measures 29.3 and over the whole
+    book 11.4, so deciding from the subset would make a partial run disagree
+    with a full one, and neither could be compared with the other.
+    """
+    if config.withhold_narrator is not None:
+        return bool(config.withhold_narrator)
+    if not narrator_name:
+        return False
+    chapters = sorted(config.stage_dir(3).glob("*.txt"))
+    body = ("\n".join(p.read_text(encoding="utf-8") for p in chapters)
+            if chapters
+            else "\n".join(read_text(p) for p in chapter_paths.values()))
+    rate = text_utils.named_speech_tag_rate(body)
+    withhold = not text_utils.names_its_speakers(body)
+    console.print(
+        f"  [dim]{rate:.1f} named speech tags per 10k words — "
+        f"{'withholding' if withhold else 'not withholding'} "
+        f"{narrator_name} from the attribution passes[/dim]"
+    )
+    return withhold
+
+
 def run(
     config: Config,
     client: LLMRouter,
@@ -98,6 +132,11 @@ def run(
         roster = [CharacterInfo(name=narrator_name)]
         protected = {narrator_name.lower()}
         console.print(f"  [dim]narrator seeded into the roster: {narrator_name}[/dim]")
+
+    # Whether the narrator is reachable only through a first-person tag, decided
+    # once for the book from how often it names a speaker. Right for a
+    # meditation, wrong for a novel; --withhold-narrator forces either way.
+    withhold = _decide_withholding(config, chapter_paths, narrator_name)
     accepted: dict[int, tuple[ProcessedChapter, CriticReport | None]] = {}
 
     for num in nums:
@@ -111,7 +150,7 @@ def run(
             report = None
             if critic_on:
                 chapter, report, roster, protected = _run_critic(
-                    config, client, chapter, roster, protected, narrator_name
+                    config, client, chapter, roster, protected, narrator_name, withhold
                 )
             accepted[num] = (chapter, report)
             continue
@@ -144,6 +183,7 @@ def run(
             title=(chapter_titles or {}).get(num),
             quote_pair=quote_pair,
             narrator_name=narrator_name,
+            withhold=withhold,
         )
         protected = protected | chapter_anchors
 
@@ -156,7 +196,7 @@ def run(
         final_chapter = processed
         if critic_on:
             final_chapter, report, roster, protected = _run_critic(
-                config, client, processed, roster, protected, narrator_name
+                config, client, processed, roster, protected, narrator_name, withhold
             )
 
         # Snapshot after the critic so chapter N+1 resumes from the exact
@@ -186,11 +226,13 @@ def _run_critic(
     roster: list[CharacterInfo],
     protected: set[str],
     narrator_name: str = "",
+    withhold: bool = True,
 ) -> tuple[ProcessedChapter, CriticReport, list[CharacterInfo], set[str]]:
     """Critique one chapter and apply its roster objections (forward-only)."""
     new_names = [c.name for c in chapter.discovered_characters]
     final_chapter, report, issues = s06_critic.run_chapter(
-        config, client, chapter, roster, new_names, narrator_name=narrator_name
+        config, client, chapter, roster, new_names,
+        narrator_name=narrator_name, withhold=withhold,
     )
     # Idempotent: on a resumed chapter whose snapshot already reflects these
     # issues, the entries are gone and every issue is a no-op.
@@ -201,7 +243,8 @@ def _run_critic(
 
     if report.needs_reprocessing:
         final_chapter, report = _reattribute_and_recheck(
-            config, client, final_chapter, report, roster, protected, narrator_name
+            config, client, final_chapter, report, roster, protected,
+            narrator_name, withhold,
         )
     return final_chapter, report, roster, protected
 
@@ -214,6 +257,7 @@ def _reattribute_and_recheck(
     roster: list[CharacterInfo],
     protected: set[str],
     narrator_name: str = "",
+    withhold: bool = True,
 ) -> tuple[ProcessedChapter, CriticReport]:
     """Give a chapter the critic was unhappy with exactly one more pass.
 
@@ -255,7 +299,8 @@ def _reattribute_and_recheck(
     # sink for everything unattributable: on PG 3296 "Augustine" collected 105
     # lines of which roughly seventy were a personified abstraction, a quoted
     # term, or his mother speaking. A tag is evidence; being plausible is not.
-    attributable = text_utils.attributable_names(char_names, narrator_name)
+    attributable = text_utils.attributable_names(
+        char_names, narrator_name, withhold)
     answers = _llm_window_pass(
         segments, retry, config, client,
         system_msg=prompts.verify_attribution_system(attributable),
@@ -276,7 +321,7 @@ def _reattribute_and_recheck(
     # One re-critique, and the roster is already settled, so no new names.
     rechecked, second, _ = s06_critic.run_chapter(
         config, client, reworked, roster, [], force=True,
-        narrator_name=narrator_name,
+        narrator_name=narrator_name, withhold=withhold,
     )
     if second.overall_quality < report.overall_quality:
         # The second opinion is worse than the first; keep what we had rather
@@ -328,6 +373,7 @@ def _segment_chapter(
     title: str | None = None,
     quote_pair: tuple[str, str] | None = None,
     narrator_name: str = "",
+    withhold: bool = True,
 ) -> tuple[ProcessedChapter, list[CharacterInfo], set[str]]:
     """Segment and attribute one chapter.
 
@@ -390,7 +436,8 @@ def _segment_chapter(
     char_names = [c.name for c in roster]
     # The narrator reaches dialogue only through a first-person tag, never
     # through the free attribution passes below.
-    attributable = text_utils.attributable_names(char_names, narrator_name)
+    attributable = text_utils.attributable_names(
+        char_names, narrator_name, withhold)
     anchor_names = {n.lower() for n in anchors.values()}
 
     # Tier 1b: LLM-resolve nameless attribution tags ("said his lady", "returned she")

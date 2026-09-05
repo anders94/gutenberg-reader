@@ -818,7 +818,53 @@ def is_rhetorical_speaker(name: str) -> bool:
     return bool(RHETORICAL_SPEAKER_RE.match(name))
 
 
-def attributable_names(char_names: list[str], narrator_name: str = "") -> list[str]:
+# Whether a book names its speakers at all. Withholding the narrator is right
+# for a meditation and wrong for a novel, and the difference is measurable: a
+# book that writes "said Elizabeth" gives attribution evidence to work from, so
+# the narrator is one answer among many; a book that never does makes the
+# narrator the only plausible answer for everything, and offered in the enum
+# they take it. Measured per 10,000 words across the library:
+#
+#     PG 3296 Confessions   2.0     PG 1260 Jane Eyre    11.4
+#     PG 6400 Suetonius     1.6     PG 2701 Moby Dick    12.8
+#     PG 2131 Herodotus     4.0     PG 1661 Holmes       21.1
+#                                   PG 1184 Monte Cristo 66.1
+#
+# Withholding cost PG 1260 dearly — 1,082 of Jane Eyre's lines moved onto
+# "Jane Leaven" and "Jane Elliott", which is worse than the Unknowns it was
+# meant to prevent — while on PG 3296 it is the difference between the narrator
+# holding 9 lines and holding 119, of which 110 belonged to his mother, a
+# quotation, or the Manichees.
+_SPEECH_TAG_VERB = (
+    r"(?:said|says|saith|replied|answered|cried|asked|exclaimed|returned"
+    r"|continued|added|whispered|murmured|shouted)"
+)
+NAMED_SPEECH_TAG_RE = re.compile(
+    rf"\b{_SPEECH_TAG_VERB}\b\s+(?:the\s+|his\s+|her\s+)?[A-Z][a-z]+"
+    rf"|\b[A-Z][a-z]+\s+{_SPEECH_TAG_VERB}\b"
+)
+# Between 4.0 and 11.4 with nothing in between, so the threshold sits in a gap
+# rather than on a knife edge.
+NAMES_ITS_SPEAKERS_PER_10K = 8.0
+
+
+def named_speech_tag_rate(text: str) -> float:
+    """Named speech tags per 10,000 words."""
+    words = len(text.split())
+    if not words:
+        return 0.0
+    return 10000.0 * len(NAMED_SPEECH_TAG_RE.findall(text)) / words
+
+
+def names_its_speakers(text: str) -> bool:
+    """True when the book attributes speech to people by name often enough that
+    the narrator is one answer among many rather than the only one."""
+    return named_speech_tag_rate(text) >= NAMES_ITS_SPEAKERS_PER_10K
+
+
+def attributable_names(
+    char_names: list[str], narrator_name: str = "", withhold: bool = True
+) -> list[str]:
     """The roster names a free attribution pass may actually choose from.
 
     One function rather than a filter repeated at each call site: the narrator
@@ -826,9 +872,10 @@ def attributable_names(char_names: list[str], narrator_name: str = "") -> list[s
     quietly handed back 61 of the 64 lines stage 05 had just withheld. Every
     pass that offers a speaker enum goes through here.
     """
+    withheld = narrator_name if withhold else ""
     return [
         n for n in char_names
-        if n != narrator_name and not is_rhetorical_speaker(n)
+        if n != withheld and not is_rhetorical_speaker(n)
     ]
 
 

@@ -29,6 +29,13 @@ class Config:
     chapters_only: list[int] | None = None
     include_front_matter: bool = False
     include_back_matter: bool = False
+    # Whether a first-person narrator is withheld from the free attribution
+    # passes, reachable only through a first-person tag. Right for a meditation
+    # (PG 3296, where the narrator otherwise collected 105 lines of which ~70
+    # were a personified abstraction or a quoted term) and wrong for a novel
+    # whose narrator is a scene participant (PG 1260, where withholding moved
+    # 1082 of Jane Eyre's lines onto "Jane Leaven" and "Jane Elliott").
+    withhold_narrator: bool | None = None
     accept_structure_warnings: bool = False
     # Where a finished book is filed for committing. Only a complete run
     # installs; a --chapters run is a fragment and stays in cache/.

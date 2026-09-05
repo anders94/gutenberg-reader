@@ -46,6 +46,10 @@ console = Console()
                    "--validator model")
 @click.option("--include-front-matter", is_flag=True, default=False,
               help="Keep prefaces, introductions, and dedications as chapters (default: skip them)")
+@click.option("--withhold-narrator/--no-withhold-narrator", default=None,
+              help="Force whether the narrator is reachable only by a "
+                   "first-person tag (default: decided from how often the book "
+                   "names its speakers)")
 @click.option("--include-back-matter", is_flag=True, default=False,
               help="Keep footnotes, appendices, and indexes as a final chapter (default: trim them)")
 @click.option("--span-review/--no-span-review", default=True, show_default=True,
@@ -81,6 +85,7 @@ def main(
     critic: bool,
     include_front_matter: bool,
     include_back_matter: bool,
+    withhold_narrator: bool | None,
     span_review: bool,
     structure_detector: str,
     accept_structure_warnings: bool,
@@ -123,6 +128,7 @@ def main(
         critic=critic,
         include_front_matter=include_front_matter,
         include_back_matter=include_back_matter,
+        withhold_narrator=withhold_narrator,
         span_review=span_review,
         structure_detector=structure_detector,
         accept_structure_warnings=accept_structure_warnings,
