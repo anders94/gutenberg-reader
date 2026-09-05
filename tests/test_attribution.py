@@ -10,6 +10,7 @@ the character roster carrying the same person under several names ('Lucy' /
 
 from __future__ import annotations
 
+import pytest
 from gutenberg_reader import text_utils
 from gutenberg_reader.models import CharacterInfo
 
@@ -504,3 +505,65 @@ class TestNarratorRoleNames:
             if not text_utils.is_reserved_character_name(c["name"])
         ]
         assert kept == ["Dr. Watson"]
+
+
+class TestMergeCorroboration:
+    """One wrong alias out of a chapter's discovery used to be enough to swallow
+    a protagonist for good. On PG 1184 "M. de Monte Cristo" was absorbed into
+    "Countess G——" and 2,878 lines moved onto a minor character; nothing
+    separates them afterwards. The merge is order-dependent — run on either
+    finished roster it does nothing — so an intermediate state during the
+    rolling build did it, which is exactly the state no golden can pin."""
+
+    def _merge(self, chars):
+        return text_utils.merge_duplicate_characters(chars)
+
+    def test_an_alias_alone_cannot_absorb_an_unrelated_name(self):
+        chars = [
+            CharacterInfo(name="Countess G——",
+                          aliases=["the countess", "M. de Monte Cristo"]),
+            CharacterInfo(name="M. de Monte Cristo",
+                          aliases=["the count", "Monte Cristo"]),
+        ]
+        assert len(self._merge(chars)) == 2
+
+    @pytest.mark.parametrize("a,b,aliases", [
+        ("Lucy", "Lucy Honeychurch", ["Lucy"]),
+        ("Charlotte", "Miss Bartlett", ["Charlotte Bartlett"]),
+        ("Sir Harry", "Sir Harry Otway", []),
+        ("Livius", "Titus Livius", []),
+    ])
+    def test_a_shared_name_word_still_merges(self, a, b, aliases):
+        chars = [CharacterInfo(name=a), CharacterInfo(name=b, aliases=aliases)]
+        assert len(self._merge(chars)) == 1
+
+    def test_a_description_is_taken_on_its_alias(self):
+        """"Jane's mother" with the alias "Mrs. Bennet" is the entry the
+        promotion step exists to fix, and a description does not collide with
+        other descriptions the way a proper name collides with other names."""
+        chars = [
+            CharacterInfo(name="Mrs. Bennet", first_appearance_chapter=1),
+            CharacterInfo(name="Jane's mother", aliases=["Mrs. Bennet"],
+                          first_appearance_chapter=2),
+        ]
+        merged = self._merge(chars)
+        assert len(merged) == 1 and merged[0].name == "Mrs. Bennet"
+
+    @pytest.mark.parametrize("a,b", [
+        ("Mr. Bingley", "Caroline Bingley"),      # brother and sister
+        ("Miss Darcy", "Mr. Fitzwilliam Darcy"),  # brother and sister
+        ("Mrs. Honeychurch", "Lucy Honeychurch"), # mother and daughter
+        ("Bessie Lee", "Bessie Leaven"),
+    ])
+    def test_sharing_a_surname_is_not_being_the_same_person(self, a, b):
+        chars = [CharacterInfo(name=a, aliases=["Bingley"]),
+                 CharacterInfo(name=b, aliases=["Bingley"])]
+        assert len(self._merge(chars)) == 2
+
+    def test_titles_and_particles_do_not_corroborate(self):
+        """"the turnkey" and "The Jailer" share only "the"; "M. de Monte Cristo"
+        and "Madame de Villefort" share "de"."""
+        chars = [CharacterInfo(name="M. de Monte Cristo"),
+                 CharacterInfo(name="Madame de Villefort",
+                               aliases=["M. de Monte Cristo"])]
+        assert len(self._merge(chars)) == 2

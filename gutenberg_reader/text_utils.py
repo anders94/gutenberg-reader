@@ -639,12 +639,50 @@ def _name_tokens(name: str) -> set[str]:
     return {t.strip(".").lower() for t in name.split()}
 
 
+# Titles and particles are shared by half a cast and corroborate nothing:
+# "the turnkey" and "The Jailer" have "the" in common and are not obviously one
+# person, while "Mrs. Honeychurch" and "Lucy Honeychurch" share a real name and
+# are still two.
+_WEAK_NAME_TOKENS = frozenset({
+    "the", "a", "an", "of", "and", "de", "du", "da", "di", "la", "le", "von",
+    "van", "d", "m", "mm", "mr", "mrs", "ms", "miss", "master", "sir", "lady",
+    "lord", "dr", "st", "count", "countess", "baron", "baroness", "madame",
+    "monsieur", "signor", "captain", "colonel", "major", "general", "old",
+    "young", "little", "uncle", "aunt", "father", "mother",
+})
+
+
+def _strong_tokens(name: str) -> set[str]:
+    return _name_tokens(name) - _WEAK_NAME_TOKENS
+
+
+def _corroborated(surface: str, target_name: str) -> bool:
+    """True when the thing that matched shares a real name word with the target.
+
+    An alias is taken entirely on trust, and one wrong alias out of a chapter's
+    discovery is enough to swallow a protagonist for good: on PG 1184
+    "M. de Monte Cristo" was absorbed into "Countess G——", carrying 2,878 lines
+    onto a minor character, and no later pass separates them again. The merge is
+    also order-dependent — run on either finished roster it does nothing, so the
+    damage was done by an intermediate state during the rolling build. Requiring
+    the match to share a name word with the target is what makes a single bad
+    alias insufficient.
+    """
+    # Only between two proper names. A description does not collide the way a
+    # name does: "Jane's mother" with the alias "Mrs. Bennet" is the entry the
+    # promotion step exists to fix, and "the turnkey" really is "The Jailer".
+    if is_descriptive_name(surface) or is_descriptive_name(target_name):
+        return True
+    return bool(_strong_tokens(surface) & _strong_tokens(target_name))
+
+
 def _merge_target(i: int, chars: list) -> int | None:
     """Index of the unique roster entry that entry i duplicates, or None."""
     c = chars[i]
     alias_targets = [
         j for j, d in enumerate(chars)
         if j != i and c.name.lower() in (a.lower() for a in d.aliases)
+        and _corroborated(c.name, d.name)
     ]
     if len(alias_targets) == 1:
         return alias_targets[0]
@@ -652,8 +690,9 @@ def _merge_target(i: int, chars: list) -> int | None:
     subset_targets = [
         j for j, d in enumerate(chars)
         if j != i and any(
-            c_tokens < s or c_tokens == s
-            for s in [_name_tokens(d.name), *(_name_tokens(a) for a in d.aliases)]
+            (c_tokens < s or c_tokens == s) and _corroborated(surface, d.name)
+            for surface, s in [(d.name, _name_tokens(d.name)),
+                               *((a, _name_tokens(a)) for a in d.aliases)]
         )
     ]
     if len(subset_targets) == 1:
