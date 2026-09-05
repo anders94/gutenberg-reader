@@ -451,3 +451,44 @@ def test_a_few_catalogue_words_are_not_a_catalogue():
         "And so the long evening closed, and he slept.",
     ]
     assert text_utils.find_publisher_matter(lines, 0, len(lines) - 1) is None
+
+
+# ── The span review has to be able to see the span ───────────────────────────
+
+def _passage(n_before=0, n_after=0, span='"in a figure,"'):
+    from gutenberg_reader.stages.s05_segments import _render_span_passages
+    before, after = "word " * n_before, " word" * n_after
+    text = f"{before}{span}{after}"
+    reading = text
+    segs = [
+        {"type": "narration", "start": 0, "end": len(before), "para": 0},
+        {"type": "dialogue", "start": len(before),
+         "end": len(before) + len(span), "para": 0},
+        {"type": "narration", "start": len(before) + len(span),
+         "end": len(text), "para": 0},
+    ]
+    return _render_span_passages(segs, reading, [1])
+
+
+def test_the_span_is_visible_however_long_the_paragraph():
+    """The passage was cut to its first 600 characters, which removed the span
+    itself from 49% of the questions asked about PG 3296 and 59% of PG 6400 —
+    long paragraphs. The model was shown a paragraph with nothing marked in it
+    and asked what the marked span was, so those answers were guesses."""
+    for before in (0, 50, 200, 1000, 5000):
+        line = _passage(n_before=before, n_after=before)
+        assert "⟦0⟧" in line and "⟦/0⟧" in line, f"lost at {before} words before"
+        assert "in a figure," in line
+
+
+def test_a_windowed_passage_keeps_context_on_both_sides():
+    line = _passage(n_before=1000, n_after=1000)
+    a, b = line.index("⟦0⟧"), line.index("⟦/0⟧")
+    assert line.count("word") > 20            # context survives
+    assert len(line[:a]) > 100 and len(line[b:]) > 100
+    assert line.startswith("0| …") and line.endswith("…")
+
+
+def test_a_short_paragraph_is_passed_through_whole():
+    line = _passage(n_before=3, n_after=3)
+    assert "…" not in line

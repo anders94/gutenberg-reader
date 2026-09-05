@@ -489,6 +489,30 @@ def _segment_chapter(
 SPAN_REVIEW_BATCH = 40
 
 
+SPAN_CONTEXT_CHARS = 300
+
+
+def _window_around_span(passage: str, ordinal: int) -> str:
+    """The span, plus context either side, rather than the paragraph's opening.
+
+    The passage used to be cut to its first 600 characters, which works for a
+    novel and fails for anything with long paragraphs: on PG 3296 that removed
+    the span itself from 49% of the questions and on PG 6400 from 59%. The model
+    was shown a paragraph with nothing marked in it and asked what the marked
+    span was, so those answers were guesses.
+    """
+    open_tag, close_tag = f"\u27e6{ordinal}\u27e7", f"\u27e6/{ordinal}\u27e7"
+    a = passage.find(open_tag)
+    b = passage.find(close_tag)
+    if a < 0 or b < 0:
+        return passage[:2 * SPAN_CONTEXT_CHARS]
+    b += len(close_tag)
+    lo = max(0, a - SPAN_CONTEXT_CHARS)
+    hi = min(len(passage), b + SPAN_CONTEXT_CHARS)
+    return (("\u2026" if lo > 0 else "") + passage[lo:hi]
+            + ("\u2026" if hi < len(passage) else ""))
+
+
 def _render_span_passages(
     segments: list[dict], reading_text: str, ask: list[int]
 ) -> str:
@@ -511,7 +535,7 @@ def _render_span_passages(
                 parts.append(f"\u27e6{ordinal}\u27e7{piece}\u27e6/{ordinal}\u27e7")
             else:
                 parts.append(piece)
-        lines.append(f"{ordinal}| {' '.join(parts)[:600]}")
+        lines.append(f"{ordinal}| {_window_around_span(' '.join(parts), ordinal)}")
     return "\n".join(lines)
 
 
