@@ -540,15 +540,39 @@ Keep is the safe answer. Striking a real character loses every line they speak
 for the rest of the book."""
 
 
-def roster_review_user(chapter_title: str, evidence: dict[str, list[str]]) -> str:
+# The roster shown alongside the new names. A whole book's cast is affordable
+# once per chapter (PG 6400 is the largest at 659 and most books are under 130),
+# but not unbounded.
+ROSTER_REVIEW_MAX_SHOWN = 400
+
+
+def roster_review_user(
+    chapter_title: str,
+    evidence: dict[str, list[str]],
+    roster_names: list[str] | None = None,
+) -> str:
+    """The new names with their evidence, and who they might duplicate.
+
+    The schema constrains "canonical" to the roster, so a duplicate verdict was
+    always sayable — but the prompt never listed the roster, and a model cannot
+    tell you that "Monnica" is "Mother" without being shown that "Mother" is
+    there. Guided decoding bounds the answer; it does not inform the reasoning.
+    """
     blocks = []
     for name, snippets in evidence.items():
         shown = "\n".join(f"    ...{s}..." for s in snippets) or "    (no direct mention found)"
         blocks.append(f"{name}\n{shown}")
-    return (
-        f"Chapter: {chapter_title}\n"
-        f"New names, with where they appear:\n\n" + "\n\n".join(blocks)
-    )
+    parts = [f"Chapter: {chapter_title}"]
+    if roster_names:
+        listed = list(dict.fromkeys(roster_names))[:ROSTER_REVIEW_MAX_SHOWN]
+        more = len(set(roster_names)) - len(listed)
+        parts.append(
+            "Already in the roster (a duplicate must name one of these):\n"
+            + ", ".join(listed)
+            + (f", and {more} more" if more > 0 else "")
+        )
+    parts.append("New names, with where they appear:\n\n" + "\n\n".join(blocks))
+    return "\n\n".join(parts)
 
 
 def narration_system() -> str:

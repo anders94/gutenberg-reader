@@ -614,3 +614,61 @@ def test_a_third_person_book_never_withholds(tmp_path):
     from gutenberg_reader.stages import s05_segments
     cfg = Config(book_id="x", cache_dir=str(tmp_path))
     assert s05_segments._decide_withholding(cfg, {}, "") is False
+
+
+# ── The roster review has to be told what it might be duplicating ────────────
+
+def test_the_roster_review_is_shown_the_existing_roster():
+    """The schema always allowed a "duplicate" verdict, and "canonical" was
+    constrained to the roster — but the prompt never listed it. A model cannot
+    tell you that "Monnica" is "Mother" without being shown that "Mother" is
+    there; guided decoding bounds the answer, it does not inform the reasoning."""
+    user = prompts.roster_review_user(
+        "BOOK IX", {"Monnica": ["...my mother Monnica..."]},
+        roster_names=["Augustine", "Mother", "Alypius"])
+    assert "Mother" in user and "Alypius" in user
+    assert "Monnica" in user
+
+
+def test_the_new_names_are_not_listed_as_their_own_candidates():
+    user = prompts.roster_review_user(
+        "I", {"Ishmael": ["...call me Ishmael..."]},
+        roster_names=["Queequeg", "Ahab"])
+    listed = user.split("Already in the roster")[1].split("New names")[0]
+    assert "Ishmael" not in listed
+
+
+def test_a_large_roster_is_bounded_and_says_so():
+    names = [f"Character {i}" for i in range(650)]
+    user = prompts.roster_review_user("X", {"New One": ["..."]}, roster_names=names)
+    assert "Character 0" in user
+    assert f"and {650 - prompts.ROSTER_REVIEW_MAX_SHOWN} more" in user
+
+
+def test_the_roster_line_is_omitted_when_there_is_no_roster():
+    user = prompts.roster_review_user("I", {"Ishmael": ["..."]}, roster_names=[])
+    assert "Already in the roster" not in user
+
+
+def test_the_critic_actually_passes_the_roster_to_the_review():
+    """The prompt taking a roster is not the point; the critic handing it one
+    is. Written as a prompt-only test this passed with the argument removed."""
+    seen: dict[str, str] = {}
+
+    class _Capture(_Client):
+        def chat_json(self, model, messages, schema=None, **kw):
+            if "Characters were just discovered" in messages[0]["content"]:
+                seen["user"] = messages[1]["content"]
+            return super().chat_json(model, messages, schema=schema, **kw)
+
+    chapter = _chapter([_seg("“Line.”", "Monnica")])
+    chapter.discovered_characters = [CharacterInfo(name="Monnica")]
+    s06_critic._critique_chapter(
+        chapter,
+        [CharacterInfo(name="Mother"), CharacterInfo(name="Alypius"),
+         CharacterInfo(name="Monnica")],
+        ["Monnica"], _cfg(),
+        _Capture({"window": {"corrections": [], "overall_quality": 1.0},
+                  "roster": {"roster_issues": []}}))
+    assert "Already in the roster" in seen["user"]
+    assert "Mother" in seen["user"] and "Alypius" in seen["user"]

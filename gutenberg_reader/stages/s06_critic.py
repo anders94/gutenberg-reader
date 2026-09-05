@@ -203,7 +203,8 @@ def _review_roster(
         client, config.validation_model,
         [{"role": "system", "content": prompts.roster_review_system()},
          {"role": "user", "content": prompts.roster_review_user(
-             chapter.chapter_title, evidence)}],
+             chapter.chapter_title, evidence,
+             [n for n in char_names if n not in set(new_names)])}],
         schema=schemas.roster_review_schema(char_names, new_names),
         retries=config.max_retries, what="roster review", console=console,
         temperature=CRITIC_TEMPERATURE,
