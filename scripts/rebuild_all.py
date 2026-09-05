@@ -29,7 +29,7 @@ STRUCTURE_URL = "http://goldberry:8080"
 VALIDATOR_URL = "http://goldberry:8080"
 
 
-def rebuild(book_id: str) -> dict:
+def rebuild(book_id: str, force_stage: int | None = None) -> dict:
     LOGS.mkdir(parents=True, exist_ok=True)
     log = LOGS / f"{book_id}.log"
     started = time.time()
@@ -39,6 +39,12 @@ def rebuild(book_id: str) -> dict:
         "--validator-base-url", VALIDATOR_URL,
         "--verbose",
     ]
+    # Typography normalisation and publisher-matter trimming both change what
+    # stage 02 hands downstream, and narration detection lives there too, so a
+    # rebuild that means to pick them up has to start there rather than reuse a
+    # cached discovery.
+    if force_stage is not None:
+        cmd += ["--force-stage", str(force_stage)]
     with log.open("w") as fh:
         proc = subprocess.run(cmd, cwd=ROOT, stdout=fh, stderr=subprocess.STDOUT)
     elapsed = time.time() - started
@@ -70,13 +76,17 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("books", nargs="*", default=None)
     ap.add_argument("--workers", type=int, default=3)
+    ap.add_argument("--force-stage", type=int, default=None,
+                    help="Re-run from this stage rather than trusting the cache")
     args = ap.parse_args()
     books = args.books or ORDER
 
-    print(f"rebuilding {len(books)} books, {args.workers} at a time", flush=True)
+    print(f"rebuilding {len(books)} books, {args.workers} at a time"
+          + (f", forced from stage {args.force_stage}" if args.force_stage else ""),
+          flush=True)
     started = time.time()
     with ThreadPoolExecutor(max_workers=args.workers) as pool:
-        results = list(pool.map(rebuild, books))
+        results = list(pool.map(lambda b: rebuild(b, args.force_stage), books))
 
     print(f"\n=== done in {(time.time() - started) / 60:.0f} min ===", flush=True)
     print(f"{'PG':>6} {'rc':>3} {'min':>6} {'chapters':>9} {'words':>9} "
