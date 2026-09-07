@@ -62,9 +62,12 @@ console = Console()
 @click.option("--accept-structure-warnings", is_flag=True, default=False,
               help="Ship a book whose detected structure failed its checks "
                    "(default: refuse; a bad structure costs hours of TTS downstream)")
+@click.option("--casting/--no-casting", default=True, show_default=True,
+              help="Cast the book after assembly: a production block and "
+                   "per-character voice specs for downstream TTS")
 @click.option("--force-stage", default=None, type=int, metavar="STAGE",
-              help="Re-run from this stage (1-7; discovery/segmentation/critic share one "
-                   "loop, so 4 and 5 are equivalent)")
+              help="Re-run from this stage (1-8; discovery/segmentation/critic share one "
+                   "loop, so 4 and 5 are equivalent; 8 is casting)")
 @click.option("--chapters", default=None, help="Process only these chapters (e.g. 1,2,5)")
 @click.option("--max-retries", default=3, show_default=True, type=int, help="Max retries per chunk")
 @click.option("-v", "--verbose", is_flag=True, default=False, help="Verbose output")
@@ -89,6 +92,7 @@ def main(
     span_review: bool,
     structure_detector: str,
     accept_structure_warnings: bool,
+    casting: bool,
     force_stage: int | None,
     chapters: str | None,
     max_retries: int,
@@ -132,6 +136,7 @@ def main(
         span_review=span_review,
         structure_detector=structure_detector,
         accept_structure_warnings=accept_structure_warnings,
+        casting=casting,
         force_stage=force_stage,
         chapters_only=chapters_only,
     )

@@ -20,7 +20,9 @@ from gutenberg_reader.models import (
 
 console = Console()
 
-PIPELINE_VERSION = "1.0.0"
+# 1.1.0: output may carry a "production" block and per-character voice specs
+# (stage 08 casting).
+PIPELINE_VERSION = "1.1.0"
 
 
 def _output_path(config: Config) -> Path:
@@ -171,7 +173,8 @@ def run(
     }
 
     atomic_write_json(out_path, output)
-    _install_to_library(config, out_path)
+    # Library install happens in the pipeline, after stage 08 has enriched
+    # this file — installing here would file an uncast copy.
 
     if config.verbose:
         console.print(

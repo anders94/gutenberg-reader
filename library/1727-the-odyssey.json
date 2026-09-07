@@ -763,22 +763,16 @@
             "first_appearance_chapter": 1
           },
           {
-            "name": "Father Jove",
+            "name": "Jove",
             "aliases": [
-              "Jupiter",
-              "Jove",
-              "Jove the son of Saturn"
+              "Jupiter"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
           },
           {
-            "name": "King Neptune",
-            "aliases": [
-              "Mentor",
-              "Neptune",
-              "Minerva"
-            ],
+            "name": "Minerva",
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
           },
@@ -802,10 +796,7 @@
           },
           {
             "name": "Mercury",
-            "aliases": [
-              "guide and guardian",
-              "messenger"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
           },
@@ -817,9 +808,7 @@
           },
           {
             "name": "Polyphemus",
-            "aliases": [
-              "Cyclops"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
           },
@@ -831,9 +820,7 @@
           },
           {
             "name": "Phorcys",
-            "aliases": [
-              "old merman Phorcys"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
           },
@@ -844,10 +831,8 @@
             "first_appearance_chapter": 1
           },
           {
-            "name": "Queen Penelope",
-            "aliases": [
-              "Penelope"
-            ],
+            "name": "Penelope",
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
           },
@@ -5081,8 +5066,7 @@
             "name": "Father Jove",
             "aliases": [
               "Jupiter",
-              "Jove",
-              "Jove the son of Saturn"
+              "Jove"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
@@ -6341,9 +6325,7 @@
           },
           {
             "name": "Arete",
-            "aliases": [
-              "queen Arete"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 7
           },
@@ -7702,17 +7684,13 @@
           },
           {
             "name": "Hercules",
-            "aliases": [
-              "Jove's son"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 8
           },
           {
             "name": "Eurytus the Oechalian",
-            "aliases": [
-              "Eurytus"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 8
           },
@@ -8617,7 +8595,7 @@
           {
             "type": "dialogue",
             "text": "“On this the men would have come with me at once, but Eurylochus tried to hold them back and said, ‘Alas, poor wretches that we are, what will become of us? Rush not on your ruin by going to the house of Circe, who will turn us all into pigs or wolves or lions, and we shall have to keep guard over her house. Remember how the Cyclops treated us when our comrades went inside his cave, and Ulysses with them. It was all through his sheer folly that those men lost their lives.’",
-            "speaker": "Ulysses",
+            "speaker": "Eurylochus",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 21658,
@@ -8829,17 +8807,14 @@
       "validation": {
         "chapter_number": 10,
         "missing_text": [],
-        "attribution_issues": [
-          "segment 31: Circe -> Ulysses (The dialogue is Ulysses narrating Circe's speech to him, so the speaker is Ulysses, not Circe.)",
-          "segment 36: Eurylochus -> Ulysses (The dialogue continues Ulysses' first-person narration; no change of speaker is indicated.)"
-        ],
+        "attribution_issues": [],
         "name_inconsistencies": [],
-        "overall_quality": 0.7873469387755102,
-        "needs_reprocessing": true,
+        "overall_quality": 0.9902040816326529,
+        "needs_reprocessing": false,
         "unreviewed_windows": [],
         "fixed_segments": null
       },
-      "needs_review": true
+      "needs_review": false
     },
     {
       "chapter": {
@@ -9690,10 +9665,8 @@
             "first_appearance_chapter": 11
           },
           {
-            "name": "Great Goddess Diana",
-            "aliases": [
-              "Diana"
-            ],
+            "name": "Diana",
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 11
           },
@@ -10180,14 +10153,12 @@
         ],
         "discovered_characters": [
           {
-            "name": "Great Goddess Diana",
+            "name": "Dawn",
             "aliases": [
-              "child of morning, rosy-fingered Dawn",
-              "Diana",
-              "Dawn"
+              "child of morning, rosy-fingered Dawn"
             ],
             "pronunciation_hints": [],
-            "first_appearance_chapter": 11
+            "first_appearance_chapter": 12
           },
           {
             "name": "Sirens",
@@ -11853,10 +11824,7 @@
         "discovered_characters": [
           {
             "name": "Eumaeus",
-            "aliases": [
-              "swineherd",
-              "stockman"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 14
           },
@@ -15427,8 +15395,7 @@
           {
             "name": "Melanthius",
             "aliases": [
-              "goatherd",
-              "the goatherd"
+              "goatherd"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 17
@@ -15457,9 +15424,7 @@
           },
           {
             "name": "Eurynome",
-            "aliases": [
-              "Penelope"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 17
           }
@@ -21334,16 +21299,14 @@
       "validation": {
         "chapter_number": 23,
         "missing_text": [],
-        "attribution_issues": [
-          "segment 58: Eurynome -> Queen Penelope (The dialogue is a continuation of Penelope's speech from segment 56, and the narration at 57 says 'she cried' referring to Penelope.)"
-        ],
+        "attribution_issues": [],
         "name_inconsistencies": [],
-        "overall_quality": 0.7378378378378379,
-        "needs_reprocessing": true,
+        "overall_quality": 1.0,
+        "needs_reprocessing": false,
         "unreviewed_windows": [],
         "fixed_segments": null
       },
-      "needs_review": true
+      "needs_review": false
     },
     {
       "chapter": {
@@ -22398,7 +22361,26 @@
       "name": "Calypso",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 7,
+      "description": "A beautiful and immortal sea nymph who has kept Odysseus on her island for seven years, torn between genuine affection and the loneliness of her divine exile.",
+      "voice": {
+        "sex": "female",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "divine, aristocratic",
+        "register": "formal, poetic, wistful",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "warm, resonant, slightly ethereal",
+        "distinctive": "languid, honeyed delivery with a hint of melancholy; lingers on vowels and lets sentences trail off as if lost in thought"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Father Jove",
@@ -22408,7 +22390,26 @@
         "Jove the son of Saturn"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 10,
+      "description": "The king of the gods, who presides over the fates of mortals and immortals alike from Olympus.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "divine",
+        "register": "formal, majestic",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "deep, booming",
+        "distinctive": "thunderous and paternal; his authority is absolute, yet he can sound almost weary with the weight of it."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "King Neptune",
@@ -22418,31 +22419,72 @@
         "Minerva"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 49,
+      "description": "The powerful and vengeful god of the sea, who relentlessly pursues Ulysses.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "divine",
+        "register": "formal, imperious",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "deep, booming",
+        "distinctive": "Gravitas and barely contained wrath; a voice that rumbles like distant thunder, each word weighted with divine authority."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Aegisthus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 0
     },
     {
       "name": "Agamemnon",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 9,
+      "description": "The slain king of Mycenae, whose ghost recounts his murder to Ulysses in the underworld.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "royal",
+        "register": "formal, tragic",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "hollow",
+        "distinctive": "ghostly and mournful; his words are heavy with regret and a lingering bitterness."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Orestes",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 0
     },
     {
       "name": "Atlas",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 0
     },
     {
       "name": "Polyphemus",
@@ -22450,13 +22492,33 @@
         "Cyclops"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 5,
+      "description": "A monstrous, one-eyed Cyclops, son of Poseidon, who devours Odysseus's men in his cave.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "savage",
+        "register": "brutish, blunt",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "deep, rough, gravelly",
+        "distinctive": "Heavy, booming delivery with a guttural edge; words come out like boulders, with a menacing, unblinking simplicity."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Thoosa",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 0
     },
     {
       "name": "Phorcys",
@@ -22464,13 +22526,33 @@
         "old merman Phorcys"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 0
     },
     {
       "name": "Telemachus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 126,
+      "description": "Ulysses' young son, growing from a passive youth into a determined prince.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "royal",
+        "register": "formal, earnest",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "clear",
+        "distinctive": "Earnest and slightly hesitant at first, gaining steel and confidence as the story progresses; a hint of youthful idealism."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Queen Penelope",
@@ -22478,7 +22560,26 @@
         "Penelope"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 19,
+      "description": "The faithful and cunning wife of Ulysses, holding the suitors at bay while awaiting her husband's return.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "royal",
+        "register": "formal, measured",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "warm",
+        "distinctive": "weary but regal; each line carries a quiet, dignified sorrow with a hint of steel beneath."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mentes",
@@ -22486,337 +22587,753 @@
         "Mentes"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 3,
+      "description": "The guise Athena takes when visiting Telemachus in Ithaca, urging him to search for news of his father and to stand up to the suitors.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "noble, a guest-friend of the house",
+        "register": "wise, encouraging, slightly formal",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "clear, resonant",
+        "distinctive": "Warm but with an underlying divine gravity; speaks as if imparting a prophecy."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Anchialus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 0
     },
     {
       "name": "Phemius",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 1,
+      "description": "The court bard of Ithaca, forced to sing for the suitors, who pleads for his life before Odysseus after the massacre.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "artisan-class",
+        "register": "formal, pleading",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "melodic, slightly tremulous",
+        "distinctive": "speaks with a singer's cadence, even in fear; voice quavers but retains a lyrical, almost musical quality as he begs"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Antinous",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 32,
+      "description": "The most arrogant and cruel of Penelope's suitors, a leader among the men plaguing Ulysses' household.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "noble",
+        "register": "informal, insolent",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "sharp, sneering",
+        "distinctive": "Arrogant and mocking; a quick, cutting delivery with a sneer that never quite leaves the voice, dripping with entitlement."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Eurymachus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 12,
+      "description": "One of the leading suitors, smooth-talking and manipulative, who tries to placate Ulysses when the tables turn.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "noble",
+        "register": "educated, persuasive",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "smooth",
+        "distinctive": "oily and ingratiating; his charm curdles into panic as danger closes in."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Eupeithes",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 1,
+      "description": "Father of the slain suitor Antinous; he leads the doomed revolt against Odysseus after the massacre.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "nobility, elder",
+        "register": "formal, oratorical",
+        "pitch": "low",
+        "pace": "medium",
+        "timbre": "gravelly, resonant",
+        "distinctive": "Grief hardened into righteous fury; a voice that rallies a crowd with bitter authority."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Polybus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 0
     },
     {
       "name": "Aegyptius",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 2,
+      "description": "An elderly Ithacan nobleman who speaks first at the assembly called by Telemachus, lamenting the long absence of Odysseus.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "elder statesman, respected",
+        "register": "formal, measured, sorrowful",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "aged, slightly wavering",
+        "distinctive": "Speaks with the weariness of long memory; pauses as if recalling old griefs."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Antiphus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 0
     },
     {
       "name": "Eurynomus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 0
     },
     {
       "name": "Pisenor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 0
     },
     {
       "name": "Halitherses",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 2,
+      "description": "An aged Ithacan prophet and elder, respected but increasingly ignored as the suitors' arrogance grows.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "elder-statesman, educated",
+        "register": "formal, prophetic",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "gravelly, weathered",
+        "distinctive": "Weighty, doom-laden delivery; each warning lands like a stone dropped in still water."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Ops",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 0
     },
     {
       "name": "Noemon",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 3,
+      "description": "A wealthy Ithacan who lends Telemachus his ship for the voyage to Pylos and later complains to the suitors about its return.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "prosperous commoner, a landowner",
+        "register": "practical, slightly aggrieved",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "plain, sturdy",
+        "distinctive": "Matter-of-fact and a little put-out; speaks with a practical, no-nonsense tone."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Evenor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 2,
+      "description": "An Ithacan who speaks in the assembly, criticising the suitors' behaviour and supporting Telemachus's cause.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "common citizen, a man of the people",
+        "register": "blunt, indignant, plain-spoken",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "rough, earnest",
+        "distinctive": "Speaks with righteous anger; words tumble out in a rush of indignation."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Nestor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 19,
+      "description": "The elderly, garrulous King of Pylos, famed for his wisdom and long-winded tales of the past.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "royal",
+        "register": "formal, didactic",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "dry, slightly reedy",
+        "distinctive": "A garrulous elder statesman; speaks at length with a meandering, nostalgic quality, as if always recounting a story from his youth."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Pisistratus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 6,
+      "description": "The young son of Nestor, a courteous and observant prince who accompanies Telemachus on his journey to Sparta.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "aristocratic, princely",
+        "register": "polite, well-bred, earnest",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "youthful, clear, open",
+        "distinctive": "bright and eager, with a young man's earnestness; speaks with impeccable courtesy but a touch of impatience, as if always ready to move on to the next adventure"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Thrasymedes",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 0
     },
     {
       "name": "Neleus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 0
     },
     {
       "name": "Achilles",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 3,
+      "description": "The great fallen hero of the Trojan War, now a brooding shade in the underworld, bitter about death.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "hero",
+        "register": "lofty, melancholic",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "deep, resonant, hollow",
+        "distinctive": "Speaks from a vast distance, as if through water; every word is weighted with regret and a cold, regal disdain for the living."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Patroclus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 0
     },
     {
       "name": "Antilochus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 0
     },
     {
       "name": "Menelaus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 33,
+      "description": "The red-haired King of Sparta, brother of Agamemnon, and a veteran of the Trojan War.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "royal",
+        "register": "formal, hospitable",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "rich, slightly weary",
+        "distinctive": "A regal but world-weary tone; speaks with the authority of a king and the nostalgia of a veteran, often reflective."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Clytemnestra",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 0
     },
     {
       "name": "Phrontis",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 0
     },
     {
       "name": "Cydonians",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 0
     },
     {
       "name": "Diomed",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 0
     },
     {
       "name": "Neoptolemus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 0
     },
     {
       "name": "Idomeneus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 0
     },
     {
       "name": "Laerceus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 1,
+      "description": "An aged servant or retainer on Ithaca who recognizes the returning king and delivers grave news about the state of his household.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "servant-class",
+        "register": "formal, deferential",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "weathered, slightly gravelly",
+        "distinctive": "speaks with a weary, measured gravity; pauses as if weighing each word, letting the weight of bad news settle"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Eurydice",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 0
     },
     {
       "name": "Polycaste",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 0
     },
     {
       "name": "Diocles",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 0
     },
     {
       "name": "Ortilochus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 0
     },
     {
       "name": "Alpheus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 0
     },
     {
       "name": "Alector",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Megapenthes",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Hermione",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Eteoneus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Helen",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 5,
+      "description": "The legendary queen of Sparta, whose abduction sparked the Trojan War; now restored to Menelaus, she is gracious, perceptive, and subtly enigmatic.",
+      "voice": {
+        "sex": "female",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "royal, queen",
+        "register": "formal, elegant, poised",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "smooth, silken, with a hint of mystery",
+        "distinctive": "speaks with a queen's poise and a hint of knowing amusement; every word seems chosen with care, as if she is always aware of the impression she makes"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Adraste",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Alcippe",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Phylo",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Alcandra",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Philomeleides",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Idothea",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 3,
+      "description": "A sea-nymph, daughter of Proteus, who takes pity on Menelaus and his men and reveals her father's secret so they can escape the island of Pharos.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "divine, but youthful and informal",
+        "register": "clear, helpful, slightly conspiratorial",
+        "pitch": "high",
+        "pace": "medium",
+        "timbre": "bright, silvery",
+        "distinctive": "Eager, confidential; leans in on instructions, as if sharing a secret."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Proteus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 6,
+      "description": "The Old Man of the Sea, a shape-shifting sea god who knows all things but must be held fast to give answers.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "divine, ancient primordial",
+        "register": "oracular, detached, weary",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "deep, rumbling, with a watery, echoing quality",
+        "distinctive": "speaks as if from a great distance, each word weighted with ancient knowledge; a slight tremor of age, but the authority of an immortal who has seen everything"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Rhadamanthus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Thyestes",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Ajax",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Phaedimus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Medon",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 7,
+      "description": "A loyal herald in Odysseus's household who secretly warns Penelope of the suitors' plot and later testifies to the gods' support of Odysseus's vengeance.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "servant-class, trusted retainer",
+        "register": "respectful, earnest, slightly formal",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "clear, slightly reedy, with a nervous edge",
+        "distinctive": "speaks with a deferential urgency, as if always aware of his lower station but burning to be believed; quickens pace when delivering warnings"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Dolius",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 5,
+      "description": "An old and faithful servant of Odysseus's household, father of Melanthius and Melantho, who rejoices at his master's return.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "rural",
+          "strength": "moderate"
+        },
+        "social_rank": "servant-class, old retainer",
+        "register": "humble, warm, simple",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "cracked, weathered, with a gentle warmth",
+        "distinctive": "speaks with the slow, creaking voice of great age, but brightens with childlike joy when expressing happiness; a tremor of emotion in moments of loyalty"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Iphthime",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 3,
+      "description": "A phantom sent by Athena in the likeness of Penelope's sister to comfort her in a dream, assuring her of Telemachus's safety.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "noble, matronly",
+        "register": "soothing, gentle, authoritative",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "warm, soft",
+        "distinctive": "Ethereal and calming; speaks with a dreamlike, reassuring lilt."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Icarius",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Eumelus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Ino",
@@ -22825,31 +23342,90 @@
         "Leucothea"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 2,
+      "description": "A sea-goddess who takes pity on Odysseus, appearing as a gull to offer him her magical veil.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "divine, aristocratic",
+        "register": "formal, compassionate",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "clear, silvery",
+        "distinctive": "Ethereal yet brisk; kindness undercut by a hint of divine impatience."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Nausicaa",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 6
+      "first_appearance_chapter": 6,
+      "dialogue_segments": 10,
+      "description": "The young Phaeacian princess who discovers the shipwrecked Ulysses and brings him to her father's court.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "royal",
+        "register": "educated, youthful",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "bright",
+        "distinctive": "fresh and guileless; her curiosity and kindness shine through, with a touch of girlish excitement."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Nausithous",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 6
+      "first_appearance_chapter": 6,
+      "dialogue_segments": 0
     },
     {
       "name": "Dymas",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 6
+      "first_appearance_chapter": 6,
+      "dialogue_segments": 1,
+      "description": "A Phaeacian nobleman, father of Nausicaa's friend, who teases her about her impending marriage.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "nobility, courtier",
+        "register": "formal, teasing",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "warm, rounded",
+        "distinctive": "Affectionate, avuncular mockery; a twinkle in the voice."
+      },
+      "confidence": "medium",
+      "basis": "known_work"
     },
     {
       "name": "Eurymedusa of Apeira",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Arete",
@@ -22857,163 +23433,280 @@
         "queen Arete"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 5,
+      "description": "The wise and respected queen of the Phaeacians, whose favour Odysseus must win to secure safe passage home.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "royal, queen",
+        "register": "formal, gracious, commanding",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "rich, warm, with a regal clarity",
+        "distinctive": "measured and gracious, with a queen's calm authority; speaks as one accustomed to being obeyed, but with genuine warmth toward her guest"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Periboea",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Eurymedon",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Rhexenor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Apollo",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 2,
+      "description": "The god of music, prophecy, and archery, who appears in the bard Demodocus's song about the love affair of Ares and Aphrodite.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "Olympian god",
+        "register": "wry, amused, lofty",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "bright, clear, golden",
+        "distinctive": "Dryly witty and superior; delivers lines with a knowing, sardonic smile."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Echeneus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 4,
+      "description": "An elderly Phaeacian lord, respected for his wisdom and age, who counsels moderation.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "noble",
+        "register": "formal, measured",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "warm, slightly reedy",
+        "distinctive": "Speaks with the weight of years; each sentence is a considered pronouncement, delivered with a gentle, authoritative calm."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Laodamas",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 1,
+      "description": "A young Phaeacian prince, athletic and competitive, who challenges the disguised Odysseus to prove himself in the games.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "aristocratic",
+        "register": "informal, confident",
+        "pitch": "medium",
+        "pace": "brisk",
+        "timbre": "bright, clear",
+        "distinctive": "eager and slightly provocative; rises in energy as he issues the challenge, with a hint of youthful swagger"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Pontonous",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Tityus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Demodocus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Acroneos",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Ocyalus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Elatreus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Nauteus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Prymneus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Eretmeus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Ponteus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Proreus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Thoon",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Anabesineus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Amphialus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Polyneus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Tecton",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Euryalus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 4,
+      "description": "A young, arrogant Phaeacian prince who taunts Odysseus about his appearance and later apologises with a gift.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "noble",
+        "register": "insolent, then contrite",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "bright, cutting",
+        "distinctive": "Sneering and quick to mock, with a youthful arrogance that snaps into stiff, embarrassed formality when he makes amends."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Halios",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Clytoneus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Philoctetes",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Hercules",
@@ -23021,7 +23714,8 @@
         "Jove's son"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Eurytus the Oechalian",
@@ -23029,25 +23723,83 @@
         "Eurytus"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 1,
+      "description": "A legendary archer-king, grandfather of Odysseus, whose naming of the infant hero is recalled in a flashback.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "royal, elder",
+        "register": "formal, ceremonial",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "deep, sonorous",
+        "distinctive": "Ritual gravity; each word weighed as if carved in stone."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Venus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Mars",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 1,
+      "description": "The god of war, caught in an adulterous affair with Venus and exposed by Vulcan's trap — here delivering a bold, conspiratorial suggestion.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "none"
+        },
+        "social_rank": "divine",
+        "register": "formal, commanding",
+        "pitch": "low",
+        "pace": "medium",
+        "timbre": "resonant, powerful",
+        "distinctive": "booming and over-sincere; speaks with a warrior's bluntness, yet a sly undertone of mischief in the conspiracy"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Vulcan",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 6,
+      "description": "The lame smith-god Hephaestus, who catches his wife Aphrodite in adultery with Mars and demands restitution.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "divine, Olympian",
+        "register": "formal, gruff, aggrieved",
+        "pitch": "low",
+        "pace": "medium",
+        "timbre": "rough, metallic, with a heavy, deliberate quality",
+        "distinctive": "speaks with a smith's heavy deliberation, each word hammered out; a simmering indignation beneath the surface, but with a craftsman's precision in his phrasing"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Ulysses",
@@ -23065,7 +23817,26 @@
         "Eperitus"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 355,
+      "description": "The wily, long-suffering King of Ithaca, returning home after the Trojan War.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "royal",
+        "register": "formal, commanding",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "resonant",
+        "distinctive": "Weathered authority; a calm, strategic delivery that can shift to fierce urgency; often pauses as if weighing words."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "King Alcinous",
@@ -23073,37 +23844,79 @@
         "Alcinous"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 6
+      "first_appearance_chapter": 6,
+      "dialogue_segments": 21,
+      "description": "The gracious and generous King of the Phaeacians, who offers Ulysses passage home.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "royal",
+        "register": "formal, benevolent",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "warm, resonant",
+        "distinctive": "Benevolent and unhurried; a voice of calm, generous authority, with a gentle, almost paternal warmth."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Circe",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 10,
+      "description": "The enchantress goddess who turns men into swine and later aids Ulysses with crucial advice for his journey.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "divine",
+        "register": "formal, commanding",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "rich, hypnotic",
+        "distinctive": "seductive yet imperious; every phrase seems to weave a spell, with a knowing, amused edge."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Maron",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 0
     },
     {
       "name": "Euanthes",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 0
     },
     {
       "name": "Atreus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 0
     },
     {
       "name": "Telemus son of Eurymus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 0
     },
     {
       "name": "Aeolus",
@@ -23112,397 +23925,607 @@
         "Hippotas"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Antiphates",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Elpenor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 1,
+      "description": "The youngest of Odysseus's crew, who died in a drunken fall from Circe's roof and begs for burial in the underworld.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "common sailor",
+        "register": "informal, remorseful",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "hollow, echoing",
+        "distinctive": "Ghostly and plaintive; a slurred, regretful quality as if still half-drunk."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Eurylochus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 4,
+      "description": "Odysseus's second-in-command, a cautious but mutinous sailor who survives Circe's trap and later defies his captain.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "soldier",
+        "register": "blunt, insubordinate",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "gruff, weary",
+        "distinctive": "A grumbling, practical man; his defiance comes out in tight, clipped sentences, with a bitter edge that flares into open challenge."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Polites",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Teiresias",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 3,
+      "description": "The blind Theban prophet in the underworld who tells Odysseus how to appease Poseidon and secure his homecoming.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "ancient seer, revered",
+        "register": "oracular, grave, otherworldly",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "hollow, resonant, slightly rasping",
+        "distinctive": "Speaks with the weight of ages; each word seems to echo from a great distance."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Proserpine",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Hades",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Oceanus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Perimedes",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Anticlea",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 2,
+      "description": "The ghost of Odysseus's mother, who died of grief during his absence and whom he meets in the underworld.",
+      "voice": {
+        "sex": "female",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "queen, noble",
+        "register": "mournful, tender, wistful",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "thin, ethereal, fading",
+        "distinctive": "Speaks as if from a great distance, with a deep, aching tenderness."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Autolycus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 2,
+      "description": "Odysseus's maternal grandfather, a notorious trickster and thief, who names the infant Odysseus.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "noble, but of rough reputation",
+        "register": "gruff, sly, jovial",
+        "pitch": "low",
+        "pace": "medium",
+        "timbre": "gravelly, hearty",
+        "distinctive": "Roguish and self-satisfied; chuckles at his own cleverness."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Iphicles",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Tyro",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Salmoneus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Cretheus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Enipeus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Pelias",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Aeson",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Pheres",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Amythaon",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Antiope",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Asopus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Amphion",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Zethus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Alcmena",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Amphitryon",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Creon",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Epicaste",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Oedipodes",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Chloris",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Iasus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Chromius",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Periclymenus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Pero",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Tyndarus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Pollux",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Iphimedeia",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Aloeus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Otus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Ephialtes",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Leto",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Phaedra",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Procris",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Ariadne",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Minos",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 12,
+      "description": "A judge of the dead in the underworld, encountered by Ulysses during his journey to Hades.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "royal",
+        "register": "formal, authoritative",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "resonant",
+        "distinctive": "sepulchral and detached; speaks as if from a great distance, with the finality of a judge."
+      },
+      "confidence": "medium",
+      "basis": "known_work"
     },
     {
       "name": "Theseus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Bacchus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Maera",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Clymene",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Eriphyle",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Cassandra",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Peleus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Eurypylus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Memnon",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Tantalus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Sisyphus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Hebe",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Pirithous",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Sirens",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 5,
+      "description": "Enchanting sea nymphs whose irresistible song lures sailors to their doom on the rocks.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "supernatural",
+        "register": "seductive, hypnotic",
+        "pitch": "high",
+        "pace": "slow",
+        "timbre": "silvery, ethereal, with a slight shimmer",
+        "distinctive": "Voices overlap and weave together; each phrase is honeyed and beckoning, with a hypnotic, almost mocking lilt on the final word."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Amphitrite",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 0
     },
     {
       "name": "Aetes",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 0
     },
     {
       "name": "Juno",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 1,
+      "description": "Queen of the gods, here relaying Jove's decree to the Sun about the destruction of Odysseus's ship.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "divine, sovereign",
+        "register": "formal, imperious",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "rich, commanding",
+        "distinctive": "Olympian hauteur; a voice that expects instant obedience and brooks no reply."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Scylla",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 0
     },
     {
       "name": "Charybdis",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 0
     },
     {
       "name": "Crataiis",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 0
     },
     {
       "name": "Hyperion",
@@ -23510,25 +24533,29 @@
         "sun-god"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 0
     },
     {
       "name": "Neaera",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 0
     },
     {
       "name": "Phaethusa",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 0
     },
     {
       "name": "Lampetie",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 0
     },
     {
       "name": "Eumaeus",
@@ -23537,7 +24564,26 @@
         "stockman"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 14
+      "first_appearance_chapter": 14,
+      "dialogue_segments": 54,
+      "description": "The loyal, long-suffering swineherd of Ithaca, who unknowingly shelters his disguised king.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "rural",
+          "strength": "moderate"
+        },
+        "social_rank": "servant-class",
+        "register": "informal, respectful",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "warm, gravelly",
+        "distinctive": "Gruff but deeply kind; a slow, thoughtful drawl that carries the weariness of years of hard work and loyalty."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Castor",
@@ -23545,85 +24591,153 @@
         "Castor son of Hylax"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Priam",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 14
+      "first_appearance_chapter": 14,
+      "dialogue_segments": 0
     },
     {
       "name": "King Acastus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 14
+      "first_appearance_chapter": 14,
+      "dialogue_segments": 0
     },
     {
       "name": "Pheidon",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 14
+      "first_appearance_chapter": 14,
+      "dialogue_segments": 0
     },
     {
       "name": "Mesaulius",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 14
+      "first_appearance_chapter": 14,
+      "dialogue_segments": 0
     },
     {
       "name": "Thoas son of Andraemon",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 14
+      "first_appearance_chapter": 14,
+      "dialogue_segments": 0
     },
     {
       "name": "Theoclymenus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 15
+      "first_appearance_chapter": 15,
+      "dialogue_segments": 11,
+      "description": "A seer and prophet who travels with Telemachus and delivers ominous prophecies about the suitors' doom.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "noble",
+        "register": "educated, mystical",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "clear",
+        "distinctive": "oracular and intense; his words carry an unsettling certainty, as if seeing the future."
+      },
+      "confidence": "medium",
+      "basis": "known_work"
     },
     {
       "name": "Ctimene",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 15
+      "first_appearance_chapter": 15,
+      "dialogue_segments": 0
     },
     {
       "name": "Ctesius",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 15
+      "first_appearance_chapter": 15,
+      "dialogue_segments": 0
     },
     {
       "name": "Ormenus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 15
+      "first_appearance_chapter": 15,
+      "dialogue_segments": 0
     },
     {
       "name": "Arybas",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 15
+      "first_appearance_chapter": 15,
+      "dialogue_segments": 0
     },
     {
       "name": "Piraeus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 15
+      "first_appearance_chapter": 15,
+      "dialogue_segments": 5,
+      "description": "A loyal and generous Ithacan companion of Telemachus, entrusted with guests and gifts.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "middle_class",
+        "register": "warm, courteous",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "clear, friendly",
+        "distinctive": "Earnest and open-handed; leans into promises with a reassuring, slightly avuncular warmth."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Amphinomus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 16
+      "first_appearance_chapter": 16,
+      "dialogue_segments": 7,
+      "description": "A suitor of Penelope, more thoughtful and courteous than his peers, who warns against violence but is doomed nonetheless.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "noble",
+        "register": "educated, reasonable",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "pleasant",
+        "distinctive": "calm and conciliatory; his attempts at moderation sound almost tragic, as he senses the coming doom."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Clytius",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 16
+      "first_appearance_chapter": 16,
+      "dialogue_segments": 0
     },
     {
       "name": "Melanthius",
@@ -23632,7 +24746,26 @@
         "the goatherd"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 17
+      "first_appearance_chapter": 17,
+      "dialogue_segments": 9,
+      "description": "A treacherous goatherd who sides with the suitors and insults Ulysses, later paying for his disloyalty.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "servant",
+        "register": "coarse, insolent",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "raspy",
+        "distinctive": "sneering and spiteful; his words are sharp, with a bully's swagger that cracks under pressure."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Argos",
@@ -23640,7 +24773,8 @@
         "dog"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 17
+      "first_appearance_chapter": 17,
+      "dialogue_segments": 0
     },
     {
       "name": "Nurse Euryclea",
@@ -23648,13 +24782,33 @@
         "Euryclea"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 26,
+      "description": "The elderly, devoted nurse of Ulysses and Telemachus, who recognizes her master by his scar.",
+      "voice": {
+        "sex": "female",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "servant-class",
+        "register": "formal, devoted",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "warm, slightly tremulous",
+        "distinctive": "A voice full of love and loyalty, with a slight quaver of age; speaks with the intimate authority of a lifelong family retainer."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Dmetor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 17
+      "first_appearance_chapter": 17,
+      "dialogue_segments": 0
     },
     {
       "name": "Eurynome",
@@ -23662,7 +24816,26 @@
         "Penelope"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 17
+      "first_appearance_chapter": 17,
+      "dialogue_segments": 51,
+      "description": "Penelope's wise and observant housekeeper, a trusted confidante in the palace.",
+      "voice": {
+        "sex": "female",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "servant-class",
+        "register": "formal, matronly",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "warm, slightly reedy",
+        "distinctive": "Maternal and pragmatic; speaks with a gentle, knowing authority, often offering comfort with a hint of shrewdness."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Arnaeus",
@@ -23670,115 +24843,224 @@
         "Irus"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 18
+      "first_appearance_chapter": 18,
+      "dialogue_segments": 3,
+      "description": "A beggar in Ithaca, also called Irus, who runs errands for the suitors and foolishly challenges Odysseus to a fight.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "servant_class",
+        "register": "coarse, blustering",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "rough, nasal",
+        "distinctive": "A street-corner bully's bluster; he swaggers verbally, puffing himself up with threats that wobble into whines when challenged."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Autonoe",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 18
+      "first_appearance_chapter": 18,
+      "dialogue_segments": 0
     },
     {
       "name": "Hippodamia",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 18
+      "first_appearance_chapter": 18,
+      "dialogue_segments": 0
     },
     {
       "name": "Nisus of Dulichium",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 18
+      "first_appearance_chapter": 18,
+      "dialogue_segments": 0
     },
     {
       "name": "Pisander",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 18
+      "first_appearance_chapter": 18,
+      "dialogue_segments": 0
     },
     {
       "name": "Polyctor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 18
+      "first_appearance_chapter": 18,
+      "dialogue_segments": 0
     },
     {
       "name": "Eurydamas",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 18
+      "first_appearance_chapter": 18,
+      "dialogue_segments": 0
     },
     {
       "name": "Melantho",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 18
+      "first_appearance_chapter": 18,
+      "dialogue_segments": 2,
+      "description": "A haughty, disloyal maidservant in Odysseus's palace, who mocks the disguised hero and sleeps with the suitors.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "moderate"
+        },
+        "social_rank": "servant-class, but putting on airs",
+        "register": "insolent, coarse",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "sharp, brittle",
+        "distinctive": "Sneering, streetwise; every line drips with contempt and false superiority."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Aretias",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 18
+      "first_appearance_chapter": 18,
+      "dialogue_segments": 0
     },
     {
       "name": "Mulius of Dulichium",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 18
+      "first_appearance_chapter": 18,
+      "dialogue_segments": 0
     },
     {
       "name": "Icmalius",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 19
+      "first_appearance_chapter": 19,
+      "dialogue_segments": 0
     },
     {
       "name": "Deucalion",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 19
+      "first_appearance_chapter": 19,
+      "dialogue_segments": 0
     },
     {
       "name": "Amphithea",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 19
+      "first_appearance_chapter": 19,
+      "dialogue_segments": 0
     },
     {
       "name": "Pandareus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 19
+      "first_appearance_chapter": 19,
+      "dialogue_segments": 0
     },
     {
       "name": "Itylus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 19
+      "first_appearance_chapter": 19,
+      "dialogue_segments": 0
     },
     {
       "name": "Philoetius",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 20
+      "first_appearance_chapter": 20,
+      "dialogue_segments": 7,
+      "description": "A loyal cowherd of Odysseus who remains faithful to his master and joins the final fight against the suitors.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "rural",
+          "strength": "moderate"
+        },
+        "social_rank": "working-class, rural labourer",
+        "register": "plain-spoken, direct, earthy",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "gruff, weathered, with a warm core",
+        "distinctive": "blunt and hearty, with a farmer's directness; drops into a conspiratorial growl when expressing loyalty or defiance"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Ctesippus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 20
+      "first_appearance_chapter": 20,
+      "dialogue_segments": 1,
+      "description": "A wealthy, brutish suitor from Same, known for his violent mockery of guests.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "moderate"
+        },
+        "social_rank": "nobility, but loutish",
+        "register": "informal, bullying",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "thick, blustering",
+        "distinctive": "Aggressive joviality; a laugh that sounds like a threat."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Agelaus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 20
+      "first_appearance_chapter": 20,
+      "dialogue_segments": 4,
+      "description": "A prominent and articulate suitor of Penelope, who tries to rally the others against Odysseus.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "noble",
+        "register": "commanding, persuasive",
+        "pitch": "medium",
+        "pace": "brisk",
+        "timbre": "smooth, slightly sharp",
+        "distinctive": "Urgent and scheming; speaks with a politician's cadence, quick to pivot and rally, with a sneer of entitlement beneath the polish."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Iphitus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 21
+      "first_appearance_chapter": 21,
+      "dialogue_segments": 0
     },
     {
       "name": "Leiodes",
@@ -23786,43 +25068,86 @@
         "Leiodes son of Oenops"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 21
+      "first_appearance_chapter": 21,
+      "dialogue_segments": 2,
+      "description": "A suitor who serves as the house diviner; the least arrogant of the suitors, yet still complicit in their crimes.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "minor nobility, educated",
+        "register": "formal, nervous",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "reedy, slightly nasal",
+        "distinctive": "Fussy, precise diction; fear leaks through his attempts at priestly calm."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Amphimedon",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 22
+      "first_appearance_chapter": 22,
+      "dialogue_segments": 3,
+      "description": "A slain suitor whose ghost recounts to Agamemnon the story of the suitors' downfall.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "noble",
+        "register": "formal, narrative",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "clear, slightly flat",
+        "distinctive": "A ghost's recitation: precise and uninflected at first, but with a rising, almost petulant indignation as he relives the ambush."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Demoptolemus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 22
+      "first_appearance_chapter": 22,
+      "dialogue_segments": 0
     },
     {
       "name": "Leocritus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 22
+      "first_appearance_chapter": 22,
+      "dialogue_segments": 0
     },
     {
       "name": "Dawn",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 23
+      "first_appearance_chapter": 23,
+      "dialogue_segments": 0
     },
     {
       "name": "Lampus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 23
+      "first_appearance_chapter": 23,
+      "dialogue_segments": 0
     },
     {
       "name": "Phaethon",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 23
+      "first_appearance_chapter": 23,
+      "dialogue_segments": 0
     },
     {
       "name": "Mercury of Cyllene",
@@ -23832,31 +25157,54 @@
         "messenger"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 6,
+      "description": "The messenger god Hermes, who delivers Zeus's commands to Calypso and warns Odysseus of Circe's sorcery.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "divine, Olympian",
+        "register": "formal, authoritative, but with a sly wit",
+        "pitch": "medium",
+        "pace": "brisk",
+        "timbre": "bright, silver-toned, nimble",
+        "distinctive": "quick, gliding speech with a knowing smirk in the voice; delivers divine messages with the brisk efficiency of a royal courier and a hint of mischief"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Thetis",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 24
+      "first_appearance_chapter": 24,
+      "dialogue_segments": 0
     },
     {
       "name": "Tyndareus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 24
+      "first_appearance_chapter": 24,
+      "dialogue_segments": 0
     },
     {
       "name": "Apheidas",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 24
+      "first_appearance_chapter": 24,
+      "dialogue_segments": 0
     },
     {
       "name": "Polypemon",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 24
+      "first_appearance_chapter": 24,
+      "dialogue_segments": 0
     }
   ],
   "statistics": {
@@ -23866,21 +25214,50 @@
     "total_characters": 233,
     "validation_performed": true,
     "chapters_needing_review": [
-      10,
-      18,
-      23
+      18
     ],
     "unreviewed_critic_windows": 0,
-    "pipeline_version": "1.0.0",
+    "pipeline_version": "1.1.0",
     "discovery_confidence": {
-      "avg_confidence": 0.9168170115973718,
-      "min_confidence": 0.7378378378378379
-    }
+      "avg_confidence": 0.9361928159731762,
+      "min_confidence": 0.8415217391304348
+    },
+    "cast_characters": 64
   },
   "processing_config": {
     "processing_model": "google/gemma-4-E4B-it-qat-w4a16-ct",
     "validation_model": "/opt/data/models/DeepSeek-V4-Flash-0731-GGUF/UD-Q8_K_XL/DeepSeek-V4-Flash-0731-UD-Q8_K_XL-00001-of-00005.gguf",
     "dual_llm_validation": true,
     "chunk_size": 1000
+  },
+  "production": {
+    "synopsis": "After the fall of Troy, the wily hero Odysseus (Ulysses) endures a decade of wanderings and divine wrath to return to his island kingdom of Ithaca, where his faithful wife Penelope fends off a horde of suitors. His son Telemachus searches for news of his father, while the gods scheme and intervene, until father and son unite to reclaim their home in a bloody reckoning.",
+    "author": {
+      "name": "Homer",
+      "years": "c. 8th century BCE",
+      "nationality": "Ancient Greek",
+      "note": "The narrator should carry the weight of epic tradition — a formal, resonant, and slightly archaic register befitting a foundational myth, with a storyteller's warmth beneath the grandeur."
+    },
+    "narration": {
+      "person": "third_omniscient",
+      "narrator_character": "",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Received Pronunciation",
+          "strength": "moderate"
+        },
+        "social_rank": "educated",
+        "register": "formal_epic",
+        "pitch": "low",
+        "pace": "measured",
+        "timbre": "resonant",
+        "distinctive": "slight gravel, unhurried cadence, weight on proper nouns"
+      },
+      "basis": "author_nationality"
+    },
+    "casting_notes": "Use a consistent British classical accent for all mortal and divine characters, differentiated by age, gender, and social station — gods and kings speak with more gravity, servants and suitors with more edge. The Cyclops and other monsters should be voiced with a deeper, rougher timbre but never a caricatured 'foreign' accent."
   }
 }

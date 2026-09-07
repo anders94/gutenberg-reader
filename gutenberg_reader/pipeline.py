@@ -15,6 +15,7 @@ from gutenberg_reader.stages import (
     s03_chapters,
     s05_segments,
     s07_assemble,
+    s08_casting,
 )
 
 console = Console()
@@ -60,7 +61,7 @@ def run_pipeline(config: Config) -> Path:
         )
 
     # Set up stage dirs
-    for stage_num in range(1, 8):
+    for stage_num in range(1, 9):
         config.stage_dir(stage_num).mkdir(parents=True, exist_ok=True)
 
     # ── Stage 01: Download ────────────────────────────────────────────────────
@@ -129,6 +130,23 @@ def run_pipeline(config: Config) -> Path:
         characters,
         start_time,
     )
+
+    # ── Stage 08: Casting ─────────────────────────────────────────────────────
+    # After assembly, on the final JSON: only stage 07's roster is real
+    # (duplicates merged, segment speakers remapped to canonical names).
+    # A fragment run is not cast — its dialogue counts would be partial.
+    if config.casting and not config.chapters_only:
+        _log_stage(8, "Casting", config)
+        s08_casting.run(
+            config, client, out_path,
+            work_type=discovery.work_type,
+            narration_person=discovery.narration_person,
+            narrator_name=discovery.narrator_name,
+        )
+
+    # Install after casting, so the library never carries an uncast copy of a
+    # book that was about to be cast.
+    s07_assemble._install_to_library(config, out_path)
 
     elapsed = time.time() - start_time
     console.print(

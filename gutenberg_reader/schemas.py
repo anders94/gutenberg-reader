@@ -268,3 +268,149 @@ def narration_schema() -> dict:
         "required": ["person", "narrator_name", "confidence"],
         "additionalProperties": False,
     }
+
+
+def voice_spec_schema() -> dict:
+    """A castable voice, every closed attribute an enum.
+
+    Downstream (tts-audiobook) scores these against a tagged library of
+    reference clips: sex is a hard filter, age_band an ordered scale, the
+    accent block drives locale/region matching, and the free-text fields are
+    keyword tiebreakers and seed-speech direction. Free strings only where
+    the vocabulary is genuinely open.
+    """
+    return {
+        "type": "object",
+        "properties": {
+            "sex": {"type": "string", "enum": ["male", "female", "neutral"]},
+            "age_band": {
+                "type": "string",
+                "enum": ["child", "teen", "young_adult", "adult",
+                         "middle_aged", "elderly"],
+            },
+            "accent": {
+                "type": "object",
+                "properties": {
+                    # BCP-47-style tag (en-GB, en-US, en-IE); the language the
+                    # audiobook is read in, located, not the character's
+                    # in-story mother tongue.
+                    "locale": {"type": "string"},
+                    # Regional origin within the locale (Hertfordshire,
+                    # Yorkshire); "" when nothing more specific is known.
+                    "origin": {"type": "string"},
+                    "strength": {
+                        "type": "string",
+                        "enum": ["none", "light", "moderate", "strong"],
+                    },
+                },
+                "required": ["locale", "origin", "strength"],
+                "additionalProperties": False,
+            },
+            "social_rank": {"type": "string"},
+            "register": {"type": "string"},
+            "pitch": {"type": "string", "enum": ["low", "medium", "high"]},
+            "pace": {
+                "type": "string",
+                "enum": ["slow", "measured", "medium", "brisk", "fast"],
+            },
+            "timbre": {"type": "string"},
+            # Playable direction for a voice actor ("arch, teasing; lands the
+            # last word"), not a physical description.
+            "distinctive": {"type": "string"},
+        },
+        "required": ["sex", "age_band", "accent", "social_rank", "register",
+                     "pitch", "pace", "timbre", "distinctive"],
+        "additionalProperties": False,
+    }
+
+
+def production_schema(char_names: list[str]) -> dict:
+    """Book-level production notes: synopsis, author, narration voice.
+
+    narrator_character is an enum of the actual roster plus "" so a narrator
+    who is also a character (Ishmael, Jane Eyre) can be linked to their
+    roster entry, and an invented link is structurally impossible.
+    """
+    return {
+        "type": "object",
+        "properties": {
+            "synopsis": {"type": "string"},
+            "author": {
+                "type": "object",
+                "properties": {
+                    "name": {"type": "string"},
+                    "years": {"type": "string"},
+                    "nationality": {"type": "string"},
+                    "note": {"type": "string"},
+                },
+                "required": ["name", "years", "nationality", "note"],
+                "additionalProperties": False,
+            },
+            "narration": {
+                "type": "object",
+                "properties": {
+                    "person": {
+                        "type": "string",
+                        "enum": ["first_person", "third_limited",
+                                 "third_omniscient", "epistolary", "mixed"],
+                    },
+                    "narrator_character": {
+                        "type": "string",
+                        "enum": [*dict.fromkeys(char_names), ""],
+                    },
+                    "voice": voice_spec_schema(),
+                    "basis": {
+                        "type": "string",
+                        "enum": ["author_nationality", "narrator_character",
+                                 "work_setting", "house_style"],
+                    },
+                },
+                "required": ["person", "narrator_character", "voice", "basis"],
+                "additionalProperties": False,
+            },
+            "casting_notes": {"type": "string"},
+        },
+        "required": ["synopsis", "author", "narration", "casting_notes"],
+        "additionalProperties": False,
+    }
+
+
+def voices_schema(char_names: list[str]) -> dict:
+    """Voice specs for one batch of characters.
+
+    Exactly one casting per shown character: name is an enum of the batch and
+    the array is pinned to its length, so a skipped or invented character
+    cannot be encoded (duplicates are caught in Python).
+    """
+    names = [*dict.fromkeys(char_names)]
+    return {
+        "type": "object",
+        "properties": {
+            "castings": {
+                "type": "array",
+                "minItems": len(names),
+                "maxItems": len(names),
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {"type": "string", "enum": names},
+                        "description": {"type": "string"},
+                        "voice": voice_spec_schema(),
+                        "confidence": {
+                            "type": "string",
+                            "enum": ["high", "medium", "low"],
+                        },
+                        "basis": {
+                            "type": "string",
+                            "enum": ["known_work", "inferred_from_text"],
+                        },
+                    },
+                    "required": ["name", "description", "voice",
+                                 "confidence", "basis"],
+                    "additionalProperties": False,
+                },
+            },
+        },
+        "required": ["castings"],
+        "additionalProperties": False,
+    }

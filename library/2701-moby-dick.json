@@ -2475,13 +2475,7 @@
           },
           {
             "name": "Queequeg",
-            "aliases": [
-              "savage",
-              "sea Prince of Wales",
-              "old idolator",
-              "harpooneer",
-              "Quohog"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 3
           }
@@ -4139,17 +4133,13 @@
         "discovered_characters": [
           {
             "name": "Jonah",
-            "aliases": [
-              "Jonas"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 9
           },
           {
             "name": "Captain",
-            "aliases": [
-              "the captain"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 9
           },
@@ -5369,9 +5359,7 @@
           },
           {
             "name": "The High Priest",
-            "aliases": [
-              "Priest"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 13
           }
@@ -7687,11 +7675,7 @@
           {
             "name": "Captain Ahab",
             "aliases": [
-              "Ahab",
-              "Old Thunder",
-              "monomaniac old man",
-              "crazy Ahab",
-              "scheming, unappeasedly steadfast hunter of the white whale"
+              "Ahab"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 16
@@ -9948,8 +9932,7 @@
           {
             "name": "Aunt Charity",
             "aliases": [
-              "Bildad's sister",
-              "Charity"
+              "Bildad's sister"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 20
@@ -10716,10 +10699,8 @@
         ],
         "discovered_characters": [
           {
-            "name": "Mr. Starbuck",
-            "aliases": [
-              "Starbuck"
-            ],
+            "name": "Starbuck",
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 21
           }
@@ -12508,9 +12489,7 @@
           {
             "name": "Tashtego",
             "aliases": [
-              "Gay-Headers",
-              "the Indian",
-              "Gay-Header"
+              "Gay-Headers"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 27
@@ -12526,9 +12505,7 @@
           },
           {
             "name": "Black Little Pip",
-            "aliases": [
-              "Pip"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 27
           }
@@ -12862,10 +12839,8 @@
         ],
         "discovered_characters": [
           {
-            "name": "Old Manx Sailor",
-            "aliases": [
-              "Manxman"
-            ],
+            "name": "Manxman",
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 28
           }
@@ -13146,11 +13121,7 @@
         "discovered_characters": [
           {
             "name": "Dough-Boy",
-            "aliases": [
-              "the steward",
-              "the pale steward",
-              "the white waiter"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 29
           }
@@ -14645,9 +14616,7 @@
           },
           {
             "name": "Simeon Macey",
-            "aliases": [
-              "Macey"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 32
           },
@@ -18613,11 +18582,7 @@
               "White Whale",
               "the monster",
               "the leviathan",
-              "the Sperm Whale",
-              "white-bearded Mufti",
-              "Leviathan",
-              "the White Whale",
-              "the grand god"
+              "the Sperm Whale"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 41
@@ -20512,9 +20477,7 @@
           },
           {
             "name": "Owen Chace",
-            "aliases": [
-              "Owen"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 45
           },
@@ -24237,7 +24200,7 @@
           {
             "type": "dialogue",
             "text": "“Steelkilt here hissed out something, inaudible to all but the Captain; who, to the amazement of all hands, started back, paced the deck rapidly two or three times, and then suddenly throwing down his rope, said, ‘I won’t do it—let him go—cut him down: d’ye hear?’",
-            "speaker": "Steelkilt",
+            "speaker": "Captain",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 31324,
@@ -24363,7 +24326,7 @@
           {
             "type": "dialogue",
             "text": "“‘Why not? Do you think he won’t do me a turn, when it’s to help himself in the end, shipmate?’ and going to the mate, he looked at him quietly, and asked him for some twine to mend his hammock. It was given him—neither twine nor lanyard were seen again; but the next night an iron ball, closely netted, partly rolled from the pocket of the Lakeman’s monkey jacket, as he was tucking the coat into his hammock for a pillow. Twenty-four hours after, his trick at the silent helm—nigh to the man who was apt to doze over the grave always ready dug to the seaman’s hand—that fatal hour was then to come; and in the fore-ordaining soul of Steelkilt, the mate was already stark and stretched as a corpse, with his forehead crushed in.",
-            "speaker": "Unknown",
+            "speaker": "Steelkilt",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 35393,
@@ -24372,7 +24335,7 @@
           {
             "type": "dialogue",
             "text": "“But, gentlemen, a fool saved the would-be murderer from the bloody deed he had planned. Yet complete revenge he had, and without being the avenger. For by a mysterious fatality, Heaven itself seemed to step in to take out of his hands into its own the damning thing he would have done.",
-            "speaker": "Unknown",
+            "speaker": "Steelkilt",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 36124,
@@ -24381,7 +24344,7 @@
           {
             "type": "dialogue",
             "text": "“It was just between daybreak and sunrise of the morning of the second day, when they were washing down the decks, that a stupid Teneriffe man, drawing water in the main-chains, all at once shouted out, ‘There she rolls! there she rolls!’ Jesu, what a whale! It was Moby Dick.",
-            "speaker": "Unknown",
+            "speaker": "Steelkilt",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 36412,
@@ -24399,7 +24362,7 @@
           {
             "type": "dialogue",
             "text": "“‘A very white, and famous, and most deadly immortal monster, Don;—but that would be too long a story.’",
-            "speaker": "Unknown",
+            "speaker": "Steelkilt",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 36811,
@@ -24417,7 +24380,7 @@
           {
             "type": "dialogue",
             "text": "“‘Nay, Dons, Dons—nay, nay! I cannot rehearse that now. Let me get more into the air, Sirs.’",
-            "speaker": "Unknown",
+            "speaker": "Steelkilt",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 36971,
@@ -24435,7 +24398,7 @@
           {
             "type": "dialogue",
             "text": "“No need, gentlemen; one moment, and I proceed.—Now, gentlemen, so suddenly perceiving the snowy whale within fifty yards of the ship—forgetful of the compact among the crew—in the excitement of the moment, the Teneriffe man had instinctively and involuntarily lifted his voice for the monster, though for some little time past it had been plainly beheld from the three sullen mast-heads. All was now a phrensy. ‘The White Whale—the White Whale!’ was the cry from captain, mates, and harpooneers, who, undeterred by fearful rumours, were all anxious to capture so famous and precious a fish; while the dogged crew eyed askance, and with curses, the appalling beauty of the vast milky mass, that lit up by a horizontal spangling sun, shifted and glistened like a living opal in the blue morning sea. Gentlemen, a strange fatality pervades the whole career of these events, as if verily mapped out before the world itself was charted. The mutineer was the bowsman of the mate, and when fast to a fish, it was his duty to sit next him, while Radney stood up with his lance in the prow, and haul in or slacken the line, at the word of command. Moreover, when the four boats were lowered, the mate’s got the start; and none howled more fiercely with delight than did Steelkilt, as he strained at his oar. After a stiff pull, their harpooneer got fast, and, spear in hand, Radney sprang to the bow. He was always a furious man, it seems, in a boat. And now his bandaged cry was, to beach him on the whale’s topmost back. Nothing loath, his bowsman hauled him up and up, through a blinding foam that blent two whitenesses together; till of a sudden the boat struck as against a sunken ledge, and keeling over, spilled out the standing mate. That instant, as he fell on the whale’s slippery back, the boat righted, and was dashed aside by the swell, while Radney was tossed over into the sea, on the other flank of the whale. He struck out through the spray, and, for an instant, was dimly seen through that veil, wildly seeking to remove himself from the eye of Moby Dick. But the whale rushed round in a sudden maelstrom; seized the swimmer between his jaws; and rearing high up with him, plunged headlong again, and went down.",
-            "speaker": "Unknown",
+            "speaker": "Steelkilt",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 37170,
@@ -24444,7 +24407,7 @@
           {
             "type": "dialogue",
             "text": "“Meantime, at the first tap of the boat’s bottom, the Lakeman had slackened the line, so as to drop astern from the whirlpool; calmly looking on, he thought his own thoughts. But a sudden, terrific, downward jerking of the boat, quickly brought his knife to the line. He cut it; and the whale was free. But, at some distance, Moby Dick rose again, with some tatters of Radney’s red woollen shirt, caught in the teeth that had destroyed him. All four boats gave chase again; but the whale eluded them, and finally wholly disappeared.",
-            "speaker": "Unknown",
+            "speaker": "Steelkilt",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 39393,
@@ -24453,7 +24416,7 @@
           {
             "type": "dialogue",
             "text": "“In good time, the Town-Ho reached her port—a savage, solitary place—where no civilized creature resided. There, headed by the Lakeman, all but five or six of the foremastmen deliberately deserted among the palms; eventually, as it turned out, seizing a large double war-canoe of the savages, and setting sail for some other harbor.",
-            "speaker": "Unknown",
+            "speaker": "Steelkilt",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 39927,
@@ -24570,7 +24533,7 @@
           {
             "type": "dialogue",
             "text": "“‘I am, Don.’",
-            "speaker": "Tahitain Sailor",
+            "speaker": "Steelkilt",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 43424,
@@ -24597,7 +24560,7 @@
           {
             "type": "dialogue",
             "text": "“‘Is there a copy of the Holy Evangelists in the Golden Inn, gentlemen?’",
-            "speaker": "Tahitain Sailor",
+            "speaker": "Steelkilt",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 43790,
@@ -24615,7 +24578,7 @@
           {
             "type": "dialogue",
             "text": "“‘Will you be so good as to bring the priest also, Don?’",
-            "speaker": "Tahitain Sailor",
+            "speaker": "Steelkilt",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 44034,
@@ -24633,7 +24596,7 @@
           {
             "type": "dialogue",
             "text": "“‘Excuse me for running after you, Don Sebastian; but may I also beg that you will be particular in procuring the largest sized Evangelists you can.’",
-            "speaker": "Tahitain Sailor",
+            "speaker": "Steelkilt",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 44304,
@@ -24660,7 +24623,7 @@
           {
             "type": "dialogue",
             "text": "“‘Let me remove my hat. Now, venerable priest, further into the light, and hold the Holy Book before me that I may touch it.",
-            "speaker": "Tahitain Sailor",
+            "speaker": "Steelkilt",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 44593,
@@ -24669,7 +24632,7 @@
           {
             "type": "dialogue",
             "text": "“‘So help me Heaven, and on my honor the story I have told ye, gentlemen, is in substance and its great items, true. I know it to be true; it happened on this ball; I trod the ship; I knew the crew; I have seen and talked with Steelkilt since the death of Radney.’”",
-            "speaker": "Tahitain Sailor",
+            "speaker": "Steelkilt",
             "pronunciation_hints": [],
             "notes": null,
             "start": 44719,
@@ -24768,30 +24731,33 @@
         "attribution_issues": [
           "segment 14: Don Sebastian -> Ishmael (The dialogue is a narration quote from Ishmael's story, and the 'said Don Sebastian' tag indicates Don Sebastian is the one speaking the quoted line within the narration, not the speaker of the segment itself.)",
           "segment 38: Unknown -> Don Pedro (The dialogue is spoken by 'another of the company' in the narration, not by an unknown speaker. Given the context of the conversation among the Spanish gentlemen, and that Don Pedro has been the primary interlocutor, this is most likely Don Pedro.)",
-          "segment 55: Unknown -> Steelkilt (The narration describes the Lakeman (Steelkilt) descending into the forecastle, continuing the action from the previous segment where Steelkilt led his men down.)",
-          "segment 56: Unknown -> Steelkilt (This is a continuation of Steelkilt's narrative about the mutiny, describing the night watch after the men were locked below.)",
-          "segment 57: Captain -> Steelkilt (The narration continues Steelkilt's story, describing the Captain's actions at sunrise the next day.)",
-          "segment 61: Unknown -> Steelkilt (The narration continues Steelkilt's story, describing his own actions and emotions after being locked below.)",
-          "segment 62: Unknown -> Steelkilt (The narration continues Steelkilt's story, describing the thoughts of the two Canallers who were with him.)",
-          "segment 63: Unknown -> Steelkilt (The narration continues Steelkilt's story, describing the Captain's rush to the forecastle and Steelkilt's capture.)",
-          "segment 64: Unknown -> Steelkilt (The narration continues Steelkilt's story, describing the Captain's actions at sunrise after the mutiny.)",
-          "segment 71: Captain -> Steelkilt (The dialogue 'Steelkilt here hissed out something...' describes Steelkilt's action, not the Captain's speech. The Captain's quoted line 'I won't do it—let him go—cut him down: d'ye hear?' is the Captain speaking, but the segment's dialogue is the narration about Steelkilt, so the speaker should be Steelkilt.)",
-          "segment 85: Steelkilt -> Unknown (This is a quote within the narrated story, spoken by Steelkilt (the Lakeman) in the flashback; the current speaker is the narrator telling the story, not Steelkilt directly.)",
-          "segment 86: Steelkilt -> Unknown (This is narration, not dialogue; no speaker should be assigned.)",
-          "segment 87: Steelkilt -> Unknown (This is narration, not dialogue; no speaker should be assigned.)",
-          "segment 89: Steelkilt -> Unknown (This is a quote within the narrated story, spoken by Steelkilt (the Lakeman) in the flashback; the current speaker is the narrator telling the story, not Steelkilt directly.)",
-          "segment 91: Steelkilt -> Unknown (This is a quote within the narrated story, spoken by Steelkilt (the Lakeman) in the flashback; the current speaker is the narrator telling the story, not Steelkilt directly.)",
-          "segment 93: Steelkilt -> Unknown (This is narration, not dialogue; no speaker should be assigned.)",
-          "segment 94: Steelkilt -> Unknown (This is narration, not dialogue; no speaker should be assigned.)",
-          "segment 95: Steelkilt -> Unknown (This is narration, not dialogue; no speaker should be assigned.)",
+          "segment 55: Unknown -> Steelkilt (The narration describes the Lakeman (Steelkilt) descending, and the dialogue continues his perspective.)",
+          "segment 56: Unknown -> Steelkilt (The narration continues the story from Steelkilt's perspective, describing the night watch.)",
+          "segment 57: Unknown -> Steelkilt (The narration continues the story from Steelkilt's perspective, describing the Captain's actions.)",
+          "segment 61: Unknown -> Steelkilt (The narration continues the story from Steelkilt's perspective, describing his proposal.)",
+          "segment 62: Unknown -> Steelkilt (The narration continues the story from Steelkilt's perspective, describing the treachery.)",
+          "segment 63: Unknown -> Steelkilt (The narration continues the story from Steelkilt's perspective, describing the capture.)",
+          "segment 64: Unknown -> Steelkilt (The narration continues the story from Steelkilt's perspective, describing the Captain's actions.)",
+          "segment 71: Steelkilt -> Captain (The dialogue 'I won't do it—let him go—cut him down: d'ye hear?' is spoken by the Captain, as indicated by 'said' in the narration.)",
+          "segment 72: Steelkilt -> Unknown (This segment is narration, not dialogue; no speaker should be assigned.)",
+          "segment 75: Steelkilt -> Unknown (This segment is narration, not dialogue; no speaker should be assigned.)",
+          "segment 76: Steelkilt -> Unknown (This segment is narration, not dialogue; no speaker should be assigned.)",
+          "segment 77: Steelkilt -> Unknown (This segment is narration, not dialogue; no speaker should be assigned.)",
+          "segment 82: Steelkilt -> Unknown (This segment is narration, not dialogue; no speaker should be assigned.)",
           "segment 96: Tahitain Sailor -> Steelkilt (The narration continues Steelkilt's story from the previous segment; the Tahitian sailor is the narrator telling the story, but the dialogue is the continuation of Steelkilt's tale, not the Tahitian sailor's own words.)",
-          "segment 97: Tahitain Sailor -> Steelkilt (Same as above: this is a continuation of the story being told by the Tahitian sailor, but the dialogue itself is the narrative of Steelkilt's actions, not a direct quote from the Tahitian sailor.)",
-          "segment 104: Tahitain Sailor -> Steelkilt (This is a continuation of the story being told by the Tahitian sailor, but the dialogue is the narrative of Steelkilt's actions, not a direct quote from the Tahitian sailor.)",
-          "segment 105: Tahitain Sailor -> Steelkilt (This is a continuation of the story being told by the Tahitian sailor, but the dialogue is the narrative of Steelkilt's actions, not a direct quote from the Tahitian sailor.)",
-          "segment 106: Tahitain Sailor -> Steelkilt (This is a continuation of the story being told by the Tahitian sailor, but the dialogue is the narrative of Steelkilt's actions, not a direct quote from the Tahitian sailor.)"
+          "segment 97: Tahitain Sailor -> Steelkilt (Same as above: this is a continuation of Steelkilt's narrative, not the Tahitian sailor's speech.)",
+          "segment 104: Tahitain Sailor -> Steelkilt (This continues Steelkilt's story; the Tahitian sailor is merely relaying it, but the dialogue is attributed to the narrator of the tale, which is Steelkilt.)",
+          "segment 105: Tahitain Sailor -> Steelkilt (Continuation of Steelkilt's narrative; the Tahitian sailor is the one speaking in the frame, but the content is Steelkilt's story.)",
+          "segment 106: Tahitain Sailor -> Steelkilt (This is the conclusion of Steelkilt's story, so the speaker should be Steelkilt, not the Tahitian sailor.)",
+          "segment 108: Tahitain Sailor -> Steelkilt (The reply 'I am, Don' is from the narrator of the story, which is Steelkilt, not the Tahitian sailor.)",
+          "segment 111: Tahitain Sailor -> Steelkilt (The question about the Evangelists is asked by the storyteller, Steelkilt, not the Tahitian sailor.)",
+          "segment 113: Tahitain Sailor -> Steelkilt (The request to bring the priest is from Steelkilt, the narrator, not the Tahitian sailor.)",
+          "segment 115: Tahitain Sailor -> Steelkilt (The request for the largest Evangelists is from Steelkilt, the storyteller.)",
+          "segment 118: Tahitain Sailor -> Steelkilt (The speaker is the one who has been telling the story, which is Steelkilt, not the Tahitian sailor.)",
+          "segment 119: Tahitain Sailor -> Steelkilt (The oath is made by the storyteller, Steelkilt, not the Tahitian sailor.)"
         ],
         "name_inconsistencies": [],
-        "overall_quality": 0.765,
+        "overall_quality": 0.7819811320754717,
         "needs_reprocessing": true,
         "unreviewed_windows": [],
         "fixed_segments": null
@@ -30643,9 +30609,7 @@
           },
           {
             "name": "Captain Mayhew",
-            "aliases": [
-              "Mayhew"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 71
           }
@@ -33158,17 +33122,14 @@
       "validation": {
         "chapter_number": 78,
         "missing_text": [],
-        "attribution_issues": [
-          "segment 25: Dough-Boy -> Ahasuerus Daggoo (The following narration says 'cried Daggoo' attributing this line to him.)",
-          "segment 27: Dough-Boy -> Ahasuerus Daggoo (The following narration says 'cried Daggoo again' attributing this line to him.)"
-        ],
+        "attribution_issues": [],
         "name_inconsistencies": [],
-        "overall_quality": 0.8285714285714285,
-        "needs_reprocessing": true,
+        "overall_quality": 0.8571428571428571,
+        "needs_reprocessing": false,
         "unreviewed_windows": [],
         "fixed_segments": null
       },
-      "needs_review": true
+      "needs_review": false
     },
     {
       "chapter": {
@@ -38172,7 +38133,7 @@
           {
             "type": "dialogue",
             "text": "“Please, sir, who is the Lord Warden?”",
-            "speaker": "Duke of Wellington",
+            "speaker": "Unknown",
             "pronunciation_hints": [],
             "notes": null,
             "start": 2772,
@@ -38190,7 +38151,7 @@
           {
             "type": "dialogue",
             "text": "“But the duke had nothing to do with taking this fish?”",
-            "speaker": "Duke of Wellington",
+            "speaker": "Unknown",
             "pronunciation_hints": [],
             "notes": null,
             "start": 2825,
@@ -38208,7 +38169,7 @@
           {
             "type": "dialogue",
             "text": "“We have been at great trouble, and peril, and some expense, and is all that to go to the Duke’s benefit; we getting nothing at all for our pains but our blisters?”",
-            "speaker": "Duke of Wellington",
+            "speaker": "Unknown",
             "pronunciation_hints": [],
             "notes": null,
             "start": 2896,
@@ -38226,7 +38187,7 @@
           {
             "type": "dialogue",
             "text": "“Is the Duke so very poor as to be forced to this desperate mode of getting a livelihood?”",
-            "speaker": "Duke of Wellington",
+            "speaker": "Unknown",
             "pronunciation_hints": [],
             "notes": null,
             "start": 3076,
@@ -38244,7 +38205,7 @@
           {
             "type": "dialogue",
             "text": "“I thought to relieve my old bed-ridden mother by part of my share of this whale.”",
-            "speaker": "Duke of Wellington",
+            "speaker": "Unknown",
             "pronunciation_hints": [],
             "notes": null,
             "start": 3182,
@@ -38262,7 +38223,7 @@
           {
             "type": "dialogue",
             "text": "“Won’t the Duke be content with a quarter or a half?”",
-            "speaker": "Duke of Wellington",
+            "speaker": "Unknown",
             "pronunciation_hints": [],
             "notes": null,
             "start": 3280,
@@ -38417,21 +38378,14 @@
       "validation": {
         "chapter_number": 90,
         "missing_text": [],
-        "attribution_issues": [
-          "segment 12: 1st Nantucket Sailor -> Duke of Wellington (The speaker is a mariner from the Cinque Ports, not a Nantucket sailor; the dialogue is set in England, and the character is one of the 'poor mariners' mentioned in narration.)",
-          "segment 14: 1st Nantucket Sailor -> Duke of Wellington (Same mariner continues speaking; not a Nantucket sailor.)",
-          "segment 16: 1st Nantucket Sailor -> Duke of Wellington (Same mariner continues speaking; not a Nantucket sailor.)",
-          "segment 18: 1st Nantucket Sailor -> Duke of Wellington (Same mariner continues speaking; not a Nantucket sailor.)",
-          "segment 20: 1st Nantucket Sailor -> Duke of Wellington (Same mariner continues speaking; not a Nantucket sailor.)",
-          "segment 22: 1st Nantucket Sailor -> Duke of Wellington (Same mariner continues speaking; not a Nantucket sailor.)"
-        ],
+        "attribution_issues": [],
         "name_inconsistencies": [],
-        "overall_quality": 0.75,
-        "needs_reprocessing": true,
+        "overall_quality": 0.9,
+        "needs_reprocessing": false,
         "unreviewed_windows": [],
         "fixed_segments": null
       },
-      "needs_review": true
+      "needs_review": false
     },
     {
       "chapter": {
@@ -44989,9 +44943,7 @@
         "discovered_characters": [
           {
             "name": "Carpenter",
-            "aliases": [
-              "Smut"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 108
           },
@@ -47444,9 +47396,7 @@
         "discovered_characters": [
           {
             "name": "The Parsee",
-            "aliases": [
-              "Parsee"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 117
           }
@@ -50777,9 +50727,7 @@
           },
           {
             "name": "Captain Gardiner",
-            "aliases": [
-              "Stranger Captain"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 128
           }
@@ -54866,19 +54814,58 @@
       "name": "Ishmael",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 171,
+      "description": "The novel's narrator and a young sailor on the Pequod, an educated and philosophical everyman who seeks escape from the land.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New York",
+          "strength": "light"
+        },
+        "social_rank": "common_seaman",
+        "register": "educated, reflective, observant",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "clear, youthful",
+        "distinctive": "Thoughtful and earnest; narration carries a sense of wonder and intellectual curiosity, while dialogue is more direct and plain-spoken."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Landlord",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 30,
+      "description": "The innkeeper of the Spouter-Inn in New Bedford, a practical and gruff businessman who deals with sailors' comings and goings.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "moderate"
+        },
+        "social_rank": "working_class",
+        "register": "informal, direct",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "gruff, slightly gravelly",
+        "distinctive": "Blunt, no-nonsense bark; cuts words short; a hint of weary amusement at the oddities of his clientele."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Nathan Swain",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 0
     },
     {
       "name": "Queequeg",
@@ -54890,13 +54877,51 @@
         "Quohog"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 39,
+      "description": "A skilled harpooneer from the South Pacific, a cannibal prince who is noble, gentle, and deeply loyal to Ishmael.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "South Pacific",
+          "strength": "strong"
+        },
+        "social_rank": "harpooneer",
+        "register": "broken English, simple, dignified",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "deep, resonant",
+        "distinctive": "Speaks with a deliberate, foreign cadence and a gentle, earnest tone; his broken English is rendered with dignity, not mockery."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Hay-Seed",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 6
+      "first_appearance_chapter": 6,
+      "dialogue_segments": 6,
+      "description": "A simple, rustic sailor from the American countryside, part of the Pequod's crew, whose folksy manner and plain speech mark him as a green hand at sea.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "Rural New England",
+          "strength": "strong"
+        },
+        "social_rank": "common sailor (greenhand)",
+        "register": "unschooled, folksy, earnest",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "twangy, nasal, open",
+        "distinctive": "Drawling and naive; speaks with a wide-eyed, earnest simplicity, often calling out in a loud, unguarded voice."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Father Mapple",
@@ -54904,7 +54929,26 @@
         "Father Mapple"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 19,
+      "description": "The fiery, former sailor turned preacher of the Whaleman's Chapel in New Bedford, whose sermons are powerful and theatrical.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "moderate"
+        },
+        "social_rank": "clergy",
+        "register": "formal, oratorical, biblical",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "resonant, booming, with a slight rasp",
+        "distinctive": "A pulpit-thumping, dramatic delivery; voice swells and drops with the rhythm of a sermon, full of fire and brimstone."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Jonah",
@@ -54912,7 +54956,8 @@
         "Jonas"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 0
     },
     {
       "name": "Captain",
@@ -54920,19 +54965,40 @@
         "the captain"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 36,
+      "description": "The captain of the Rachel, a grieving father who pleads with Ahab to help search for his lost son.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "moderate"
+        },
+        "social_rank": "commanding_officer",
+        "register": "formal, desperate, pleading",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "strained, weary",
+        "distinctive": "A voice cracked with grief and urgency; speaks with a desperate, almost frantic hope that cuts through his professional composure."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Peter Coffin",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 13
+      "first_appearance_chapter": 13,
+      "dialogue_segments": 0
     },
     {
       "name": "The King",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 13
+      "first_appearance_chapter": 13,
+      "dialogue_segments": 0
     },
     {
       "name": "The High Priest",
@@ -54940,7 +55006,26 @@
         "Priest"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 13
+      "first_appearance_chapter": 13,
+      "dialogue_segments": 1,
+      "description": "A religious figure in a non-Christian ritual scene, likely from the Pacific islands, speaking with authority and awe.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-US",
+          "origin": "Polynesian",
+          "strength": "moderate"
+        },
+        "social_rank": "religious authority",
+        "register": "formal, ceremonial",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "deep, resonant",
+        "distinctive": "solemn, commanding; speaks with ritual gravity and a hint of menace"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Hosea Hussey",
@@ -54948,13 +55033,33 @@
         "Cousin Hosea"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 15
+      "first_appearance_chapter": 15,
+      "dialogue_segments": 0
     },
     {
       "name": "Mrs. Hussey",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 15
+      "first_appearance_chapter": 15,
+      "dialogue_segments": 18,
+      "description": "The bustling, sharp-tongued proprietress of the Try-Pots inn in Nantucket, practical and concerned with the running of her establishment.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "Nantucket",
+          "strength": "moderate"
+        },
+        "social_rank": "working_class",
+        "register": "informal, direct",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "sharp, clear, slightly nasal",
+        "distinctive": "A bustling, no-nonsense tone; her words are clipped and efficient, with a hint of maternal concern beneath the brusqueness."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Yojo",
@@ -54962,7 +55067,8 @@
         "Yojo"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 16
+      "first_appearance_chapter": 16,
+      "dialogue_segments": 0
     },
     {
       "name": "Captain Peleg",
@@ -54970,7 +55076,26 @@
         "Peleg"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 16
+      "first_appearance_chapter": 16,
+      "dialogue_segments": 67,
+      "description": "A Quaker co-owner of the Pequod, a blunt and practical old whaler who helps outfit the voyage.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-US",
+          "origin": "Nantucket",
+          "strength": "strong"
+        },
+        "social_rank": "ship_owner",
+        "register": "blunt, authoritative, plain-spoken",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "gruff, weathered",
+        "distinctive": "Crusty and no-nonsense; speaks with the directness of a man who has spent a life at sea, with a hint of Quaker 'thee' and 'thou'."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Captain Bildad",
@@ -54978,7 +55103,26 @@
         "Bildad"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 16
+      "first_appearance_chapter": 16,
+      "dialogue_segments": 28,
+      "description": "An elderly, pious Quaker co-owner of the Pequod, whose stern religious devotion is tempered by a lifetime of hard maritime commerce.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-US",
+          "origin": "Nantucket",
+          "strength": "moderate"
+        },
+        "social_rank": "captain_owner_class",
+        "register": "formal, archaic, religious",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "dry, reedy, with a nasal quality",
+        "distinctive": "Quaker 'thee' and 'thou' delivered with a solemn, almost sing-song cadence; voice cracks with age but carries authority."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Captain Ahab",
@@ -54990,19 +55134,76 @@
         "scheming, unappeasedly steadfast hunter of the white whale"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 16
+      "first_appearance_chapter": 16,
+      "dialogue_segments": 286,
+      "description": "The monomaniacal, one-legged captain of the Pequod, driven by an obsessive quest for revenge against the white whale.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "moderate"
+        },
+        "social_rank": "commanding_officer",
+        "register": "formal, biblical, prophetic",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "gravelly, resonant",
+        "distinctive": "Haunted and imperious; each line delivered with a weighty, almost theatrical gravity, as if speaking from a pulpit or a tomb."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Tistig",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 16
+      "first_appearance_chapter": 16,
+      "dialogue_segments": 1,
+      "description": "A harpooneer aboard the Pequod, likely of Native American or Pacific Islander descent, known for his sharp eyes and excitement in the hunt.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "Native American (Wampanoag)",
+          "strength": "light"
+        },
+        "social_rank": "working-class harpooneer",
+        "register": "excited, urgent",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "sharp, clear",
+        "distinctive": "high-energy, breathless; shouts with escalating excitement and pointing urgency"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Elijah",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 19
+      "first_appearance_chapter": 19,
+      "dialogue_segments": 32,
+      "description": "A mysterious, ragged stranger who warns the Pequod's crew of impending doom with cryptic and prophetic words.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "strong"
+        },
+        "social_rank": "vagrant",
+        "register": "rambling, prophetic, unsettling",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "hoarse, whispery",
+        "distinctive": "Speaks in a disjointed, conspiratorial whisper, as if sharing a terrible secret; his words trail off into ominous silences."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Aunt Charity",
@@ -55011,7 +55212,8 @@
         "Charity"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 20
+      "first_appearance_chapter": 20,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Starbuck",
@@ -55019,7 +55221,26 @@
         "Starbuck"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 21
+      "first_appearance_chapter": 21,
+      "dialogue_segments": 104,
+      "description": "The first mate of the Pequod, a sober, religious, and courageous Nantucketer who is the voice of reason against Ahab's madness.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "Nantucket",
+          "strength": "moderate"
+        },
+        "social_rank": "mate",
+        "register": "formal, earnest, moral",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "firm, steady",
+        "distinctive": "Gravely sincere and inwardly conflicted; his voice carries a weight of duty and dread, often trembling with suppressed emotion."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Stubb",
@@ -55027,7 +55248,26 @@
         "Stubb"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 22
+      "first_appearance_chapter": 22,
+      "dialogue_segments": 190,
+      "description": "The second mate of the Pequod, a pragmatic and jovial Nantucketer who faces danger with a pipe and a grin.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "Nantucket",
+          "strength": "moderate"
+        },
+        "social_rank": "mate",
+        "register": "informal, folksy, wry",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "warm, slightly nasal",
+        "distinctive": "Unflappable and sardonic; finds a grim humor in every peril, delivering lines with a knowing, half-amused chuckle."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Flask",
@@ -55035,13 +55275,33 @@
         "Flask"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 22
+      "first_appearance_chapter": 22,
+      "dialogue_segments": 42,
+      "description": "The third mate of the Pequod, a short, stout, and unimaginative man from Martha's Vineyard who treats whaling as a simple business.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "Martha's Vineyard",
+          "strength": "moderate"
+        },
+        "social_rank": "mate",
+        "register": "informal, practical, literal-minded",
+        "pitch": "high",
+        "pace": "fast",
+        "timbre": "thin, reedy",
+        "distinctive": "Eager and slightly naive; speaks with a quick, matter-of-fact energy, often missing the deeper implications of a situation."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Bulkington",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 23
+      "first_appearance_chapter": 23,
+      "dialogue_segments": 0
     },
     {
       "name": "Tashtego",
@@ -55051,7 +55311,26 @@
         "Gay-Header"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 27
+      "first_appearance_chapter": 27,
+      "dialogue_segments": 28,
+      "description": "A young, skilled harpooneer from Martha's Vineyard of Wampanoag descent, proud and eager, one of the Pequod's three mates' harpooneers.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "Martha's Vineyard",
+          "strength": "light"
+        },
+        "social_rank": "working_class",
+        "register": "informal, direct",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "clear, bright, with a slight edge",
+        "distinctive": "Quick, sharp, and alert; a hunter's focus in his tone; his voice rises with excitement in action."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Ahasuerus Daggoo",
@@ -55060,7 +55339,26 @@
         "Daggoo"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 27
+      "first_appearance_chapter": 27,
+      "dialogue_segments": 10,
+      "description": "A towering, majestic Black harpooneer from Africa, one of the Pequod's three harpooneers, whose physical grandeur and fierce pride are matched by a deep, resonant voice.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "West Africa",
+          "strength": "moderate"
+        },
+        "social_rank": "skilled harpooneer",
+        "register": "proud, direct, slightly formal",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "deep, booming, resonant",
+        "distinctive": "Regal and thunderous; each line delivered with a sense of immense physical power and unshakeable dignity."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Black Little Pip",
@@ -55068,7 +55366,26 @@
         "Pip"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 27
+      "first_appearance_chapter": 27,
+      "dialogue_segments": 13,
+      "description": "A young Black cabin boy from Connecticut, gentle and sensitive, who loses his mind after being left alone in the sea and becomes a tragic, prophetic figure.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "Connecticut",
+          "strength": "light"
+        },
+        "social_rank": "servant_class",
+        "register": "informal, initially naive, later otherworldly",
+        "pitch": "high",
+        "pace": "slow",
+        "timbre": "soft, clear, with a trembling quality",
+        "distinctive": "His voice starts as a boyish, eager tenor; after his trauma, it becomes ethereal, sing-song, and haunting, with a childlike wisdom that is deeply unsettling."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Dough-Boy",
@@ -55078,7 +55395,8 @@
         "the white waiter"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 29
+      "first_appearance_chapter": 29,
+      "dialogue_segments": 0
     },
     {
       "name": "Simeon Macey",
@@ -55086,133 +55404,245 @@
         "Macey"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 32
+      "first_appearance_chapter": 32,
+      "dialogue_segments": 0
     },
     {
       "name": "Charley Coffin",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 32
+      "first_appearance_chapter": 32,
+      "dialogue_segments": 0
     },
     {
       "name": "1st Nantucket Sailor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 40
+      "first_appearance_chapter": 40,
+      "dialogue_segments": 4,
+      "description": "A sailor from Nantucket, part of the crew of the Pequod, excited and excitable during whale sightings.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "Nantucket",
+          "strength": "strong"
+        },
+        "social_rank": "working-class sailor",
+        "register": "informal, boisterous",
+        "pitch": "high",
+        "pace": "fast",
+        "timbre": "bright, nasal",
+        "distinctive": "high-energy, shouts with excitement; clipped, staccato delivery"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "2nd Nantucket Sailor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 40
+      "first_appearance_chapter": 40,
+      "dialogue_segments": 1,
+      "description": "Another sailor from Nantucket, part of the crew of the Pequod.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "Nantucket",
+          "strength": "strong"
+        },
+        "social_rank": "working-class sailor",
+        "register": "informal, gruff",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "rough, gravelly",
+        "distinctive": "gruff, no-nonsense; speaks in short, clipped phrases"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Dutch Sailor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 40
+      "first_appearance_chapter": 40,
+      "dialogue_segments": 0
     },
     {
       "name": "French Sailor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 40
+      "first_appearance_chapter": 40,
+      "dialogue_segments": 0
     },
     {
       "name": "Iceland Sailor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 40
+      "first_appearance_chapter": 40,
+      "dialogue_segments": 0
     },
     {
       "name": "Maltese Sailor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 40
+      "first_appearance_chapter": 40,
+      "dialogue_segments": 0
     },
     {
       "name": "Sicilian Sailor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 40
+      "first_appearance_chapter": 40,
+      "dialogue_segments": 1,
+      "description": "A Mediterranean sailor aboard the Pequod, adding a touch of foreign color to the crew.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "Sicily",
+          "strength": "light"
+        },
+        "social_rank": "working-class sailor",
+        "register": "urgent, respectful",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "bright, slightly accented",
+        "distinctive": "anxious, alert; calls out with a rising urgency"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Long-Island Sailor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 40
+      "first_appearance_chapter": 40,
+      "dialogue_segments": 2,
+      "description": "A sailor from Long Island, part of the crew of the Pequod, prone to dramatic pronouncements.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "Long Island",
+          "strength": "moderate"
+        },
+        "social_rank": "working-class sailor",
+        "register": "informal, theatrical",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "nasal, reedy",
+        "distinctive": "melodramatic, enjoys the sound of his own voice; draws out vowels"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Azore Sailor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 40
+      "first_appearance_chapter": 40,
+      "dialogue_segments": 0
     },
     {
       "name": "China Sailor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 40
+      "first_appearance_chapter": 40,
+      "dialogue_segments": 0
     },
     {
       "name": "3rd Nantucket Sailor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 40
+      "first_appearance_chapter": 40,
+      "dialogue_segments": 0
     },
     {
       "name": "Laskar Sailor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 40
+      "first_appearance_chapter": 40,
+      "dialogue_segments": 0
     },
     {
       "name": "Tahitain Sailor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 40
+      "first_appearance_chapter": 40,
+      "dialogue_segments": 0
     },
     {
       "name": "Portuguese Sailor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 40
+      "first_appearance_chapter": 40,
+      "dialogue_segments": 0
     },
     {
       "name": "Danish Sailor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 40
+      "first_appearance_chapter": 40,
+      "dialogue_segments": 0
     },
     {
       "name": "4th Nantucket Sailor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 40
+      "first_appearance_chapter": 40,
+      "dialogue_segments": 0
     },
     {
       "name": "English Sailor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 40
+      "first_appearance_chapter": 40,
+      "dialogue_segments": 0
     },
     {
       "name": "Spanish Sailor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 40
+      "first_appearance_chapter": 40,
+      "dialogue_segments": 0
     },
     {
       "name": "St. Jago's Sailor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 40
+      "first_appearance_chapter": 40,
+      "dialogue_segments": 1,
+      "description": "A sailor from St. Jago (Santiago), Cape Verde, known for his bold, hungry energy.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "Cape Verde",
+          "strength": "light"
+        },
+        "social_rank": "working-class sailor",
+        "register": "boisterous, commanding",
+        "pitch": "low",
+        "pace": "fast",
+        "timbre": "rough, hearty",
+        "distinctive": "loud, hungry, imperious; barks orders with relish"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "5th Nantucket Sailor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 40
+      "first_appearance_chapter": 40,
+      "dialogue_segments": 0
     },
     {
       "name": "Moby Dick",
@@ -55227,31 +55657,72 @@
         "the grand god"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 41
+      "first_appearance_chapter": 41,
+      "dialogue_segments": 0
     },
     {
       "name": "Archy",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 43
+      "first_appearance_chapter": 43,
+      "dialogue_segments": 8,
+      "description": "A young, sharp-eared Black sailor on the Pequod, part of the crew's lower ranks, who is quick to notice strange noises and gossip about the ship's mysteries.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "Nantucket",
+          "strength": "light"
+        },
+        "social_rank": "common sailor",
+        "register": "informal, streetwise, eager",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "bright, slightly nasal",
+        "distinctive": "Alert and excitable; speaks in quick, hushed bursts, as if always on the verge of uncovering a secret."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Cabaco",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 43
+      "first_appearance_chapter": 43,
+      "dialogue_segments": 5,
+      "description": "A harpooneer aboard the Pequod, likely of Portuguese or Spanish descent, given his exclamation 'Caramba!'",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "Azores/Portuguese",
+          "strength": "light"
+        },
+        "social_rank": "working-class sailor",
+        "register": "informal, gruff",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "rough, weathered",
+        "distinctive": "impatient, dismissive; snaps off words with a slight rolling 'r'"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Cholo",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 43
+      "first_appearance_chapter": 43,
+      "dialogue_segments": 0
     },
     {
       "name": "Captain Pollard",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 45
+      "first_appearance_chapter": 45,
+      "dialogue_segments": 0
     },
     {
       "name": "Owen Chace",
@@ -55259,49 +55730,93 @@
         "Owen"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 45
+      "first_appearance_chapter": 45,
+      "dialogue_segments": 0
     },
     {
       "name": "Langsdorff",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 45
+      "first_appearance_chapter": 45,
+      "dialogue_segments": 0
     },
     {
       "name": "Captain D’Wolf",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 45
+      "first_appearance_chapter": 45,
+      "dialogue_segments": 0
     },
     {
       "name": "Captain Davis",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 45
+      "first_appearance_chapter": 45,
+      "dialogue_segments": 0
     },
     {
       "name": "Commodore J",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 45
+      "first_appearance_chapter": 45,
+      "dialogue_segments": 0
     },
     {
       "name": "Commodore Davis",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 45
+      "first_appearance_chapter": 45,
+      "dialogue_segments": 0
     },
     {
       "name": "Fedallah",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 48
+      "first_appearance_chapter": 48,
+      "dialogue_segments": 2,
+      "description": "A mysterious Parsee, Ahab's secret harpooneer, who seems to have a supernatural connection to the whale.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "Persian/Indian",
+          "strength": "light"
+        },
+        "social_rank": "mysterious outsider",
+        "register": "formal, cryptic",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "sibilant, whispery",
+        "distinctive": "speaks in a low, hypnotic monotone; words seem to echo"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "King-Post",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 48
+      "first_appearance_chapter": 48,
+      "dialogue_segments": 1,
+      "description": "A minor sailor aboard the Pequod, likely a harpooneer or boat-hand, known for his sturdy, unremarkable presence.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England coastal",
+          "strength": "light"
+        },
+        "social_rank": "working-class sailor",
+        "register": "plain, direct",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "neutral, slightly rough",
+        "distinctive": "gruff, matter-of-fact; gives terse confirmation without inflection"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Don Pedro",
@@ -55309,7 +55824,26 @@
         "Pedro"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 54
+      "first_appearance_chapter": 54,
+      "dialogue_segments": 8,
+      "description": "A wealthy, cultured Peruvian gentleman encountered in Lima, whose refined manners and intellectual curiosity are piqued by the sailors' tales of the whale.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "Peru (Lima)",
+          "strength": "moderate"
+        },
+        "social_rank": "aristocrat",
+        "register": "formal, educated, courteous",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "smooth, polished",
+        "distinctive": "Elegant and inquisitive; speaks with a languid, aristocratic drawl, punctuated by sudden, animated exclamations of interest."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Don Sebastian",
@@ -55317,7 +55851,26 @@
         "Sebastian"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 54
+      "first_appearance_chapter": 54,
+      "dialogue_segments": 6,
+      "description": "Another cultured Peruvian gentleman, a companion of Don Pedro, who listens to the sailors' tales with a blend of amusement, skepticism, and grave curiosity.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "Peru (Lima)",
+          "strength": "moderate"
+        },
+        "social_rank": "aristocrat",
+        "register": "formal, educated, wry",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "smooth, slightly dry",
+        "distinctive": "Amused and skeptical; speaks with a raised eyebrow, often punctuating his words with a soft, knowing laugh."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Radney",
@@ -55326,7 +55879,26 @@
         "old Rad"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 54
+      "first_appearance_chapter": 54,
+      "dialogue_segments": 2,
+      "description": "The chief mate of the ship Town-Ho, a cruel and hot-tempered man who meets a grim fate.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "",
+          "strength": "moderate"
+        },
+        "social_rank": "ship's mate, working class",
+        "register": "informal, aggressive",
+        "pitch": "low",
+        "pace": "fast",
+        "timbre": "harsh, gravelly",
+        "distinctive": "bullish, snarling; barks orders with a menacing edge"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Steelkilt",
@@ -55336,7 +55908,26 @@
         "Steelskilt"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 54
+      "first_appearance_chapter": 54,
+      "dialogue_segments": 52,
+      "description": "A powerful and defiant sailor from Buffalo, leader of a mutiny on a whaling ship, known for his strength and fierce independence.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "Upstate New York",
+          "strength": "moderate"
+        },
+        "social_rank": "common_seaman",
+        "register": "rough, defiant, charismatic",
+        "pitch": "low",
+        "pace": "medium",
+        "timbre": "hard, resonant",
+        "distinctive": "Bold and rebellious; speaks with a raw, physical energy and a hint of menace, yet capable of surprising eloquence."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Full Name",
@@ -55345,7 +55936,8 @@
         "alias"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 63
+      "first_appearance_chapter": 63,
+      "dialogue_segments": 0
     },
     {
       "name": "Fleece",
@@ -55355,13 +55947,51 @@
         "old negro"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 64
+      "first_appearance_chapter": 64,
+      "dialogue_segments": 22,
+      "description": "The elderly Black cook of the Pequod, pragmatic and long-suffering, who serves the crew and endures Stubb's whims with weary wisdom.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-US",
+          "origin": "Southern US",
+          "strength": "strong"
+        },
+        "social_rank": "servant_class",
+        "register": "informal, vernacular",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "warm, rumbling, slightly hoarse",
+        "distinctive": "A deep, patient, philosophical grumble; speaks with a resigned, ironic humor, as if he's seen everything and is unimpressed."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Gabriel",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 71
+      "first_appearance_chapter": 71,
+      "dialogue_segments": 6,
+      "description": "The crazed, fanatical prophet of the Jeroboam, a ship stricken by plague, who rails against the Pequod's crew with apocalyptic warnings and sees himself as an instrument of divine wrath.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "religious zealot (former sailor)",
+        "register": "hysterical, prophetic, fervent",
+        "pitch": "high",
+        "pace": "fast",
+        "timbre": "strained, shrill, trembling",
+        "distinctive": "Wild-eyed and feverish; speaks in rapid, breathless bursts, as if possessed, with a voice that cracks and wavers between a shout and a whisper."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Captain Mayhew",
@@ -55369,25 +55999,65 @@
         "Mayhew"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 71
+      "first_appearance_chapter": 71,
+      "dialogue_segments": 5,
+      "description": "Captain of the Jeroboam, a ship plagued by a religious fanatic named Gabriel.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "moderate"
+        },
+        "social_rank": "ship captain, middle class",
+        "register": "formal, authoritative but weary",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "dry, slightly hoarse",
+        "distinctive": "speaks with a tired, exasperated authority; trails off when interrupted"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Dough",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 72
+      "first_appearance_chapter": 72,
+      "dialogue_segments": 2,
+      "description": "A young black boy aboard the Pequod, tasked with helping the harpooneers.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "servant-class",
+        "register": "informal, deferential",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "soft, youthful",
+        "distinctive": "meek, apologetic; speaks with a slight lisp or softness"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Johann Kaspar Lavater",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 79
+      "first_appearance_chapter": 79,
+      "dialogue_segments": 0
     },
     {
       "name": "Johann Friedrich Franz Gall",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 79
+      "first_appearance_chapter": 79,
+      "dialogue_segments": 0
     },
     {
       "name": "Derick De Deer",
@@ -55395,37 +56065,61 @@
         "Derick"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 81
+      "first_appearance_chapter": 81,
+      "dialogue_segments": 0
     },
     {
       "name": "Bishop Jebb",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 83
+      "first_appearance_chapter": 83,
+      "dialogue_segments": 0
     },
     {
       "name": "Sag-Harbor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 83
+      "first_appearance_chapter": 83,
+      "dialogue_segments": 1,
+      "description": "A sailor from Sag Harbor, a whaling port on Long Island; a minor voice in the crew's banter.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "Long Island, New York",
+          "strength": "moderate"
+        },
+        "social_rank": "working-class sailor",
+        "register": "colloquial, sardonic",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "slightly nasal, dry",
+        "distinctive": "wry, dismissive; delivers the line with a dry chuckle"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Bartholomew Diaz",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 83
+      "first_appearance_chapter": 83,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Erskine",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 89
+      "first_appearance_chapter": 89,
+      "dialogue_segments": 0
     },
     {
       "name": "Lord Ellenborough",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 89
+      "first_appearance_chapter": 89,
+      "dialogue_segments": 0
     },
     {
       "name": "Mordecai",
@@ -55433,7 +56127,8 @@
         "the broker"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 89
+      "first_appearance_chapter": 89,
+      "dialogue_segments": 0
     },
     {
       "name": "Woebegone",
@@ -55441,25 +56136,29 @@
         "the bankrupt"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 89
+      "first_appearance_chapter": 89,
+      "dialogue_segments": 0
     },
     {
       "name": "Archbishop of Savesoul",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 89
+      "first_appearance_chapter": 89,
+      "dialogue_segments": 0
     },
     {
       "name": "Duke of Dunder",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 89
+      "first_appearance_chapter": 89,
+      "dialogue_segments": 0
     },
     {
       "name": "Columbus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 89
+      "first_appearance_chapter": 89,
+      "dialogue_segments": 0
     },
     {
       "name": "Duke of Wellington",
@@ -55468,7 +56167,8 @@
         "my Lord Duke"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 90
+      "first_appearance_chapter": 90,
+      "dialogue_segments": 0
     },
     {
       "name": "Clergyman",
@@ -55477,55 +56177,82 @@
         "reverend gentleman"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 90
+      "first_appearance_chapter": 90,
+      "dialogue_segments": 0
     },
     {
       "name": "Plowdon",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 90
+      "first_appearance_chapter": 90,
+      "dialogue_segments": 0
     },
     {
       "name": "William Prynne",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 90
+      "first_appearance_chapter": 90,
+      "dialogue_segments": 0
     },
     {
       "name": "Guernsey-man",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 91
+      "first_appearance_chapter": 91,
+      "dialogue_segments": 16,
+      "description": "A sailor from the Isle of Guernsey, a French-speaking islander who serves as an interpreter for his fellow countryman, a bit of an outsider.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "Channel Islands",
+          "strength": "moderate"
+        },
+        "social_rank": "working_class",
+        "register": "informal, accented",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "slightly nasal, with a French lilt",
+        "distinctive": "A Gallic rhythm to his English, with a slight singsong quality; he translates with a sense of duty and a touch of weariness."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Captain Coffin",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 92
+      "first_appearance_chapter": 92,
+      "dialogue_segments": 0
     },
     {
       "name": "Fogo Von Slack",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 92
+      "first_appearance_chapter": 92,
+      "dialogue_segments": 0
     },
     {
       "name": "Alexander the Great",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 92
+      "first_appearance_chapter": 92,
+      "dialogue_segments": 0
     },
     {
       "name": "Cook",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 99
+      "first_appearance_chapter": 99,
+      "dialogue_segments": 0
     },
     {
       "name": "Jenny",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 99
+      "first_appearance_chapter": 99,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Mounttop",
@@ -55533,7 +56260,8 @@
         "Mounttop"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 100
+      "first_appearance_chapter": 100,
+      "dialogue_segments": 0
     },
     {
       "name": "Dr. Bunger",
@@ -55542,31 +56270,72 @@
         "Bunger boy"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 100
+      "first_appearance_chapter": 100,
+      "dialogue_segments": 11,
+      "description": "The pragmatic and slightly sardonic ship's surgeon of the Samuel Enderby, called to tend to Ahab's wound, whose clinical detachment contrasts with the Pequod's feverish obsession.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "professional (ship's doctor)",
+        "register": "educated, clinical, dryly humorous",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "smooth, slightly nasal",
+        "distinctive": "Wry, matter-of-fact; delivers alarming diagnoses with a calm, almost bored detachment."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Captain Boomer",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 100
+      "first_appearance_chapter": 100,
+      "dialogue_segments": 15,
+      "description": "The jovial, hearty captain of the English whaler Samuel Enderby, who lost an arm to Moby Dick but treats it as a grand adventure.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "captain_class",
+        "register": "informal, hearty",
+        "pitch": "low",
+        "pace": "medium",
+        "timbre": "booming, warm, robust",
+        "distinctive": "A loud, jovial, back-slapping manner; his voice is full of good humor and a sailor's bravado, even when discussing his own maiming."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Dr. Snodhead",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 101
+      "first_appearance_chapter": 101,
+      "dialogue_segments": 0
     },
     {
       "name": "Tranquo",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 102
+      "first_appearance_chapter": 102,
+      "dialogue_segments": 0
     },
     {
       "name": "Sir Clifford Constable",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 102
+      "first_appearance_chapter": 102,
+      "dialogue_segments": 0
     },
     {
       "name": "Carpenter",
@@ -55574,13 +56343,51 @@
         "Smut"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 108
+      "first_appearance_chapter": 108,
+      "dialogue_segments": 16,
+      "description": "The ship's carpenter on the Pequod, a taciturn and practical craftsman who works with wood and bone, including fashioning Ahab's new leg.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "skilled_working_class",
+        "register": "informal, matter-of-fact",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "flat, dry, unemotional",
+        "distinctive": "Speaks with a detached, almost mechanical precision; a man more comfortable with tools than words, his voice is a monotone of practicality."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Perth",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 112
+      "first_appearance_chapter": 112,
+      "dialogue_segments": 8,
+      "description": "The Pequod's old, weathered blacksmith, a former church elder who has fallen from grace, now forging the harpoon for Ahab's quest, his voice heavy with a sense of doom.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "skilled artisan (blacksmith)",
+        "register": "weary, solemn, reflective",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "rough, smoky, cracked",
+        "distinctive": "Hollow and resigned; speaks with the heavy, deliberate cadence of a man who has seen too much and fears what comes next."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Captain of the Bachelor",
@@ -55588,7 +56395,26 @@
         "Bachelor’s commander"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 115
+      "first_appearance_chapter": 115,
+      "dialogue_segments": 4,
+      "description": "Captain of a whaling ship that has had a successful voyage, jovial and welcoming.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "moderate"
+        },
+        "social_rank": "ship captain, middle class",
+        "register": "informal, hearty",
+        "pitch": "low",
+        "pace": "fast",
+        "timbre": "booming, warm",
+        "distinctive": "jovial, back-slapping bonhomie; laughs easily and talks over others"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "The Parsee",
@@ -55596,13 +56422,51 @@
         "Parsee"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 117
+      "first_appearance_chapter": 117,
+      "dialogue_segments": 7,
+      "description": "A mysterious, dark-skinned harpooneer from India, Ahab's shadow and pilot, whose cryptic prophecies and fanatical devotion to his captain lend him an eerie, otherworldly quality.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "India (Parsee)",
+          "strength": "moderate"
+        },
+        "social_rank": "mystic / harpooneer",
+        "register": "enigmatic, prophetic, intense",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "sibilant, whispering, resonant",
+        "distinctive": "Singsong and hypnotic; delivers prophecies with a chilling, unblinking certainty, as if speaking from beyond the grave."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Steersman",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 124
+      "first_appearance_chapter": 124,
+      "dialogue_segments": 1,
+      "description": "The helmsman of the Pequod, responsible for steering the ship; a quiet, competent presence.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "working-class sailor",
+        "register": "terse, professional",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "flat, steady",
+        "distinctive": "monotone, laconic; reports direction without emotion"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "The Manxman",
@@ -55611,13 +56475,33 @@
         "Manxman"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 99
+      "first_appearance_chapter": 99,
+      "dialogue_segments": 12,
+      "description": "An old, superstitious sailor from the Isle of Man, steeped in folklore and omens, who serves as the Pequod's lookout and a voice of fatalistic prophecy.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-US",
+          "origin": "Isle of Man",
+          "strength": "moderate"
+        },
+        "social_rank": "working-class sailor",
+        "register": "colloquial, superstitious",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "gravelly",
+        "distinctive": "Muttering, doom-laden; speaks as if reading omens in the wind, with a hushed, conspiratorial intensity."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Tahitian",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 125
+      "first_appearance_chapter": 125,
+      "dialogue_segments": 0
     },
     {
       "name": "Captain Gardiner",
@@ -55625,7 +56509,26 @@
         "Stranger Captain"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 128
+      "first_appearance_chapter": 128,
+      "dialogue_segments": 5,
+      "description": "Captain of the ship Rachel, a desperate father searching for his lost son.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "moderate"
+        },
+        "social_rank": "ship captain, middle class",
+        "register": "formal, pleading",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "strained, earnest",
+        "distinctive": "voice cracks with emotion; emphasizes key words with a desperate, almost trembling intensity"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     }
   ],
   "statistics": {
@@ -55635,21 +56538,50 @@
     "total_characters": 109,
     "validation_performed": true,
     "chapters_needing_review": [
-      54,
-      78,
-      90
+      54
     ],
     "unreviewed_critic_windows": 0,
-    "pipeline_version": "1.0.0",
+    "pipeline_version": "1.1.0",
     "discovery_confidence": {
-      "avg_confidence": 0.9767313624483327,
-      "min_confidence": 0.75
-    }
+      "avg_confidence": 0.9781692489236775,
+      "min_confidence": 0.7819811320754717
+    },
+    "cast_characters": 47
   },
   "processing_config": {
     "processing_model": "google/gemma-4-E4B-it-qat-w4a16-ct",
     "validation_model": "/opt/data/models/DeepSeek-V4-Flash-0731-GGUF/UD-Q8_K_XL/DeepSeek-V4-Flash-0731-UD-Q8_K_XL-00001-of-00005.gguf",
     "dual_llm_validation": true,
     "chunk_size": 1000
+  },
+  "production": {
+    "synopsis": "A schoolteacher named Ishmael signs on to the whaling ship Pequod, whose one-legged captain, Ahab, is obsessed with hunting the white whale that maimed him. As the voyage circles the globe, Ahab's monomania drags the crew toward a catastrophic confrontation with the whale, Moby Dick. The novel blends adventure, cetology, and philosophical meditation on fate, obsession, and nature.",
+    "author": {
+      "name": "Herman Melville",
+      "years": "1819-1891",
+      "nationality": "American",
+      "note": "Melville's prose is dense, oratorical, and encyclopedic, with a dark, brooding Romanticism; the narration should carry a weighty, deliberate, and slightly archaic grandeur."
+    },
+    "narration": {
+      "person": "first_person",
+      "narrator_character": "Ishmael",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England, educated but plain-spoken",
+          "strength": "moderate"
+        },
+        "social_rank": "middle-class, former schoolteacher",
+        "register": "literate, reflective, wry, with a sailor's directness",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "warm, slightly gravelly",
+        "distinctive": "occasional dry humor; shifts between colloquial sea-talk and elevated philosophical passages"
+      },
+      "basis": "narrator_character"
+    },
+    "casting_notes": "All voices are American (en-US) with regional and class variation; the crew of the Pequod is a cross-section of 19th-century maritime America and the world, but the audiobook should keep a consistent Yankee baseline, differentiating by age, rank, and temperament rather than by heavy foreign accents. Ahab's voice must be commanding and haunted; the mates (Starbuck, Stubb, Flask) should contrast in energy and gravity. Minor characters (Queequeg, Daggoo, Tashtego, the Parsee) are given subtle non-American color but remain intelligible and not caricatured."
   }
 }

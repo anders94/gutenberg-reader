@@ -3809,8 +3809,7 @@
             "aliases": [
               "Holmes",
               "my friend",
-              "Sherlock Holmes",
-              "Mr. Holmes"
+              "Sherlock Holmes"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
@@ -3846,9 +3845,7 @@
             "aliases": [
               "King of Bohemia",
               "Grand Duke of Cassel-Felstein",
-              "The King",
-              "Count Von Kramm",
-              "The Count"
+              "The King"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
@@ -3861,9 +3858,7 @@
           },
           {
             "name": "Godfrey Norton",
-            "aliases": [
-              "Norton"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
           },
@@ -7164,8 +7159,7 @@
           {
             "name": "Mr. Jabez Wilson",
             "aliases": [
-              "Jabez Wilson",
-              "Mr. Wilson"
+              "Jabez Wilson"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 2
@@ -7203,8 +7197,7 @@
           {
             "name": "Peter Jones",
             "aliases": [
-              "Mr. Jones",
-              "Jones"
+              "Mr. Jones"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 2
@@ -9536,13 +9529,7 @@
           },
           {
             "name": "Mary Sutherland",
-            "aliases": [
-              "Miss Sutherland",
-              "the young lady",
-              "Visitor",
-              "our visitor",
-              "Mary"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 3
           },
@@ -12885,9 +12872,7 @@
           },
           {
             "name": "Mr. Charles McCarthy",
-            "aliases": [
-              "McCarthy"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 4
           },
@@ -12944,8 +12929,7 @@
             "name": "Inspector Lestrade",
             "aliases": [
               "Lestrade",
-              "Inspector of Constabulary",
-              "Mr. Lestrade"
+              "Inspector of Constabulary"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 4
@@ -18756,8 +18740,7 @@
           {
             "name": "Inspector Bradstreet",
             "aliases": [
-              "Bradstreet",
-              "B division"
+              "Bradstreet"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 6
@@ -21963,8 +21946,7 @@
           {
             "name": "James Ryder",
             "aliases": [
-              "upper-attendant at the hotel",
-              "Mr. Ryder"
+              "upper-attendant at the hotel"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 7
@@ -31299,8 +31281,7 @@
               "Robert St. Simon",
               "Lord Backwater",
               "Robert",
-              "Lord St. Simon",
-              "Lord St"
+              "Lord St. Simon"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 10
@@ -31324,18 +31305,14 @@
             "first_appearance_chapter": 10
           },
           {
-            "name": "Mrs. Francis Hay Moulton",
-            "aliases": [
-              "Miss Hatty Doran"
-            ],
+            "name": "Miss Hatty Doran",
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 10
           },
           {
             "name": "Aloysius Doran",
-            "aliases": [
-              "Pa"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 10
           },
@@ -31361,9 +31338,7 @@
             "name": "Mr. Francis Hay Moulton",
             "aliases": [
               "Mr. Moulton",
-              "Francis H. Moulton",
-              "Frank",
-              "my Frank"
+              "Francis H. Moulton"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 10
@@ -34391,9 +34366,7 @@
           },
           {
             "name": "Mary Holder",
-            "aliases": [
-              "Miss Holder"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 11
           },
@@ -34909,7 +34882,7 @@
           {
             "type": "dialogue",
             "text": "“‘That will do,’ said he; ‘I could not ask for anything better. Capital! capital!’ He seemed quite enthusiastic and rubbed his hands together in the most genial fashion. He was such a comfortable-looking man that it was quite a pleasure to look at him.",
-            "speaker": "Violet Hunter",
+            "speaker": "Jephro Rucastle",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 7312,
@@ -34918,7 +34891,7 @@
           {
             "type": "dialogue",
             "text": "“‘You are looking for a situation, miss?’ he asked.",
-            "speaker": "Violet Hunter",
+            "speaker": "Jephro Rucastle",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 7566,
@@ -34936,7 +34909,7 @@
           {
             "type": "dialogue",
             "text": "“‘As governess?’",
-            "speaker": "Violet Hunter",
+            "speaker": "Jephro Rucastle",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 7633,
@@ -34954,7 +34927,7 @@
           {
             "type": "dialogue",
             "text": "“‘And what salary do you ask?’",
-            "speaker": "Violet Hunter",
+            "speaker": "Jephro Rucastle",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 7665,
@@ -34972,7 +34945,7 @@
           {
             "type": "dialogue",
             "text": "“‘Oh, tut, tut! sweating—rank sweating!’ he cried, throwing his fat hands out into the air like a man who is in a boiling passion. ‘How could anyone offer so pitiful a sum to a lady with such attractions and accomplishments?’",
-            "speaker": "Violet Hunter",
+            "speaker": "Jephro Rucastle",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 7763,
@@ -34990,7 +34963,7 @@
           {
             "type": "dialogue",
             "text": "“‘Tut, tut!’ he cried. ‘This is all quite beside the question. The point is, have you or have you not the bearing and deportment of a lady? There it is in a nutshell. If you have not, you are not fitted for the rearing of a child who may some day play a considerable part in the history of the country. But if you have, why, then, how could any gentleman ask you to condescend to accept anything under the three figures? Your salary with me, madam, would commence at £ 100 a year.’",
-            "speaker": "Violet Hunter",
+            "speaker": "Jephro Rucastle",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 8113,
@@ -35008,7 +34981,7 @@
           {
             "type": "dialogue",
             "text": "“‘It is also my custom,’ said he, smiling in the most pleasant fashion until his eyes were just two little shining slits amid the white creases of his face, ‘to advance to my young ladies half their salary beforehand, so that they may meet any little expenses of their journey and their wardrobe.’",
-            "speaker": "Violet Hunter",
+            "speaker": "Jephro Rucastle",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 8827,
@@ -35035,7 +35008,7 @@
           {
             "type": "dialogue",
             "text": "“‘Hampshire. Charming rural place. The Copper Beeches, five miles on the far side of Winchester. It is the most lovely country, my dear young lady, and the dearest old country-house.’",
-            "speaker": "Violet Hunter",
+            "speaker": "Jephro Rucastle",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 9467,
@@ -35053,7 +35026,7 @@
           {
             "type": "dialogue",
             "text": "“‘One child—one dear little romper just six years old. Oh, if you could see him killing cockroaches with a slipper! Smack! smack! smack! Three gone before you could wink!’ He leaned back in his chair and laughed his eyes into his head again.",
-            "speaker": "Violet Hunter",
+            "speaker": "Jephro Rucastle",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 9721,
@@ -35080,7 +35053,7 @@
           {
             "type": "dialogue",
             "text": "“‘No, no, not the sole, not the sole, my dear young lady,’ he cried. ‘Your duty would be, as I am sure your good sense would suggest, to obey any little commands my wife might give, provided always that they were such commands as a lady might with propriety obey. You see no difficulty, heh?’",
-            "speaker": "Violet Hunter",
+            "speaker": "Jephro Rucastle",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 10173,
@@ -35098,7 +35071,7 @@
           {
             "type": "dialogue",
             "text": "“‘Quite so. In dress now, for example. We are faddy people, you know—faddy but kind-hearted. If you were asked to wear any dress which we might give you, you would not object to our little whim. Heh?’",
-            "speaker": "Violet Hunter",
+            "speaker": "Jephro Rucastle",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 10512,
@@ -36088,7 +36061,7 @@
           {
             "type": "dialogue",
             "text": "“‘Jephro,’ said she, ‘there is an impertinent fellow upon the road there who stares up at Miss Hunter.’",
-            "speaker": "Violet Hunter",
+            "speaker": "Mrs. Rucastle",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 30693,
@@ -36097,7 +36070,7 @@
           {
             "type": "dialogue",
             "text": "“‘No friend of yours, Miss Hunter?’ he asked.",
-            "speaker": "Violet Hunter",
+            "speaker": "Jephro Rucastle",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 30798,
@@ -36115,7 +36088,7 @@
           {
             "type": "dialogue",
             "text": "“‘Dear me! How very impertinent! Kindly turn round and motion to him to go away.’",
-            "speaker": "Violet Hunter",
+            "speaker": "Jephro Rucastle",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 30883,
@@ -36133,7 +36106,7 @@
           {
             "type": "dialogue",
             "text": "“‘No, no, we should have him loitering here always. Kindly turn round and wave him away like that.’",
-            "speaker": "Violet Hunter",
+            "speaker": "Jephro Rucastle",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 31015,
@@ -36187,7 +36160,7 @@
           {
             "type": "dialogue",
             "text": "“‘Look in here!’ said Mr. Rucastle, showing me a slit between two planks. ‘Is he not a beauty?’",
-            "speaker": "Violet Hunter",
+            "speaker": "Jephro Rucastle",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 31805,
@@ -36205,7 +36178,7 @@
           {
             "type": "dialogue",
             "text": "“‘Don’t be frightened,’ said my employer, laughing at the start which I had given. ‘It’s only Carlo, my mastiff. I call him mine, but really old Toller, my groom, is the only man who can do anything with him. We feed him once a day, and not too much then, so that he is always as keen as mustard. Toller lets him loose every night, and God help the trespasser whom he lays his fangs upon. For goodness’ sake don’t you ever on any pretext set your foot over the threshold at night, for it’s as much as your life is worth.’",
-            "speaker": "Violet Hunter",
+            "speaker": "Jephro Rucastle",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 32010,
@@ -36259,7 +36232,7 @@
           {
             "type": "dialogue",
             "text": "“‘Ah!’ said he, ‘you must not think me rude if I passed you without a word, my dear young lady. I was preoccupied with business matters.’",
-            "speaker": "Violet Hunter",
+            "speaker": "Jephro Rucastle",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 35958,
@@ -36286,7 +36259,7 @@
           {
             "type": "dialogue",
             "text": "“‘Photography is one of my hobbies,’ said he. ‘I have made my dark room up there. But, dear me! what an observant young lady we have come upon. Who would have believed it? Who would have ever believed it?’ He spoke in a jesting tone, but there was no jest in his eyes as he looked at me. I read suspicion there and annoyance, but no jest.",
-            "speaker": "Violet Hunter",
+            "speaker": "Jephro Rucastle",
             "pronunciation_hints": [],
             "notes": "quote-continues",
             "start": 36334,
@@ -37453,30 +37426,12 @@
         "chapter_number": 12,
         "missing_text": [],
         "attribution_issues": [
-          "segment 46: Mr. Jabez Wilson -> Violet Hunter (Violet Hunter is quoting the stout man's words within her own speech; the speaker of the segment is Violet Hunter, not Jabez Wilson.)",
-          "segment 47: Mr. Jabez Wilson -> Violet Hunter (Violet Hunter continues quoting the man's question; the segment is part of her narration.)",
-          "segment 49: Mr. Jabez Wilson -> Violet Hunter (Violet Hunter continues quoting the man's question; the segment is her narration.)",
-          "segment 51: Mr. Jabez Wilson -> Violet Hunter (Violet Hunter continues quoting the man's question; the segment is her narration.)",
-          "segment 53: Mr. Jabez Wilson -> Violet Hunter (Violet Hunter is quoting the man's outburst; the segment is her narration.)",
-          "segment 55: Mr. Jabez Wilson -> Violet Hunter (Violet Hunter continues quoting the man; the segment is her narration.)",
-          "segment 57: Mr. Jabez Wilson -> Violet Hunter (Violet Hunter quotes the man's words; the segment is her narration.)",
-          "segment 60: Mr. Jabez Wilson -> Violet Hunter (Violet Hunter quotes the man's answer; the segment is her narration.)",
-          "segment 62: Mr. Jabez Wilson -> Violet Hunter (Violet Hunter quotes the man's reply; the segment is her narration.)",
-          "segment 65: Mr. Jabez Wilson -> Violet Hunter (Violet Hunter quotes the man's response; the segment is her narration.)",
-          "segment 67: Mr. Jabez Wilson -> Violet Hunter (Violet Hunter quotes the man's words; the segment is her narration.)",
-          "segment 69: Mr. Jabez Wilson -> Jephro Rucastle (The speaker continues the interview about sitting and whims, which is Rucastle, not Jabez Wilson.)",
-          "segment 71: Mr. Jabez Wilson -> Jephro Rucastle (The speaker asks about cutting hair, which is Rucastle, not Jabez Wilson.)",
-          "segment 74: Mr. Jabez Wilson -> Jephro Rucastle (The speaker insists on the hair cut as his wife's fancy, which is Rucastle, not Jabez Wilson.)",
-          "segment 76: Mr. Jabez Wilson -> Jephro Rucastle (The speaker ends the interview and addresses Miss Stoper, which is Rucastle, not Jabez Wilson.)",
-          "segment 177: Mrs. Rucastle -> Violet Hunter (The dialogue is part of Violet Hunter's quoted narrative to Holmes, quoting Mrs. Rucastle's words within her own speech.)",
-          "segment 178: Mr. Rucastle -> Violet Hunter (The dialogue is part of Violet Hunter's quoted narrative to Holmes, quoting Mr. Rucastle's words within her own speech.)",
-          "segment 180: Mr. Rucastle -> Violet Hunter (The dialogue is part of Violet Hunter's quoted narrative to Holmes, quoting Mr. Rucastle's words within her own speech.)",
-          "segment 182: Mr. Rucastle -> Violet Hunter (The dialogue is part of Violet Hunter's quoted narrative to Holmes, quoting Mr. Rucastle's words within her own speech.)",
-          "segment 188: Mr. Rucastle -> Violet Hunter (The dialogue is part of Violet Hunter's quoted narrative to Holmes, quoting Mr. Rucastle's words within her own speech.)",
-          "segment 190: Mr. Rucastle -> Violet Hunter (The dialogue is part of Violet Hunter's quoted narrative to Holmes, quoting Mr. Rucastle's words within her own speech.)",
-          "segment 196: Mr. Rucastle -> Violet Hunter (The dialogue is a quote within Violet Hunter's narration, not spoken by Mr. Rucastle directly.)",
-          "segment 199: Mr. Rucastle -> Violet Hunter (The dialogue is a quote within Violet Hunter's narration, not spoken by Mr. Rucastle directly.)",
-          "segment 246: Elise -> Violet Hunter (The narration tag 'said she' refers to Miss Hunter, who is the only female present and has been leading the group.)"
+          "segment 203: Mr. Rucastle -> Jephro Rucastle (The narration says 'said he, smiling' and the speaker is Mr. Rucastle, not 'Mr. Rucastle' as a generic label; the known character is Jephro Rucastle.)",
+          "segment 205: Mr. Rucastle -> Jephro Rucastle (The dialogue is spoken by Mr. Rucastle (Jephro Rucastle), not the generic 'Mr. Rucastle' label.)",
+          "segment 208: Mr. Rucastle -> Jephro Rucastle (The dialogue is spoken by Mr. Rucastle (Jephro Rucastle), not the generic 'Mr. Rucastle' label.)",
+          "segment 210: Mr. Rucastle -> Jephro Rucastle (The dialogue is spoken by Mr. Rucastle (Jephro Rucastle), not the generic 'Mr. Rucastle' label.)",
+          "segment 212: Mr. Rucastle -> Jephro Rucastle (The dialogue is spoken by Mr. Rucastle (Jephro Rucastle), not the generic 'Mr. Rucastle' label.)",
+          "segment 214: Mr. Rucastle -> Jephro Rucastle (The dialogue is spoken by Mr. Rucastle (Jephro Rucastle), not the generic 'Mr. Rucastle' label.)"
         ],
         "name_inconsistencies": [
           "Possible name inconsistency: 'Mr. Rucastle' (did you mean 'Mrs. Rucastle'?)",
@@ -37486,21 +37441,14 @@
           "Possible name inconsistency: 'Mr. Rucastle' (did you mean 'Mrs. Rucastle'?)",
           "Possible name inconsistency: 'Mr. Rucastle' (did you mean 'Mrs. Rucastle'?)",
           "Possible name inconsistency: 'Mr. Rucastle' (did you mean 'Mrs. Rucastle'?)",
-          "Possible name inconsistency: 'Mr. Rucastle' (did you mean 'Mrs. Rucastle'?)",
-          "Possible name inconsistency: 'Mr. Rucastle' (did you mean 'Mrs. Rucastle'?)",
-          "Possible name inconsistency: 'Mr. Rucastle' (did you mean 'Mrs. Rucastle'?)",
-          "Possible name inconsistency: 'Mr. Rucastle' (did you mean 'Mrs. Rucastle'?)",
-          "Possible name inconsistency: 'Mr. Rucastle' (did you mean 'Mrs. Rucastle'?)",
-          "Possible name inconsistency: 'Mr. Rucastle' (did you mean 'Mrs. Rucastle'?)",
-          "Possible name inconsistency: 'Mr. Rucastle' (did you mean 'Mrs. Rucastle'?)",
           "Possible name inconsistency: 'Mr. Rucastle' (did you mean 'Mrs. Rucastle'?)"
         ],
-        "overall_quality": 0.7777631578947368,
-        "needs_reprocessing": true,
+        "overall_quality": 0.9574561403508771,
+        "needs_reprocessing": false,
         "unreviewed_windows": [],
         "fixed_segments": null
       },
-      "needs_review": true
+      "needs_review": false
     }
   ],
   "characters": [
@@ -37513,7 +37461,26 @@
         "Irene Norton"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 5,
+      "description": "A brilliant and resourceful opera singer, the only woman to outwit Holmes.",
+      "voice": {
+        "sex": "female",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper_class",
+        "register": "refined, commanding",
+        "pitch": "medium",
+        "pace": "brisk",
+        "timbre": "clear, resonant",
+        "distinctive": "imperious yet charming; quick, decisive phrasing with a hint of theatrical flair"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Sherlock Holmes",
@@ -37524,7 +37491,26 @@
         "Mr. Holmes"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 1208,
+      "description": "The brilliant, consulting detective, coolly analytical and detached from ordinary emotion.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "gentleman, educated",
+        "register": "formal, precise",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "clear, resonant",
+        "distinctive": "cool, precise, slightly detached; pauses for effect, lands observations with quiet finality"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Dr. Watson",
@@ -37532,7 +37518,26 @@
         "Watson"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 354,
+      "description": "Holmes's loyal friend and chronicler, a warm and empathetic former army doctor.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "professional, educated",
+        "register": "formal but warm",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "warm, rounded",
+        "distinctive": "warm, empathetic; reacts with genuine surprise and concern, grounding Holmes's flights of logic"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Wilhelm Gottsreich Sigismond von Ormstein",
@@ -37544,13 +37549,33 @@
         "The Count"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 58,
+      "description": "The King of Bohemia, a proud and imperious monarch who seeks Holmes's help in a delicate matter.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "central-european",
+          "strength": "moderate"
+        },
+        "social_rank": "royalty",
+        "register": "formal, commanding",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "deep, resonant",
+        "distinctive": "imperious, commanding; speaks with royal authority, a slight foreign cadence to his English"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Clotilde Lothman von Saxe-Meningen",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 0
     },
     {
       "name": "Godfrey Norton",
@@ -37558,7 +37583,26 @@
         "Norton"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 2,
+      "description": "A lawyer who hastily marries Irene Adler, caught up in the rush of the ceremony.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "middle_class",
+        "register": "educated, urgent",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "bright, breathless",
+        "distinctive": "impatient, commanding; speaks in short, clipped bursts as if always in a hurry"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Jabez Wilson",
@@ -37567,19 +37611,76 @@
         "Mr. Wilson"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 91,
+      "description": "A pawnbroker with a red head, a stout, ordinary man who has been duped by a clever ruse.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "moderate"
+        },
+        "social_rank": "tradesman, lower-middle-class",
+        "register": "plain, unpretentious",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "gruff, slightly gravelly",
+        "distinctive": "blustery, indignant; speaks with a tradesman's directness, easily flustered but proud"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Duncan Ross",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 3,
+      "description": "A sinister agent of the Red-Headed League, posing as a respectable businessman.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "middle_class",
+        "register": "formal, oily",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "smooth, unctuous",
+        "distinctive": "slippery, over-polite delivery; each word carefully chosen, with a faintly menacing undertone"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Vincent Spaulding",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 8,
+      "description": "A clever, ambitious young man, secretly a criminal mastermind, posing as a humble assistant to Jabez Wilson.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "working_class",
+        "register": "ingratiating, sly",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "smooth",
+        "distinctive": "Slippery and over-eager; speaks with a false cheerfulness that barely conceals a calculating mind."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Peter Jones",
@@ -37588,19 +37689,76 @@
         "Jones"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 10,
+      "description": "A Scotland Yard inspector, competent but plodding, who often works alongside Holmes and Watson.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "london",
+          "strength": "light"
+        },
+        "social_rank": "middle_class",
+        "register": "professional, plain-spoken",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "gruff",
+        "distinctive": "Matter-of-fact, slightly ponderous; delivers lines with a policeman's official gravity, but a hint of deference to Holmes."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Merryweather",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 11,
+      "description": "A senior bank director in his 50s, portly and self-important, anxious about the bank's gold but eager to credit Holmes.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper_middle_class",
+        "register": "formal, pompous",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "booming, rounded",
+        "distinctive": "Delivers lines with a theatrical gravity, as if addressing a board meeting; his relief at the end comes out as effusive gratitude."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "John Clay",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 7,
+      "description": "A notorious criminal, aristocratic by birth, who leads a double life as a master thief and murderer.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "gentry",
+        "register": "educated, arrogant",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "cold",
+        "distinctive": "Coolly defiant, with a sneer of superiority; speaks with a languid, aristocratic drawl even when cornered."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mary Sutherland",
@@ -37612,13 +37770,33 @@
         "Mary"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 51,
+      "description": "A young woman of modest means, sweet-natured and somewhat naive, seeking Holmes's help with a romantic mystery.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "lower-middle-class",
+        "register": "plain, earnest",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "soft, warm",
+        "distinctive": "earnest, slightly naive; speaks with a gentle, trusting tone, easily swept up in her own story"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Mrs. Etherege",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Hosmer Angel",
@@ -37626,7 +37804,8 @@
         "Hosmer Angel"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Windibank",
@@ -37634,7 +37813,26 @@
         "James Windibank"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 11,
+      "description": "A smug, manipulative man in his 40s, a wine merchant who hides his cruelty behind a veneer of respectability.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "middle_class",
+        "register": "oily, condescending",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "smooth, unctuous",
+        "distinctive": "A silky, self-satisfied drawl; he over-enunciates to sound reasonable, but his voice sharpens into a snarl when exposed."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. John Turner",
@@ -37643,7 +37841,26 @@
         "John Turner"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 22,
+      "description": "A wealthy, once-powerful rancher in his late 50s, now gravely ill and haunted by a dark secret from his past in Australia.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "West Country",
+          "strength": "moderate"
+        },
+        "social_rank": "gentry",
+        "register": "formal, measured",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "gravelly, weary",
+        "distinctive": "Speaks with a heavy, confessional gravity; each word seems to cost him physical effort, with a slight tremor on emotional peaks."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Charles McCarthy",
@@ -37651,7 +37868,8 @@
         "McCarthy"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. James McCarthy",
@@ -37660,7 +37878,26 @@
         "James McCarthy"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 6,
+      "description": "A young man accused of murdering his father, caught in a moment of panic and grief.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Herefordshire",
+          "strength": "light"
+        },
+        "social_rank": "middle_class",
+        "register": "educated, but strained",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "tremulous",
+        "distinctive": "halting, breathy delivery; voice cracks with emotion when recalling the incident"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "William Crowder",
@@ -37668,13 +37905,15 @@
         "game-keeper"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Patience Moran",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Miss Turner",
@@ -37682,19 +37921,40 @@
         "Miss Turner, the daughter of the neighbouring landowner"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 34,
+      "description": "A young woman caught in a web of secrecy and loyalty, whose terse replies hint at a deeper, unspoken truth.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "middle class",
+        "register": "educated, guarded",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "clear, slightly flat",
+        "distinctive": "Guarded and evasive; speaks in short, clipped sentences, as if holding back a secret."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "John Cobb",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Dr. Willows",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Inspector Lestrade",
@@ -37704,7 +37964,26 @@
         "Mr. Lestrade"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 60,
+      "description": "A Scotland Yard detective, pragmatic and competitive, often at odds with Holmes's methods.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "moderate"
+        },
+        "social_rank": "professional, police",
+        "register": "official, direct",
+        "pitch": "medium",
+        "pace": "brisk",
+        "timbre": "hard, slightly nasal",
+        "distinctive": "brisk, officious; speaks with a policeman's bluntness, a touch of rivalry in his tone"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "John Openshaw",
@@ -37712,37 +37991,61 @@
         "Openshaw"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 55,
+      "description": "A young gentleman haunted by a family curse, desperate and fearful for his life.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "gentleman, educated",
+        "register": "formal, agitated",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "thin, strained",
+        "distinctive": "anxious, urgent; speaks with a nervous energy, words tumbling out as he recounts his terror"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Major Prendergast",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 0
     },
     {
       "name": "Elias Openshaw",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 0
     },
     {
       "name": "Joseph Openshaw",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 0
     },
     {
       "name": "Fordham",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 0
     },
     {
       "name": "Police-Constable Cook",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 0
     },
     {
       "name": "Captain James Calhoun",
@@ -37750,7 +38053,8 @@
         "Calhoun"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Isa Whitney",
@@ -37758,19 +38062,76 @@
         "Isa Whitney"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 6
+      "first_appearance_chapter": 6,
+      "dialogue_segments": 6,
+      "description": "An opium addict, a former acquaintance of Watson, now fallen into destitution and confusion.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "middle_class",
+        "register": "slurred, disoriented",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "hoarse",
+        "distinctive": "Muddled and pathetic; speaks with a dreamy, confused quality, as if struggling to hold onto reality."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Narrator's Wife",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 6
+      "first_appearance_chapter": 6,
+      "dialogue_segments": 5,
+      "description": "Watson's caring and hospitable wife, who often greets visitors at their home.",
+      "voice": {
+        "sex": "female",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "middle_class",
+        "register": "warm, domestic",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "warm, soothing",
+        "distinctive": "motherly, solicitous tone; gentle and inviting, with a calm, steady rhythm"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Kate Whitney",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 6
+      "first_appearance_chapter": 6,
+      "dialogue_segments": 5,
+      "description": "A worried wife seeking help for her missing husband, a morphine addict.",
+      "voice": {
+        "sex": "female",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "middle_class",
+        "register": "polite, anxious",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "thin, flustered",
+        "distinctive": "nervous, apologetic delivery; sentences trail off as she seeks reassurance"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mrs. St. Clair",
@@ -37778,7 +38139,26 @@
         "Mrs. St. Clair"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 6
+      "first_appearance_chapter": 6,
+      "dialogue_segments": 20,
+      "description": "A composed, genteel woman in her early 30s, deeply anxious about her husband's disappearance but maintaining a poised, rational exterior.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "middle_class",
+        "register": "polite, restrained",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "clear, slightly strained",
+        "distinctive": "A controlled, almost brittle calm; her questions are sharp and direct, but her voice catches slightly on words of hope or fear."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Lascar",
@@ -37786,7 +38166,8 @@
         "the Lascar"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 6
+      "first_appearance_chapter": 6,
+      "dialogue_segments": 0
     },
     {
       "name": "Hugh Boone",
@@ -37794,13 +38175,15 @@
         "Boone"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 6
+      "first_appearance_chapter": 6,
+      "dialogue_segments": 0
     },
     {
       "name": "Inspector Barton",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 6
+      "first_appearance_chapter": 6,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Neville St. Clair",
@@ -37808,7 +38191,26 @@
         "Neville St. Clair"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 6
+      "first_appearance_chapter": 6,
+      "dialogue_segments": 16,
+      "description": "A gentleman of about 40 with a hidden past as a beggar, now living a double life; articulate and dramatic when confessing.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "gentry",
+        "register": "educated, theatrical",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "resonant, expressive",
+        "distinctive": "A storyteller's cadence; he savours his own narrative, with a slight flourish on ironic or self-pitying moments."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Inspector Bradstreet",
@@ -37817,7 +38219,26 @@
         "B division"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 6
+      "first_appearance_chapter": 6,
+      "dialogue_segments": 33,
+      "description": "A pragmatic and cooperative police inspector who works alongside Holmes on several cases.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "middle class, professional",
+        "register": "formal, official",
+        "pitch": "medium",
+        "pace": "brisk",
+        "timbre": "gruff, no-nonsense",
+        "distinctive": "Efficient and straightforward; speaks with a policeman's authority but defers to Holmes's expertise."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Peterson",
@@ -37825,13 +38246,33 @@
         "the commissionaire"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 5,
+      "description": "A commissionaire who brings Holmes the goose and the blue carbuncle.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "London",
+          "strength": "moderate"
+        },
+        "social_rank": "working_class",
+        "register": "plain, respectful",
+        "pitch": "low",
+        "pace": "medium",
+        "timbre": "gruff, hearty",
+        "distinctive": "blunt, earnest delivery; speaks with a sense of urgency and simple honesty"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mrs. Henry Baker",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "John Horner",
@@ -37840,13 +38281,15 @@
         "the plumber"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Countess of Morcar",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "James Ryder",
@@ -37855,7 +38298,8 @@
         "Mr. Ryder"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Catherine Cusack",
@@ -37863,7 +38307,8 @@
         "maid to the Countess"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "John Robinson",
@@ -37871,7 +38316,26 @@
         "James Ryder"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 33,
+      "description": "A man caught up in a desperate situation, whose pleas for mercy reveal a life of fear and coercion.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "moderate"
+        },
+        "social_rank": "working class",
+        "register": "informal, uneducated",
+        "pitch": "low",
+        "pace": "fast",
+        "timbre": "rough, gravelly",
+        "distinctive": "Desperate and pleading; voice cracks with fear, shifting from bluster to supplication."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Mrs. Oakshott",
@@ -37879,13 +38343,33 @@
         "Oakshott"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Windigate",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 4,
+      "description": "The landlord of the Alpha Inn, who supplies the goose to Holmes.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "London",
+          "strength": "moderate"
+        },
+        "social_rank": "working_class",
+        "register": "informal, friendly",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "raspy, jovial",
+        "distinctive": "cheerful, matter-of-fact; speaks with a pub landlord's easy familiarity"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Breckinridge",
@@ -37893,49 +38377,147 @@
         "salesman"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 23,
+      "description": "A brusque and irritable shopkeeper, likely a poulterer, who is unimpressed by Holmes's inquiries.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "moderate"
+        },
+        "social_rank": "working class, tradesman",
+        "register": "informal, blunt",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "raspy, impatient",
+        "distinctive": "Irritable and dismissive; speaks with a gruff, no-nonsense tone, quick to anger."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Jem",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Maggie",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 8,
+      "description": "A working-class woman, likely a servant or tradesman's wife, who recounts a domestic anecdote about her husband Jem.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "london",
+          "strength": "moderate"
+        },
+        "social_rank": "working_class",
+        "register": "colloquial, informal",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "warm",
+        "distinctive": "Chatty, anecdotal; speaks with a lively, gossipy tone, as if sharing a story over the fence."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Maudsley",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Baker",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 1,
+      "description": "A servant or attendant in the household, likely a footman or butler, who responds to a request with polite compliance.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "servant-class",
+        "register": "formal, deferential",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "neutral",
+        "distinctive": "respectful, clipped; delivers the line with quiet efficiency"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Mr. Baker",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 8,
+      "description": "A respectable, middle-aged gentleman, likely a scholar or professional, who owns a distinctive hat and frequents the Alpha Inn.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "middle_class",
+        "register": "educated, polite",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "smooth",
+        "distinctive": "Measured and courteous; speaks with a slight fussiness, as if unused to being the centre of attention."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Mrs. Hudson",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Helen Stoner",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 34,
+      "description": "A young woman in mortal fear for her life, living under the oppressive control of her stepfather in a decaying manor.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-middle class",
+        "register": "educated, polite",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "soft, trembling",
+        "distinctive": "Terrified but resolute; voice quivers with fear yet gains strength as she confides in Holmes."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Dr. Grimesby Roylott",
@@ -37943,25 +38525,65 @@
         "Dr. Roylott"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 10,
+      "description": "A violent, domineering former doctor from a wealthy but decayed family, now living in seclusion at Stoke Moran.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "moderate"
+        },
+        "social_rank": "gentry",
+        "register": "formal, commanding",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "harsh",
+        "distinctive": "Bullying, explosive; each line delivered with a barely contained rage, words clipped and spat out."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mrs. Stoner",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Julia Stoner",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 5,
+      "description": "The deceased sister whose warning about a nocturnal whistle sets the mystery in motion.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "middle_class",
+        "register": "educated, gentle",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "soft, slightly hushed",
+        "distinctive": "whispery, intimate tone; speaks as if sharing a secret, with a faint note of dread"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Miss Honoria Westphail",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Percy Armitage",
@@ -37969,7 +38591,8 @@
         "Armitage"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Miss Stoner",
@@ -37977,7 +38600,26 @@
         "Miss Stoner"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 28,
+      "description": "Helen Stoner's sister, whose untimely death under mysterious circumstances is the catalyst for the case.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-middle class",
+        "register": "educated, polite",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "soft, wistful",
+        "distinctive": "Ethereal and melancholic; speaks as if from a distance, with a lingering sense of dread."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Mr. Hatherley",
@@ -37986,7 +38628,26 @@
         "Hatherley"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 91,
+      "description": "A young hydraulic engineer who loses his thumb in a terrifying ordeal, earnest and shaken.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "professional, middle-class",
+        "register": "educated, slightly informal",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "light, slightly nasal",
+        "distinctive": "earnest, rattled; voice trembles with residual fear, but speaks with professional clarity"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Colonel Lysander Stark",
@@ -37994,13 +38655,33 @@
         "the colonel"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 28,
+      "description": "A foreign, mysterious engineer with a German accent, involved in a sinister industrial scheme.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "German",
+          "strength": "moderate"
+        },
+        "social_rank": "upper class, military",
+        "register": "formal, commanding",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "harsh, guttural",
+        "distinctive": "Menacing and authoritative; speaks with a clipped German accent and a cold, calculating tone."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Ferguson",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 0
     },
     {
       "name": "Elise",
@@ -38008,19 +38689,40 @@
         "she"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 15,
+      "description": "A French maid in her 20s, excitable and loyal, prone to breathless urgency and heavily accented English.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "French",
+          "strength": "strong"
+        },
+        "social_rank": "servant_class",
+        "register": "informal, emotional",
+        "pitch": "high",
+        "pace": "fast",
+        "timbre": "bright, flustered",
+        "distinctive": "Her sentences tumble out in a rush, with French intonation patterns and a tendency to stress the wrong syllable in English."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Fritz",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 0
     },
     {
       "name": "Dr. Becher",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 0
     },
     {
       "name": "Lord Robert St. Simon",
@@ -38032,25 +38734,47 @@
         "Lord St"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 61,
+      "description": "An aristocratic nobleman whose bride vanishes on their wedding day, proud and bewildered.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "aristocracy",
+        "register": "formal, haughty",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "smooth, patrician",
+        "distinctive": "haughty, wounded pride; speaks with clipped, aristocratic reserve, barely concealing indignation"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Lord Eustace",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Lady Clara St. Simon",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Lady Alicia Whittington",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Mrs. Francis Hay Moulton",
@@ -38058,7 +38782,26 @@
         "Miss Hatty Doran"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 9,
+      "description": "An American woman, spirited and independent, caught in a bigamous marriage after believing her first husband dead.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "middle_class",
+        "register": "educated, frank",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "clear",
+        "distinctive": "Direct and earnest, with a slight American lilt; speaks with a sense of urgency and emotional honesty."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Aloysius Doran",
@@ -38066,19 +38809,22 @@
         "Pa"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Flora Millar",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Duke of Balmoral",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Francis Hay Moulton",
@@ -38089,13 +38835,51 @@
         "my Frank"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 6,
+      "description": "An American frontiersman, rugged and honest, who returns to claim his wife after years of presumed death.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "middle_class",
+        "register": "plain-spoken, direct",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "resonant",
+        "distinctive": "Blunt and earnest, with a slight American drawl; speaks with a sense of moral certainty and impatience with secrecy."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Alexander Holder",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 42,
+      "description": "A respectable, wealthy banker and senior partner of a London banking house, whose world is shaken when a priceless crown jewel is entrusted to him and then goes missing.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-middle class, professional",
+        "register": "formal, educated",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "resonant, slightly strained",
+        "distinctive": "Anxious, dignified; voice tightens with worry but retains a banker's clipped precision."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Arthur Holder",
@@ -38105,7 +38889,26 @@
         "your son"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 12,
+      "description": "A young man in his early 20s, the banker's nephew, defensive and sullen, with a hint of arrogance masking guilt.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper_middle_class",
+        "register": "informal, curt",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "flat, clipped",
+        "distinctive": "Speaks in short, defensive bursts; his voice hardens with a sneer when challenged, but drops to a mumble when cornered."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mary Holder",
@@ -38113,13 +38916,33 @@
         "Miss Holder"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 18,
+      "description": "A sensible, loyal young woman in her mid-20s, the banker's niece, caught between family loyalty and her own quiet observations.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper_middle_class",
+        "register": "polite, earnest",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "soft, even",
+        "distinctive": "Speaks with a gentle, thoughtful hesitancy, as if weighing each sentence for loyalty before committing to it."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Lucy Parr",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Sir George Burnwell",
@@ -38127,13 +38950,15 @@
         "Sir George"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Francis Prosper",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Holder",
@@ -38141,7 +38966,26 @@
         "Holder"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 19,
+      "description": "A respectable, prosperous banker in his 50s, flustered and indignant after a theft at his firm, desperate to protect his family's honour.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper_middle_class",
+        "register": "formal, agitated",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "reedy, breathless",
+        "distinctive": "Runs his sentences together in a fluster, then stops abruptly to emphasise a key word with a thump of indignation."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "The Banker",
@@ -38151,25 +38995,83 @@
         "financier"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 40,
+      "description": "A fellow banker and associate of Holder, involved in the financial dealings that set the plot in motion.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-middle class, professional",
+        "register": "formal, businesslike",
+        "pitch": "medium",
+        "pace": "brisk",
+        "timbre": "smooth, unflappable",
+        "distinctive": "Calm, transactional; speaks in measured, reassuring tones that mask a hint of self-interest."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Violet Hunter",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 64,
+      "description": "A resourceful and intelligent governess, brave enough to take on a mysterious and dangerous post.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "educated, middle-class",
+        "register": "formal, articulate",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "clear, bright",
+        "distinctive": "composed, observant; speaks with quiet determination, a hint of steel beneath politeness"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Colonel Spence Munro",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 0
     },
     {
       "name": "Miss Stoper",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 2,
+      "description": "The sharp-tongued manager of a typing agency, frustrated by an employee's refusals.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "middle_class",
+        "register": "businesslike, curt",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "sharp, clipped",
+        "distinctive": "brisk, dismissive tone; snaps out words with professional impatience"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Jephro Rucastle",
@@ -38177,13 +39079,51 @@
         "Mr. Rucastle"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 30,
+      "description": "A genial-seeming country gentleman whose charm masks a cruel and controlling nature.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-middle class",
+        "register": "formal, affable",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "warm, but with a hard edge",
+        "distinctive": "Jovial and ingratiating on the surface; voice turns cold and menacing when his control is threatened."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mrs. Rucastle",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 1,
+      "description": "The wife of Jephro Rucastle, a woman of the household who reports an annoyance to her husband with a hint of irritation.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "middle-class",
+        "register": "educated, informal within family",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "slightly nasal",
+        "distinctive": "mildly vexed, precise; stresses 'impertinent' with a touch of disdain"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Carlo",
@@ -38191,7 +39131,8 @@
         "mastiff"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 0
     },
     {
       "name": "Miss Hunter",
@@ -38199,7 +39140,26 @@
         "young lady"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 12,
+      "description": "A resourceful, observant governess in her late 20s, intelligent and composed, narrating her own strange experiences with growing alarm.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "middle_class",
+        "register": "educated, precise",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "clear, steady",
+        "distinctive": "A calm, analytical tone that slowly gains urgency; she pauses to reason aloud, then quickens when recounting action."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mrs. Toller",
@@ -38208,7 +39168,26 @@
         "old Toller"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 7,
+      "description": "The housekeeper at the Rucastle estate, loyal but initially complicit in her master's schemes.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "moderate"
+        },
+        "social_rank": "servant_class",
+        "register": "deferential, apologetic",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "soft",
+        "distinctive": "Nervous and remorseful; speaks with a quavering, apologetic tone, as if trying to make amends."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Miss Alice Rucastle",
@@ -38217,13 +39196,15 @@
         "Alice Rucastle"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Fowler",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 0
     }
   ],
   "statistics": {
@@ -38232,20 +39213,49 @@
     "total_segments": 3992,
     "total_characters": 97,
     "validation_performed": true,
-    "chapters_needing_review": [
-      12
-    ],
+    "chapters_needing_review": [],
     "unreviewed_critic_windows": 0,
-    "pipeline_version": "1.0.0",
+    "pipeline_version": "1.1.0",
     "discovery_confidence": {
-      "avg_confidence": 0.9240259322859498,
-      "min_confidence": 0.7777631578947368
-    }
+      "avg_confidence": 0.939000347490628,
+      "min_confidence": 0.87
+    },
+    "cast_characters": 52
   },
   "processing_config": {
     "processing_model": "google/gemma-4-E4B-it-qat-w4a16-ct",
     "validation_model": "/opt/data/models/DeepSeek-V4-Flash-0731-GGUF/UD-Q8_K_XL/DeepSeek-V4-Flash-0731-UD-Q8_K_XL-00001-of-00005.gguf",
     "dual_llm_validation": true,
     "chunk_size": 1000
+  },
+  "production": {
+    "synopsis": "Dr. John Watson chronicles a series of cases undertaken by his friend, the brilliant consulting detective Sherlock Holmes, in late Victorian London. From a red-headed pawnbroker's strange ordeal to a young governess's mysterious employment, Holmes applies his deductive genius to puzzles that baffle Scotland Yard. Each adventure reveals the hidden crimes and secrets lurking beneath the respectable surface of society.",
+    "author": {
+      "name": "Arthur Conan Doyle",
+      "years": "1859-1930",
+      "nationality": "British (Scottish)",
+      "note": "A clear, measured, and slightly formal Victorian register, with a dry wit and a keen eye for the dramatic reveal."
+    },
+    "narration": {
+      "person": "first_person",
+      "narrator_character": "Dr. Watson",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "educated British English, with a warm, steady, and observant tone befitting a military doctor and loyal chronicler.",
+          "strength": "moderate"
+        },
+        "social_rank": "middle-class professional",
+        "register": "formal but conversational, with a sense of wonder and admiration for Holmes's methods.",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "warm, slightly gravelly",
+        "distinctive": "Occasional dry humour and a hint of exasperation at Holmes's eccentricities."
+      },
+      "basis": "narrator_character"
+    },
+    "casting_notes": "All characters speak in educated or regional British English appropriate to their class and origin; avoid exaggerated accents. Differentiate by age, gender, and social standing, with Holmes's voice being cool, precise, and slightly detached, while Watson's is warmer and more empathetic. Minor characters should be distinct but not caricatured."
   }
 }

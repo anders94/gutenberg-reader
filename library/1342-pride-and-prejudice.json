@@ -420,10 +420,7 @@
         "discovered_characters": [
           {
             "name": "Mr. Bennet",
-            "aliases": [
-              "Mr. Bennet",
-              "Father"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
           },
@@ -431,10 +428,7 @@
             "name": "Mrs. Bennet",
             "aliases": [
               "his lady",
-              "his wife",
-              "Mrs. Bennet",
-              "Mother",
-              "mamma"
+              "his wife"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
@@ -473,19 +467,13 @@
           },
           {
             "name": "Sir William Lucas",
-            "aliases": [
-              "Sir William",
-              "Sir William Lucas"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
           },
           {
             "name": "Lady Lucas",
-            "aliases": [
-              "Miss Lucas",
-              "Lady Lucas"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
           }
@@ -984,12 +972,8 @@
         ],
         "discovered_characters": [
           {
-            "name": "Catherine Bennet",
-            "aliases": [
-              "Kitty",
-              "Catherine",
-              "Kitty Bennet"
-            ],
+            "name": "Kitty",
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 2
           },
@@ -1002,9 +986,7 @@
           {
             "name": "Mr. Bingley",
             "aliases": [
-              "Bingley",
-              "Mr. Bingley",
-              "Charles"
+              "Bingley"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
@@ -1487,29 +1469,20 @@
         "discovered_characters": [
           {
             "name": "Mr. Hurst",
-            "aliases": [
-              "Mr. Hurst"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 3
           },
           {
             "name": "Mr. Darcy",
-            "aliases": [
-              "Mr. Darcy",
-              "Darcy"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 3
           },
           {
-            "name": "Miss Elizabeth Bennet",
+            "name": "Elizabeth Bennet",
             "aliases": [
-              "Lizzy",
-              "Eliza",
-              "Elizabeth",
-              "Eliza Bennet",
-              "Elizabeth Bennet"
+              "Lizzy"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 3
@@ -1517,10 +1490,7 @@
           {
             "name": "Jane Bennet",
             "aliases": [
-              "Jane",
-              "Miss Bennet",
-              "Sister",
-              "Mrs. Bingley"
+              "Jane"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
@@ -1549,20 +1519,13 @@
           },
           {
             "name": "Miss Bingley",
-            "aliases": [
-              "Miss Bingley",
-              "Caroline Bingley",
-              "Caroline",
-              "Bingley"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 3
           },
           {
             "name": "Mrs. Hurst",
-            "aliases": [
-              "Louisa"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 3
           },
@@ -1574,17 +1537,13 @@
           },
           {
             "name": "Miss King",
-            "aliases": [
-              "Mary King"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 3
           },
           {
             "name": "Maria Lucas",
-            "aliases": [
-              "Maria"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 3
           },
@@ -1890,9 +1849,7 @@
           {
             "name": "Catherine Bennet",
             "aliases": [
-              "Kitty",
-              "Catherine",
-              "Kitty Bennet"
+              "Kitty"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 2
@@ -3166,9 +3123,7 @@
         "discovered_characters": [
           {
             "name": "Colonel Forster",
-            "aliases": [
-              "Colonel Forster"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 6
           }
@@ -3998,9 +3953,7 @@
         "discovered_characters": [
           {
             "name": "Mr. Philips",
-            "aliases": [
-              "Philips"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 7
           },
@@ -5826,9 +5779,7 @@
           {
             "name": "Charlotte Lucas",
             "aliases": [
-              "Charlotte",
-              "Miss Lucas",
-              "Mrs. Collins"
+              "Charlotte"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 5
@@ -7426,10 +7377,8 @@
         ],
         "discovered_characters": [
           {
-            "name": "Mrs. Nichols",
-            "aliases": [
-              "Nicholls"
-            ],
+            "name": "Nicholls",
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 11
           }
@@ -8169,18 +8118,13 @@
         "discovered_characters": [
           {
             "name": "Mr. Collins",
-            "aliases": [
-              "Collins",
-              "Mr. Collins"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 13
           },
           {
             "name": "Lady Catherine de Bourgh",
-            "aliases": [
-              "Lady Catherine"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 13
           }
@@ -8512,8 +8456,7 @@
           {
             "name": "Miss de Bourgh",
             "aliases": [
-              "the heiress of Rosings",
-              "Miss de Bourgh"
+              "the heiress of Rosings"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 14
@@ -8526,9 +8469,7 @@
           },
           {
             "name": "Mr. Denny",
-            "aliases": [
-              "Denny"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 14
           }
@@ -8872,19 +8813,13 @@
         "discovered_characters": [
           {
             "name": "Mr. Wickham",
-            "aliases": [
-              "Wickham",
-              "George Wickham"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 15
           },
           {
             "name": "Mrs. Philips",
-            "aliases": [
-              "Aunt Philips",
-              "Mrs. Philips"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 15
           }
@@ -9930,10 +9865,7 @@
         "discovered_characters": [
           {
             "name": "Lady Anne Darcy",
-            "aliases": [
-              "Anne",
-              "Lady Anne"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 16
           },
@@ -13160,10 +13092,7 @@
         "discovered_characters": [
           {
             "name": "Georgiana Darcy",
-            "aliases": [
-              "Miss Darcy",
-              "Georgiana"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 21
           }
@@ -14981,21 +14910,13 @@
         "discovered_characters": [
           {
             "name": "Mr. Gardiner",
-            "aliases": [
-              "Mr. Gardiner",
-              "uncle",
-              "EDW. GARDINER",
-              "E. Gardiner",
-              "Gardiners"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 25
           },
           {
             "name": "Mrs. Gardiner",
-            "aliases": [
-              "Mrs. Gardiner"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 25
           },
@@ -17328,9 +17249,7 @@
         "discovered_characters": [
           {
             "name": "Colonel Fitzwilliam",
-            "aliases": [
-              "Fitzwilliam"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 30
           }
@@ -22607,9 +22526,7 @@
         "discovered_characters": [
           {
             "name": "Mrs. Forster",
-            "aliases": [
-              "Mrs. Forster"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 41
           },
@@ -24634,10 +24551,7 @@
           },
           {
             "name": "Mrs. Reynolds",
-            "aliases": [
-              "Housekeeper",
-              "Reynolds"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 43
           }
@@ -28942,8 +28856,7 @@
           {
             "name": "Mrs. Hill",
             "aliases": [
-              "Hill",
-              "Mrs. Hill"
+              "Hill"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 49
@@ -36700,7 +36613,26 @@
         "Father"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 135,
+      "description": "The sardonic, bookish patriarch of Longbourn, who retreats into irony to escape his wife's folly and his own failures.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "gentry",
+        "register": "educated, dry, ironic",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "dry, slightly gravelly",
+        "distinctive": "Wry, understated wit; delivers deadpan observations with a barely suppressed smile; pauses just long enough to let irony land."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mrs. Bennet",
@@ -36712,13 +36644,33 @@
         "mamma"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 202,
+      "description": "The flustered, matchmaking matriarch of Longbourn, whose single-minded obsession with marrying off her daughters is both comic and relentless.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "moderate"
+        },
+        "social_rank": "gentry",
+        "register": "gossipy, excitable, slightly less refined than her daughters",
+        "pitch": "high",
+        "pace": "fast",
+        "timbre": "thin, fluttery",
+        "distinctive": "High-pitched, breathless chatter; rises in pitch and volume when agitated; punctuates sentences with little gasps and emphatic 'Oh!'s."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mrs. Long",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 0
     },
     {
       "name": "Lizzy",
@@ -36726,7 +36678,8 @@
         "Elizabeth"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 0
     },
     {
       "name": "Sir William Lucas",
@@ -36735,7 +36688,26 @@
         "Sir William Lucas"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 10,
+      "description": "A pompous, sycophantic former mayor who delights in social climbing and ceremony.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "gentry",
+        "register": "formal, grandiloquent, obsequious",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "boomy, resonant",
+        "distinctive": "grandiose, self-congratulatory; savours his own words, with a slight flourish on titles and compliments"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Lady Lucas",
@@ -36744,7 +36716,8 @@
         "Lady Lucas"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 0
     },
     {
       "name": "Catherine Bennet",
@@ -36754,7 +36727,26 @@
         "Kitty Bennet"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 14,
+      "description": "The fourth Bennet sister, silly and impressionable, easily led by Lydia.",
+      "voice": {
+        "sex": "female",
+        "age_band": "teen",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "gentry",
+        "register": "informal, petulant, naive",
+        "pitch": "high",
+        "pace": "fast",
+        "timbre": "thin, reedy",
+        "distinctive": "whiny, defensive; whines on vowels and rushes words together when flustered"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Bingley",
@@ -36764,7 +36756,26 @@
         "Charles"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 38,
+      "description": "A wealthy, good-natured, and easily influenced young gentleman; Darcy's best friend and Jane's suitor.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "gentry",
+        "register": "affable, polite, slightly informal",
+        "pitch": "medium",
+        "pace": "brisk",
+        "timbre": "bright, open",
+        "distinctive": "eager, sunny; rises in pitch at the end of sentences as if seeking agreement"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Hurst",
@@ -36772,7 +36783,26 @@
         "Mr. Hurst"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 2,
+      "description": "A wealthy but idle gentleman, Mr. Bingley's brother-in-law, who cares only for cards, food, and his own ease.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "gentry",
+        "register": "laconic, bored",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "muffled",
+        "distinctive": "drawling, half-asleep; speaks as if the effort is barely worth it"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Miss Elizabeth Bennet",
@@ -36784,7 +36814,26 @@
         "Elizabeth Bennet"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 532,
+      "description": "The witty, perceptive second Bennet daughter, whose sharp intelligence and playful irony drive the novel's moral and romantic arc.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "gentry",
+        "register": "educated, quick-witted, playful",
+        "pitch": "medium",
+        "pace": "brisk",
+        "timbre": "bright, clear",
+        "distinctive": "Sparkling, teasing delivery; lands the last word with a knowing smile; shifts from light mockery to earnest warmth in a heartbeat."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Jane Bennet",
@@ -36795,7 +36844,26 @@
         "Mrs. Bingley"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 142,
+      "description": "The eldest Bennet daughter, whose serene beauty is matched by a gentle, charitable nature that refuses to think ill of anyone.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "gentry",
+        "register": "soft-spoken, polite, earnest",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "warm, smooth, honeyed",
+        "distinctive": "Gentle, unhurried cadence; always seeks the kindest interpretation; voice trembles with feeling when her heart is touched."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mary Bennet",
@@ -36803,7 +36871,26 @@
         "Mary"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 10,
+      "description": "The plain, bookish middle Bennet sister, who moralises and performs at the piano.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "gentry",
+        "register": "pedantic, formal, self-important",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "nasal, flat",
+        "distinctive": "lecturing, humourless; over-articulates and pauses for effect, as if delivering a sermon"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Lydia Bennet",
@@ -36811,7 +36898,26 @@
         "Lydia"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 56,
+      "description": "The wild, heedless youngest Bennet daughter, whose reckless flirtation and elopement scandalise the family.",
+      "voice": {
+        "sex": "female",
+        "age_band": "teen",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "moderate"
+        },
+        "social_rank": "gentry",
+        "register": "giddy, informal, unpolished",
+        "pitch": "high",
+        "pace": "fast",
+        "timbre": "bright, shrill, giggly",
+        "distinctive": "Bursting with youthful energy; words tumble out in a rush; frequent giggles and exclamations; voice rises with excitement and never pauses for reflection."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Miss Bingley",
@@ -36822,7 +36928,26 @@
         "Bingley"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 69,
+      "description": "The wealthy, snobbish sister of Mr. Bingley, whose jealous scheming against Elizabeth is cloaked in false politeness.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper_gentry",
+        "register": "affected, polished, condescending",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "smooth, silky, slightly nasal",
+        "distinctive": "Honeyed venom; every compliment laced with a barb; voice tightens with jealousy beneath a veneer of elegance."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Miss King",
@@ -36830,7 +36955,8 @@
         "Mary King"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 0
     },
     {
       "name": "Maria Lucas",
@@ -36838,19 +36964,58 @@
         "Maria"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 6,
+      "description": "A young, excitable girl, Charlotte's younger sister, who is easily impressed and eager to share gossip.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "gentry",
+        "register": "informal, eager",
+        "pitch": "high",
+        "pace": "fast",
+        "timbre": "bright",
+        "distinctive": "breathless, wide-eyed; rushes sentences together in a tumble of excitement"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Robinson",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 0
     },
     {
       "name": "young Lucas",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 2,
+      "description": "A boastful young man, one of Sir William Lucas's sons, who imagines how he would behave if he were rich.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "gentry",
+        "register": "bragging, naive",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "reedy",
+        "distinctive": "swaggering, self-important; puffs up his chest on every boast"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Colonel Forster",
@@ -36858,7 +37023,8 @@
         "Colonel Forster"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 6
+      "first_appearance_chapter": 6,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Philips",
@@ -36866,13 +37032,15 @@
         "Philips"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Captain Carter",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Miss Watson",
@@ -36880,13 +37048,15 @@
         "Miss Watson"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Jones",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Charlotte Lucas",
@@ -36896,7 +37066,26 @@
         "Mrs. Collins"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 34,
+      "description": "Elizabeth's pragmatic and observant best friend, who marries Mr. Collins for security rather than love.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "gentry",
+        "register": "educated, sensible, dry",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "even, slightly flat",
+        "distinctive": "understated, wry; delivers observations with a knowing pause before the final word"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Lady Hurst",
@@ -36905,7 +37094,26 @@
         "Louisa"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 6,
+      "description": "A fashionable but shallow gentlewoman, sister to Mrs. Bingley and Mrs. Bennet's neighbour, who cares chiefly for society's opinion and her own comfort.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "moderate"
+        },
+        "social_rank": "gentry",
+        "register": "refined, clipped",
+        "pitch": "high",
+        "pace": "brisk",
+        "timbre": "thin",
+        "distinctive": "flustered, scandalised; lands each word with a little gasp of disapproval"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Charles Bingley",
@@ -36913,7 +37121,26 @@
         "Bingley"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 11,
+      "description": "Mr. Bingley's cheerful, agreeable younger self—same character as the primary Mr. Bingley, but with a lighter, more boyish energy.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "gentry",
+        "register": "affable, polite, slightly informal",
+        "pitch": "medium",
+        "pace": "brisk",
+        "timbre": "bright, open",
+        "distinctive": "eager, sunny; rises in pitch at the end of sentences as if seeking agreement"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mrs. Nichols",
@@ -36921,7 +37148,26 @@
         "Nicholls"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 1,
+      "description": "The housekeeper at Netherfield, who answers a visitor's enquiry with quiet efficiency.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "moderate"
+        },
+        "social_rank": "servant_class",
+        "register": "respectful, plain",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "dry",
+        "distinctive": "matter-of-fact, unhurried; states information as if it were obvious"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Collins",
@@ -36930,7 +37176,26 @@
         "Mr. Collins"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 13
+      "first_appearance_chapter": 13,
+      "dialogue_segments": 56,
+      "description": "The obsequious, pompous clergyman and heir to Longbourn, whose tedious speeches are a masterpiece of self-importance.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "moderate"
+        },
+        "social_rank": "clergy",
+        "register": "pompous, formal, sycophantic",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "nasal, reedy, slightly whining",
+        "distinctive": "Long-winded, self-congratulatory monologues; voice rises at the end of sentences as if seeking approval; constantly references Lady Catherine with reverent awe."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Lady Catherine de Bourgh",
@@ -36938,7 +37203,26 @@
         "Lady Catherine"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 13
+      "first_appearance_chapter": 13,
+      "dialogue_segments": 57,
+      "description": "The imperious, domineering aunt of Mr. Darcy, whose sense of rank and entitlement brooks no contradiction.",
+      "voice": {
+        "sex": "female",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "aristocracy",
+        "register": "commanding, formal, autocratic",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "deep, imperious, slightly harsh",
+        "distinctive": "Declarative, unyielding tone; speaks as if issuing royal decrees; voice drops in pitch when issuing a rebuke, leaving no room for reply."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Miss de Bourgh",
@@ -36947,13 +37231,15 @@
         "Miss de Bourgh"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 14
+      "first_appearance_chapter": 14,
+      "dialogue_segments": 0
     },
     {
       "name": "Richard",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 14
+      "first_appearance_chapter": 14,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Denny",
@@ -36961,7 +37247,26 @@
         "Denny"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 14
+      "first_appearance_chapter": 14,
+      "dialogue_segments": 1,
+      "description": "An officer in the militia, a friend of Wickham's, who is polite and slightly guarded.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "middle_class",
+        "register": "polite, measured",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "smooth",
+        "distinctive": "careful, diplomatic; pauses slightly before names, as if weighing words"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Wickham",
@@ -36970,7 +37275,26 @@
         "George Wickham"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 15
+      "first_appearance_chapter": 15,
+      "dialogue_segments": 54,
+      "description": "The charming, handsome militia officer whose easy manners and false candour conceal a calculating, unscrupulous nature.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "gentry",
+        "register": "smooth, confiding, ingratiating",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "warm, honeyed, seductive",
+        "distinctive": "Silky, confiding tone; draws the listener in with apparent sincerity; voice is always pleasant, even when lying—a hint of oil beneath the charm."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mrs. Philips",
@@ -36979,7 +37303,26 @@
         "Mrs. Philips"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 15
+      "first_appearance_chapter": 15,
+      "dialogue_segments": 2,
+      "description": "Mrs. Bennet's gossipy sister, who lives in Meryton and delights in passing on local news.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "moderate"
+        },
+        "social_rank": "middle_class",
+        "register": "chatty, informal",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "nasal",
+        "distinctive": "conspiratorial, relish in detail; leans in on every word as if sharing a secret"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Lady Anne Darcy",
@@ -36988,7 +37331,8 @@
         "Lady Anne"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 16
+      "first_appearance_chapter": 16,
+      "dialogue_segments": 0
     },
     {
       "name": "Georgiana Darcy",
@@ -36997,7 +37341,8 @@
         "Georgiana"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 21
+      "first_appearance_chapter": 21,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Gardiner",
@@ -37009,7 +37354,26 @@
         "Gardiners"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 25
+      "first_appearance_chapter": 25,
+      "dialogue_segments": 28,
+      "description": "Mrs. Bennet's sensible, prosperous brother, a London tradesman who acts as a steadying influence.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper_middle_class",
+        "register": "educated, practical, businesslike",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "solid, grounded",
+        "distinctive": "pragmatic and reassuring; ends statements with a firm, downward inflection"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mrs. Gardiner",
@@ -37017,7 +37381,26 @@
         "Mrs. Gardiner"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 25
+      "first_appearance_chapter": 25,
+      "dialogue_segments": 48,
+      "description": "The Bennet sisters' sensible, kind aunt from London; a woman of good judgment and gentle authority.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper_middle_class",
+        "register": "educated, refined, warm",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "smooth, warm",
+        "distinctive": "calm, perceptive; softens her consonants with maternal concern, yet sharpens when making a point"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Fitzwilliam Darcy",
@@ -37027,31 +37410,54 @@
         "Fitzwilliam Darcy"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 169,
+      "description": "The proud, reserved master of Pemberley, whose cold exterior conceals deep feeling and a fierce sense of honour.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper_gentry",
+        "register": "formal, clipped, aristocratic",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "rich, resonant baritone",
+        "distinctive": "Cool, measured, almost reluctant to speak; each word weighed; warmth leaks through only in rare, unguarded moments—then the voice softens and quickens."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mrs. Jenkinson",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 28
+      "first_appearance_chapter": 28,
+      "dialogue_segments": 0
     },
     {
       "name": "Sir Lewis de Bourgh",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 29
+      "first_appearance_chapter": 29,
+      "dialogue_segments": 0
     },
     {
       "name": "Lady Metcalfe",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 29
+      "first_appearance_chapter": 29,
+      "dialogue_segments": 0
     },
     {
       "name": "Miss Pope",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 29
+      "first_appearance_chapter": 29,
+      "dialogue_segments": 0
     },
     {
       "name": "Colonel Fitzwilliam",
@@ -37059,49 +37465,75 @@
         "Fitzwilliam"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 30
+      "first_appearance_chapter": 30,
+      "dialogue_segments": 28,
+      "description": "Darcy's amiable and honourable cousin, a younger son of an earl who must marry for money.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "aristocracy",
+        "register": "polished, military, direct",
+        "pitch": "medium",
+        "pace": "brisk",
+        "timbre": "resonant, clipped",
+        "distinctive": "soldierly and cheerful; crisp consonants, slight swagger, but genuine warmth"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mrs. Younge",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 35
+      "first_appearance_chapter": 35,
+      "dialogue_segments": 0
     },
     {
       "name": "John",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 37
+      "first_appearance_chapter": 37,
+      "dialogue_segments": 0
     },
     {
       "name": "Dawson",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 37
+      "first_appearance_chapter": 37,
+      "dialogue_segments": 0
     },
     {
       "name": "Harriet",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 39
+      "first_appearance_chapter": 39,
+      "dialogue_segments": 0
     },
     {
       "name": "Pen",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 39
+      "first_appearance_chapter": 39,
+      "dialogue_segments": 0
     },
     {
       "name": "Chamberlayne",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 39
+      "first_appearance_chapter": 39,
+      "dialogue_segments": 0
     },
     {
       "name": "Pratt",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 39
+      "first_appearance_chapter": 39,
+      "dialogue_segments": 0
     },
     {
       "name": "Mrs. Forster",
@@ -37109,7 +37541,8 @@
         "Mrs. Forster"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 41
+      "first_appearance_chapter": 41,
+      "dialogue_segments": 0
     },
     {
       "name": "Mrs. Reynolds",
@@ -37118,19 +37551,40 @@
         "Reynolds"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 43
+      "first_appearance_chapter": 43,
+      "dialogue_segments": 19,
+      "description": "The housekeeper at Pemberley, devoted to Darcy and proud of his character.",
+      "voice": {
+        "sex": "female",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Derbyshire",
+          "strength": "moderate"
+        },
+        "social_rank": "servant_class",
+        "register": "respectful, plain, warm",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "soft, weathered",
+        "distinctive": "proud, motherly; lingers on words of praise with a fond, hushed reverence"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mrs. Annesley",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 45
+      "first_appearance_chapter": 45,
+      "dialogue_segments": 0
     },
     {
       "name": "Sally",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 47
+      "first_appearance_chapter": 47,
+      "dialogue_segments": 0
     },
     {
       "name": "Mrs. Hill",
@@ -37139,13 +37593,33 @@
         "Mrs. Hill"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 49
+      "first_appearance_chapter": 49,
+      "dialogue_segments": 3,
+      "description": "The Bennet family's housekeeper, loyal and practical, who brings news and manages the household.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "moderate"
+        },
+        "social_rank": "servant_class",
+        "register": "respectful, plain",
+        "pitch": "low",
+        "pace": "measured",
+        "timbre": "warm",
+        "distinctive": "deferential but firm; softens consonants, uses slightly broader vowels"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "General----",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 50
+      "first_appearance_chapter": 50,
+      "dialogue_segments": 0
     },
     {
       "name": "William Goulding",
@@ -37153,7 +37627,8 @@
         "William Goulding"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 51
+      "first_appearance_chapter": 51,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Stone",
@@ -37161,7 +37636,8 @@
         "Mr. Stone"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 51
+      "first_appearance_chapter": 51,
+      "dialogue_segments": 0
     }
   ],
   "statistics": {
@@ -37172,16 +37648,47 @@
     "validation_performed": true,
     "chapters_needing_review": [],
     "unreviewed_critic_windows": 0,
-    "pipeline_version": "1.0.0",
+    "pipeline_version": "1.1.0",
     "discovery_confidence": {
       "avg_confidence": 0.9724232625604278,
       "min_confidence": 0.859090909090909
-    }
+    },
+    "cast_characters": 28
   },
   "processing_config": {
     "processing_model": "google/gemma-4-E4B-it-qat-w4a16-ct",
     "validation_model": "/opt/data/models/DeepSeek-V4-Flash-0731-GGUF/UD-Q8_K_XL/DeepSeek-V4-Flash-0731-UD-Q8_K_XL-00001-of-00005.gguf",
     "dual_llm_validation": true,
     "chunk_size": 1000
+  },
+  "production": {
+    "synopsis": "When the witty and independent Elizabeth Bennet meets the proud and wealthy Mr. Darcy, their immediate mutual disdain sparks a battle of wits and prejudice. As misunderstandings, family scandals, and social pressures threaten to keep them apart, both must overcome their pride and preconceptions to find a love that defies their class-bound world.",
+    "author": {
+      "name": "Jane Austen",
+      "years": "1775-1817",
+      "nationality": "English",
+      "note": "Austen's prose is sharp, ironic, and elegantly restrained; the narration should carry a dry, observant wit beneath a polished, decorous surface."
+    },
+    "narration": {
+      "person": "third_omniscient",
+      "narrator_character": "",
+      "voice": {
+        "sex": "female",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Southern England",
+          "strength": "moderate"
+        },
+        "social_rank": "gentry",
+        "register": "literate, ironic, measured",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "clear, warm, with a hint of amusement",
+        "distinctive": "Dry wit and subtle irony; a voice that observes society with affectionate but sharp intelligence."
+      },
+      "basis": "author_nationality"
+    },
+    "casting_notes": "All characters speak in educated Southern British English (RP-leaning), with class and age distinctions rather than regional accents. The gentry speak with refined, clipped diction; servants and lower-status characters use slightly broader vowels and simpler phrasing. The narrator's voice is the anchor—wry, elegant, and slightly detached—while characters' voices should be distinct in pitch, tempo, and emotional colour, from Mrs. Bennet's flustered high pitch to Mr. Darcy's cool, measured baritone."
   }
 }

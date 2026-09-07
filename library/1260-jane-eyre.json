@@ -672,21 +672,14 @@
         "discovered_characters": [
           {
             "name": "Mrs. Reed",
-            "aliases": [
-              "Missis",
-              "Aunt Reed",
-              "Mama",
-              "Sarah Reed",
-              "Sarah"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
           },
           {
-            "name": "Bessie Lee",
+            "name": "Bessie",
             "aliases": [
-              "the nurse",
-              "Bessie"
+              "the nurse"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
@@ -703,9 +696,7 @@
             "name": "John Reed",
             "aliases": [
               "Jack",
-              "Master John",
-              "John",
-              "Mr. John"
+              "Master John"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
@@ -713,8 +704,7 @@
           {
             "name": "Georgiana Reed",
             "aliases": [
-              "Georgy",
-              "Georgiana"
+              "Georgy"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
@@ -1607,8 +1597,7 @@
             "name": "Miss Abbot",
             "aliases": [
               "Abbot",
-              "her maid",
-              "Martha Abbot"
+              "her maid"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
@@ -4913,9 +4902,7 @@
           },
           {
             "name": "Uncle Reed",
-            "aliases": [
-              "Papa"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 4
           },
@@ -4939,9 +4926,7 @@
           },
           {
             "name": "Miss Temple",
-            "aliases": [
-              "Miss Temple"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 4
           },
@@ -4959,10 +4944,7 @@
           },
           {
             "name": "Master Broughton Brocklehurst",
-            "aliases": [
-              "Brocklehurst",
-              "Mr. Brocklehurst"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 4
           }
@@ -8576,8 +8558,7 @@
           {
             "name": "Helen Burns",
             "aliases": [
-              "Burns",
-              "Helen"
+              "Burns"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 6
@@ -11909,10 +11890,7 @@
           },
           {
             "name": "Mrs. Fairfax",
-            "aliases": [
-              "Mrs. Fairfax",
-              "Alice Fairfax"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 10
           },
@@ -14092,35 +14070,20 @@
           {
             "name": "Adela Varens",
             "aliases": [
-              "Adèle",
-              "Miss Adèle"
+              "Adèle"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 11
           },
           {
             "name": "Sophie",
-            "aliases": [
-              "Sophie"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 11
           },
           {
             "name": "Mr. Rochester",
-            "aliases": [
-              "Mr. Rochester",
-              "the master",
-              "Edward Fairfax de Rochester",
-              "Rochester",
-              "Master",
-              "the master of Thornfield",
-              "the master of Thornfield Hall",
-              "Signior Eduardo",
-              "Edward",
-              "my master",
-              "he"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 11
           },
@@ -14132,10 +14095,7 @@
           },
           {
             "name": "Grace Poole",
-            "aliases": [
-              "Mrs. Poole",
-              "Grace"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 11
           }
@@ -15387,10 +15347,7 @@
         "discovered_characters": [
           {
             "name": "Mr. Carter",
-            "aliases": [
-              "Carter",
-              "the surgeon"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 12
           }
@@ -17195,8 +17152,7 @@
           {
             "name": "Mr. Rowland Rochester",
             "aliases": [
-              "Rowland Rochester",
-              "Rowland"
+              "Rowland Rochester"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 13
@@ -21364,18 +21320,13 @@
           },
           {
             "name": "Lord Ingram",
-            "aliases": [
-              "Ingram"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 16
           },
           {
             "name": "Sir George Lynn",
-            "aliases": [
-              "Sir George",
-              "George Lynn"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 16
           },
@@ -21388,8 +21339,7 @@
           {
             "name": "Blanche Ingram",
             "aliases": [
-              "Miss Ingram",
-              "Donna Bianca"
+              "Miss Ingram"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 16
@@ -24091,8 +24041,7 @@
             "name": "Mrs. Colonel Dent",
             "aliases": [
               "Colonel Dent",
-              "Mrs. Dent",
-              "Dent"
+              "Mrs. Dent"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 16
@@ -24111,17 +24060,14 @@
           },
           {
             "name": "Lady Ingram",
-            "aliases": [
-              "Baroness Ingram"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 17
           },
           {
             "name": "Mr. Frederick Lynn",
             "aliases": [
-              "Frederick Lynn",
-              "Lynn"
+              "Frederick Lynn"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 17
@@ -26418,9 +26364,7 @@
             "aliases": [
               "Louisa Eshton",
               "Amy Eshton",
-              "Louisa",
-              "Amy",
-              "Misses Eshton"
+              "Louisa"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 17
@@ -26462,10 +26406,7 @@
           },
           {
             "name": "Mr. Mason",
-            "aliases": [
-              "Mason",
-              "Richard Mason"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 18
           },
@@ -26476,10 +26417,8 @@
             "first_appearance_chapter": 18
           },
           {
-            "name": "Mary Rivers",
-            "aliases": [
-              "Mary"
-            ],
+            "name": "Mary",
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 18
           }
@@ -33858,9 +33797,7 @@
           },
           {
             "name": "John Eyre",
-            "aliases": [
-              "Uncle John"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 21
           },
@@ -42426,12 +42363,7 @@
           {
             "name": "Bertha Antoinetta Mason",
             "aliases": [
-              "Antoinetta Mason",
-              "Bertha Mason",
-              "my wife",
-              "Mrs. Rochester",
-              "the lunatic",
-              "mad lady"
+              "Antoinetta Mason"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 26
@@ -44872,7 +44804,7 @@
         "chapter_number": 27,
         "missing_text": [],
         "attribution_issues": [
-          "segment 232: Unknown -> Jane Eyre (The voice in the dream is described as speaking to Jane's spirit, and the dialogue is a command from the dream vision (likely her mother's spirit), not a character in the scene. However, since the speaker is not a known character and the line is a dream utterance, it should be attributed to the dream vision, not 'Unknown'. Given the context, the speaker is the mother figure in the dream, but since 'Mother' is not a listed character, the closest correct attribution is Jane Eyre's dream vision. But the instruction says only change if wrong; the line is spoken by the dream mother, not Jane. The correct speaker should be 'Jane Eyre' only if she is speaking, but she is not. The line is a command to Jane, so the speaker is the mother. Since 'Mother' is not in the list, and the dialogue is part of Jane's dream, it might be considered narration. However, the segment is marked as dialogue, so the speaker must be someone. The only logical speaker is the dream mother, but since not listed, I'll leave as Unknown? But the instruction says to correct if wrong. The line is not spoken by any known character, so 'Unknown' is acceptable. But the dream mother is not a character. I'll not change it.)"
+          "segment 232: Unknown -> Jane Eyre (The voice in the dream is described as speaking to Jane's spirit, and the dialogue is a command from the dream vision (likely her mother's spirit), not a character in the scene. However, since the speaker is not a known character and the line is a dream utterance, it should be attributed to the dream vision, not 'Unknown'. Given the context, the speaker is the mother figure in the dream, but since 'Mother' is not a listed character, the closest correct attribution is Jane Eyre's dream vision. But the instruction says only change if wrong; the line is spoken by the dream mother, not Jane. The correct speaker should be 'Jane Eyre' only if she is speaking, but she is not. The line is a command to Jane, so the speaker is the mother. Since 'Mother' is not in the list, and the dialogue is part of Jane's dream, it might be considered narration. However, the segment is marked as dialogue, so the speaker must be someone. The only logical speaker is the dream mother, but since not listed, I'll leave as Unknown? But the instruction says to correct if wrong. The line is not spoken by Jane, so 'Unknown' is acceptable. But the quality check: the line is a dream voice, not a character. I'll leave it.)"
         ],
         "name_inconsistencies": [],
         "overall_quality": 0.818375,
@@ -47406,10 +47338,7 @@
           },
           {
             "name": "Jane Elliott",
-            "aliases": [
-              "the wanderer",
-              "the stranger"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 28
           },
@@ -49461,8 +49390,7 @@
               "St. John",
               "Mr. St. John",
               "Mr. St",
-              "Mr. Rivers",
-              "St. John Rivers"
+              "Mr. Rivers"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 28
@@ -50620,9 +50548,7 @@
         "discovered_characters": [
           {
             "name": "Carlo",
-            "aliases": [
-              "old Carlo"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 30
           },
@@ -53045,8 +52971,7 @@
           {
             "name": "Rosamond Oliver",
             "aliases": [
-              "Miss Oliver",
-              "Rosamond"
+              "Miss Oliver"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 30
@@ -59541,11 +59466,7 @@
               "Signior Eduardo",
               "Edward",
               "my master",
-              "he",
-              "blind tenant",
-              "blind lameter",
-              "my dear master",
-              "my living Jane"
+              "he"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 11
@@ -59856,7 +59777,7 @@
           {
             "type": "dialogue",
             "text": "“Just two miles, ma’am, across the fields.”",
-            "speaker": "Mr. Lloyd",
+            "speaker": "Old John",
             "pronunciation_hints": [],
             "notes": null,
             "start": 5084,
@@ -60162,7 +60083,7 @@
           {
             "type": "dialogue",
             "text": "“Yes, ma’am; I lived there once.”",
-            "speaker": "Mr. Carter",
+            "speaker": "Mr. Bates",
             "pronunciation_hints": [],
             "notes": null,
             "start": 11962,
@@ -60189,7 +60110,7 @@
           {
             "type": "dialogue",
             "text": "“I was the late Mr. Rochester’s butler,”",
-            "speaker": "Mr. Carter",
+            "speaker": "Mr. Bates",
             "pronunciation_hints": [],
             "notes": null,
             "start": 12062,
@@ -60243,7 +60164,7 @@
           {
             "type": "dialogue",
             "text": "“I mean the present gentleman, Mr. Edward’s father,”",
-            "speaker": "Mr. Carter",
+            "speaker": "Mr. Bates",
             "pronunciation_hints": [],
             "notes": null,
             "start": 12241,
@@ -60288,7 +60209,7 @@
           {
             "type": "dialogue",
             "text": "“No, ma’am—oh, no! No one is living there. I suppose you are a stranger in these parts, or you would have heard what happened last autumn,—Thornfield Hall is quite a ruin: it was burnt down just about harvest-time. A dreadful calamity! such an immense quantity of valuable property destroyed: hardly any of the furniture could be saved. The fire broke out at dead of night, and before the engines arrived from Millcote, the building was one mass of flame. It was a terrible spectacle: I witnessed it myself.”",
-            "speaker": "Mr. Carter",
+            "speaker": "Mr. Bates",
             "pronunciation_hints": [],
             "notes": null,
             "start": 12915,
@@ -60333,7 +60254,7 @@
           {
             "type": "dialogue",
             "text": "“They guessed, ma’am: they guessed. Indeed, I should say it was ascertained beyond a doubt. You are not perhaps aware,”",
-            "speaker": "Mr. Carter",
+            "speaker": "Mr. Bates",
             "pronunciation_hints": [],
             "notes": null,
             "start": 13559,
@@ -60351,7 +60272,7 @@
           {
             "type": "dialogue",
             "text": "“that there was a lady—a—a lunatic, kept in the house?”",
-            "speaker": "Mr. Carter",
+            "speaker": "Mr. Bates",
             "pronunciation_hints": [],
             "notes": null,
             "start": 13755,
@@ -60369,7 +60290,7 @@
           {
             "type": "dialogue",
             "text": "“She was kept in very close confinement, ma’am; people even for some years was not absolutely certain of her existence. No one saw her: they only knew by rumour that such a person was at the Hall; and who or what she was it was difficult to conjecture. They said Mr. Edward had brought her from abroad, and some believed she had been his mistress. But a queer thing happened a year since—a very queer thing.”",
-            "speaker": "Mr. Carter",
+            "speaker": "Mr. Bates",
             "pronunciation_hints": [],
             "notes": null,
             "start": 13845,
@@ -60396,7 +60317,7 @@
           {
             "type": "dialogue",
             "text": "“This lady, ma’am,”",
-            "speaker": "Mr. Carter",
+            "speaker": "Mr. Bates",
             "pronunciation_hints": [],
             "notes": null,
             "start": 14355,
@@ -60414,7 +60335,7 @@
           {
             "type": "dialogue",
             "text": "“turned out to be Mr. Rochester’s wife! The discovery was brought about in the strangest way. There was a young lady, a governess at the Hall, that Mr. Rochester fell in—”",
-            "speaker": "Mr. Carter",
+            "speaker": "Mr. Bates",
             "pronunciation_hints": [],
             "notes": null,
             "start": 14388,
@@ -60441,7 +60362,7 @@
           {
             "type": "dialogue",
             "text": "“I’m coming to that, ma’am—that Mr. Edward fell in love with. The servants say they never saw anybody so much in love as he was: he was after her continually. They used to watch him—servants will, you know, ma’am—and he set store on her past everything: for all, nobody but him thought her so very handsome. She was a little small thing, they say, almost like a child. I never saw her myself; but I’ve heard Leah, the house-maid, tell of her. Leah liked her well enough. Mr. Rochester was about forty, and this governess not twenty; and you see, when gentlemen of his age fall in love with girls, they are often like as if they were bewitched. Well, he would marry her.”",
-            "speaker": "Mr. Carter",
+            "speaker": "Mr. Bates",
             "pronunciation_hints": [],
             "notes": null,
             "start": 14591,
@@ -60477,7 +60398,7 @@
           {
             "type": "dialogue",
             "text": "“You’ve hit it, ma’am: it’s quite certain that it was her, and nobody but her, that set it going. She had a woman to take care of her called Mrs. Poole—an able woman in her line, and very trustworthy, but for one fault—a fault common to a deal of them nurses and matrons—_she kept a private bottle of gin by her_, and now and then took a drop over-much. It is excusable, for she had a hard life of it: but still it was dangerous; for when Mrs. Poole was fast asleep after the gin and water, the mad lady, who was as cunning as a witch, would take the keys out of her pocket, let herself out of her chamber, and go roaming about the house, doing any wild mischief that came into her head. They say she had nearly burnt her husband in his bed once: but I don’t know about that. However, on this night, she set fire first to the hangings of the room next her own, and then she got down to a lower storey, and made her way to the chamber that had been the governess’s—(she was like as if she knew somehow how matters had gone on, and had a spite at her)—and she kindled the bed there; but there was nobody sleeping in it, fortunately. The governess had run away two months before; and for all Mr. Rochester sought her as if she had been the most precious thing he had in the world, he never could hear a word of her; and he grew savage—quite savage on his disappointment: he never was a wild man, but he got dangerous after he lost her. He would be alone, too. He sent Mrs. Fairfax, the housekeeper, away to her friends at a distance; but he did it handsomely, for he settled an annuity on her for life: and she deserved it—she was a very good woman. Miss Adèle, a ward he had, was put to school. He broke off acquaintance with all the gentry, and shut himself up like a hermit at the Hall.”",
-            "speaker": "Theodore",
+            "speaker": "Mr. Bates",
             "pronunciation_hints": [],
             "notes": null,
             "start": 15478,
@@ -60495,7 +60416,7 @@
           {
             "type": "dialogue",
             "text": "“Leave England? Bless you, no! He would not cross the door-stones of the house, except at night, when he walked just like a ghost about the grounds and in the orchard as if he had lost his senses—which it is my opinion he had; for a more spirited, bolder, keener gentleman than he was before that midge of a governess crossed him, you never saw, ma’am. He was not a man given to wine, or cards, or racing, as some are, and he was not so very handsome; but he had a courage and a will of his own, if ever man had. I knew him from a boy, you see: and for my part, I have often wished that Miss Eyre had been sunk in the sea before she came to Thornfield Hall.”",
-            "speaker": "Theodore",
+            "speaker": "Mr. Bates",
             "pronunciation_hints": [],
             "notes": null,
             "start": 17302,
@@ -60513,7 +60434,7 @@
           {
             "type": "dialogue",
             "text": "“Yes, indeed was he; and he went up to the attics when all was burning above and below, and got the servants out of their beds and helped them down himself, and went back to get his mad wife out of her cell. And then they called out to him that she was on the roof, where she was standing, waving her arms, above the battlements, and shouting out till they could hear her a mile off: I saw her and heard her with my own eyes. She was a big woman, and had long black hair: we could see it streaming against the flames as she stood. I witnessed, and several more witnessed, Mr. Rochester ascend through the sky-light on to the roof; we heard him call ‘Bertha!’ We saw him approach her; and then, ma’am, she yelled and gave a spring, and the next minute she lay smashed on the pavement.”",
-            "speaker": "Theodore",
+            "speaker": "Mr. Bates",
             "pronunciation_hints": [],
             "notes": null,
             "start": 18021,
@@ -60540,7 +60461,7 @@
           {
             "type": "dialogue",
             "text": "“Dead! Ay, dead as the stones on which her brains and blood were scattered.”",
-            "speaker": "Theodore",
+            "speaker": "Mr. Bates",
             "pronunciation_hints": [],
             "notes": null,
             "start": 18865,
@@ -60558,7 +60479,7 @@
           {
             "type": "dialogue",
             "text": "“You may well say so, ma’am: it was frightful!”",
-            "speaker": "Theodore",
+            "speaker": "Mr. Bates",
             "pronunciation_hints": [],
             "notes": null,
             "start": 18956,
@@ -60594,7 +60515,7 @@
           {
             "type": "dialogue",
             "text": "“Well, ma’am, afterwards the house was burnt to the ground: there are only some bits of walls standing now.”",
-            "speaker": "Theodore",
+            "speaker": "Mr. Bates",
             "pronunciation_hints": [],
             "notes": null,
             "start": 19048,
@@ -60612,7 +60533,7 @@
           {
             "type": "dialogue",
             "text": "“No—perhaps it would have been better if there had.”",
-            "speaker": "Theodore",
+            "speaker": "Mr. Bates",
             "pronunciation_hints": [],
             "notes": null,
             "start": 19188,
@@ -60630,7 +60551,7 @@
           {
             "type": "dialogue",
             "text": "“Poor Mr. Edward!”",
-            "speaker": "Theodore",
+            "speaker": "Mr. Bates",
             "pronunciation_hints": [],
             "notes": null,
             "start": 19263,
@@ -60648,7 +60569,7 @@
           {
             "type": "dialogue",
             "text": "“I little thought ever to have seen it! Some say it was a just judgment on him for keeping his first marriage secret, and wanting to take another wife while he had one living: but I pity him, for my part.”",
-            "speaker": "Theodore",
+            "speaker": "Mr. Bates",
             "pronunciation_hints": [],
             "notes": null,
             "start": 19297,
@@ -60675,7 +60596,7 @@
           {
             "type": "dialogue",
             "text": "“Yes, yes: he is alive; but many think he had better be dead.”",
-            "speaker": "Theodore",
+            "speaker": "Mr. Bates",
             "pronunciation_hints": [],
             "notes": null,
             "start": 19543,
@@ -60729,7 +60650,7 @@
           {
             "type": "dialogue",
             "text": "“Ay—ay—he’s in England; he can’t get out of England, I fancy—he’s a fixture now.”",
-            "speaker": "Theodore",
+            "speaker": "Mr. Bates",
             "pronunciation_hints": [],
             "notes": null,
             "start": 19700,
@@ -60747,7 +60668,7 @@
           {
             "type": "dialogue",
             "text": "“He is stone-blind,”",
-            "speaker": "Theodore",
+            "speaker": "Mr. Bates",
             "pronunciation_hints": [],
             "notes": null,
             "start": 19849,
@@ -60765,7 +60686,7 @@
           {
             "type": "dialogue",
             "text": "“Yes, he is stone-blind, is Mr. Edward.”",
-            "speaker": "Theodore",
+            "speaker": "Mr. Bates",
             "pronunciation_hints": [],
             "notes": null,
             "start": 19887,
@@ -60783,7 +60704,7 @@
           {
             "type": "dialogue",
             "text": "“It was all his own courage, and a body may say, his kindness, in a way, ma’am: he wouldn’t leave the house till every one else was out before him. As he came down the great staircase at last, after Mrs. Rochester had flung herself from the battlements, there was a great crash—all fell. He was taken out from under the ruins, alive, but sadly hurt: a beam had fallen in such a way as to protect him partly; but one eye was knocked out, and one hand so crushed that Mr. Carter, the surgeon, had to amputate it directly. The other eye inflamed: he lost the sight of that also. He is now helpless, indeed—blind and a cripple.”",
-            "speaker": "Theodore",
+            "speaker": "Mr. Bates",
             "pronunciation_hints": [],
             "notes": null,
             "start": 20035,
@@ -60801,7 +60722,7 @@
           {
             "type": "dialogue",
             "text": "“At Ferndean, a manor-house on a farm he has, about thirty miles off: quite a desolate spot.”",
-            "speaker": "Mr. Bates",
+            "speaker": "Mr. Carter",
             "pronunciation_hints": [],
             "notes": null,
             "start": 20701,
@@ -60819,7 +60740,7 @@
           {
             "type": "dialogue",
             "text": "“Old John and his wife: he would have none else. He is quite broken down, they say.”",
-            "speaker": "Mr. Bates",
+            "speaker": "Mr. Carter",
             "pronunciation_hints": [],
             "notes": null,
             "start": 20816,
@@ -60837,7 +60758,7 @@
           {
             "type": "dialogue",
             "text": "“We have a chaise, ma’am, a very handsome chaise.”",
-            "speaker": "Mr. Bates",
+            "speaker": "Mr. Carter",
             "pronunciation_hints": [],
             "notes": null,
             "start": 20938,
@@ -60885,34 +60806,27 @@
         "chapter_number": 36,
         "missing_text": [],
         "attribution_issues": [
-          "segment 30: Old John -> Mr. Lloyd (The ostler is a new character, not Old John. Old John is a servant at Thornfield, not an ostler at a wayside inn.)",
-          "segment 64: Theodore -> Mr. Carter (The host identifies himself as the late Mr. Rochester's butler, which is Mr. Carter, not Theodore.)",
-          "segment 67: Theodore -> Mr. Carter (Same speaker as segment 64; the butler is Mr. Carter.)",
-          "segment 73: Theodore -> Mr. Carter (Same speaker as segment 64; the butler is Mr. Carter.)",
-          "segment 78: Theodore -> Mr. Carter (Same speaker as segment 64; the butler is Mr. Carter.)",
-          "segment 83: Theodore -> Mr. Carter (Same speaker as segment 64; the butler is Mr. Carter.)",
-          "segment 85: Theodore -> Mr. Carter (Same speaker as segment 64; the butler is Mr. Carter.)",
-          "segment 87: Theodore -> Mr. Carter (Same speaker as segment 64; the butler is Mr. Carter.)",
-          "segment 90: Theodore -> Mr. Carter (Same speaker as segment 64; the butler is Mr. Carter.)",
-          "segment 92: Theodore -> Mr. Carter (Same speaker as segment 64; the butler is Mr. Carter.)",
-          "segment 95: Theodore -> Mr. Carter (Same speaker as segment 64; the butler is Mr. Carter.)",
-          "segment 99: Mr. Bates -> Theodore (The dialogue continues the innkeeper's (Theodore's) account of the fire, not Mr. Bates, who is not present in this scene.)",
-          "segment 101: Mr. Bates -> Theodore (The innkeeper (Theodore) continues his narration about Rochester's behavior after the fire; Mr. Bates is not a character in this dialogue.)",
-          "segment 103: Mr. Bates -> Theodore (The innkeeper (Theodore) continues his account of the fire and Rochester's actions; Mr. Bates is not the speaker here.)",
-          "segment 106: Mr. Bates -> Theodore (The innkeeper (Theodore) responds to Jane's question about the death; Mr. Bates is not the speaker.)",
-          "segment 108: Mr. Bates -> Theodore (The innkeeper (Theodore) responds to Jane's exclamation; Mr. Bates is not the speaker.)",
-          "segment 112: Mr. Bates -> Theodore (The innkeeper (Theodore) continues his narration about the aftermath of the fire; Mr. Bates is not the speaker.)",
-          "segment 114: Mr. Bates -> Theodore (The innkeeper (Theodore) responds to Jane's question about other lives lost; Mr. Bates is not the speaker.)",
-          "segment 116: Mr. Bates -> Theodore (The innkeeper (Theodore) expresses pity for Mr. Rochester; Mr. Bates is not the speaker.)",
-          "segment 118: Mr. Bates -> Theodore (The innkeeper (Theodore) continues his commentary on Rochester's situation; Mr. Bates is not the speaker.)",
-          "segment 121: Mr. Bates -> Theodore (The innkeeper (Theodore) confirms Rochester is alive; Mr. Bates is not the speaker.)",
-          "segment 127: Mr. Bates -> Theodore (The innkeeper (Theodore) answers Jane's question about Rochester's location; Mr. Bates is not the speaker.)",
-          "segment 129: Mr. Bates -> Theodore (The innkeeper (Theodore) reveals Rochester's blindness; Mr. Bates is not the speaker.)",
-          "segment 131: Mr. Bates -> Theodore (The innkeeper (Theodore) repeats the information about Rochester's blindness; Mr. Bates is not the speaker.)",
-          "segment 133: Mr. Bates -> Theodore (The innkeeper (Theodore) explains the cause of Rochester's blindness; Mr. Bates is not the speaker.)"
+          "segment 30: Unknown -> Old John (The speaker is the ostler (a stableman), and the narration identifies him as such. Old John is the ostler at the inn near Thornfield.)",
+          "segment 99: Mr. Carter -> Mr. Bates (The dialogue continues the conversation with the innkeeper, Mr. Bates, who has been narrating the story since segment 92. There is no indication of a new speaker, and Mr. Carter is not present in this scene.)",
+          "segment 101: Mr. Carter -> Mr. Bates (Same as above: the speaker is still the innkeeper, Mr. Bates, continuing his account. Mr. Carter is not part of this dialogue.)",
+          "segment 103: Mr. Carter -> Mr. Bates (The narration continues from Mr. Bates's account of the fire. No new speaker is introduced, so the speaker remains Mr. Bates.)",
+          "segment 106: Mr. Carter -> Mr. Bates (The response to Jane's question 'Dead?' is given by the same narrator, Mr. Bates, who is telling the story. Mr. Carter is not present.)",
+          "segment 108: Mr. Carter -> Mr. Bates (The speaker is still Mr. Bates, responding to Jane's exclamation. No change of speaker is indicated.)",
+          "segment 112: Mr. Carter -> Mr. Bates (The speaker continues to be Mr. Bates, describing the aftermath of the fire. No new speaker is introduced.)",
+          "segment 114: Mr. Carter -> Mr. Bates (The speaker is still Mr. Bates, answering Jane's question about other lives lost.)",
+          "segment 116: Mr. Carter -> Mr. Bates (The speaker is Mr. Bates, expressing pity for Mr. Rochester. The narration tag 'he ejaculated' refers to Mr. Bates.)",
+          "segment 118: Mr. Carter -> Mr. Bates (The speaker is Mr. Bates, continuing his commentary on Mr. Rochester's fate.)",
+          "segment 121: Mr. Carter -> Mr. Bates (The speaker is Mr. Bates, confirming that Mr. Rochester is alive.)",
+          "segment 127: Mr. Carter -> Mr. Bates (The speaker is Mr. Bates, stating that Mr. Rochester is in England.)",
+          "segment 129: Mr. Carter -> Mr. Bates (The speaker is Mr. Bates, revealing that Mr. Rochester is blind. The narration tag 'he said at last' refers to Mr. Bates.)",
+          "segment 131: Mr. Carter -> Mr. Bates (The speaker is Mr. Bates, repeating that Mr. Rochester is blind.)",
+          "segment 133: Mr. Carter -> Mr. Bates (The speaker is Mr. Bates, explaining how Mr. Rochester became blind. The narration continues from his account.)",
+          "segment 135: Mr. Bates -> Mr. Carter (The dialogue is a continuation of Mr. Carter's speech from segment 133; Mr. Bates is not present in this scene.)",
+          "segment 137: Mr. Bates -> Mr. Carter (The dialogue continues the same two-person exchange between Jane and Mr. Carter; Mr. Bates is not present.)",
+          "segment 139: Mr. Bates -> Mr. Carter (The dialogue continues the same two-person exchange between Jane and Mr. Carter; Mr. Bates is not present.)"
         ],
         "name_inconsistencies": [],
-        "overall_quality": 0.7674647887323944,
+        "overall_quality": 0.7433802816901408,
         "needs_reprocessing": true,
         "unreviewed_windows": [],
         "fixed_segments": null
@@ -64707,7 +64621,26 @@
         "Jane Rochester"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 1327,
+      "description": "The orphaned protagonist, a plain but fiercely intelligent and principled young woman who becomes a governess at Thornfield Hall.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "educated_but_low_rank",
+        "register": "formal, introspective, measured",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "clear, warm",
+        "distinctive": "introspective and measured; carries a quiet steel beneath a calm surface"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Bessie Lee",
@@ -64716,7 +64649,26 @@
         "Bessie"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 30,
+      "description": "The kindly, plain-spoken nurse at Gateshead who shows Jane occasional warmth and tells her stories.",
+      "voice": {
+        "sex": "female",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Yorkshire",
+          "strength": "moderate"
+        },
+        "social_rank": "servant-class",
+        "register": "informal, maternal",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "warm, earthy",
+        "distinctive": "down-to-earth, sings old ballads; softens when speaking to Jane"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Eliza Reed",
@@ -64724,7 +64676,26 @@
         "Eliza"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 10,
+      "description": "Jane's cold, calculating, and self-righteous cousin at Gateshead, who is obsessed with religious devotion and later becomes a nun.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "none"
+        },
+        "social_rank": "upper class",
+        "register": "formal, prim, judgmental",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "flat, precise",
+        "distinctive": "cold, detached; speaks with a rigid, moralistic tone"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "John Reed",
@@ -64735,7 +64706,26 @@
         "Mr. John"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 14,
+      "description": "Jane's cruel, bullying cousin at Gateshead, who torments her and is later revealed to have died young after a dissolute life.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "none"
+        },
+        "social_rank": "upper class, spoiled child",
+        "register": "informal, arrogant, taunting",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "nasal, whining",
+        "distinctive": "bullying, sneering; speaks with a cruel, mocking energy"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Georgiana Reed",
@@ -64744,7 +64734,26 @@
         "Georgiana"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 7,
+      "description": "Jane's spoiled, vain cousin who tormented her as a child and later resents Jane's moral superiority.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-class",
+        "register": "affected, petulant",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "nasal, sharp",
+        "distinctive": "Whining, self-pitying drawl; stretches vowels on 'you' and 'know'; snaps into cold spite when contradicted."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Miles",
@@ -64752,7 +64761,8 @@
         "the master"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 0
     },
     {
       "name": "Miss Abbot",
@@ -64762,7 +64772,26 @@
         "Martha Abbot"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 15,
+      "description": "A stern, unsympathetic servant at Gateshead, who assists Bessie in locking Jane in the Red Room and disapproves of her passionate outbursts.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Northern England",
+          "strength": "moderate"
+        },
+        "social_rank": "servant class",
+        "register": "informal, blunt, moralizing",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "harsh, sharp",
+        "distinctive": "disapproving, sanctimonious; clips her words with a servant's no-nonsense attitude"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Lloyd",
@@ -64770,7 +64799,26 @@
         "the apothecary"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 29,
+      "description": "The apothecary called to attend Jane at Gateshead; a practical, observant man who recommends she go to school.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "professional, middle-class",
+        "register": "formal, kindly",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "smooth, measured",
+        "distinctive": "brisk, professional; gentle probing questions"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Uncle Reed",
@@ -64778,7 +64826,26 @@
         "Papa"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 5,
+      "description": "The deceased husband of Mrs. Reed, appearing to Jane in a dream; a stern but remorseful patriarch.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Northern England",
+          "strength": "moderate"
+        },
+        "social_rank": "gentry",
+        "register": "formal, measured",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "hollow, echoing",
+        "distinctive": "speaks as if from a great distance, each word weighted with regret; a faint tremor of the supernatural."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Miss Temple",
@@ -64786,19 +64853,76 @@
         "Miss Temple"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 40,
+      "description": "The kind, dignified superintendent of Lowood School who acts as a maternal protector to the girls.",
+      "voice": {
+        "sex": "female",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "professional, middle-class",
+        "register": "formal, warm",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "clear, gentle",
+        "distinctive": "composed and reassuring; slight smile in the voice"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Augusta",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 1,
+      "description": "A young lady of the gentry, likely one of the Eshton or Lynn daughters, easily impressed and conventional.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper_class",
+        "register": "refined, polite",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "soft",
+        "distinctive": "Gasping, melodramatic; draws out the shock in a high, flustered tone."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Theodore",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 17,
+      "description": "A young, mischievous, and somewhat spoiled child at Thornfield, who interacts with the fortune-teller (Jane in disguise).",
+      "voice": {
+        "sex": "male",
+        "age_band": "child",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "none"
+        },
+        "social_rank": "upper class, child",
+        "register": "informal, childish, eager",
+        "pitch": "high",
+        "pace": "fast",
+        "timbre": "bright, light",
+        "distinctive": "excited, breathless; speaks with a child's directness and curiosity"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Master Broughton Brocklehurst",
@@ -64807,61 +64931,161 @@
         "Mr. Brocklehurst"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 51,
+      "description": "The hypocritical, harsh clergyman who runs Lowood School, where Jane is sent as a child.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper_class",
+        "register": "formal, pompous, sanctimonious",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "nasal, reedy",
+        "distinctive": "pompous and sanctimonious; a slow, self-important cadence with a nasal, reedy tone"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Guard",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 3,
+      "description": "A servant or attendant at Gateshead, tasked with watching over Jane during her confinement.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Northern England",
+          "strength": "strong"
+        },
+        "social_rank": "servant-class",
+        "register": "plain, dutiful",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "gruff, clipped",
+        "distinctive": "brusque and efficient; each line is a curt nod in vocal form, with a rising inflection of reassurance."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Miss Miller",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 7,
+      "description": "A teacher at Lowood School, responsible for discipline and routine among the girls.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "lower-middle-class",
+        "register": "authoritative, brisk",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "clipped, firm",
+        "distinctive": "Sharp, commanding bark; staccato rhythm; cuts words short; no warmth, only efficiency."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Miss Smith",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 0
     },
     {
       "name": "Miss Scatcherd",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 6,
+      "description": "A harsh, petty teacher at Lowood who singles out Helen Burns for constant punishment.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "lower-middle-class",
+        "register": "authoritarian, sneering",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "harsh, grating",
+        "distinctive": "Cold, contemptuous precision; each word deliberately placed; sneers on 'dirty' and 'slatternly'; enjoys the power of correction."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Madame Pierrot",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 0
     },
     {
       "name": "Monitor",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 6
+      "first_appearance_chapter": 6,
+      "dialogue_segments": 2,
+      "description": "A senior student at Lowood tasked with keeping order, zealous in enforcing the school's harsh rules.",
+      "voice": {
+        "sex": "female",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Northern England",
+          "strength": "moderate"
+        },
+        "social_rank": "student",
+        "register": "authoritarian, officious",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "sharp, nasal",
+        "distinctive": "a schoolmarm's bark with a righteous edge; ends each sentence on a rising, scolding note."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Julia Severn",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Agnes Johnstone",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Catherine Johnstone",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Helen Burns",
@@ -64870,43 +65094,104 @@
         "Helen"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 6
+      "first_appearance_chapter": 6,
+      "dialogue_segments": 43,
+      "description": "A saintly, consumptive pupil at Lowood School who endures hardship with stoic Christian patience.",
+      "voice": {
+        "sex": "female",
+        "age_band": "teen",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "educated, humble",
+        "register": "formal, serene",
+        "pitch": "high",
+        "pace": "slow",
+        "timbre": "soft, ethereal",
+        "distinctive": "calm, unshakeable; speaks as if already half in another world"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Barbara",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 2,
+      "description": "A maid at Lowood School, caught between the girls' needs and the matron's strict rationing.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Northern England",
+          "strength": "moderate"
+        },
+        "social_rank": "servant-class",
+        "register": "deferential, flustered",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "thin, breathy",
+        "distinctive": "apologetic even when relaying orders; a nervous swallow before each sentence."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Mrs. Harden",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Mary Ann Wilson",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Bates",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 24,
+      "description": "A servant at Thornfield who recounts the story of Rochester's bravery during a fire.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Yorkshire",
+          "strength": "moderate"
+        },
+        "social_rank": "servant-class",
+        "register": "informal, respectful",
+        "pitch": "low",
+        "pace": "medium",
+        "timbre": "gruff, hearty",
+        "distinctive": "earnest, storytelling; warms to the tale of his master's heroism"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Miss Gryce",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Rev. Mr. Nasmyth",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Mrs. Fairfax",
@@ -64915,7 +65200,26 @@
         "Alice Fairfax"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 117,
+      "description": "The kindly, respectable housekeeper of Thornfield Hall, who serves as a maternal figure to Jane.",
+      "voice": {
+        "sex": "female",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Yorkshire",
+          "strength": "moderate"
+        },
+        "social_rank": "servant_class",
+        "register": "polite, warm, deferential",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "soft, gentle",
+        "distinctive": "warm and motherly; a gentle, unhurried cadence with a hint of Northern warmth"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Bessie Leaven",
@@ -64924,13 +65228,33 @@
         "Mrs. Leaven"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 61,
+      "description": "A kind-hearted nurse at Gateshead who shows Jane occasional affection during her unhappy childhood.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Yorkshire",
+          "strength": "moderate"
+        },
+        "social_rank": "servant_class",
+        "register": "warm, informal, maternal",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "soft, soothing",
+        "distinctive": "warm and maternal; a gentle, comforting tone with a soft Northern lilt"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Jane Leaven",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Adela Varens",
@@ -64939,7 +65263,26 @@
         "Miss Adèle"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 39,
+      "description": "Rochester's young French ward, a lively, theatrical child who loves dancing and attention.",
+      "voice": {
+        "sex": "female",
+        "age_band": "child",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "French",
+          "strength": "moderate"
+        },
+        "social_rank": "upper-class child",
+        "register": "informal, playful",
+        "pitch": "high",
+        "pace": "fast",
+        "timbre": "bright, light",
+        "distinctive": "exuberant, singsong; French phrases with relish"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Sophie",
@@ -64947,13 +65290,51 @@
         "Sophie"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 3,
+      "description": "Adèle's French nurse at Thornfield, warm and practical, with a Gallic flair.",
+      "voice": {
+        "sex": "female",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "France",
+          "strength": "strong"
+        },
+        "social_rank": "servant-class",
+        "register": "informal, affectionate",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "soft, rounded",
+        "distinctive": "French vowels linger even in English; a musical lilt that turns commands into coaxing."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Leah",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 9,
+      "description": "A housemaid at Thornfield Hall, one of the few female servants who remains after the fire.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Yorkshire",
+          "strength": "moderate"
+        },
+        "social_rank": "servant-class",
+        "register": "informal, chatty",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "bright, clear",
+        "distinctive": "Cheerful, gossipy tone; quick to share observations; light, tripping rhythm with a hint of amusement."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Grace Poole",
@@ -64962,7 +65343,26 @@
         "Grace"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 22,
+      "description": "The enigmatic, taciturn servant who secretly tends to Bertha Mason in the attic at Thornfield.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Yorkshire",
+          "strength": "moderate"
+        },
+        "social_rank": "servant-class",
+        "register": "informal, guarded",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "flat, husky",
+        "distinctive": "monosyllabic, evasive; speaks as if always holding something back"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Carter",
@@ -64971,7 +65371,26 @@
         "the surgeon"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 7,
+      "description": "The surgeon called to attend Rochester after the fire at Thornfield, and later to treat Mason after his attack.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "professional",
+        "register": "competent, calm",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "smooth, reassuring",
+        "distinctive": "Even, unhurried professional tone; states facts plainly; slight concern creeps in only when addressing superiors."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Pilot",
@@ -64979,7 +65398,8 @@
         "Pilot"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 13
+      "first_appearance_chapter": 13,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Rowland Rochester",
@@ -64988,7 +65408,8 @@
         "Rowland"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 13
+      "first_appearance_chapter": 13,
+      "dialogue_segments": 0
     },
     {
       "name": "Old Mr. Rochester",
@@ -64996,25 +65417,65 @@
         "the old gentleman"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 13
+      "first_appearance_chapter": 13,
+      "dialogue_segments": 16,
+      "description": "Edward Rochester's elderly, blind father, who is unaware of his son's first marriage and is manipulated by the family.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "none"
+        },
+        "social_rank": "upper class, gentry",
+        "register": "formal, patriarchal, slightly querulous",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "gravelly, weak",
+        "distinctive": "fading, authoritative but frail; speaks with the weight of age and expectation"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Céline Varens",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 15
+      "first_appearance_chapter": 15,
+      "dialogue_segments": 0
     },
     {
       "name": "Vicomte",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 15
+      "first_appearance_chapter": 15,
+      "dialogue_segments": 0
     },
     {
       "name": "Mrs. Eshton",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 16
+      "first_appearance_chapter": 16,
+      "dialogue_segments": 1,
+      "description": "A middle-aged society matron, one of the hostesses at Thornfield, conventional and slightly scatterbrained.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper_class",
+        "register": "refined, polite",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "warm",
+        "distinctive": "Vague, flustered; questions trail off with a rising, puzzled inflection."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Lord Ingram",
@@ -65022,7 +65483,26 @@
         "Ingram"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 16
+      "first_appearance_chapter": 16,
+      "dialogue_segments": 4,
+      "description": "Blanche Ingram's father, a titled but vapid aristocrat who echoes his daughter's pretensions.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "aristocracy",
+        "register": "affected, languid",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "nasal, drawling",
+        "distinctive": "drawls every vowel, especially on 'yaas'; a bored, self-satisfied purr."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Sir George Lynn",
@@ -65031,7 +65511,26 @@
         "George Lynn"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 16
+      "first_appearance_chapter": 16,
+      "dialogue_segments": 1,
+      "description": "A baronet and country gentleman, part of the Thornfield circle, solid and unflappable.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper_class",
+        "register": "formal, measured",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "resonant",
+        "distinctive": "Calm, matter-of-fact; states alarming news with a flat, unruffled gravity."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Blanche Ingram",
@@ -65040,7 +65539,26 @@
         "Donna Bianca"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 16
+      "first_appearance_chapter": 16,
+      "dialogue_segments": 39,
+      "description": "A beautiful, haughty society belle who openly scorns Jane and pursues Rochester for his fortune.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "aristocratic",
+        "register": "formal, condescending",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "rich, cutting",
+        "distinctive": "drawling, imperious; sneers with a curl of the lip"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mary Ingram",
@@ -65048,13 +65566,51 @@
         "Miss Ingram"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 16
+      "first_appearance_chapter": 16,
+      "dialogue_segments": 10,
+      "description": "A beautiful but shallow and vain young woman at Thornfield, who flirts with Rochester and is interested only in wealth and status.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "none"
+        },
+        "social_rank": "aristocratic, upper class",
+        "register": "formal, affected, flirtatious",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "smooth, silky",
+        "distinctive": "coquettish, superficial; speaks with a drawl and a hint of mockery"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Lady Lynn",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 17
+      "first_appearance_chapter": 17,
+      "dialogue_segments": 2,
+      "description": "A society matron at the Thornfield party, sharp-eyed and dismissive of those beneath her station.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "aristocracy",
+        "register": "formal, condescending",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "crisp, clipped",
+        "distinctive": "each word is a small, precise dart; a faint sneer audible in the vowels."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mrs. Colonel Dent",
@@ -65064,13 +65620,51 @@
         "Dent"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 16
+      "first_appearance_chapter": 16,
+      "dialogue_segments": 6,
+      "description": "A fashionable, sharp-tongued guest at Thornfield, wife of Colonel Dent.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-class",
+        "register": "refined, witty",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "crisp, bright",
+        "distinctive": "Quick, dry wit; lands punchlines with a slight smirk; impatient with dullness; voice cuts through chatter."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Eshton",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 17
+      "first_appearance_chapter": 17,
+      "dialogue_segments": 4,
+      "description": "A magistrate and country gentleman, genial and easily amused, hosting the house party at Thornfield.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Yorkshire",
+          "strength": "moderate"
+        },
+        "social_rank": "gentry",
+        "register": "informal, jovial",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "warm, rounded",
+        "distinctive": "chuckles mid-sentence; a hearty, bluff enthusiasm that turns every statement into a shared joke."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Frederick Lynn",
@@ -65079,37 +65673,79 @@
         "Lynn"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 17
+      "first_appearance_chapter": 17,
+      "dialogue_segments": 2,
+      "description": "A young, spirited gentleman guest at Thornfield, part of the fashionable house-party set.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper_class",
+        "register": "educated, playful",
+        "pitch": "medium",
+        "pace": "brisk",
+        "timbre": "bright",
+        "distinctive": "Eager, exclamatory; delivers quips with a theatrical flourish."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Miss Wilson",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 17
+      "first_appearance_chapter": 17,
+      "dialogue_segments": 0
     },
     {
       "name": "Mrs. Greys",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 17
+      "first_appearance_chapter": 17,
+      "dialogue_segments": 0
     },
     {
       "name": "Madame Joubert",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 17
+      "first_appearance_chapter": 17,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Vining",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 17
+      "first_appearance_chapter": 17,
+      "dialogue_segments": 0
     },
     {
       "name": "Ad",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 17
+      "first_appearance_chapter": 17,
+      "dialogue_segments": 12,
+      "description": "Adèle Varens, Rochester's young French ward, a lively, affectionate, and somewhat precocious child who loves to chatter and perform.",
+      "voice": {
+        "sex": "female",
+        "age_band": "child",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "none"
+        },
+        "social_rank": "upper class, child",
+        "register": "informal, playful, excitable",
+        "pitch": "high",
+        "pace": "fast",
+        "timbre": "bright, light",
+        "distinctive": "charming, theatrical; switches between French and English with a child's delight"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Miss Eshton",
@@ -65121,7 +65757,26 @@
         "Misses Eshton"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 17
+      "first_appearance_chapter": 17,
+      "dialogue_segments": 9,
+      "description": "A young, fashionable guest at Thornfield, one of the two Eshton sisters who fawn over Rochester.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-class",
+        "register": "refined, affected",
+        "pitch": "high",
+        "pace": "fast",
+        "timbre": "fluty, light",
+        "distinctive": "Gushing, breathless enthusiasm; rises in pitch at sentence ends; draws out vowels on words like 'love' and 'adorable'."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Henry Lynn",
@@ -65129,13 +65784,51 @@
         "Henry Lynn"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 17
+      "first_appearance_chapter": 17,
+      "dialogue_segments": 3,
+      "description": "A young, fashionable guest at the Thornfield party, eager for amusement and gossip.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "gentry",
+        "register": "colloquial, eager",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "bright, reedy",
+        "distinctive": "perpetually on the verge of laughter; a breathless, conspiratorial energy that leans in on the last word."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mrs. Lynn",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 18
+      "first_appearance_chapter": 18,
+      "dialogue_segments": 1,
+      "description": "A genteel mother of the gentry, part of the Thornfield house-party, indulgent and mildly anxious.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper_class",
+        "register": "refined, maternal",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "soft",
+        "distinctive": "Worried, coaxing; speaks with a gentle, scolding concern for her boys."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Dowager Ingram",
@@ -65144,7 +65837,26 @@
         "Baroness Ingram"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 17
+      "first_appearance_chapter": 17,
+      "dialogue_segments": 17,
+      "description": "A haughty, vain, and domineering aristocratic mother, obsessed with rank and appearances, who looks down on Jane.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "none"
+        },
+        "social_rank": "aristocratic, upper class",
+        "register": "formal, imperious, condescending",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "nasal, clipped",
+        "distinctive": "drawling, dismissive; uses French phrases with affected precision"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Mason",
@@ -65153,13 +65865,51 @@
         "Richard Mason"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 18
+      "first_appearance_chapter": 18,
+      "dialogue_segments": 22,
+      "description": "A nervous, ineffectual West Indian gentleman whose sister is secretly imprisoned at Thornfield.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "West Indies",
+          "strength": "light"
+        },
+        "social_rank": "gentleman, colonial",
+        "register": "formal, anxious",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "thin, tremulous",
+        "distinctive": "fearful, apologetic; voice quivers with dread"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Sam",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 18
+      "first_appearance_chapter": 18,
+      "dialogue_segments": 6,
+      "description": "A footman at Thornfield Hall, young and slightly cheeky.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Yorkshire",
+          "strength": "moderate"
+        },
+        "social_rank": "servant-class",
+        "register": "informal, cheeky",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "youthful, bright",
+        "distinctive": "Slightly mischievous tone; enjoys being the messenger of drama; drops g's on '-ing' words; a hint of a grin in his voice."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mary Rivers",
@@ -65167,13 +65917,51 @@
         "Mary"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 18
+      "first_appearance_chapter": 18,
+      "dialogue_segments": 21,
+      "description": "A gentle, kind, and unassuming young woman, one of the two sisters who befriend Jane during her time as a village schoolteacher.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Northern England",
+          "strength": "light"
+        },
+        "social_rank": "educated, gentle class",
+        "register": "soft-spoken, polite, and earnest",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "warm, clear",
+        "distinctive": "gentle, sincere; often trails off into thoughtful pauses"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Sibyl",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 19
+      "first_appearance_chapter": 19,
+      "dialogue_segments": 44,
+      "description": "A mysterious gypsy fortune-teller who appears at Thornfield Hall and reads Jane's fortune, later revealed to be Rochester in disguise.",
+      "voice": {
+        "sex": "female",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Roma",
+          "strength": "strong"
+        },
+        "social_rank": "lower_class",
+        "register": "cryptic, theatrical, sly",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "gravelly, husky",
+        "distinctive": "cryptic and theatrical; a slow, sly delivery with a gravelly, husky timbre"
+      },
+      "confidence": "medium",
+      "basis": "known_work"
     },
     {
       "name": "Robert Leaven",
@@ -65181,7 +65969,26 @@
         "Leaven"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 10,
+      "description": "A servant at Gateshead who brings Jane the news of John Reed's death and her aunt's request to see her.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Yorkshire",
+          "strength": "moderate"
+        },
+        "social_rank": "servant-class",
+        "register": "respectful, plain",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "warm, slightly rough",
+        "distinctive": "Deferential but familiar; softens consonants, drops h's occasionally; ends statements with a slight upward lilt as if seeking approval."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Miss Georgiana",
@@ -65189,7 +65996,26 @@
         "Georgiana"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 21
+      "first_appearance_chapter": 21,
+      "dialogue_segments": 1,
+      "description": "A haughty, spoiled young woman of the upper class, Jane's cousin, vain and petulant.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper_class",
+        "register": "formal, disdainful",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "nasal",
+        "distinctive": "Cold, cutting; each word is precisely enunciated with a sneer of superiority."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "John Eyre",
@@ -65197,13 +66023,33 @@
         "Uncle John"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 21
+      "first_appearance_chapter": 21,
+      "dialogue_segments": 1,
+      "description": "An elderly, plain-spoken servant or retainer at Ferndean, loyal and warm-hearted.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Yorkshire",
+          "strength": "strong"
+        },
+        "social_rank": "servant_class",
+        "register": "informal, rustic",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "gravelly",
+        "distinctive": "Fond, approving; speaks with a gruff but kindly warmth, as if sharing a secret."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Mr. Gibson",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 22
+      "first_appearance_chapter": 22,
+      "dialogue_segments": 0
     },
     {
       "name": "Mrs. Dionysius O’Gall",
@@ -65211,13 +66057,33 @@
         "Mrs. O’Gall"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 23
+      "first_appearance_chapter": 23,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Wood",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 26
+      "first_appearance_chapter": 26,
+      "dialogue_segments": 10,
+      "description": "The elderly clergyman who officiates at Jane and Rochester's attempted wedding, and later reveals Rochester's existing marriage.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Northern England",
+          "strength": "moderate"
+        },
+        "social_rank": "educated, clerical",
+        "register": "formal, solemn",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "thin, reedy",
+        "distinctive": "Measured, grave delivery; pauses for emphasis on moral pronouncements; slight quaver on long sentences."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Bertha Antoinetta Mason",
@@ -65230,31 +66096,54 @@
         "mad lady"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 26
+      "first_appearance_chapter": 26,
+      "dialogue_segments": 0
     },
     {
       "name": "Jonas Mason",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 26
+      "first_appearance_chapter": 26,
+      "dialogue_segments": 0
     },
     {
       "name": "Giacinta",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 27
+      "first_appearance_chapter": 27,
+      "dialogue_segments": 0
     },
     {
       "name": "Clara",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 27
+      "first_appearance_chapter": 27,
+      "dialogue_segments": 0
     },
     {
       "name": "Hannah",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 28
+      "first_appearance_chapter": 28,
+      "dialogue_segments": 72,
+      "description": "The blunt, practical servant at Marsh End (Moor House), initially suspicious of Jane but later loyal and kind.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Yorkshire",
+          "strength": "strong"
+        },
+        "social_rank": "servant_class",
+        "register": "plain, direct, uneducated",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "gruff, earthy",
+        "distinctive": "blunt and practical; a broad Yorkshire accent with a no-nonsense, down-to-earth delivery"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Jane Elliott",
@@ -65263,7 +66152,8 @@
         "the stranger"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 28
+      "first_appearance_chapter": 28,
+      "dialogue_segments": 0
     },
     {
       "name": "Diana Rivers",
@@ -65271,7 +66161,26 @@
         "Diana"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 28
+      "first_appearance_chapter": 28,
+      "dialogue_segments": 77,
+      "description": "One of St. John's sisters, a lively, intelligent, and kind young woman who befriends Jane.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper_class",
+        "register": "educated, informal, warm",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "bright, clear",
+        "distinctive": "lively and direct; a bright, engaging tone with a quick, curious energy"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. St. John Rivers",
@@ -65283,19 +66192,40 @@
         "St. John Rivers"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 28
+      "first_appearance_chapter": 28,
+      "dialogue_segments": 288,
+      "description": "A cold, devout, and ambitious clergyman who offers Jane a position as a schoolteacher and later reveals her inheritance.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper_class",
+        "register": "formal, precise, austere",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "cool, measured",
+        "distinctive": "austere and precise; speaks with a chilling, unyielding calm"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Oliver",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 29
+      "first_appearance_chapter": 29,
+      "dialogue_segments": 0
     },
     {
       "name": "Bill Oliver",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 29
+      "first_appearance_chapter": 29,
+      "dialogue_segments": 0
     },
     {
       "name": "Carlo",
@@ -65303,13 +66233,15 @@
         "old Carlo"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 30
+      "first_appearance_chapter": 30,
+      "dialogue_segments": 0
     },
     {
       "name": "Alice Wood",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 31
+      "first_appearance_chapter": 31,
+      "dialogue_segments": 0
     },
     {
       "name": "Rosamond Oliver",
@@ -65318,7 +66250,26 @@
         "Rosamond"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 30
+      "first_appearance_chapter": 30,
+      "dialogue_segments": 22,
+      "description": "A beautiful, vivacious heiress who flirts with St. John Rivers and is kind to Jane.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-class",
+        "register": "informal, charming",
+        "pitch": "high",
+        "pace": "fast",
+        "timbre": "bright, silvery",
+        "distinctive": "sparkling, flirtatious; laughter in the voice"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mrs. Reed of Gateshead",
@@ -65331,7 +66282,26 @@
         "Sarah"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 56,
+      "description": "Jane's cold, resentful aunt who treats her cruelly and sends her away to Lowood School.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper_class",
+        "register": "formal, cold, disdainful",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "thin, icy",
+        "distinctive": "cold and disdainful; a clipped, precise delivery that drips with resentment"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Briggs",
@@ -65339,7 +66309,26 @@
         "Briggs"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 26
+      "first_appearance_chapter": 26,
+      "dialogue_segments": 16,
+      "description": "A solicitor from London, who arrives to stop Jane and Rochester's wedding by revealing Rochester's existing marriage to Bertha Mason.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "none"
+        },
+        "social_rank": "professional, middle class",
+        "register": "formal, legalistic, precise",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "dry, measured",
+        "distinctive": "grave, unemotional; delivers pronouncements with legal finality"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Eyre of Madeira",
@@ -65347,13 +66336,15 @@
         "Mr. Eyre"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Granby",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 34
+      "first_appearance_chapter": 34,
+      "dialogue_segments": 0
     },
     {
       "name": "Edward Fairfax Rochester",
@@ -65376,25 +66367,65 @@
         "my living Jane"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 846,
+      "description": "The brooding, sardonic master of Thornfield Hall, a Byronic hero with a dark past and a commanding presence.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper_class",
+        "register": "commanding, sardonic, informal at times",
+        "pitch": "low",
+        "pace": "medium",
+        "timbre": "rich, resonant",
+        "distinctive": "commanding and sardonic; a voice that alternates between blunt command and dark, teasing wit"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Old John",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 36
+      "first_appearance_chapter": 36,
+      "dialogue_segments": 3,
+      "description": "An elderly servant at Thornfield, reliable and weather-wise, guiding visitors across the fields.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Yorkshire",
+          "strength": "strong"
+        },
+        "social_rank": "servant-class",
+        "register": "respectful, plain",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "gravelly, weathered",
+        "distinctive": "speaks with a farmer's deliberation, pausing to gauge the sky; a gentle, unhurried cadence."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Captain Fitzjames",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 38
+      "first_appearance_chapter": 38,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Wharton",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 38
+      "first_appearance_chapter": 38,
+      "dialogue_segments": 0
     }
   ],
   "statistics": {
@@ -65408,16 +66439,47 @@
       36
     ],
     "unreviewed_critic_windows": 0,
-    "pipeline_version": "1.0.0",
+    "pipeline_version": "1.1.0",
     "discovery_confidence": {
-      "avg_confidence": 0.9496937836210224,
-      "min_confidence": 0.7674647887323944
-    }
+      "avg_confidence": 0.949059980804121,
+      "min_confidence": 0.7433802816901408
+    },
+    "cast_characters": 57
   },
   "processing_config": {
     "processing_model": "google/gemma-4-E4B-it-qat-w4a16-ct",
     "validation_model": "/opt/data/models/DeepSeek-V4-Flash-0731-GGUF/UD-Q8_K_XL/DeepSeek-V4-Flash-0731-UD-Q8_K_XL-00001-of-00005.gguf",
     "dual_llm_validation": true,
     "chunk_size": 1000
+  },
+  "production": {
+    "synopsis": "Orphaned and mistreated by her aunt and cousins, Jane Eyre endures a harsh childhood at Gateshead and Lowood School before becoming a governess at Thornfield Hall. There she falls in love with the brooding master, Edward Rochester, only to discover a terrible secret that drives her away. After a period of wandering and a near-marriage to the cold clergyman St. John Rivers, Jane returns to a blinded and humbled Rochester, finding at last a love that is both equal and free.",
+    "author": {
+      "name": "Charlotte Brontë",
+      "years": "1816-1855",
+      "nationality": "English",
+      "note": "A voice of intense moral passion and interiority, with a gothic sensibility and a sharp eye for social hypocrisy; the narration should carry a quiet, burning earnestness."
+    },
+    "narration": {
+      "person": "first_person",
+      "narrator_character": "Jane Eyre",
+      "voice": {
+        "sex": "female",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Northern England",
+          "strength": "light"
+        },
+        "social_rank": "governess",
+        "register": "educated, introspective, dignified, with a restrained intensity",
+        "pitch": "low",
+        "pace": "measured",
+        "timbre": "clear, warm, with a slight edge of melancholy",
+        "distinctive": "A voice that has been shaped by suffering but never broken; carries a quiet authority and a deep capacity for feeling."
+      },
+      "basis": "narrator_character"
+    },
+    "casting_notes": "All characters share a British accent (en-GB), with class and regional variation. The upper classes (Rochester, Ingram, Rivers) speak refined RP; servants and rural folk (Hannah, Bessie, Grace) use broader Northern or Yorkshire inflections. Children (Adèle, John Reed, Theodore) should sound youthful but not cartoonish. The narrator's voice must be distinct from all other characters, especially when voicing Rochester's dialogue — Jane's narration is introspective and measured, while Rochester's speech is commanding and sardonic."
   }
 }

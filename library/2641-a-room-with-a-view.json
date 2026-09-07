@@ -2103,10 +2103,7 @@
         "discovered_characters": [
           {
             "name": "Miss Bartlett",
-            "aliases": [
-              "Miss Bartlett",
-              "Charlotte"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
           },
@@ -2140,9 +2137,7 @@
           },
           {
             "name": "Mr. Beebe",
-            "aliases": [
-              "Mr. Beebe"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
           },
@@ -4311,9 +4306,7 @@
             "name": "Lucy Honeychurch",
             "aliases": [
               "Lucy",
-              "Miss Honeychurch",
-              "Lucia",
-              "Signorina"
+              "Miss Honeychurch"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
@@ -4321,8 +4314,7 @@
           {
             "name": "Miss Lavish",
             "aliases": [
-              "the clever lady",
-              "Miss Lavish"
+              "the clever lady"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 2
@@ -4347,9 +4339,7 @@
           },
           {
             "name": "Sir Harry Otway",
-            "aliases": [
-              "Sir Harry"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 2
           },
@@ -4367,10 +4357,7 @@
           },
           {
             "name": "Mr. Emerson",
-            "aliases": [
-              "Mr. Emerson",
-              "old Mr. Emerson"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 2
           },
@@ -4383,22 +4370,14 @@
             "first_appearance_chapter": 1
           },
           {
-            "name": "The Reverend Cuthbert Eager",
-            "aliases": [
-              "Cuthbert Eager",
-              "Mr. Eager",
-              "Rev. Cuthbert Eager"
-            ],
+            "name": "Rev. Cuthbert Eager",
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 2
           },
           {
             "name": "Miss Teresa Alan",
-            "aliases": [
-              "Teresa",
-              "Miss Teresa",
-              "Miss Alans"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 2
           },
@@ -5532,9 +5511,8 @@
         ],
         "discovered_characters": [
           {
-            "name": "L. M. Honeychurch",
+            "name": "Mrs. Honeychurch",
             "aliases": [
-              "Mrs. Honeychurch",
               "Mrs. Honeychurch"
             ],
             "pronunciation_hints": [],
@@ -5543,8 +5521,7 @@
           {
             "name": "Miss Catharine Alan",
             "aliases": [
-              "Miss Alan",
-              "Miss Catharine"
+              "Miss Alan"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 3
@@ -6772,8 +6749,7 @@
               "George Emerson",
               "Mr. Emerson",
               "old Mr. Emerson",
-              "George",
-              "Emerson"
+              "George"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
@@ -10192,8 +10168,7 @@
             "name": "Charlotte Bartlett",
             "aliases": [
               "Miss Bartlett",
-              "Charlotte",
-              "Miss Bartletts"
+              "Charlotte"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
@@ -14333,9 +14308,7 @@
           {
             "name": "Cecil Vyse",
             "aliases": [
-              "Cecil",
-              "Mr. Vyse",
-              "Cecils"
+              "Cecil"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 7
@@ -18279,9 +18252,7 @@
           },
           {
             "name": "Minnie Beebe",
-            "aliases": [
-              "Minnie"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 9
           },
@@ -30203,7 +30174,7 @@
           {
             "type": "dialogue",
             "text": "“Otherwise—?”",
-            "speaker": "Miss Catherine Alan",
+            "speaker": "Charlotte Bartlett",
             "pronunciation_hints": [],
             "notes": null,
             "start": 22280,
@@ -30347,7 +30318,7 @@
           {
             "type": "dialogue",
             "text": "“Mrs. Honeychurch,”",
-            "speaker": "Mr. Honeychurch",
+            "speaker": "The Reverend Arthur Beebe",
             "pronunciation_hints": [],
             "notes": null,
             "start": 24432,
@@ -30365,7 +30336,7 @@
           {
             "type": "dialogue",
             "text": "“go to Greece she must. Come up to the house and let’s talk it over. Do you, in the first place, mind her breaking with Vyse?”",
-            "speaker": "Mr. Honeychurch",
+            "speaker": "The Reverend Arthur Beebe",
             "pronunciation_hints": [],
             "notes": null,
             "start": 24461,
@@ -30401,7 +30372,7 @@
           {
             "type": "dialogue",
             "text": "“Good. Now come up to the house.”",
-            "speaker": "Mr. Honeychurch",
+            "speaker": "The Reverend Arthur Beebe",
             "pronunciation_hints": [],
             "notes": null,
             "start": 24658,
@@ -30554,7 +30525,7 @@
           {
             "type": "dialogue",
             "text": "“Thank you, mother; that doesn’t matter a bit.”",
-            "speaker": "Mrs. Butterworth",
+            "speaker": "Lucy Honeychurch",
             "pronunciation_hints": [],
             "notes": null,
             "start": 25879,
@@ -30635,7 +30606,7 @@
           {
             "type": "dialogue",
             "text": "“It’s a beautiful song and a wise one,”",
-            "speaker": "Mr. Honeychurch",
+            "speaker": "The Reverend Arthur Beebe",
             "pronunciation_hints": [],
             "notes": null,
             "start": 26883,
@@ -30653,7 +30624,7 @@
           {
             "type": "dialogue",
             "text": "“Go on.”",
-            "speaker": "Mr. Honeychurch",
+            "speaker": "The Reverend Arthur Beebe",
             "pronunciation_hints": [],
             "notes": null,
             "start": 26932,
@@ -30907,23 +30878,23 @@
         "chapter_number": 17,
         "missing_text": [],
         "attribution_issues": [
-          "segment 183: Miss Catherine Alan -> Charlotte Bartlett (The narration at 184 says 'To his astonishment, she replied:' referring to Miss Bartlett, who is the only woman present in this scene.)",
-          "segment 185: Miss Catherine Alan -> Charlotte Bartlett (Continuation of Miss Bartlett's reply to Mr. Beebe; the narration at 184 establishes 'she replied' as Miss Bartlett.)",
-          "segment 204: Lucy Honeychurch -> Charlotte Bartlett (The narration at 205 says 'she continued, lowering her veil...' — this is Charlotte Bartlett, who is wearing a veil and has been the speaker throughout this exchange; Lucy is not present.)",
-          "segment 280: Unknown -> The Reverend Arthur Beebe (The narration says 'Perhaps the song stated' and then quotes the phrase 'the better part' as part of the song's lyrics, not as a separate spoken line by an unknown character. This is a continuation of the song lyric, so it should be attributed to Lucy Honeychurch, who is singing.)"
+          "segment 185: The Reverend Arthur Beebe -> Charlotte Bartlett (The narration at 184 says 'To his astonishment, she replied:' — 'she' refers to Miss Bartlett, so the dialogue must be hers, not Mr. Beebe's.)",
+          "segment 209: Miss Catherine Alan -> Charlotte Bartlett (The line 'Otherwise—?' is a repetition of Charlotte's own word from the previous line, spoken by her, not by Miss Catherine Alan.)",
+          "segment 225: Mr. Honeychurch -> The Reverend Arthur Beebe (The narration says 'he said' after the dialogue, and the preceding context has Mr. Beebe conversing with Mrs. Honeychurch; the speaker is Mr. Beebe, not Mr. Honeychurch.)",
+          "segment 227: Mr. Honeychurch -> The Reverend Arthur Beebe (Continuation of the same speech by Mr. Beebe, as indicated by the narration 'he said' at segment 226.)",
+          "segment 231: Mr. Honeychurch -> The Reverend Arthur Beebe (The dialogue 'Good. Now come up to the house.' is a continuation of Mr. Beebe's urging, not Mr. Honeychurch's, as the preceding lines are all Mr. Beebe's.)",
+          "segment 248: Mrs. Butterworth -> Lucy Honeychurch (The narration says 'Rather a hard voice said' — this is Lucy's response to her mother, as she is the one being addressed and the voice is described as hard, contrasting with her mother's kindness.)",
+          "segment 257: Mr. Honeychurch -> The Reverend Arthur Beebe (The narration says 'said he' — the pronoun 'he' refers to Mr. Beebe, not Mr. Honeychurch, as Mr. Beebe is the one commenting on the song.)",
+          "segment 259: Mr. Honeychurch -> The Reverend Arthur Beebe (Continuation of Mr. Beebe's speech from segment 257, as he urges Lucy to continue singing.)",
+          "segment 280: Unknown -> The Reverend Arthur Beebe (The narration says 'Perhaps the song stated' and then quotes 'the better part' as part of the song's lyrics, not as a separate spoken line by an unknown character. This is a continuation of the song lyric, so it should be attributed to Lucy Honeychurch, who is singing.)"
         ],
         "name_inconsistencies": [],
-        "overall_quality": 0.9384677419354838,
-        "needs_reprocessing": true,
-        "unreviewed_windows": [
-          [
-            208,
-            277
-          ]
-        ],
+        "overall_quality": 0.9143030303030302,
+        "needs_reprocessing": false,
+        "unreviewed_windows": [],
         "fixed_segments": null
       },
-      "needs_review": true
+      "needs_review": false
     },
     {
       "chapter": {
@@ -34647,19 +34618,40 @@
       "name": "Mother",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 54,
+      "description": "Lucy's mother, a warm but conventional matriarch.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-middle-class",
+        "register": "affectionate, gently commanding",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "soft, rounded",
+        "distinctive": "Her tone is fond but firm; she ends many sentences with a slight upward lilt, as if expecting agreement."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Enery",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 0
     },
     {
       "name": "Victorier",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 0
     },
     {
       "name": "Lucy Honeychurch",
@@ -34670,13 +34662,33 @@
         "Signorina"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 621,
+      "description": "A young, spirited Edwardian gentlewoman discovering her own desires amid social convention.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-middle-class",
+        "register": "educated, polite but with flashes of rebellion",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "clear, warm",
+        "distinctive": "Bright and earnest, with a subtle edge of defiance that surfaces when she contradicts convention; her laughter is genuine and sudden."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Contessa Baroncelli",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 0
     },
     {
       "name": "Sir Harry Otway",
@@ -34684,19 +34696,58 @@
         "Sir Harry"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 17,
+      "description": "A pompous, well-intentioned local landowner and neighbour of the Honeychurches, concerned with propriety and tenantry.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-class, landed gentry",
+        "register": "formal, self-important",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "rounded, resonant",
+        "distinctive": "hearty, blustering; emphasises with a jovial chuckle"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mrs. Butterworth",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 12,
+      "description": "A comfortable, gossipy middle-aged lady of the Honeychurches' circle, fond of clichés and mild complaint.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-middle-class",
+        "register": "informal, chatty",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "warm, slightly nasal",
+        "distinctive": "gossipy, world-weary; sighs before pronouncing on the weather or the young"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Lady Louisa",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 0
     },
     {
       "name": "The Reverend Cuthbert Eager",
@@ -34706,7 +34757,26 @@
         "Rev. Cuthbert Eager"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 47,
+      "description": "A pompous, self-important clergyman in Florence.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "middle-class",
+        "register": "pompous, lecturing, self-regarding",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "booming, rounded",
+        "distinctive": "Pauses for effect after every clause, as if delivering a sermon; his voice rises and falls with theatrical gravity."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Miss Teresa Alan",
@@ -34716,13 +34786,33 @@
         "Miss Alans"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 2,
+      "description": "A genteel, slightly vague spinster travelling with her sister, part of the respectable English tourist set in Florence.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-middle-class, educated",
+        "register": "polite, slightly hesitant, conventional",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "soft, reedy",
+        "distinctive": "Trails off mid-thought; a gentle, flustered quality, as if always slightly surprised by conversation."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Miss Catherine Alan",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 0
     },
     {
       "name": "L. M. Honeychurch",
@@ -34731,7 +34821,26 @@
         "Mrs. Honeychurch"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 104,
+      "description": "Lucy's father, a bluff, practical country gentleman.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-middle-class",
+        "register": "plain-spoken, gruff, no-nonsense",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "gravelly, hearty",
+        "distinctive": "Speaks as if perpetually slightly annoyed, but with a twinkle underneath; his exclamations are blunt and final."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Miss Catharine Alan",
@@ -34740,7 +34849,26 @@
         "Miss Catharine"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 21,
+      "description": "An elderly, genteel spinster travelling with her sister, fussy and well-meaning, part of the English tourist set in Florence.",
+      "voice": {
+        "sex": "female",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-middle-class, educated",
+        "register": "formal, polite, slightly anxious",
+        "pitch": "high",
+        "pace": "slow",
+        "timbre": "thin, reedy",
+        "distinctive": "fluttery, solicitous; trails off into worried asides"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. George Emerson",
@@ -34752,7 +34880,26 @@
         "Emerson"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 268,
+      "description": "A blunt, sincere, lower-middle-class young man whose directness challenges Lucy's world.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "northern-england",
+          "strength": "moderate"
+        },
+        "social_rank": "lower-middle-class",
+        "register": "direct, unpretentious, occasionally poetic",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "rough, resonant",
+        "distinctive": "Speaks with a heavy, thoughtful gravity; his words land like stones in still water, but there is a surprising tenderness underneath."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Charlotte Bartlett",
@@ -34762,7 +34909,26 @@
         "Miss Bartletts"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 228,
+      "description": "Lucy's older cousin and chaperone, anxious, fussy, and bound by propriety.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-middle-class",
+        "register": "formal, nervous, deferential to rank",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "thin, flustered",
+        "distinctive": "A constant, low-level flutter in her delivery; she trails off mid-sentence and repeats herself, as if forever tidying her own words."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Joseph Emery Prank",
@@ -34774,13 +34940,33 @@
         "Miss Lavish"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 51,
+      "description": "A worldly, witty novelist who enjoys stirring the pot.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "middle-class",
+        "register": "clever, teasing, self-amused",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "dry, crisp",
+        "distinctive": "Delivers every line with a raised eyebrow; he savours irony and lands the last word with a little flourish."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Leonora",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 0
     },
     {
       "name": "The Reverend Arthur Beebe",
@@ -34790,37 +34976,115 @@
         "Arthur Beebe"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 213,
+      "description": "A cultured, kindly clergyman who observes and gently steers events.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-middle-class",
+        "register": "educated, urbane, mildly ironic",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "smooth, rounded",
+        "distinctive": "Wry and amused, with a habit of pausing just before the final word of a sentence, as if savouring his own wit."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Phaethon",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 5,
+      "description": "The Italian coachman who drives the carriage to Fiesole, laconic and obliging, with a touch of mischief.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "it-IT",
+          "origin": "Tuscany",
+          "strength": "light"
+        },
+        "social_rank": "working-class",
+        "register": "informal, respectful",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "smooth, slightly gravelly",
+        "distinctive": "calm, unhurried; repeats 'va bene' as a soothing refrain"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Persephone",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 1,
+      "description": "An Italian servant or attendant in the pension, calling out to a young lady with urgency.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "it-IT",
+          "origin": "tuscany",
+          "strength": "light"
+        },
+        "social_rank": "working-class, servant",
+        "register": "informal, respectful",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "warm, resonant",
+        "distinctive": "A musical, lilting call — the single word carries a rising urgency, as if summoning someone from a distance."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Lady Helen Laverstock",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 0
     },
     {
       "name": "Signorino",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 6
+      "first_appearance_chapter": 6,
+      "dialogue_segments": 0
     },
     {
       "name": "Cab-driver",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 6
+      "first_appearance_chapter": 6,
+      "dialogue_segments": 5,
+      "description": "A cheerful Italian driver in Florence who ferries the party to Fiesole, speaking only a few words of English.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "it-IT",
+          "origin": "Tuscany",
+          "strength": "light"
+        },
+        "social_rank": "working-class",
+        "register": "informal, friendly",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "rough, good-humoured",
+        "distinctive": "sunny, eager; clips English words with Italian vowels, gestures with his voice"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Signora Bertolini",
@@ -34829,7 +35093,26 @@
         "the Signora"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 10,
+      "description": "The Italian proprietress of the pension in Florence, gracious and hospitable, with a practical eye for her guests' comfort.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "it-IT",
+          "origin": "Tuscany",
+          "strength": "light"
+        },
+        "social_rank": "middle-class, business owner",
+        "register": "polite, hospitable",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "warm, musical",
+        "distinctive": "gracious, gently insistent; rolls r's softly, ends phrases with a rising lilt"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Freddy Honeychurch",
@@ -34837,7 +35120,26 @@
         "Freddy"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 112,
+      "description": "Lucy's cheerful, uncomplicated younger brother, fond of games and the outdoors.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-middle-class",
+        "register": "informal, boyish, energetic",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "bright, open",
+        "distinctive": "Bounces from word to word with infectious enthusiasm; his laugh is loud and unguarded."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Cecil Vyse",
@@ -34847,43 +35149,122 @@
         "Cecils"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 176,
+      "description": "A snobbish, aesthetic young man from a wealthy family, engaged to Lucy.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-class",
+        "register": "affected, precise, condescending",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "nasal, clipped",
+        "distinctive": "Drawls his vowels and clips his consonants; every sentence sounds like a judgement passed from a great height."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mrs. Vyse",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 17,
+      "description": "Cecil's mother, a polished, snobbish London society matron who condescends to Lucy and the Honeychurches.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-class, aristocratic",
+        "register": "formal, refined, condescending",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "smooth, clipped",
+        "distinctive": "cool, patrician; delivers reproofs with a silken smile"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Anne",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Mary",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 1,
+      "description": "A housemaid in the Honeychurch household, calling out to Mr. Beebe at the door.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "southern_england",
+          "strength": "moderate"
+        },
+        "social_rank": "working-class, servant",
+        "register": "informal, respectful",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "bright, clear",
+        "distinctive": "A cheerful, carrying call — the voice of someone used to being heard from the other end of a hallway."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Euphemia",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Flack",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 1,
+      "description": "A pompous, self-satisfied American tourist, proudly describing the architectural follies of his hometown.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "middle-class, educated",
+        "register": "formal, boastful, verbose",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "nasal, reedy",
+        "distinctive": "Draws out descriptive words with relish; a pedantic, lecturing tone that lingers on details."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Lady Otway",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Minnie Beebe",
@@ -34891,31 +35272,72 @@
         "Minnie"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 8,
+      "description": "Mr. Beebe's young niece, a bright, outspoken child who observes the adults with blunt honesty.",
+      "voice": {
+        "sex": "female",
+        "age_band": "child",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-middle-class",
+        "register": "informal, childish",
+        "pitch": "high",
+        "pace": "fast",
+        "timbre": "clear, piping",
+        "distinctive": "bright, literal-minded; states observations with unblinking certainty"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Harris",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Floyd",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 1,
+      "description": "A plain-speaking, no-frills Englishman at a dinner table, brusque in his dismissal of dessert.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "northern_england",
+          "strength": "moderate"
+        },
+        "social_rank": "working-class, uneducated",
+        "register": "informal, blunt",
+        "pitch": "low",
+        "pace": "fast",
+        "timbre": "gravelly, flat",
+        "distinctive": "Delivers lines with a flat, finality — no room for argument, a man of few words and strong opinions."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Marian",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 14
+      "first_appearance_chapter": 14,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Honeychurch",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 17
+      "first_appearance_chapter": 17,
+      "dialogue_segments": 0
     },
     {
       "name": "Miss Minnie",
@@ -34923,19 +35345,76 @@
         "Minnie"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 17
+      "first_appearance_chapter": 17,
+      "dialogue_segments": 2,
+      "description": "A young girl, likely a servant or child in the Honeychurch household, who reports the household's upheaval to Mr. Beebe.",
+      "voice": {
+        "sex": "female",
+        "age_band": "child",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Home Counties",
+          "strength": "strong"
+        },
+        "social_rank": "working-class",
+        "register": "informal, childish",
+        "pitch": "high",
+        "pace": "fast",
+        "timbre": "bright, breathless",
+        "distinctive": "excited, tattling; runs sentences together in a rush of news"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Uncle Arthur",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 17
+      "first_appearance_chapter": 17,
+      "dialogue_segments": 2,
+      "description": "A bluff, no-nonsense older relative of the Honeychurch family, fond of brisk commands and plain speaking.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-middle-class, educated",
+        "register": "informal, authoritative, clipped",
+        "pitch": "low",
+        "pace": "fast",
+        "timbre": "gruff, dry",
+        "distinctive": "Snaps out short sentences; a no-fuss, slightly impatient energy, like a retired military man."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Powell",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 18
+      "first_appearance_chapter": 18,
+      "dialogue_segments": 3,
+      "description": "A local working-class man, likely a servant or tradesman, who relays news about the Emersons' departure.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Home Counties",
+          "strength": "strong"
+        },
+        "social_rank": "working-class",
+        "register": "informal, deferential",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "gruff, plain",
+        "distinctive": "matter-of-fact, respectful; drops h's, uses flat vowels"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     }
   ],
   "statistics": {
@@ -34944,20 +35423,49 @@
     "total_segments": 3707,
     "total_characters": 40,
     "validation_performed": true,
-    "chapters_needing_review": [
-      17
-    ],
-    "unreviewed_critic_windows": 1,
-    "pipeline_version": "1.0.0",
+    "chapters_needing_review": [],
+    "unreviewed_critic_windows": 0,
+    "pipeline_version": "1.1.0",
     "discovery_confidence": {
-      "avg_confidence": 0.9544606711170933,
+      "avg_confidence": 0.9531888441890696,
       "min_confidence": 0.8659090909090907
-    }
+    },
+    "cast_characters": 26
   },
   "processing_config": {
     "processing_model": "google/gemma-4-E4B-it-qat-w4a16-ct",
     "validation_model": "/opt/data/models/DeepSeek-V4-Flash-0731-GGUF/UD-Q8_K_XL/DeepSeek-V4-Flash-0731-UD-Q8_K_XL-00001-of-00005.gguf",
     "dual_llm_validation": true,
     "chunk_size": 1000
+  },
+  "production": {
+    "synopsis": "A young, sheltered Englishwoman, Lucy Honeychurch, is torn between the passionate, free-spirited George Emerson and the conventional, snobbish Cecil Vyse while traveling in Italy and later in her home county of Surrey. Through a series of social missteps and moments of awakening, she must choose between a life of propriety and one of genuine feeling.",
+    "author": {
+      "name": "E. M. Forster",
+      "years": "1879-1970",
+      "nationality": "English",
+      "note": "Forster's prose is wry, observant, and gently ironic, with a keen eye for social hypocrisy and a deep sympathy for human vulnerability. The narration should carry a dry, amused detachment that never becomes cruel."
+    },
+    "narration": {
+      "person": "third_omniscient",
+      "narrator_character": "",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "Received Pronunciation",
+          "strength": "moderate"
+        },
+        "social_rank": "educated_middle_class",
+        "register": "literary, wry, gently ironic, with a warm but detached amusement",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "clear, slightly dry",
+        "distinctive": "A voice that can convey both the absurdity and the poignancy of Edwardian social mores."
+      },
+      "basis": "author_nationality"
+    },
+    "casting_notes": "All characters are English, with the exception of the Italian Signora Bertolini and the cab-driver, who should be given light, non-stereotypical Italian accents. The English cast should use a range of class-based accents: the Honeychurches and their circle speak educated upper-middle-class RP; the Emersons, particularly George, speak with a slightly rougher, more direct, lower-middle-class tone; servants and minor characters (Powell, the cab-driver) use working-class regional accents. Differentiate primarily by age, class, and gender, keeping the overall sound cohesive and period-appropriate."
   }
 }

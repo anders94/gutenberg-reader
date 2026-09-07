@@ -253,6 +253,7 @@ The pipeline runs in 7 stages. Each stage writes to `cache/<book_id>/0N-<name>/`
 | 05 | Segmentation | Deterministic quote-based narration/dialogue split + three-tier speaker attribution |
 | 06 | Critic | Deterministic anchor-propagation pass + optional LLM attribution review |
 | 07 | Assembly | Merges all chapters into the final JSON |
+| 08 | Casting | LLM production notes and per-character voice specs for downstream TTS |
 
 ### Resume and force-rerun
 
@@ -282,7 +283,8 @@ cache/
     ├── 04-characters/   characters.json
     ├── 05-segments/     chapter-01.json … chapter-61.json
     ├── 06-critic/       chapter-01.json … chapter-61.json
-    └── 07-final/        1342.json
+    ├── 07-final/        1342.json
+    └── 08-casting/      casting.json
 ```
 
 ---

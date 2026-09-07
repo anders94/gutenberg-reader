@@ -51,6 +51,10 @@ class Config:
     # Ask what an ambiguous quoted span actually is before treating it as
     # speech. Off, every scare-quoted term is dialogue needing a speaker.
     span_review: bool = True
+    # On by default: the production block and per-character voice specs are
+    # the half of this project's stated purpose ("so TTS engines can apply
+    # per-character voices automatically") that lives after assembly.
+    casting: bool = True
     processing_timeout: float = 300.0
     judgment_timeout: float = 1800.0
 
@@ -81,6 +85,7 @@ class Config:
             5: base / "05-segments",
             6: base / "06-critic",
             7: base / "07-final",
+            8: base / "08-casting",
         }
 
     def stage_dir(self, stage: int) -> Path:

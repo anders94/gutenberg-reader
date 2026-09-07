@@ -1769,9 +1769,7 @@
           },
           {
             "name": "Meg",
-            "aliases": [
-              "Margaret"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
           },
@@ -1792,17 +1790,14 @@
           {
             "name": "Mother",
             "aliases": [
-              "Marmee",
-              "MOTHER"
+              "Marmee"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
           },
           {
-            "name": "Mr. March",
-            "aliases": [
-              "Father"
-            ],
+            "name": "Father",
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
           },
@@ -1814,12 +1809,7 @@
           },
           {
             "name": "Mrs. March",
-            "aliases": [
-              "mother",
-              "Marmee",
-              "Mrs. March",
-              "Grandmother"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
           }
@@ -3286,15 +3276,8 @@
             "first_appearance_chapter": 2
           },
           {
-            "name": "Commander-in-chief General Laurence",
-            "aliases": [
-              "the old gentleman",
-              "Laurie's tutor",
-              "James Laurence",
-              "Grandfather",
-              "Laurie's grandfather",
-              "Mr. Laurence"
-            ],
+            "name": "Mr. Laurence",
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 2
           },
@@ -5224,20 +5207,16 @@
             "name": "Jo March",
             "aliases": [
               "Jo",
-              "Josephine",
-              "Aunt Dodo"
+              "Josephine"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
           },
           {
-            "name": "Miss Meg March",
+            "name": "Meg March",
             "aliases": [
               "Meg",
-              "Margaret",
-              "Daisy",
-              "Miss March",
-              "Meg March"
+              "Margaret"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
@@ -5270,9 +5249,7 @@
             "name": "Beth March",
             "aliases": [
               "Beth",
-              "Elizabeth",
-              "Bethy",
-              "David"
+              "Elizabeth"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
@@ -5289,12 +5266,7 @@
             "name": "Theodore Laurence",
             "aliases": [
               "Laurie",
-              "Laurence boy",
-              "Colonel Teddy",
-              "Uncle Teddy",
-              "Teddy",
-              "Mr. L.",
-              "Telemachus"
+              "Laurence boy"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 3
@@ -5313,9 +5285,7 @@
           },
           {
             "name": "Annie Moffat",
-            "aliases": [
-              "Annie"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 3
           }
@@ -6595,11 +6565,7 @@
         "discovered_characters": [
           {
             "name": "Aunt March",
-            "aliases": [
-              "Aunt",
-              "old lady",
-              "the terror of the boys"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 4
           },
@@ -6643,17 +6609,14 @@
           },
           {
             "name": "Mr. Davis",
-            "aliases": [
-              "old Davis"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 4
           },
           {
             "name": "Little Raphael",
             "aliases": [
-              "Amy",
-              "Raphael"
+              "Amy"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 4
@@ -6678,9 +6641,7 @@
           },
           {
             "name": "Uncle March",
-            "aliases": [
-              "Uncle"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 4
           },
@@ -10714,9 +10675,7 @@
           },
           {
             "name": "Mary Kingsley",
-            "aliases": [
-              "Mary"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 7
           },
@@ -14766,9 +14725,7 @@
         "discovered_characters": [
           {
             "name": "Mrs. Moffat",
-            "aliases": [
-              "Mrs. Moffat"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 9
           },
@@ -14800,9 +14757,7 @@
           },
           {
             "name": "Ned Moffat",
-            "aliases": [
-              "Ned"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 9
           },
@@ -14820,10 +14775,7 @@
           },
           {
             "name": "Miss Belle",
-            "aliases": [
-              "Belle",
-              "Belle Moffat"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 9
           }
@@ -17791,9 +17743,7 @@
           {
             "name": "Sallie Gardiner",
             "aliases": [
-              "Sallie",
-              "Sallie Moffat",
-              "Sallie Moffatt"
+              "Sallie"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 3
@@ -20984,21 +20934,14 @@
           },
           {
             "name": "Mr. Brooke",
-            "aliases": [
-              "Mr. Greatheart",
-              "John",
-              "John Brooke",
-              "Father",
-              "Brooke"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 12
           },
           {
             "name": "Kate Vaughn",
             "aliases": [
-              "Miss Kate",
-              "Kate"
+              "Miss Kate"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 12
@@ -25707,9 +25650,7 @@
           {
             "name": "Margaret March",
             "aliases": [
-              "Meg",
-              "Miss 'Margaret'",
-              "Margaret"
+              "Meg"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 15
@@ -28004,9 +27945,7 @@
           },
           {
             "name": "Minna",
-            "aliases": [
-              "Minna"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 17
           },
@@ -28018,9 +27957,7 @@
           },
           {
             "name": "Polly",
-            "aliases": [
-              "the lap-dog"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 17
           }
@@ -30109,10 +30046,7 @@
             "name": "Amy Curtis March",
             "aliases": [
               "Amy",
-              "Amy March",
-              "The Narrator (Foreign Correspondent)",
-              "The Narrator (Amy)",
-              "Aunt Amy"
+              "Amy March"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 1
@@ -32331,7 +32265,7 @@
           {
             "type": "dialogue",
             "text": "\"Come in!\"",
-            "speaker": "Mr. Cutter",
+            "speaker": "Laurence",
             "pronunciation_hints": [],
             "notes": null,
             "start": 15769,
@@ -32868,28 +32802,15 @@
         "chapter_number": 21,
         "missing_text": [],
         "attribution_issues": [
-          "segment 87: Josy-phine -> Jo March (The narration in segment 88 says 'Up went Jo', and the dialogue is Jo speaking to the maid, so the speaker should be Jo March.)",
-          "segment 92: Josy-phine -> Jo March (The narration in segment 91 says Jo 'said meekly' the following dialogue, so the speaker must be Jo March.)",
-          "segment 95: Josy-phine -> Jo March (The dialogue is Jo speaking to Laurie, as she is the one who came to make up and is asking what's wrong.)",
-          "segment 105: Josy-phine -> Jo March (The dialogue is Jo responding to Laurie's complaint, and the context indicates she is the speaker.)",
-          "segment 107: Josy-phine -> Jo March (The dialogue is Jo asking Laurie a question in their conversation, so the speaker must be Jo.)",
-          "segment 109: Josy-phine -> Jo March (The dialogue is Jo advising Laurie to make up with his grandfather, so the speaker must be Jo.)",
-          "segment 111: Josy-phine -> Jo March (The dialogue is Jo responding to Laurie's statement, so the speaker must be Jo.)",
-          "segment 115: Josy-phine -> Jo March (The dialogue is Jo asking Laurie how he plans to settle the affair, so the speaker must be Jo.)",
-          "segment 117: Josy-phine -> Jo March (The dialogue is Jo responding to Laurie's demand, so the speaker must be Jo.)",
-          "segment 119: Josy-phine -> Jo March (The dialogue is Jo trying to persuade Laurie to be sensible, so the speaker must be Jo.)",
-          "segment 121: Josy-phine -> Jo March (The dialogue is Jo telling Laurie he shouldn't worry his grandfather, so the speaker must be Jo.)",
-          "segment 128: Josy-phine -> Jo March (The dialogue is Jo explaining why she can't run away, so the speaker must be Jo.)",
-          "segment 133: Josy-phine -> Jo March (The dialogue is Jo continuing her response to Laurie, so the speaker must be Jo.)",
-          "segment 142: Josy-phine -> Jo March (The narration in segment 143 says 'muttered Jo', so the speaker must be Jo March.)"
+          "segment 144: Mr. Cutter -> Laurence (Segment 145 narration says 'Mr. Laurence's gruff voice sounded gruffer than ever, as Jo tapped at his door' — the voice belongs to Mr. Laurence (the grandfather), not Mr. Cutter.)"
         ],
         "name_inconsistencies": [],
-        "overall_quality": 0.7921296296296296,
-        "needs_reprocessing": true,
+        "overall_quality": 0.9278703703703703,
+        "needs_reprocessing": false,
         "unreviewed_windows": [],
         "fixed_segments": null
       },
-      "needs_review": true
+      "needs_review": false
     },
     {
       "chapter": {
@@ -33700,8 +33621,7 @@
           {
             "name": "John March",
             "aliases": [
-              "Mr. March",
-              "The Father (of the Narrator)"
+              "Mr. March"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 22
@@ -43378,9 +43298,7 @@
           },
           {
             "name": "May Chester",
-            "aliases": [
-              "May"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 29
           },
@@ -47274,9 +47192,7 @@
         "discovered_characters": [
           {
             "name": "Mrs. Kirke",
-            "aliases": [
-              "Mrs. K."
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 32
           }
@@ -48150,9 +48066,7 @@
               "Bhaer",
               "Old Fritz",
               "Lager Beer",
-              "Ursa Major",
-              "Professor",
-              "Fritz"
+              "Ursa Major"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 33
@@ -48162,8 +48076,7 @@
             "aliases": [
               "the mite",
               "the little thing",
-              "the effalunt",
-              "Tina"
+              "the effalunt"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 33
@@ -48194,17 +48107,13 @@
           },
           {
             "name": "Franz",
-            "aliases": [
-              "Franz"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 33
           },
           {
             "name": "Emil",
-            "aliases": [
-              "Emil"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 33
           },
@@ -55037,10 +54946,7 @@
           },
           {
             "name": "Mrs. Brooke",
-            "aliases": [
-              "Mrs. Laurence",
-              "Madam Mother"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 38
           },
@@ -66349,7 +66255,8 @@
         "MOTHER"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 0
     },
     {
       "name": "Mrs. March",
@@ -66360,7 +66267,26 @@
         "Grandmother"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 224,
+      "description": "Marmee, the wise, patient, and loving mother of the March girls, who guides them with gentle counsel and quiet strength.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "educated_middle_class",
+        "register": "formal, warm, maternal",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "soft, warm, steady",
+        "distinctive": "Calm and measured, with a gentle, reassuring cadence; her words carry quiet authority and deep affection."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Commander-in-chief General Laurence",
@@ -66373,43 +66299,158 @@
         "Mr. Laurence"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 56,
+      "description": "The wealthy, gruff but soft-hearted grandfather of Laurie, who becomes a benefactor to the March family.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "moderate"
+        },
+        "social_rank": "upper-class",
+        "register": "authoritative, old-fashioned",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "rumbling, gravelly",
+        "distinctive": "Brusque and commanding, but with a hidden warmth that surfaces in softened consonants and a slight chuckle at the end of sentences."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Hugo",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 2,
+      "description": "A menacing figure in the girls' play, a villain who commands and threatens with theatrical malice.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "villain (in play)",
+        "register": "formal, theatrical",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "dark, gravelly",
+        "distinctive": "Growls his commands, drawing out 'ho' and 'anon' with a melodramatic sneer."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Roderigo",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 0
     },
     {
       "name": "Zara",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 2,
+      "description": "A magical fairy from the moon in the March sisters' play, delivering incantations and lamenting her fate.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "supernatural",
+        "register": "poetic, theatrical",
+        "pitch": "high",
+        "pace": "slow",
+        "timbre": "ethereal",
+        "distinctive": "otherworldly, singsong; stretches vowels and floats the final words"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Hagar",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 1,
+      "description": "A witch or sorceress in the March sisters' play, summoning a spirit with a spell.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "supernatural",
+        "register": "incantatory, dramatic",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "dark",
+        "distinctive": "gravelly, portentous; rolls the 'r's and lingers on the rhymes"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Don Pedro",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 1,
+      "description": "A character in the March sisters' play, urging his fellow actor to keep up the performance despite mishaps.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "middle_class",
+        "register": "informal, urgent",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "tense",
+        "distinctive": "hushed, frantic; whispers loudly with suppressed panic"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Ferdinando",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 2
+      "first_appearance_chapter": 2,
+      "dialogue_segments": 2,
+      "description": "A courtier in the same play, who speaks with eager, observant commentary on the romantic intrigue.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "courtier (in play)",
+        "register": "formal, theatrical",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "light, agile",
+        "distinctive": "Curious and conspiratorial; leans into the word 'yonder' with a knowing lilt."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Jo March",
@@ -66419,7 +66460,26 @@
         "Aunt Dodo"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 658,
+      "description": "The second March sister, a fiery, independent tomboy who dreams of being a writer and resists conventional femininity.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "educated_middle_class",
+        "register": "informal, direct, passionate",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "bright, slightly husky",
+        "distinctive": "Energetic, impulsive; often speaks at a gallop, with a wry, self-deprecating humor and a tendency to trail off into thought."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Miss Meg March",
@@ -66431,25 +66491,47 @@
         "Meg March"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 210,
+      "description": "The eldest March sister, Meg, who is graceful, domestic, and somewhat vain, but grows into a devoted wife and mother.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "educated_middle_class",
+        "register": "polite, proper, occasionally flustered",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "soft, feminine",
+        "distinctive": "Gentle and ladylike, with a hint of youthful vanity; her tone can become flustered or earnest when discussing her worries."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mrs. Gardiner",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 0
     },
     {
       "name": "Miss Josephine",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 0
     },
     {
       "name": "Scrabble",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 0
     },
     {
       "name": "Beth March",
@@ -66460,7 +66542,26 @@
         "David"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 82,
+      "description": "The shy, gentle, and musically gifted third March sister, whose quiet kindness and frailty touch all who know her.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "educated_middle_class",
+        "register": "soft-spoken, timid, sincere",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "soft, gentle, slightly breathy",
+        "distinctive": "Quiet and hesitant, with a delicate, almost fragile quality; her rare moments of joy are expressed with a pure, simple warmth."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Theodore Laurence",
@@ -66474,13 +66575,33 @@
         "Telemachus"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 313,
+      "description": "The wealthy, charming, and lonely boy next door, known as Laurie, who becomes a close friend and later a suitor to the March sisters.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "upper_class",
+        "register": "informal, warm, playful",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "youthful, resonant",
+        "distinctive": "Playful and teasing, with a quick laugh; his tone shifts from boyish exuberance to earnest sincerity when serious."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Gardiner",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 0
     },
     {
       "name": "Annie Moffat",
@@ -66488,7 +66609,26 @@
         "Annie"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 3,
+      "description": "A fashionable, slightly catty young society woman, fond of gossip and impressed by wealth and display.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "upper-class",
+        "register": "refined, gossipy",
+        "pitch": "high",
+        "pace": "fast",
+        "timbre": "bright, brittle",
+        "distinctive": "Singsong, affected drawl; draws out vowels on words like 'ravishing' with a sly, envious edge."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Aunt March",
@@ -66498,7 +66638,26 @@
         "the terror of the boys"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 32,
+      "description": "The wealthy, sharp-tongued, and domineering great-aunt of the March girls.",
+      "voice": {
+        "sex": "female",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "moderate"
+        },
+        "social_rank": "upper-class",
+        "register": "imperious, old-fashioned",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "thin, reedy",
+        "distinctive": "Cracked and imperious; draws out vowels with a nasal twang, and snaps out commands with a sharp, dismissive finality."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Bethy",
@@ -66506,25 +66665,65 @@
         "Beth"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 67,
+      "description": "The gentle, shy third March sister, a quiet homebody devoted to music and her family.",
+      "voice": {
+        "sex": "female",
+        "age_band": "teen",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "educated middle-class",
+        "register": "soft-spoken, earnest",
+        "pitch": "high",
+        "pace": "slow",
+        "timbre": "sweet, breathy",
+        "distinctive": "Quietly tremulous; speaks with a gentle, almost fragile sincerity, as if each word is a small offering."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. King",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Grace",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 5,
+      "description": "A cheerful, giggly young society girl, part of the fashionable crowd; light-hearted and easily amused.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "upper-middle-class",
+        "register": "girlish, informal",
+        "pitch": "high",
+        "pace": "fast",
+        "timbre": "light, silvery",
+        "distinctive": "Effervescent, giggly; ends sentences with a rising, delighted inflection."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Susie Perkins",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Davis",
@@ -66532,7 +66731,26 @@
         "old Davis"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 12,
+      "description": "The stern, old-fashioned schoolmaster who teaches Amy and her classmates, and who is scandalized by Amy's pickled limes.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "",
+          "strength": "moderate"
+        },
+        "social_rank": "middle-class, educated",
+        "register": "formal, authoritative",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "gravelly, stern",
+        "distinctive": "Booming and self-important; speaks as if delivering a proclamation, with a theatrical outrage that is slightly comical in its severity."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Little Raphael",
@@ -66541,25 +66759,83 @@
         "Raphael"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 38,
+      "description": "The artistic and temperamental youngest March sister, Amy, nicknamed for her artistic aspirations.",
+      "voice": {
+        "sex": "female",
+        "age_band": "teen",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "educated middle-class",
+        "register": "refined, dramatic",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "bright, crisp",
+        "distinctive": "Dramatic and precise; enunciates with flair, often emphasizing adjectives and ending sentences with a decisive snap."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Florence",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Maria Parks",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 4,
+      "description": "A bustling, gossipy household servant, familiar with the family's dramas and not afraid to share her opinions.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "strong"
+        },
+        "social_rank": "servant-class",
+        "register": "informal, colloquial",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "reedy, slightly nasal",
+        "distinctive": "Chatty, conspiratorial; drops into a hushed, urgent tone for gossip, with a singsong rhythm."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Cutter",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 1,
+      "description": "A tradesman or employer, likely a tailor or shopkeeper, who gives a brief, practical assessment of a young woman's work ethic.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "moderate"
+        },
+        "social_rank": "working-class",
+        "register": "plain-spoken, practical",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "gruff",
+        "distinctive": "dry, matter-of-fact; clips words, gives a verdict rather than a description"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Uncle March",
@@ -66567,7 +66843,8 @@
         "Uncle"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Josy-phine",
@@ -66575,13 +66852,33 @@
         "Jo"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 312,
+      "description": "A young Jo March, the tomboyish second sister, seen in childhood scenes with a bright, spirited voice.",
+      "voice": {
+        "sex": "female",
+        "age_band": "child",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "educated_middle_class",
+        "register": "informal, eager",
+        "pitch": "high",
+        "pace": "fast",
+        "timbre": "bright, clear",
+        "distinctive": "Bubbling with energy and impatience; speaks with a youthful directness, often blurting out thoughts before fully forming them."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Katy Brown",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Mary Kingsley",
@@ -66589,7 +66886,8 @@
         "Mary"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Jenny Snow",
@@ -66598,7 +66896,8 @@
         "Miss Snow"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Mrs. Moffat",
@@ -66606,7 +66905,26 @@
         "Mrs. Moffat"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 8,
+      "description": "A wealthy, gossipy society matron who enjoys observing and commenting on the romantic affairs of the younger generation.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "",
+          "strength": "moderate"
+        },
+        "social_rank": "upper-class, wealthy",
+        "register": "conversational, gossipy",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "rich, matronly",
+        "distinctive": "Warm and conspiratorial; speaks with a knowing, slightly nosy air, as if always sharing a piece of delicious gossip."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Miss Clara",
@@ -66614,13 +66932,51 @@
         "Clara"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 3,
+      "description": "A refined, older woman of the March family's acquaintance, likely a neighbor or relative, who observes the girls with fond but sharp-eyed amusement.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "moderate"
+        },
+        "social_rank": "educated, upper-middle-class",
+        "register": "formal, genteel",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "warm, slightly reedy",
+        "distinctive": "Fussy, indulgent; draws out vowels on words like 'child' and 'dear' with a hint of theatrical concern."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Major Lincoln",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 2,
+      "description": "A gentleman observing the young people at a party, commenting wryly on the girls' behavior.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper_class",
+        "register": "educated, conversational",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "warm",
+        "distinctive": "dry, amused; delivers observations with a knowing chuckle"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Ned Moffat",
@@ -66628,19 +66984,58 @@
         "Ned"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 6,
+      "description": "A wealthy, flirtatious young man from the city, part of the fashionable set that dazzles Meg; a bit of a tease and a snob.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "upper-class, leisured",
+        "register": "informal, bantering",
+        "pitch": "medium",
+        "pace": "brisk",
+        "timbre": "bright, slightly nasal",
+        "distinctive": "Cocky, playful drawl; emphasizes words with a smirk, especially when teasing."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Fisher",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 0
     },
     {
       "name": "Hortense",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 2,
+      "description": "A French maid in the March household, who delivers notes and packages with a flirtatious, accented charm.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "French",
+          "strength": "moderate"
+        },
+        "social_rank": "servant-class",
+        "register": "informal, deferential",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "bright, crisp",
+        "distinctive": "Trills her 'r's and softens consonants; ends phrases with a rising, questioning inflection."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Miss Belle",
@@ -66649,7 +67044,26 @@
         "Belle Moffat"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 9,
+      "description": "Meg's fashionable and wealthy friend who introduces her to high society and enjoys playing matchmaker.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-class, educated",
+        "register": "refined, social",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "light, fluting",
+        "distinctive": "Breezy and social; speaks with the easy authority of a hostess, issuing instructions and observations with a graceful, commanding air."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Samuel Pickwick",
@@ -66657,7 +67071,26 @@
         "Pickwick"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 5,
+      "description": "A jovial, pompous older gentleman, likely a family friend or patriarch figure; enjoys ceremony and playful authority.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "moderate"
+        },
+        "social_rank": "middle-class, respectable",
+        "register": "formal, theatrical",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "round, booming",
+        "distinctive": "Grand, self-important; rolls out phrases with mock solemnity and a chuckle underneath."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Augustus Snodgrass",
@@ -66665,7 +67098,26 @@
         "Snodgrass"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 2,
+      "description": "Another of Laurie's friends, a genial young man who acts as a peacemaker and cheerleader in the boys' club and literary games.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "educated, middle-class",
+        "register": "informal, collegial",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "round, friendly",
+        "distinctive": "Good-natured and rallying; ends sentences on a rising, encouraging note."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Nathaniel Winkle",
@@ -66673,7 +67125,26 @@
         "Winkle"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 3,
+      "description": "A young man, one of Laurie's friends, who participates in the March sisters' literary games and club with earnest, slightly pompous enthusiasm.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "educated, middle-class",
+        "register": "formal, bookish",
+        "pitch": "medium",
+        "pace": "brisk",
+        "timbre": "bright, clear",
+        "distinctive": "Eager and officious; delivers lines with a slight breathless rush, as if always mid-debate."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Pickwick",
@@ -66681,7 +67152,8 @@
         "S. Pickwick"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Snodgrass",
@@ -66689,7 +67161,26 @@
         "A. Snodgrass"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 2,
+      "description": "A member of a club or society, making a formal proposal to admit a new member.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "middle_class",
+        "register": "formal, oratorical",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "resonant",
+        "distinctive": "pompous, self-important; pauses for effect after each phrase"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Tupman",
@@ -66699,7 +67190,26 @@
         "Tupman"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 1,
+      "description": "A member of the Pickwick Club, a gentleman of good humor and a tendency toward grand, sentimental gestures.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "gentleman",
+        "register": "formal, slightly theatrical",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "warm",
+        "distinctive": "pompous yet kind-hearted; draws out the phrase 'even if we are afraid' with dramatic gravity"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Mr. Winkle",
@@ -66707,7 +67217,8 @@
         "N. Winkle"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Hannah Brown",
@@ -66715,25 +67226,83 @@
         "Hannah"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 28,
+      "description": "The March family's devoted Irish servant, a practical and warm-hearted woman.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "strong"
+        },
+        "social_rank": "servant-class",
+        "register": "colloquial, earthy",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "rich, husky",
+        "distinctive": "Bustling and hearty; speaks with a broad, working-class drawl, dropping g's and using colorful, homespun phrases."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Count de Adelon",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 3,
+      "description": "A theatrical, aristocratic figure in the girls' play, grand and melodramatic; also appears as a shopkeeper in another scene.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "France",
+          "strength": "moderate"
+        },
+        "social_rank": "aristocratic",
+        "register": "formal, theatrical",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "rich, resonant",
+        "distinctive": "Over-the-top, grandiloquent; savors each syllable with a flourish, as if on stage."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Lady Viola",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 2,
+      "description": "A tragic heroine in the March sisters' play, doomed to marry a man she hates while pining for a young artist.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "aristocratic",
+        "register": "formal, theatrical",
+        "pitch": "high",
+        "pace": "slow",
+        "timbre": "clear",
+        "distinctive": "melodramatic, breathy; savors tragic words with a sigh"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Count Antonio",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Earl of Devereux and De Vere",
@@ -66743,7 +67312,26 @@
         "Ferdinand"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 2,
+      "description": "A character in the girls' melodramatic play, a nobleman speaking in grand, romantic declarations.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "aristocratic (in play)",
+        "register": "highly formal, theatrical",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "resonant, sonorous",
+        "distinctive": "Sweepingly dramatic; lingers on key words like 'boast' and 'fortune' with a flourish."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Sam Weller",
@@ -66751,7 +67339,8 @@
         "Weller"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Sallie Gardiner",
@@ -66761,7 +67350,26 @@
         "Sallie Moffatt"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 18,
+      "description": "A fashionable, wealthy friend of Meg's, representing the social world Meg sometimes envies.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "upper-class",
+        "register": "refined, chatty",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "bright, fluty",
+        "distinctive": "Light and social; speaks with a quick, animated patter, full of exclamations and a slight drawl on vowels, as if always at a party."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Miss Crocker",
@@ -66769,7 +67377,8 @@
         "Croaker"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Brooke",
@@ -66781,7 +67390,26 @@
         "Brooke"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 64,
+      "description": "A kind, earnest young tutor who becomes Meg's suitor and later husband.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "educated middle-class",
+        "register": "polite, formal but warm",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "warm, clear",
+        "distinctive": "Measured and respectful; often pauses as if choosing words carefully, with a gentle upward lilt on questions."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Kate Vaughn",
@@ -66790,7 +67418,26 @@
         "Kate"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 15,
+      "description": "Fred's sophisticated and somewhat haughty English sister, who looks down on American manners but is ultimately won over by the March girls' charm.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-class, educated",
+        "register": "refined, slightly condescending",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "cool, crisp",
+        "distinctive": "Measured and observant; delivers judgments with a dry, almost amused detachment, as if commenting on a curious species."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Fred Vaughn",
@@ -66798,7 +67445,26 @@
         "Fred"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 17,
+      "description": "A wealthy, charming young Englishman visiting America, who becomes a friend to the March sisters and later a suitor to Amy.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-class, educated",
+        "register": "polite, easy-going",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "warm, smooth",
+        "distinctive": "Affable and slightly playful; his tone is that of a well-bred young man who is at ease in any company, with a hint of teasing in his banter."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Frank Vaughn",
@@ -66806,13 +67472,33 @@
         "Frank"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 4,
+      "description": "A quiet, earnest young Englishman, recovering from a riding injury; gentle and sincere, with a love of sport and nature.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "England",
+          "strength": "moderate"
+        },
+        "social_rank": "upper-class, gentlemanly",
+        "register": "polite, reserved",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "soft, warm",
+        "distinctive": "Understated, wistful; softens on words of regret, with a gentle, self-deprecating humor."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Stable-man",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 13
+      "first_appearance_chapter": 13,
+      "dialogue_segments": 0
     },
     {
       "name": "Margaret March",
@@ -66822,43 +67508,68 @@
         "Margaret"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 15
+      "first_appearance_chapter": 15,
+      "dialogue_segments": 183,
+      "description": "Meg March as a young woman, the eldest sister, who is practical, kind, and increasingly aware of the sacrifices of poverty.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "educated_middle_class",
+        "register": "polite, earnest",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "soft, clear",
+        "distinctive": "Wistful and sincere, with a tendency to sigh over small disappointments; her warmth comes through in moments of affection."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Hattie King",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 16
+      "first_appearance_chapter": 16,
+      "dialogue_segments": 0
     },
     {
       "name": "Quartermaster Mullett",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 16
+      "first_appearance_chapter": 16,
+      "dialogue_segments": 0
     },
     {
       "name": "Major Lion",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 16
+      "first_appearance_chapter": 16,
+      "dialogue_segments": 0
     },
     {
       "name": "Mrs. Hummel",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 17
+      "first_appearance_chapter": 17,
+      "dialogue_segments": 0
     },
     {
       "name": "Lottchen",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 17
+      "first_appearance_chapter": 17,
+      "dialogue_segments": 0
     },
     {
       "name": "Heinrich",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 17
+      "first_appearance_chapter": 17,
+      "dialogue_segments": 0
     },
     {
       "name": "Minna",
@@ -66866,13 +67577,33 @@
         "Minna"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 17
+      "first_appearance_chapter": 17,
+      "dialogue_segments": 0
     },
     {
       "name": "Dr. Bangs",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 17
+      "first_appearance_chapter": 17,
+      "dialogue_segments": 2,
+      "description": "The family physician, a calm and kindly older man who attends to the March household in times of illness.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "moderate"
+        },
+        "social_rank": "professional, middle-class",
+        "register": "formal, reassuring",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "gravelly, gentle",
+        "distinctive": "Soothes with a deliberate, unhurried cadence; pauses before giving instructions as if weighing each word."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Polly",
@@ -66880,7 +67611,26 @@
         "the lap-dog"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 17
+      "first_appearance_chapter": 17,
+      "dialogue_segments": 10,
+      "description": "A clever, sharp-tongued pet parrot belonging to a neighbor, who mimics human speech with surprising accuracy and attitude.",
+      "voice": {
+        "sex": "neutral",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "n/a",
+        "register": "informal, mimicry",
+        "pitch": "high",
+        "pace": "fast",
+        "timbre": "squawky, nasal",
+        "distinctive": "Squawks with a human-like cadence but a distinctly avian sharpness; the delivery is abrupt, bossy, and comically imperious."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Laurence",
@@ -66889,7 +67639,26 @@
         "Teddy"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 18
+      "first_appearance_chapter": 18,
+      "dialogue_segments": 244,
+      "description": "Theodore 'Laurie' Laurence as a young man, the charming and devoted neighbor whose affection for Jo is a central thread.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "upper_class",
+        "register": "informal, earnest",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "warm, resonant",
+        "distinctive": "Sincere and open, with a touch of youthful vulnerability; his tone is often pleading or hopeful, especially when addressing Jo."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Joanna",
@@ -66897,7 +67666,8 @@
         "Joanna"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 18
+      "first_appearance_chapter": 18,
+      "dialogue_segments": 0
     },
     {
       "name": "Amy Curtis March",
@@ -66909,7 +67679,26 @@
         "Aunt Amy"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 356,
+      "description": "The youngest March sister, artistic, vain, and ambitious, who matures from a spoiled child into a refined and graceful young woman.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "educated_middle_class",
+        "register": "polite, refined, occasionally petulant",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "clear, melodic",
+        "distinctive": "Articulate and precise, with a hint of self-conscious elegance; can sound imperious when thwarted, but warms into genuine charm."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Estelle Valnor",
@@ -66917,19 +67706,40 @@
         "Esther"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 19
+      "first_appearance_chapter": 19,
+      "dialogue_segments": 7,
+      "description": "A French lady's maid who serves the wealthy young women in Nice, offering worldly advice and a touch of continental sophistication.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "French",
+          "strength": "moderate"
+        },
+        "social_rank": "servant-class, but refined",
+        "register": "formal, respectful",
+        "pitch": "medium",
+        "pace": "slow",
+        "timbre": "smooth, slightly accented",
+        "distinctive": "Speaks with a gentle French accent and a measured, almost philosophical tone; her advice is delivered with the gravity of a wise confidante."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Kitty Bryant",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 19
+      "first_appearance_chapter": 19,
+      "dialogue_segments": 0
     },
     {
       "name": "Peggy",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 20
+      "first_appearance_chapter": 20,
+      "dialogue_segments": 0
     },
     {
       "name": "John March",
@@ -66938,49 +67748,147 @@
         "The Father (of the Narrator)"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 22
+      "first_appearance_chapter": 22,
+      "dialogue_segments": 35,
+      "description": "The wise, loving father of the March girls, a chaplain serving in the Civil War.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "educated middle-class",
+        "register": "gentle, paternal, formal",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "warm, resonant",
+        "distinctive": "Calm and reassuring; speaks with a steady, unhurried cadence, often using gentle metaphors and ending with a soft, encouraging lift."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mrs. Carrol",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 24
+      "first_appearance_chapter": 24,
+      "dialogue_segments": 7,
+      "description": "A well-to-do, sharp-eyed aunt of the March girls, worldly and observant, quick to piece together romantic gossip.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "upper-middle-class, genteel",
+        "register": "educated, polite but knowing",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "warm, slightly crisp",
+        "distinctive": "Sly, amused delivery; lands observations with a knowing lift on the final word."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Lotty",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 24
+      "first_appearance_chapter": 24,
+      "dialogue_segments": 1,
+      "description": "A servant in the March household, likely a maid-of-all-work, who is fond of sweets and easily flustered.",
+      "voice": {
+        "sex": "female",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "strong"
+        },
+        "social_rank": "servant-class",
+        "register": "informal, uneducated",
+        "pitch": "medium",
+        "pace": "brisk",
+        "timbre": "light",
+        "distinctive": "giggly, easily scandalized; emphasizes the absurdity of the master's orders"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Parker",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 24
+      "first_appearance_chapter": 24,
+      "dialogue_segments": 1,
+      "description": "A servant or butler in a household, delivering a witty, rhyming reply with a touch of cheeky formality.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "moderate"
+        },
+        "social_rank": "servant-class",
+        "register": "formal but playful",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "smooth",
+        "distinctive": "dry, witty; delivers the rhyme with a knowing smirk, savoring the wordplay"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Miss Eliott",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 26
+      "first_appearance_chapter": 26,
+      "dialogue_segments": 0
     },
     {
       "name": "Mrs. Chester",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 29
+      "first_appearance_chapter": 29,
+      "dialogue_segments": 2,
+      "description": "A society matron managing the seating at a charity fair, diplomatically but firmly asserting her daughters' precedence.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper_class",
+        "register": "formal, persuasive",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "smooth",
+        "distinctive": "honeyed but steely; smiles while delivering a firm refusal"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mrs. Lamb",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 29
+      "first_appearance_chapter": 29,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Lamb",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 29
+      "first_appearance_chapter": 29,
+      "dialogue_segments": 0
     },
     {
       "name": "May Chester",
@@ -66988,7 +67896,26 @@
         "May"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 29
+      "first_appearance_chapter": 29,
+      "dialogue_segments": 9,
+      "description": "A rival of Amy's in society, who is pretty, fashionable, and somewhat petty, though she eventually makes amends.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper-middle-class, educated",
+        "register": "polite, slightly affected",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "sweet, but with a sharp edge",
+        "distinctive": "Saccharine on the surface with a competitive undertone; her compliments often carry a subtle sting, delivered with a practiced smile."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mr. Tudor",
@@ -66996,49 +67923,111 @@
         "Tudor"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 26
+      "first_appearance_chapter": 26,
+      "dialogue_segments": 2,
+      "description": "A young man at a party, making casual, slightly thoughtless remarks about the girls.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper_class",
+        "register": "casual, slangy",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "bright",
+        "distinctive": "flippant, breezy; speaks as if everything is a joke"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Aunt Carrol",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 29
+      "first_appearance_chapter": 29,
+      "dialogue_segments": 1,
+      "description": "An elderly aunt who communicates mostly in non-verbal sounds of disapproval or surprise.",
+      "voice": {
+        "sex": "female",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-US",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "upper_class",
+        "register": "minimal, gruff",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "gravelly",
+        "distinctive": "single, pointed throat-clear; conveys volumes with one sound"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Miss Lamb",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 29
+      "first_appearance_chapter": 29,
+      "dialogue_segments": 2,
+      "description": "A polite, cultured young woman at a social gathering, making pleasant conversation with the March sisters.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "middle_class",
+        "register": "polite, refined",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "soft",
+        "distinctive": "gentle, encouraging; ends sentences with a rising, friendly lilt"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Hayes",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 30
+      "first_appearance_chapter": 30,
+      "dialogue_segments": 0
     },
     {
       "name": "Flo",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 31
+      "first_appearance_chapter": 31,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Lennox",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 31
+      "first_appearance_chapter": 31,
+      "dialogue_segments": 0
     },
     {
       "name": "Ward",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 31
+      "first_appearance_chapter": 31,
+      "dialogue_segments": 0
     },
     {
       "name": "Aunt Mary",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 31
+      "first_appearance_chapter": 31,
+      "dialogue_segments": 0
     },
     {
       "name": "Mrs. Kirke",
@@ -67046,7 +68035,26 @@
         "Mrs. K."
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 32
+      "first_appearance_chapter": 32,
+      "dialogue_segments": 4,
+      "description": "A bustling, motherly boarding-house keeper, practical and warm, always managing chaos with good humor.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "moderate"
+        },
+        "social_rank": "middle-class, working",
+        "register": "friendly, efficient",
+        "pitch": "medium",
+        "pace": "brisk",
+        "timbre": "full, hearty",
+        "distinctive": "Bustling, no-nonsense warmth; laughs easily, and ends sentences with a practical, decisive snap."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Professor Bhaer",
@@ -67060,7 +68068,26 @@
         "Fritz"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 33
+      "first_appearance_chapter": 33,
+      "dialogue_segments": 73,
+      "description": "A kind, scholarly German professor who becomes a mentor and later a husband to Jo, bringing intellectual and emotional depth to her life.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "German",
+          "strength": "moderate"
+        },
+        "social_rank": "educated_professional",
+        "register": "formal, earnest, slightly accented",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "warm, resonant",
+        "distinctive": "Speaks with a gentle German accent, carefully choosing words; his tone is earnest and kind, with a fatherly warmth."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Tina",
@@ -67071,7 +68098,26 @@
         "Tina"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 33
+      "first_appearance_chapter": 33,
+      "dialogue_segments": 3,
+      "description": "A very young child, the Professor's little niece or charge, who speaks with charming mispronunciations and a toddler's imperious sweetness.",
+      "voice": {
+        "sex": "female",
+        "age_band": "child",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "middle-class child",
+        "register": "informal, childish",
+        "pitch": "high",
+        "pace": "slow",
+        "timbre": "soft, lisping",
+        "distinctive": "Adorably solemn; over-enunciates her invented words, pausing to make sure she's understood."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Miss Norton",
@@ -67079,7 +68125,8 @@
         "Norton"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 33
+      "first_appearance_chapter": 33,
+      "dialogue_segments": 0
     },
     {
       "name": "Kitty Kirke",
@@ -67087,7 +68134,26 @@
         "Kitty"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 33
+      "first_appearance_chapter": 33,
+      "dialogue_segments": 2,
+      "description": "A young girl, one of Amy's friends, who is outspoken and mischievously blunt in her observations.",
+      "voice": {
+        "sex": "female",
+        "age_band": "child",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "middle-class child",
+        "register": "informal, playful",
+        "pitch": "high",
+        "pace": "fast",
+        "timbre": "bright, chirpy",
+        "distinctive": "Cheeky and delighted; clips her words and giggles mid-sentence."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Minnie Kirke",
@@ -67095,7 +68161,26 @@
         "Minnie"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 33
+      "first_appearance_chapter": 33,
+      "dialogue_segments": 1,
+      "description": "A young girl, one of Mrs. Kirke's children, who is polite, cheerful, and used to getting her way on Saturday afternoons.",
+      "voice": {
+        "sex": "female",
+        "age_band": "child",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "middle-class",
+        "register": "childlike, polite",
+        "pitch": "high",
+        "pace": "brisk",
+        "timbre": "bright",
+        "distinctive": "eager, wheedling; rises at the end of the sentence as if seeking confirmation"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Franz",
@@ -67103,7 +68188,8 @@
         "Franz"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 33
+      "first_appearance_chapter": 33,
+      "dialogue_segments": 0
     },
     {
       "name": "Emil",
@@ -67111,7 +68197,8 @@
         "Emil"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 33
+      "first_appearance_chapter": 33,
+      "dialogue_segments": 0
     },
     {
       "name": "Mr. Dashwood",
@@ -67119,31 +68206,54 @@
         "the editor of the 'Weekly Volcano'"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 34
+      "first_appearance_chapter": 34,
+      "dialogue_segments": 11,
+      "description": "A pragmatic, somewhat cynical publisher who buys Jo's sensational stories, valuing entertainment over moral instruction.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-US",
+          "origin": "",
+          "strength": "moderate"
+        },
+        "social_rank": "middle-class, business",
+        "register": "blunt, professional",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "gruff, brisk",
+        "distinctive": "Quick and businesslike; his tone is that of a man who has seen it all and is not easily impressed, with a dry, knowing humor."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Grandma",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 36
+      "first_appearance_chapter": 36,
+      "dialogue_segments": 0
     },
     {
       "name": "Count",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 37
+      "first_appearance_chapter": 37,
+      "dialogue_segments": 0
     },
     {
       "name": "Lady de Jones",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 37
+      "first_appearance_chapter": 37,
+      "dialogue_segments": 0
     },
     {
       "name": "German Serene Something",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 37
+      "first_appearance_chapter": 37,
+      "dialogue_segments": 0
     },
     {
       "name": "Master Demi",
@@ -67153,7 +68263,26 @@
         "Demi"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 38
+      "first_appearance_chapter": 38,
+      "dialogue_segments": 11,
+      "description": "Meg's bright and precocious little son, who speaks in a charming, toddler-like babble and is the delight of the March household.",
+      "voice": {
+        "sex": "male",
+        "age_band": "child",
+        "accent": {
+          "locale": "en-US",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "middle-class, child",
+        "register": "informal, childish",
+        "pitch": "high",
+        "pace": "fast",
+        "timbre": "bright, clear",
+        "distinctive": "Earnest and proud of his small achievements; his mispronunciations are delivered with the confidence of a tiny scholar."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mrs. Brooke",
@@ -67162,7 +68291,26 @@
         "Madam Mother"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 38
+      "first_appearance_chapter": 38,
+      "dialogue_segments": 18,
+      "description": "Meg March, the eldest sister, now a devoted wife and mother, struggling with domestic life.",
+      "voice": {
+        "sex": "female",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "educated middle-class",
+        "register": "polite, earnest",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "soft, warm",
+        "distinctive": "Wistful and earnest; speaks with a gentle, confiding tone, often trailing off into sighs or soft, worried pauses."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mrs. Scott",
@@ -67170,13 +68318,15 @@
         "Scott"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 28
+      "first_appearance_chapter": 28,
+      "dialogue_segments": 0
     },
     {
       "name": "Baptiste",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 39
+      "first_appearance_chapter": 39,
+      "dialogue_segments": 0
     },
     {
       "name": "Daisy Brooke",
@@ -67184,7 +68334,26 @@
         "Daisy"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 45
+      "first_appearance_chapter": 45,
+      "dialogue_segments": 3,
+      "description": "A tiny, adorable toddler, the daughter of Meg and John Brooke; speaks in baby talk and is full of innocent affection.",
+      "voice": {
+        "sex": "female",
+        "age_band": "child",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "middle-class",
+        "register": "baby talk",
+        "pitch": "high",
+        "pace": "slow",
+        "timbre": "soft, lisping",
+        "distinctive": "Sweet, wobbly baby voice; mispronounces words with a sing-song, loving lilt."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Demi Brooke",
@@ -67192,25 +68361,65 @@
         "Demi"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 45
+      "first_appearance_chapter": 45,
+      "dialogue_segments": 21,
+      "description": "Meg's young son, a bright and curious little boy with a lisp.",
+      "voice": {
+        "sex": "male",
+        "age_band": "child",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "educated middle-class",
+        "register": "childlike, informal",
+        "pitch": "high",
+        "pace": "fast",
+        "timbre": "light, piping",
+        "distinctive": "Bright and inquisitive; speaks with a slight lisp and a sing-song rhythm, often trailing off into giggles or questions."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Rob",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 47
+      "first_appearance_chapter": 47,
+      "dialogue_segments": 0
     },
     {
       "name": "Tommy Bangs",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 47
+      "first_appearance_chapter": 47,
+      "dialogue_segments": 0
     },
     {
       "name": "Mrs. Bhaer",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 47
+      "first_appearance_chapter": 47,
+      "dialogue_segments": 1,
+      "description": "Jo March after her marriage to Professor Bhaer, now a contented wife and mother, but still the same passionate, self-deprecating Jo at heart.",
+      "voice": {
+        "sex": "female",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "educated, middle-class",
+        "register": "warm, earnest",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "rich",
+        "distinctive": "joyful, slightly breathless with emotion; lands the phrase 'beautifully gratified' with a swell of feeling"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     }
   ],
   "statistics": {
@@ -67219,20 +68428,49 @@
     "total_segments": 7032,
     "total_characters": 115,
     "validation_performed": true,
-    "chapters_needing_review": [
-      21
-    ],
+    "chapters_needing_review": [],
     "unreviewed_critic_windows": 0,
-    "pipeline_version": "1.0.0",
+    "pipeline_version": "1.1.0",
     "discovery_confidence": {
-      "avg_confidence": 0.927386666323959,
-      "min_confidence": 0.7921296296296296
-    }
+      "avg_confidence": 0.9302747671907834,
+      "min_confidence": 0.8536585365853658
+    },
+    "cast_characters": 66
   },
   "processing_config": {
     "processing_model": "google/gemma-4-E4B-it-qat-w4a16-ct",
     "validation_model": "/opt/data/models/DeepSeek-V4-Flash-0731-GGUF/UD-Q8_K_XL/DeepSeek-V4-Flash-0731-UD-Q8_K_XL-00001-of-00005.gguf",
     "dual_llm_validation": true,
     "chunk_size": 1000
+  },
+  "production": {
+    "synopsis": "The four March sisters—headstrong Jo, gentle Beth, vain Meg, and artistic Amy—navigate poverty, ambition, and sisterhood in Civil War-era New England. Under their mother Marmee's guidance, they learn that growing up means balancing personal dreams with family duty and love.",
+    "author": {
+      "name": "Louisa May Alcott",
+      "years": "1832-1888",
+      "nationality": "American",
+      "note": "Warm, moralistic, and gently humorous; the narration should carry a homely, affectionate tone with a light didactic touch."
+    },
+    "narration": {
+      "person": "third_omniscient",
+      "narrator_character": "",
+      "voice": {
+        "sex": "female",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-US",
+          "origin": "New England",
+          "strength": "light"
+        },
+        "social_rank": "middle-class",
+        "register": "warm, intimate, gently instructive",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "soft, clear",
+        "distinctive": "slight New England inflection, motherly warmth"
+      },
+      "basis": "author_nationality"
+    },
+    "casting_notes": "All characters share a New England accent; differentiate by age, gender, and class. The March family speaks with educated, middle-class warmth; servants and tradespeople use broader regional speech. Children's voices should be bright and youthful but not cartoonish."
   }
 }

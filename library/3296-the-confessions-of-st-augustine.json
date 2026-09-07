@@ -4360,18 +4360,13 @@
         ],
         "discovered_characters": [
           {
-            "name": "Lord Jesus Christ",
+            "name": "God",
             "aliases": [
               "Lord",
               "Thou",
               "Thee",
               "Thy",
-              "Thou art",
-              "the Man Christ Jesus",
-              "Jesus Christ our Lord",
-              "Christ Jesus",
-              "God",
-              "Christ"
+              "Thou art"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 4
@@ -9778,8 +9773,7 @@
               "the Man Christ Jesus",
               "Jesus Christ our Lord",
               "Christ Jesus",
-              "God",
-              "Christ"
+              "God"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 4
@@ -14764,7 +14758,7 @@
           {
             "type": "dialogue",
             "text": "\"therefore we are, because we have been made; we were not therefore, before we were, so as to make ourselves.\"",
-            "speaker": "Nebridius",
+            "speaker": "Unknown",
             "pronunciation_hints": [],
             "notes": null,
             "start": 6465,
@@ -14854,7 +14848,7 @@
           {
             "type": "dialogue",
             "text": "\"It is different, far different. These words are far beneath me, nor are they, because they flee and pass away; but the Word of my Lord abideth above me for ever.\"",
-            "speaker": "Nebridius",
+            "speaker": "Unknown",
             "pronunciation_hints": [],
             "notes": null,
             "start": 9418,
@@ -15700,7 +15694,7 @@
           {
             "type": "dialogue",
             "text": "\"How long time is it since he said this\"",
-            "speaker": "Wizard",
+            "speaker": "Unknown",
             "pronunciation_hints": [],
             "notes": null,
             "start": 31647,
@@ -15718,7 +15712,7 @@
           {
             "type": "dialogue",
             "text": "\"how long time since he did this\"",
-            "speaker": "Wizard",
+            "speaker": "Unknown",
             "pronunciation_hints": [],
             "notes": null,
             "start": 31689,
@@ -15736,7 +15730,7 @@
           {
             "type": "dialogue",
             "text": "\"how long time since I saw that\"",
-            "speaker": "Wizard",
+            "speaker": "Unknown",
             "pronunciation_hints": [],
             "notes": null,
             "start": 31728,
@@ -15754,7 +15748,7 @@
           {
             "type": "dialogue",
             "text": "\"this syllable hath double time to that single short syllable.\"",
-            "speaker": "Wizard",
+            "speaker": "Unknown",
             "pronunciation_hints": [],
             "notes": null,
             "start": 31766,
@@ -15817,7 +15811,7 @@
           {
             "type": "dialogue",
             "text": "\"there passed so many days,\"",
-            "speaker": "Wizard",
+            "speaker": "Unknown",
             "pronunciation_hints": [],
             "notes": null,
             "start": 33385,
@@ -15835,7 +15829,7 @@
           {
             "type": "dialogue",
             "text": "\"so many days,\"",
-            "speaker": "Wizard",
+            "speaker": "Unknown",
             "pronunciation_hints": [],
             "notes": null,
             "start": 33452,
@@ -15916,7 +15910,7 @@
           {
             "type": "dialogue",
             "text": "\"this is as long as that,\"",
-            "speaker": "Wizard",
+            "speaker": "Unknown",
             "pronunciation_hints": [],
             "notes": null,
             "start": 35851,
@@ -15934,7 +15928,7 @@
           {
             "type": "dialogue",
             "text": "\"twice so long as that,\"",
-            "speaker": "Wizard",
+            "speaker": "Unknown",
             "pronunciation_hints": [],
             "notes": null,
             "start": 35881,
@@ -16454,29 +16448,14 @@
       "validation": {
         "chapter_number": 11,
         "missing_text": [],
-        "attribution_issues": [
-          "segment 28: Unknown -> Nebridius (The line 'therefore we are, because we have been made; we were not therefore, before we were, so as to make ourselves.' is a personification of the heavens and earth speaking, not a dialogue from Nebridius; it should be attributed to the narrator or left as a citation.)",
-          "segment 38: Unknown -> Nebridius (The line 'It is different, far different. These words are far beneath me, nor are they, because they flee and pass away; but the Word of my Lord abideth above me for ever.' is Augustine's reflection on the eternal Word, not a dialogue from Nebridius; it should be attributed to Augustine or the narrator.)",
-          "segment 117: Wizard -> Unknown (The quoted phrase is presented as a hypothetical or general statement, not attributed to the Wizard; the narration says 'it is not properly said' before it, so no specific speaker is indicated.)",
-          "segment 119: Wizard -> Unknown (The quoted phrase is presented as a hypothetical or general statement, not attributed to the Wizard; the narration says 'yet perchance it might be properly said' before it, so no specific speaker is indicated.)",
-          "segment 121: Wizard -> Unknown (The quoted phrase is presented as a hypothetical or general statement, not attributed to the Wizard; the narration says 'Let it be said too' before it, so no specific speaker is indicated.)",
-          "segment 124: Wizard -> Unknown (The quoted line is part of Augustine's own reasoning ('And if any should ask me...'), not a direct speech by the Wizard; the speaker is Augustine himself, not the Wizard.)",
-          "segment 132: Unknown -> Wizard (The dialogue is an example of speech about time, consistent with the narrator's (Wizard's) ongoing discussion; no other character is indicated.)",
-          "segment 134: Unknown -> Wizard (Same as above; these are illustrative phrases spoken by the narrator.)",
-          "segment 136: Unknown -> Wizard (Same as above; illustrative phrase in the narrator's discourse.)",
-          "segment 138: Unknown -> Wizard (Same as above; illustrative phrase in the narrator's discourse.)",
-          "segment 145: Unknown -> Wizard (Illustrative phrase within the narrator's argument about measuring time.)",
-          "segment 147: Unknown -> Wizard (Illustrative phrase within the narrator's argument.)",
-          "segment 156: Unknown -> Wizard (Illustrative phrase within the narrator's argument.)",
-          "segment 158: Unknown -> Wizard (Illustrative phrase within the narrator's argument.)"
-        ],
+        "attribution_issues": [],
         "name_inconsistencies": [],
-        "overall_quality": 0.815128205128205,
-        "needs_reprocessing": true,
+        "overall_quality": 0.8766666666666666,
+        "needs_reprocessing": false,
         "unreviewed_windows": [],
         "fixed_segments": null
       },
-      "needs_review": true
+      "needs_review": false
     },
     {
       "chapter": {
@@ -20404,7 +20383,26 @@
       "name": "Augustine",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 9,
+      "description": "The narrator and protagonist, a brilliant rhetorician and restless soul seeking truth, eventually becoming a bishop.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "highly educated, authoritative",
+        "register": "formal, reflective",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "rich, resonant",
+        "distinctive": "calm, introspective; pauses as if weighing each word, then delivers with quiet authority"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Mother",
@@ -20413,7 +20411,26 @@
         "faithful one"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 13,
+      "description": "Augustine's devout and emotionally persistent Christian mother, whose faith and tears are central to his conversion.",
+      "voice": {
+        "sex": "female",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "respectable middle-class matron",
+        "register": "formal, earnest",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "warm, slightly tremulous",
+        "distinctive": "gentle but unshakeable; speaks with quiet conviction, often trailing into a hopeful sigh"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Bishop",
@@ -20422,37 +20439,133 @@
         "Priest of Thine"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 4,
+      "description": "A wise and patient church leader who counsels Augustine's mother, assuring her of her son's eventual conversion.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "high ecclesiastical office",
+        "register": "formal, pastoral",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "smooth, comforting",
+        "distinctive": "benevolent, reassuring; speaks with a calm, almost melodic cadence"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Wizard",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 6,
+      "description": "A practitioner of occult arts whom Augustine consults, yet who ultimately rejects superstition in favour of divine truth.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "mysterious, learned outsider",
+        "register": "archaic, oracular",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "gravelly, resonant",
+        "distinctive": "enigmatic, weighty; speaks as if delivering prophecies, with a hint of weary wisdom"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Nebridius",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 10,
+      "description": "A close friend and intellectual companion of Augustine, given to philosophical questioning and youthful idealism.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "educated scholar",
+        "register": "colloquial yet learned",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "bright, eager",
+        "distinctive": "inquisitive, rapid-fire; ends questions with a rising, almost playful lilt"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Friend (Unnamed)",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 7,
+      "description": "A companion from Augustine's youth, whose untimely death prompts deep reflection on mortality and friendship.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "educated young man",
+        "register": "informal, sincere",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "soft, slightly melancholic",
+        "distinctive": "understated, gentle; speaks with a sense of quiet wonder or subdued sorrow"
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Father",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 2,
+      "description": "Augustine's pragmatic and ambitious father, who desires worldly success for his son but lacks his wife's spiritual depth.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "respectable middle-class",
+        "register": "colloquial, practical",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "gruff, matter-of-fact",
+        "distinctive": "impatient, worldly; speaks with a sense of urgency and earthly concern"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Hierius",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Faustus",
@@ -20460,37 +20573,61 @@
         "Bishop of the Manichees"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 1,
+      "description": "A Manichaean bishop renowned for his eloquence, whom Augustine admired and later found intellectually shallow.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "moderate"
+        },
+        "social_rank": "educated_clergy",
+        "register": "formal, oratorical",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "warm, resonant",
+        "distinctive": "Smooth, honeyed delivery; savours each phrase as if tasting fine wine; slight theatrical lift on doctrinal terms."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Manichaeus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 0
     },
     {
       "name": "Tully",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 0
     },
     {
       "name": "Seneca",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 0
     },
     {
       "name": "Helpidius",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 0
     },
     {
       "name": "Symmachus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 0
     },
     {
       "name": "Ambrose",
@@ -20498,31 +20635,90 @@
         "the Bishop"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 0
     },
     {
       "name": "Alypius",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 6
+      "first_appearance_chapter": 6,
+      "dialogue_segments": 2,
+      "description": "Augustine's loyal and morally upright friend, who accompanies him on his spiritual journey and shares his conversion.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "educated young man",
+        "register": "formal, earnest",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "steady, earnest",
+        "distinctive": "determined, principled; speaks with a firm, unwavering tone"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Firminus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Simplicianus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 3,
+      "description": "A revered elder and spiritual mentor who guides Augustine toward Christianity, celebrating his conversion.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "venerable church father",
+        "register": "formal, reverent",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "deep, warm",
+        "distinctive": "joyful yet solemn; speaks with a sense of holy wonder and gentle authority"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Victorinus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 3,
+      "description": "A famed rhetorician and philosopher who publicly converts to Christianity, inspiring Augustine with his courage.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "distinguished scholar",
+        "register": "formal, dignified",
+        "pitch": "medium",
+        "pace": "medium",
+        "timbre": "clear, firm",
+        "distinctive": "resolute, proud; speaks with a sense of newfound conviction and quiet triumph"
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Paul",
@@ -20530,73 +20726,85 @@
         "Saul"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Verecundus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Pontitianus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Antony",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Justina",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 0
     },
     {
       "name": "Valentinian",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 0
     },
     {
       "name": "Gervasius",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 0
     },
     {
       "name": "Protasius",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 0
     },
     {
       "name": "Adeodatus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 0
     },
     {
       "name": "Patricius",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 0
     },
     {
       "name": "Monnica",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 0
     },
     {
       "name": "Euodius",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 0
     },
     {
       "name": "Lord Jesus Christ",
@@ -20628,7 +20836,8 @@
         "Lord God"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Moses",
@@ -20636,7 +20845,8 @@
         "holy servant of God"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 0
     }
   ],
   "statistics": {
@@ -20645,20 +20855,49 @@
     "total_segments": 2169,
     "total_characters": 33,
     "validation_performed": true,
-    "chapters_needing_review": [
-      11
-    ],
+    "chapters_needing_review": [],
     "unreviewed_critic_windows": 0,
-    "pipeline_version": "1.0.0",
+    "pipeline_version": "1.1.0",
     "discovery_confidence": {
-      "avg_confidence": 0.9600228397783054,
-      "min_confidence": 0.815128205128205
-    }
+      "avg_confidence": 0.9647565675889562,
+      "min_confidence": 0.8766666666666666
+    },
+    "cast_characters": 11
   },
   "processing_config": {
     "processing_model": "google/gemma-4-E4B-it-qat-w4a16-ct",
     "validation_model": "/opt/data/models/DeepSeek-V4-Flash-0731-GGUF/UD-Q8_K_XL/DeepSeek-V4-Flash-0731-UD-Q8_K_XL-00001-of-00005.gguf",
     "dual_llm_validation": true,
     "chunk_size": 1000
+  },
+  "production": {
+    "synopsis": "The Confessions of St. Augustine is a spiritual autobiography tracing Augustine's restless youth, his intellectual and moral struggles, and his eventual conversion to Christianity. Written as a prayerful address to God, it blends personal memoir with profound philosophical and theological reflection, culminating in a meditation on memory, time, and creation.",
+    "author": {
+      "name": "Saint Augustine of Hippo",
+      "years": "354-430",
+      "nationality": "Roman African (Latin-speaking)",
+      "note": "The author's register is earnest, introspective, and rhetorically polished—a late-antique Latin prose style that should lend the narration a measured, reverent, and intellectually searching tone."
+    },
+    "narration": {
+      "person": "first_person",
+      "narrator_character": "Augustine",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "educated British English",
+          "strength": "moderate"
+        },
+        "social_rank": "educated scholar",
+        "register": "introspective, earnest, rhetorically elevated",
+        "pitch": "low",
+        "pace": "measured",
+        "timbre": "warm, resonant",
+        "distinctive": "slight gravitas, as of a man recollecting a long spiritual journey"
+      },
+      "basis": "narrator_character"
+    },
+    "casting_notes": "All characters speak in the same educated British English accent, differentiated by age, gender, and social standing. Augustine's voice is the anchor—calm, reflective, and authoritative—while other characters (Mother, Nebridius, the Wizard, etc.) should be cast with lighter, more varied timbres to reflect their roles in his memory. Avoid any modern or regional colouring; keep the tone timeless and classical."
   }
 }

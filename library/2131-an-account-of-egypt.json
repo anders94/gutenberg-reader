@@ -1786,9 +1786,7 @@
           },
           {
             "name": "Osiris",
-            "aliases": [
-              "Dionysos"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 4
           },
@@ -1830,9 +1828,7 @@
           },
           {
             "name": "Cadmos the Tyrian",
-            "aliases": [
-              "Cadmos"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 4
           },
@@ -3697,8 +3693,7 @@
           {
             "name": "Dareios",
             "aliases": [
-              "the Persian",
-              "Darius"
+              "the Persian"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 8
@@ -6161,43 +6156,50 @@
       "name": "Herodotus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 0
     },
     {
       "name": "Cyrus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 0
     },
     {
       "name": "Cambyses",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 0
     },
     {
       "name": "Cassandane",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 0
     },
     {
       "name": "Pharnaspes",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 0
     },
     {
       "name": "Psammetichos",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 1
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 0
     },
     {
       "name": "Etearchos",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 3
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 0
     },
     {
       "name": "Heracles",
@@ -6205,19 +6207,22 @@
         "Heracles"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Zeus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Isis",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Osiris",
@@ -6225,37 +6230,43 @@
         "Dionysos"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Dionysos",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Amphitryon",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Alcmene",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Pan",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Melampus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Cadmos the Tyrian",
@@ -6263,37 +6274,43 @@
         "Cadmos"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Hesiod",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Homer",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 4
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
     },
     {
       "name": "Promeneia",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 0
     },
     {
       "name": "Timarete",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 0
     },
     {
       "name": "Nicandra",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 5
+      "first_appearance_chapter": 5,
+      "dialogue_segments": 0
     },
     {
       "name": "Linos",
@@ -6301,97 +6318,131 @@
         "Maneros"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 6
+      "first_appearance_chapter": 6,
+      "dialogue_segments": 0
     },
     {
       "name": "Leto",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 6
+      "first_appearance_chapter": 6,
+      "dialogue_segments": 0
     },
     {
       "name": "Apollo",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 6
+      "first_appearance_chapter": 6,
+      "dialogue_segments": 0
     },
     {
       "name": "Athene",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 6
+      "first_appearance_chapter": 6,
+      "dialogue_segments": 0
     },
     {
       "name": "Artemis",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 6
+      "first_appearance_chapter": 6,
+      "dialogue_segments": 0
     },
     {
       "name": "Ares",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 6
+      "first_appearance_chapter": 6,
+      "dialogue_segments": 0
     },
     {
       "name": "Perseus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Danaos",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Lynkeus",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Min",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Nitocris",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Moiris",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Sesostris",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 1,
+      "description": "A great and conquering Pharaoh of Egypt, whose terse statement is a declaration of his own martial prowess and divine mandate.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "royal",
+        "register": "formal, terse",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "hard, commanding",
+        "distinctive": "Monumental and self-assured; speaks with the finality of a king who has never been questioned, each word a stone set in place."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Archander",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Phthios",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Achaios",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 7
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Dareios",
@@ -6400,13 +6451,15 @@
         "Darius"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Pheros",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Proteus",
@@ -6414,7 +6467,26 @@
         "the man of Memphis"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 2,
+      "description": "A wise and just king of Egypt, who acts as an arbiter of moral law, showing mercy even to wrongdoers who are guests in his land.",
+      "voice": {
+        "sex": "male",
+        "age_band": "elderly",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "royal",
+        "register": "formal, magisterial",
+        "pitch": "low",
+        "pace": "slow",
+        "timbre": "deep, gravelly",
+        "distinctive": "Weighty and deliberate; speaks with the gravity of a judge, but with a hint of weary compassion in his pronouncements."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Helen",
@@ -6422,7 +6494,8 @@
         "the daughter of Tyndareus"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Alexander",
@@ -6430,7 +6503,8 @@
         "a Teucrian by race"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Thonis",
@@ -6438,19 +6512,40 @@
         "the warden of this river-mouth"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 1,
+      "description": "A dutiful Egyptian official, a warden of the coast, who reports a grave crime to his king with a sense of urgency and moral outrage.",
+      "voice": {
+        "sex": "male",
+        "age_band": "young_adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "official",
+        "register": "formal, respectful",
+        "pitch": "medium",
+        "pace": "fast",
+        "timbre": "bright, urgent",
+        "distinctive": "Earnest and breathless; delivers his report with a sense of scandalized excitement, eager to convey the enormity of the stranger's crime."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Menelaos",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Telemachos",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Polydamna",
@@ -6458,43 +6553,50 @@
         "the wife of Thon"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 8
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 0
     },
     {
       "name": "Priam",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 0
     },
     {
       "name": "Hector",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 0
     },
     {
       "name": "Rhampsinitos",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 0
     },
     {
       "name": "Demeter",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 0
     },
     {
       "name": "Cheops",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 9
+      "first_appearance_chapter": 9,
+      "dialogue_segments": 0
     },
     {
       "name": "Chephren",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Philitis",
@@ -6502,25 +6604,29 @@
         "the shepherd"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Mykerinos",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Rhodopis",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Iadmon",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Esop",
@@ -6528,7 +6634,8 @@
         "the maker of fables"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Xanthes",
@@ -6536,7 +6643,8 @@
         "the Samian"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Charaxos",
@@ -6544,7 +6652,8 @@
         "son of Scamandrionos"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Sappho",
@@ -6552,19 +6661,40 @@
         "the lyric poet"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Asychis",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 1,
+      "description": "A Pharaoh of Egypt, proud of his own monumental legacy, which he boasts surpasses even the great pyramids.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "royal",
+        "register": "formal, boastful",
+        "pitch": "medium",
+        "pace": "brisk",
+        "timbre": "clear, assertive",
+        "distinctive": "Proud and competitive; his voice carries a sharp edge of vanity, as if daring anyone to contradict his claim."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Anysis",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Sabacos",
@@ -6572,67 +6702,96 @@
         "the king of the Ethiopians"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 10
+      "first_appearance_chapter": 10,
+      "dialogue_segments": 0
     },
     {
       "name": "Amyrtaios",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Sethos",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Sanacharib",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Hecataios",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Typhon",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Semele",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Penelope",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Amasis",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 3,
+      "description": "A wily and pragmatic Pharaoh of Egypt, known for his cunning and his ability to speak in homely parables to make a point.",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "light"
+        },
+        "social_rank": "royal",
+        "register": "formal, but with a common touch",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "warm, resonant",
+        "distinctive": "Sage and wry; delivers parables with a knowing, almost teasing tone, as if enjoying the lesson more than the listener."
+      },
+      "confidence": "high",
+      "basis": "known_work"
     },
     {
       "name": "Sardanapallos",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 11
+      "first_appearance_chapter": 11,
+      "dialogue_segments": 0
     },
     {
       "name": "Necos",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 0
     },
     {
       "name": "Apis",
@@ -6640,25 +6799,29 @@
         "Epaphos"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 0
     },
     {
       "name": "Psammis",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 0
     },
     {
       "name": "Apries",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 0
     },
     {
       "name": "Patarbemis",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 12
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 0
     },
     {
       "name": "Solon",
@@ -6666,13 +6829,15 @@
         "Solon the Athenian"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 13
+      "first_appearance_chapter": 13,
+      "dialogue_segments": 0
     },
     {
       "name": "Ladike",
       "aliases": [],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 13
+      "first_appearance_chapter": 13,
+      "dialogue_segments": 0
     },
     {
       "name": "Polycrates",
@@ -6680,7 +6845,8 @@
         "Polycrates the son of Aiakes"
       ],
       "pronunciation_hints": [],
-      "first_appearance_chapter": 13
+      "first_appearance_chapter": 13,
+      "dialogue_segments": 0
     }
   ],
   "statistics": {
@@ -6691,16 +6857,47 @@
     "validation_performed": true,
     "chapters_needing_review": [],
     "unreviewed_critic_windows": 0,
-    "pipeline_version": "1.0.0",
+    "pipeline_version": "1.1.0",
     "discovery_confidence": {
       "avg_confidence": 0.9943589743589742,
       "min_confidence": 0.9266666666666667
-    }
+    },
+    "cast_characters": 5
   },
   "processing_config": {
     "processing_model": "google/gemma-4-E4B-it-qat-w4a16-ct",
     "validation_model": "/opt/data/models/DeepSeek-V4-Flash-0731-GGUF/UD-Q8_K_XL/DeepSeek-V4-Flash-0731-UD-Q8_K_XL-00001-of-00005.gguf",
     "dual_llm_validation": true,
     "chunk_size": 1000
+  },
+  "production": {
+    "synopsis": "Herodotus, the Greek historian, recounts his travels and inquiries in Egypt, blending geography, customs, and history. He describes the Nile's flooding, the wonders of the temples, and the reigns of pharaohs from Sesostris to Amasis, often contrasting Egyptian practices with Greek ones. The work is a foundational text of ethnography and historiography, mixing observation, hearsay, and myth.",
+    "author": {
+      "name": "Herodotus",
+      "years": "c. 484–c. 425 BC",
+      "nationality": "Greek (Halicarnassus)",
+      "note": "A curious, genial, and digressive storyteller; his voice is that of an educated traveler, skeptical yet open to wonder, with a dry, understated wit."
+    },
+    "narration": {
+      "person": "first_person",
+      "narrator_character": "",
+      "voice": {
+        "sex": "male",
+        "age_band": "middle_aged",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "educated British English",
+          "strength": "moderate"
+        },
+        "social_rank": "scholar",
+        "register": "conversational, learned, slightly formal",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "warm, clear",
+        "distinctive": "occasional dry humor; a hint of wonder in descriptive passages"
+      },
+      "basis": "author_nationality"
+    },
+    "casting_notes": "All characters are Egyptian or Greek men of antiquity; use a consistent educated British English accent for the narration, and differentiate characters by age, rank, and temperament rather than by regional accent. Keep the tone dignified but lively, with a sense of Herodotus's own curiosity and irony."
   }
 }

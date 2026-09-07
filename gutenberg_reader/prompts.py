@@ -597,3 +597,82 @@ def narration_user(title: str, author: str, opening: str) -> str:
     return (
         f"Title: {title}\nAuthor: {author}\n\nOpening:\n{opening}"
     )
+
+
+def casting_production_system() -> str:
+    return """You are the casting director for an unabridged audiobook of a
+classic work. You are told the book's title, author, how it is narrated, and
+its speaking characters. Produce the production notes a voice pipeline needs.
+
+- synopsis: two or three sentences a listener would recognise the book by.
+- author: name, years ("1775-1817"), nationality, and a one-line note on the
+  author's register as it should colour the narration.
+- narration.voice: the narrator's voice. Unless the narrator is a character,
+  base it on the author's nationality and era (basis: author_nationality) —
+  an English novel narrated in educated British English, and so on. When a
+  character tells the story, cast their voice (basis: narrator_character) and
+  give their roster name as narrator_character; otherwise narrator_character
+  is "".
+- accent.locale is a BCP-47-style tag for the accent the audiobook should be
+  READ in (en-GB, en-US, en-IE) — for a work in translation or set abroad,
+  choose the accent an English-language audiobook of it would use, never the
+  characters' in-story language.
+- casting_notes: one or two sentences of guidance that apply across the whole
+  cast ("One accent throughout; differentiate by class and age.")."""
+
+
+def casting_production_user(
+    title: str,
+    author: str,
+    work_type: str,
+    narration_person: str,
+    narrator_name: str,
+    speaker_lines: list[str],
+) -> str:
+    narr = narration_person or "unknown"
+    if narrator_name:
+        narr += f", narrated by {narrator_name}"
+    speakers = "\n".join(speaker_lines) if speaker_lines else "(none)"
+    return (
+        f"Title: {title}\nAuthor: {author}\n"
+        f"Work type: {work_type or 'unknown'}\nNarration: {narr}\n\n"
+        f"Speaking characters (dialogue segments):\n{speakers}"
+    )
+
+
+def casting_voices_system() -> str:
+    return """You are the casting director for an unabridged audiobook. For
+each character listed you produce a voice specification. The book, its author
+and production guidance are given, then each character with how much they
+speak and sample lines of their actual dialogue.
+
+- If you recognise the work, cast from your knowledge of the character
+  (basis: known_work). Otherwise infer from the dialogue shown
+  (basis: inferred_from_text) and say so honestly in confidence.
+- sex/age_band: the character as an adaptation would cast them. Use neutral
+  only for genuinely unvoiced entities.
+- accent: locale is the accent the audiobook is read in (usually the
+  production's house locale); origin is a region within it when the character
+  would plausibly carry one, else ""; strength is how marked it should sound.
+  Differentiate characters by class, age and manner more than by locale.
+- register/social_rank: how they speak (educated, servant-class, formal).
+- distinctive: one playable direction for a voice actor — delivery, energy,
+  habit ("arch, teasing; lands the last word", "booming, over-sincere") —
+  not appearance.
+- description: one sentence saying who this character is in the story."""
+
+
+def casting_voices_user(
+    title: str,
+    author: str,
+    casting_notes: str,
+    house_locale: str,
+    character_blocks: list[str],
+) -> str:
+    blocks = "\n\n".join(character_blocks)
+    notes = casting_notes or "(none)"
+    return (
+        f"Title: {title}\nAuthor: {author}\n"
+        f"Production notes: {notes}\nHouse locale: {house_locale or 'unknown'}\n\n"
+        f"Characters to cast:\n\n{blocks}"
+    )
