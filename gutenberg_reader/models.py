@@ -17,6 +17,17 @@ class Segment:
     # makes coverage an exact property instead of a diff.
     start: int = -1
     end: int = -1
+    # Which paragraph of the chapter this came from. Typographic evidence for
+    # attribution — narration and a quote sharing a paragraph usually share a
+    # subject — and it has to survive the round trip through the cache, or the
+    # critic reviews a chapter with every paragraph break erased.
+    para: int | None = None
+    # How the speaker label was arrived at, so a later pass knows what it may
+    # overrule: "tag" (the author named the speaker, "said Mr. Bennet"),
+    # "tag-resolved" (a nameless tag, "said her mother", resolved to a name),
+    # "inferred" (the free attribution passes), "critic" (a critic correction).
+    # A tag is the text's own statement of who spoke; nothing outranks it.
+    evidence: str | None = None
 
     def to_dict(self) -> dict:
         return {
@@ -27,6 +38,8 @@ class Segment:
             "notes": self.notes,
             "start": self.start,
             "end": self.end,
+            "para": self.para,
+            "evidence": self.evidence,
         }
 
     @classmethod
@@ -39,6 +52,8 @@ class Segment:
             notes=d.get("notes"),
             start=d.get("start", -1),
             end=d.get("end", -1),
+            para=d.get("para"),
+            evidence=d.get("evidence"),
         )
 
 

@@ -567,3 +567,140 @@ class TestMergeCorroboration:
                  CharacterInfo(name="Madame de Villefort",
                                aliases=["M. de Monte Cristo"])]
         assert len(self._merge(chars)) == 2
+
+
+class TestNamelessTags:
+    """PG 1342 chapter 2 opens with two tags that name nobody.
+
+    "...Observing his second daughter employed in trimming a hat, he suddenly
+    addressed her with,—" introduces the first quote, and "said her mother,
+    resentfully," splits the second. Judged on the whole segment the first looked
+    named (its opening sentence mentions Mr. Bennet), and the quote went to free
+    attribution, which gave it to Mrs. Bennet.
+    """
+
+    OPENING = (
+        "Mr. Bennet was among the earliest of those who waited on Mr. Bingley. "
+        "He had always intended to visit him, though to the last always assuring "
+        "his wife that he should not go; and till the evening after the visit was "
+        "paid she had no knowledge of it. It was then disclosed in the following "
+        "manner. Observing his second daughter employed in trimming a hat, he "
+        "suddenly addressed her with,—"
+    )
+
+    def _segments(self):
+        return [
+            {"type": "narration", "text": self.OPENING},
+            {"type": "dialogue", "text": "“I hope Mr. Bingley will like it, Lizzy.”"},
+            {"type": "dialogue", "text": "“We are not in a way to know what Mr. Bingley likes,”"},
+            {"type": "narration", "text": "said her mother, resentfully,"},
+            {"type": "dialogue", "text": "“since we are not to visit.”"},
+        ]
+
+    def _chars(self):
+        return [CharacterInfo(name="Mr. Bennet"),
+                CharacterInfo(name="Mrs. Bennet", aliases=["his wife"]),
+                CharacterInfo(name="Mr. Bingley")]
+
+    def test_an_open_ending_before_a_quote_is_a_tag_whatever_came_before(self):
+        targets = text_utils.nameless_tag_targets(self._segments(), self._chars())
+        assert targets[0] == [1]
+
+    def test_a_split_quote_tag_governs_both_halves(self):
+        targets = text_utils.nameless_tag_targets(self._segments(), self._chars())
+        assert targets[3] == [2, 4]
+
+    def test_a_named_tag_is_not_a_question(self):
+        segs = self._segments()
+        segs[3]["text"] = "said Mrs. Bennet, resentfully,"
+        targets = text_utils.nameless_tag_targets(segs, self._chars())
+        assert 3 not in targets
+        assert text_utils.extract_attribution_anchors(segs, self._chars()) == {
+            2: "Mrs. Bennet", 4: "Mrs. Bennet"}
+
+    def test_a_mention_in_the_opening_sentence_is_not_the_speaker(self):
+        # The old whole-segment test saw "Mr. Bennet" and "Mr. Bingley" and
+        # called the segment named; the tag sentence names neither.
+        assert text_utils.extract_attribution_anchors(self._segments(), self._chars()) == {}
+
+    @pytest.mark.parametrize("tail", [
+        "said Mr. Bennet;", "Mrs. Bennet said only,", "he suddenly addressed her with,—",
+        "he paused—", "with,--", "and cried:",
+    ])
+    def test_open_endings(self, tail):
+        assert text_utils.ends_open(tail)
+
+    @pytest.mark.parametrize("tail", [
+        "cried his wife, impatiently.", "said she!", "Was it so?", "he left the room",
+    ])
+    def test_closed_endings(self, tail):
+        assert not text_utils.ends_open(tail)
+
+    def test_a_closed_tag_does_not_introduce_the_next_quote(self):
+        segs = [
+            {"type": "dialogue", "text": "“Yes.”"},
+            {"type": "narration", "text": "cried her mother, impatiently."},
+            {"type": "dialogue", "text": "“No.”"},
+        ]
+        assert text_utils.nameless_tag_targets(segs, self._chars()) == {1: [0]}
+
+    def test_action_narration_is_not_a_tag(self):
+        segs = [
+            {"type": "narration", "text": "Mrs. Bennet deigned not to make any reply; "
+             "but, unable to contain herself, began scolding one of her daughters."},
+            {"type": "dialogue", "text": "“Don’t keep coughing so, Kitty!”"},
+        ]
+        assert text_utils.nameless_tag_targets(segs, self._chars()) == {}
+        assert text_utils.extract_attribution_anchors(segs, self._chars()) == {}
+
+
+class TestEvidence:
+    def test_tag_evidence_is_what_a_review_may_not_touch(self):
+        assert text_utils.is_tag_evidence("tag")
+        assert text_utils.is_tag_evidence("tag-resolved")
+        assert not text_utils.is_tag_evidence("inferred")
+        assert not text_utils.is_tag_evidence("critic")
+        assert not text_utils.is_tag_evidence(None)
+
+    def test_para_and_evidence_survive_the_round_trip(self):
+        from gutenberg_reader.models import Segment
+        seg = Segment(type="dialogue", text="“Hi.”", speaker="Lucy",
+                      para=3, evidence="tag-resolved")
+        back = Segment.from_dict(seg.to_dict())
+        assert (back.para, back.evidence) == (3, "tag-resolved")
+
+    def test_old_cache_entries_load_without_them(self):
+        from gutenberg_reader.models import Segment
+        seg = Segment.from_dict({"type": "dialogue", "text": "x", "speaker": None})
+        assert (seg.para, seg.evidence) == (None, None)
+
+
+class TestRendering:
+    def test_a_long_segment_keeps_both_ends(self):
+        from gutenberg_reader.prompts import _render_segment_lines
+        text = "A" * 200 + "B" * 200 + "he suddenly addressed her with,—"
+        out = _render_segment_lines([{"type": "narration", "text": text}])
+        assert "addressed her with" in out
+        assert out.startswith("0. [NARRATION] | AAAA")
+
+    def test_paragraph_breaks_are_shown_when_segments_carry_them(self):
+        from gutenberg_reader.prompts import _render_segment_lines
+        segs = [{"type": "narration", "text": "a", "para": 0},
+                {"type": "dialogue", "text": "b", "para": 1}]
+        assert "¶" in _render_segment_lines(segs)
+
+
+class TestLoneMentionNearVerb:
+    def _amap(self):
+        return _alias_map(("Elizabeth Bennet", ["Elizabeth", "Lizzy"]),
+                          ("Mr. Darcy", ["Darcy"]), ("Signora", []))
+
+    def test_a_name_far_from_the_verb_is_not_the_speaker(self):
+        # PG 1342 chapter 3: this introduces Darcy's "She is tolerable".
+        tag = ("and turning round, he looked for a moment at Elizabeth, till, "
+               "catching her eye, he withdrew his own, and coldly said,")
+        assert text_utils._tag_speaker(tag, self._amap()) is None
+
+    def test_a_name_beside_the_verb_still_counts(self):
+        assert text_utils._tag_speaker("The Signora then said,", self._amap()) == "Signora"
+        assert text_utils._tag_speaker("said the Signora, smiling,", self._amap()) == "Signora"

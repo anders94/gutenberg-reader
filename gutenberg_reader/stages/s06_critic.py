@@ -269,17 +269,27 @@ def _critique_chapter(
         speaker = corr.get("speaker")
         if not isinstance(idx, int) or not (0 <= idx < len(final_segs)) or not speaker:
             continue
+        # An entry the critic opened, reasoned through, and decided against.
+        # The schema puts the reason before the verdict so this can happen: on
+        # PG 1342 chapter 2 the reason read "...so segment 3 is correct. No
+        # change needed." under a speaker field that had already been forced
+        # to a name, and the correct label was overwritten with it.
+        if corr.get("verdict", "change") != "change":
+            continue
         seg = final_segs[idx]
         # A citation has no speaker in the scene; a correction pinning it on the
         # nearest character is the failure mode this label exists to prevent.
+        # A label resting on an attribution tag — named, or resolved from "said
+        # her mother" — is the text's own statement and outranks the review.
         if (seg.type != "dialogue" or idx in named_anchors
+                or text_utils.is_tag_evidence(seg.evidence)
                 or seg.speaker == speaker or seg.notes == "citation"):
             continue
         applied.append(f"segment {idx}: {seg.speaker} -> {speaker} ({corr.get('reason', '')})")
         # replace() rather than rebuilding field by field: the critic changes a
         # speaker label and nothing else, and a hand-listed constructor silently
         # drops whatever was added to the model since it was written.
-        final_segs[idx] = replace(seg, speaker=speaker)
+        final_segs[idx] = replace(seg, speaker=speaker, evidence="critic")
 
     # The score is a self-report; the corrections are the checkable claim. When
     # they contradict, believe the half that can be acted on.

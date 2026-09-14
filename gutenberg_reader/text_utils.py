@@ -572,7 +572,8 @@ _SPEECH_VERBS = (
     r"continued|added|observed|repeated|murmured|laughed|called|declared|"
     r"interposed|interrupted|rejoined|responded|urged|insisted|demanded|"
     r"admitted|confessed|agreed|protested|pleaded|began|concluded|sighed|"
-    r"shouted|screamed|muttered|stammered|faltered|ventured|suggested|told"
+    r"shouted|screamed|muttered|stammered|faltered|ventured|suggested|told|"
+    r"addressed|inquired|enquired|retorted|pursued|resumed|persisted|spoke"
 )
 
 SPEECH_VERB_RE = re.compile(r"\b(" + _SPEECH_VERBS + r")\b", re.IGNORECASE)
@@ -607,6 +608,22 @@ _SENTENCE_SPLIT_RE = re.compile(
 # began scolding...") is not an attribution-tag construction.
 _TAG_VERB_LEAD_WORDS = 6
 
+# A tag that leaves its speech open: "said Mr. Bennet," / "Mrs. Bennet said
+# only," / "he suddenly addressed her with,—". A comma, semicolon or colon,
+# with or without a dash after it, hands the sentence on to the quote that
+# follows; a period closes it, and the next quote may belong to anyone.
+_ENDS_OPEN_RE = re.compile(r"(?:[,;:]\s*(?:\u2014|--|-)?|\u2014|--)\s*$")
+
+# How far from the speech verb a lone mention still reads as its subject:
+# "The Signora then said" before it, "said the Signora, smiling," after.
+_TAG_MENTION_CHARS_BEFORE = 24
+_TAG_MENTION_CHARS_AFTER = 32
+
+# The sentence that introduces a quote can be longer than a tag that follows
+# one: "Observing his second daughter employed in trimming a hat, he suddenly
+# addressed her with,—" is an attribution, and the verb sits ten words in.
+_INTRODUCER_MAX_WORDS = 30
+
 
 def _split_sentences(text: str) -> list[str]:
     return [s for s in _SENTENCE_SPLIT_RE.split(text.strip()) if s]
@@ -619,20 +636,69 @@ def _has_lead_speech_verb(sentence: str) -> bool:
     return bool(SPEECH_VERB_RE.search(lead)) and not _REPORTED_SPEECH_RE.search(sentence)
 
 
+def ends_open(text: str) -> bool:
+    """True when the narration hands its sentence on to the quote that follows."""
+    return bool(_ENDS_OPEN_RE.search(text.strip()))
+
+
+def _introduces_speech(sentence: str) -> bool:
+    """True if this sentence, ending open, is introducing the quote after it.
+
+    Where a tag that follows speech leads with its verb ("said she,"), the
+    sentence that introduces speech can put the verb anywhere: "he suddenly
+    addressed her with,—". Ending open, directly before a quote, with a speech
+    verb in it, is the construction; the verb's position is not.
+    """
+    if len(sentence.split()) > _INTRODUCER_MAX_WORDS or not ends_open(sentence):
+        return False
+    return bool(SPEECH_VERB_RE.search(sentence)) and not _REPORTED_SPEECH_RE.search(sentence)
+
+
+def _tag_directions(segments: list[dict], i: int) -> tuple[str | None, str | None]:
+    """The tag sentences of narration segment i: (backward, forward).
+
+    backward is the first sentence when it attributes the dialogue before it
+    ("said Mr. Bennet; and, as he spoke, he left the room..."); forward is the
+    last sentence when it introduces the dialogue after it ("The girls stared at
+    their father. Mrs. Bennet said only,"). Either is None when the construction
+    is not there.
+    """
+    seg = segments[i]
+    if seg.get("type") != "narration":
+        return None, None
+    text = seg.get("text", "")
+    sentences = _split_sentences(text)
+    if not sentences:
+        return None, None
+    backward = forward = None
+    if (i > 0 and segments[i - 1].get("type") == "dialogue"
+            and len(text.split()) <= 20
+            and _has_lead_speech_verb(sentences[0])):
+        backward = sentences[0]
+    if (i < len(segments) - 1 and segments[i + 1].get("type") == "dialogue"
+            and ends_open(text)
+            and _introduces_speech(sentences[-1])):
+        forward = sentences[-1]
+    return backward, forward
+
+
 def _is_attribution_narration(seg: dict) -> bool:
-    """Return True if this narration segment is a speech attribution tag.
+    """Return True if this narration segment could be a speech attribution tag.
 
     Attribution tags are short narration segments where some sentence LEADS
-    with a speech verb ("said she,", "he continued,", "Mrs. Bennet said only,").
-    A speech verb buried mid-sentence is action/beat narration, not a tag, and
-    reported-speech constructions ("replied that he had not") never qualify.
+    with a speech verb ("said she,", "he continued,", "Mrs. Bennet said only,"),
+    or narration of any length whose last sentence introduces the quote after it
+    ("...he suddenly addressed her with,—"). A speech verb buried mid-sentence
+    is otherwise action/beat narration, not a tag, and reported-speech
+    constructions ("replied that he had not") never qualify.
     """
     if seg.get("type") != "narration":
         return False
     text = seg.get("text", "")
-    if len(text.split()) > 20:
-        return False
-    return any(_has_lead_speech_verb(s) for s in _split_sentences(text))
+    sentences = _split_sentences(text)
+    if len(text.split()) <= 20 and any(_has_lead_speech_verb(s) for s in sentences):
+        return True
+    return bool(sentences) and ends_open(text) and _introduces_speech(sentences[-1])
 
 
 def _name_tokens(name: str) -> set[str]:
@@ -1045,39 +1111,64 @@ def extract_attribution_anchors(
     alias_map = _build_alias_map(characters)
     named_anchors: dict[int, str] = {}
 
-    for i, seg in enumerate(segments):
-        if not _is_attribution_narration(seg):
-            continue
-        text = seg.get("text", "")
-        sentences = _split_sentences(text)
-
+    for i in range(len(segments)):
+        backward, forward = _tag_directions(segments, i)
         # Backward anchor: the tag's FIRST sentence attributes the preceding
         # dialogue ("said Mr. Bennet; and, as he spoke, he left the room...")
-        if (
-            i > 0
-            and segments[i - 1].get("type") == "dialogue"
-            and _has_lead_speech_verb(sentences[0])
-        ):
-            canonical = _tag_speaker(sentences[0], alias_map)
+        if backward is not None:
+            canonical = _tag_speaker(backward, alias_map)
             if canonical:
                 named_anchors[i - 1] = canonical
-
         # Forward anchor: the tag's LAST sentence introduces the following
         # dialogue ("The girls stared at their father. Mrs. Bennet said only,").
-        # Requires continuation punctuation — a tag ending with a period
-        # ("cried his wife, impatiently.") closes the speech, and the next
-        # quote may belong to anyone.
-        if (
-            i < len(segments) - 1
-            and segments[i + 1].get("type") == "dialogue"
-            and text.strip().endswith((",", ";", ":"))
-            and _has_lead_speech_verb(sentences[-1])
-        ):
-            canonical = _tag_speaker(sentences[-1], alias_map)
+        # Requires an open ending — a tag ending with a period ("cried his
+        # wife, impatiently.") closes the speech, and the next quote may
+        # belong to anyone.
+        if forward is not None:
+            canonical = _tag_speaker(forward, alias_map)
             if canonical:
                 named_anchors[i + 1] = canonical
 
     return named_anchors
+
+
+def is_tag_evidence(evidence: str | None) -> bool:
+    """Whether a speaker label rests on an attribution tag in the text.
+
+    "tag" is the author naming the speaker outright; "tag-resolved" is the
+    author naming them by role or pronoun ("said her mother") and a model
+    resolving who that is. Both are the text's own statement of who spoke, and
+    no free attribution or review pass may overrule them.
+    """
+    return evidence in ("tag", "tag-resolved")
+
+
+def nameless_tag_targets(
+    segments: list[dict],
+    characters: list,
+) -> dict[int, list[int]]:
+    """Attribution tags that name nobody, and the dialogue each one governs.
+
+    "said her mother, resentfully," and "he suddenly addressed her with,—" are
+    as decisive as "said Mrs. Bennet" once the referring expression is resolved,
+    which is a question for a model. This finds the question: {tag segment
+    index: [adjacent dialogue indices it anchors]}, judged on the tag sentence
+    itself. Judged on the whole segment, a long paragraph that mentions Mr.
+    Bennet in its first sentence and ends "he suddenly addressed her with,—"
+    looks named, and the quote it introduces is left to free attribution.
+    """
+    alias_map = _build_alias_map(characters)
+    out: dict[int, list[int]] = {}
+    for i in range(len(segments)):
+        backward, forward = _tag_directions(segments, i)
+        targets = []
+        if backward is not None and _tag_speaker(backward, alias_map) is None:
+            targets.append(i - 1)
+        if forward is not None and _tag_speaker(forward, alias_map) is None:
+            targets.append(i + 1)
+        if targets:
+            out[i] = targets
+    return out
 
 
 # "I answered", "said I", "we asked" — the narrator attributing speech to
@@ -1130,7 +1221,7 @@ def extract_first_person_anchors(
 
         if (i < len(segments) - 1
                 and segments[i + 1].get("type") == "dialogue"
-                and text.strip().endswith((",", ";", ":"))
+                and ends_open(text)
                 and FIRST_PERSON_TAG_RE.search(sentences[-1])):
             anchors[i + 1] = narrator_name
 
@@ -1159,7 +1250,18 @@ def _tag_speaker(sentence: str, alias_map: dict[str, str]) -> str | None:
         canonical = alias_map.get(m.group(1).strip().lower())
         if canonical:
             return canonical
-    matches = _find_chars_in_text(sentence, alias_map)
+    # A lone mention counts only near the verb: "said the Signora," names her,
+    # but "he looked for a moment at Elizabeth, till catching her eye, he
+    # withdrew his own and coldly said," names the person looked at, and that
+    # sentence anchored Darcy's line to Elizabeth when the whole of it was
+    # scanned. A name that far from the verb is someone in the scene, not the
+    # subject of the verb.
+    v = SPEECH_VERB_RE.search(sentence)
+    if v is None:
+        return None
+    near = sentence[max(0, v.start() - _TAG_MENTION_CHARS_BEFORE):
+                    v.end() + _TAG_MENTION_CHARS_AFTER]
+    matches = _find_chars_in_text(near, alias_map)
     return matches[0] if len(matches) == 1 else None
 
 

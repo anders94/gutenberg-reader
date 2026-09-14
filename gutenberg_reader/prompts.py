@@ -31,8 +31,13 @@ def _render_segment_lines(
         prev_para = para
         kind = seg.get("type", "narration").upper()
         text = seg.get("text", "")
+        # Keep both ends of a long segment. The attribution evidence in a
+        # narration paragraph sits at its edges — the first sentence tags the
+        # quote before it, the last introduces the quote after it — and a cut
+        # at 300 characters removed "he suddenly addressed her with,—" from
+        # the one paragraph whose whole point was that sentence.
         if len(text) > 300:
-            text = text[:300] + "…"
+            text = text[:150] + " […] " + text[-150:]
         tags = []
         if pos < context_count:
             tags.append("[CONTEXT]")
@@ -58,10 +63,17 @@ in original order. Some narration segments are speech-attribution tags that refe
 to the speaker indirectly — e.g. "said his lady", "cried his wife", "returned she",
 "replied her mother" — and are marked [WHO IS THIS?].
 
-Your job: for each marked tag, resolve WHO the referring expression denotes.
-"his lady" / "his wife" spoken of Mr. Bennet means Mrs. Bennet. "she" refers to
-the most recently established female speaker. Use the surrounding narration and
-dialogue to resolve pronouns and role references to actual character names.
+Your job: for each marked tag, resolve WHO the referring expression denotes —
+the person doing the saying, replying, crying or addressing.
+"his lady" / "his wife" spoken of Mr. Bennet means Mrs. Bennet. "her mother",
+said of one of the Bennet girls, means Mrs. Bennet. "she" refers to the most
+recently established female speaker. A pronoun subject takes its referent from
+the narration it sits in: in "Mr. Bennet was among the earliest... Observing
+his second daughter employed in trimming a hat, he suddenly addressed her
+with,—" the "he" who addresses her is Mr. Bennet, and the quote that follows
+is his. The person being addressed ("her", "Lizzy") is the listener, never
+the answer. Use the surrounding narration and dialogue to resolve pronouns and
+role references to actual character names.
 
 Respond ONLY with JSON:
 {{"attributions": [{{"index": <segment number>, "speaker": "<Character Name>"}}]}}
@@ -99,9 +111,17 @@ Method, in priority order:
 1. Attribution tags in adjacent narration ("said Mr. Bennet", "replied his wife",
    "cried Elizabeth") are hard evidence. Note that a possessive or descriptive
    reference ("his wife", "her mother") must be resolved to the actual character name.
+   Narration that ends open — on a comma, colon or dash — directly before a quote
+   is introducing that quote, and its subject is the speaker: after "...he
+   suddenly addressed her with,—" the quote is his, whoever it is addressed to.
 2. In a two-person exchange, speakers strictly alternate between speech turns.
    A turn interrupted only by an attribution tag ("..." said she "...") or a
-   [SPEECH CONTINUES INTO NEXT SEGMENT] marker is ONE turn, not two.
+   [SPEECH CONTINUES INTO NEXT SEGMENT] marker is ONE turn, not two. The one
+   exception is a line already labeled (speaker=) with a third person: that is
+   the author recording an interjection, and the exchange resumes around it —
+   a question put to Lizzy, answered by her mother (labeled), is still followed
+   by Lizzy's reply. Never invent an interjection: a person the dialogue merely
+   mentions or reports ("Mrs. Long says...") is not in the room.
 3. Vocatives identify the LISTENER, not the speaker: in "My dear Mr. Bennet, have
    you heard...", Mr. Bennet is being spoken TO — someone else is speaking.
 4. A character who is merely MENTIONED — in the dialogue itself or in nearby
@@ -162,7 +182,12 @@ For each [VERIFY] segment:
    Narration and a quote in the SAME paragraph usually share their subject;
    a paragraph break often — not always — means the speaker changes.
 5. Track the conversation turn by turn: who was asked the question, who would
-   know this, whose manner of speech is this.
+   know this, whose manner of speech is this. Narration ending open (comma,
+   colon or dash) directly before a quote introduces it, and its subject is the
+   speaker. In a two-person exchange the speakers alternate; only a line
+   already labeled (speaker=) with a third person breaks that, and the
+   exchange resumes around it. A person the dialogue merely mentions or
+   reports is not in the room and does not speak.
 6. If the evidence is insufficient or contradictory, answer "Unknown" — a
    guess that cannot be defended from the text is worse than "Unknown".
 
@@ -343,21 +368,29 @@ not correct them.
 
 Review ONLY the speaker assignments of dialogue segments. Look for:
 1. Dialogue attributed to the wrong character (contradicted by an adjacent
-   "said X" attribution tag in narration)
+   attribution tag in narration — "said X", "said her mother", or narration
+   ending open on a comma, colon or dash that introduces the quote)
 2. Broken alternation in two-person exchanges (same speaker on consecutive
-   turns with no indication of a continued speech)
+   turns with no indication of a continued speech). A line anchored to a
+   third person by a tag is an interjection the author recorded; the
+   exchange resumes around it, and it is not itself an error.
 3. A speaker who is being addressed in the dialogue itself (a vocative names
    the listener, so the speaker must be someone else)
+Lines containing only ¶ mark paragraph breaks in the original text; narration
+and a quote in the same paragraph usually share their subject.
 {roster_section}
 Respond ONLY with JSON:
 {{
   "corrections": [
-    {{"index": <segment number>, "speaker": "<Correct Character Name>", "reason": "<brief>"}}
+    {{"index": <segment number>, "reason": "<your reasoning, from the text>", "verdict": "change" | "keep", "speaker": "<Correct Character Name>"}}
   ],
   "overall_quality": <0.0-1.0 fraction of dialogue segments correctly attributed>{roster_json}
 }}
 
-Only include entries for dialogue segments whose speaker should CHANGE.
+For each entry, write the reason FIRST, then the verdict. Reasoning that ends at
+"the current speaker is right" gets verdict "keep", and the speaker field then
+repeats the current speaker; only verdict "change" alters anything. An entry
+you open is not a commitment: it is fine to consider a segment and keep it.
 If everything is correct, return an empty corrections list and quality 1.0.
 """
 

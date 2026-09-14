@@ -672,3 +672,89 @@ def test_the_critic_actually_passes_the_roster_to_the_review():
                   "roster": {"roster_issues": []}}))
     assert "Already in the roster" in seen["user"]
     assert "Mother" in seen["user"] and "Alypius" in seen["user"]
+
+
+def _p_and_p_opening():
+    """PG 1342 chapter 2: the critic overwrote a tag-resolved label with the
+    speaker it had been forced to name before its own reasoning said "no
+    change needed"."""
+    return ProcessedChapter(
+        chapter_number=2, chapter_title="CHAPTER II.", word_count=30,
+        segments=[
+            Segment(type="dialogue", text="“I hope Mr. Bingley will like it, Lizzy.”",
+                    speaker="Mr. Bennet", evidence="tag-resolved"),
+            Segment(type="dialogue", text="“We are not in a way to know what Mr. Bingley likes,”",
+                    speaker="Mrs. Bennet", evidence="tag-resolved"),
+            Segment(type="narration", text="said her mother, resentfully,", speaker=None),
+            Segment(type="dialogue", text="“since we are not to visit.”",
+                    speaker="Mrs. Bennet", evidence="tag-resolved"),
+            Segment(type="dialogue", text="“I do not believe Mrs. Long will do any such thing.”",
+                    speaker="Lizzy", evidence="inferred"),
+        ])
+
+
+def _critique(chapter, corrections):
+    roster = [CharacterInfo(name="Mr. Bennet"), CharacterInfo(name="Mrs. Bennet"),
+              CharacterInfo(name="Lizzy")]
+    client = _Client({"window": {"corrections": corrections, "overall_quality": 0.9},
+                      "roster": {"roster_issues": []}})
+    _, chap, _ = s06_critic._critique_chapter(chapter, roster, [], _cfg(), client)
+    return [s.speaker for s in chap.segments]
+
+
+def test_a_tag_resolved_label_outranks_a_critic_correction():
+    speakers = _critique(_p_and_p_opening(), [
+        {"index": 1, "reason": "alternation", "verdict": "change", "speaker": "Lizzy"},
+    ])
+    assert speakers[1] == "Mrs. Bennet"
+
+
+def test_a_keep_verdict_changes_nothing():
+    speakers = _critique(_p_and_p_opening(), [
+        {"index": 4, "reason": "on reflection the current speaker is right",
+         "verdict": "keep", "speaker": "Mr. Bennet"},
+    ])
+    assert speakers[4] == "Lizzy"
+
+
+def test_a_change_verdict_on_an_inferred_label_is_applied():
+    speakers = _critique(_p_and_p_opening(), [
+        {"index": 4, "reason": "she has just said so", "verdict": "change",
+         "speaker": "Mrs. Bennet"},
+    ])
+    assert speakers[4] == "Mrs. Bennet"
+
+
+def test_a_correction_without_a_verdict_is_a_change():
+    # Cached reports and older fixtures carry no verdict field.
+    speakers = _critique(_p_and_p_opening(), [
+        {"index": 4, "reason": "tag", "speaker": "Mrs. Bennet"},
+    ])
+    assert speakers[4] == "Mrs. Bennet"
+
+
+def test_the_critic_schema_asks_for_the_reason_before_the_speaker():
+    props = list(schemas.critic_schema(["A"])["properties"]["corrections"]["items"]["properties"])
+    assert props.index("reason") < props.index("verdict") < props.index("speaker")
+
+
+def test_tag_resolution_needs_two_readings_to_agree(monkeypatch):
+    """A resolved tag becomes an anchor the critic may not touch, so one
+    pass's slip must not be enough to make one."""
+    from gutenberg_reader.stages import s05_segments
+    segments = [
+        {"type": "dialogue", "text": "“Now, Kitty, you may cough,”", "speaker": None},
+        {"type": "narration", "text": "said he, and left the room.", "speaker": None},
+        {"type": "dialogue", "text": "“What an excellent father,”", "speaker": None},
+        {"type": "narration", "text": "said she, when the door was shut.", "speaker": None},
+    ]
+    answers = iter([{1: "Mr. Bennet", 3: "Kitty"}, {1: "Mr. Bennet", 3: "Mrs. Bennet"}])
+    monkeypatch.setattr(s05_segments, "_llm_window_pass",
+                        lambda *a, **k: next(answers))
+    roster = [CharacterInfo(name="Mr. Bennet"), CharacterInfo(name="Mrs. Bennet"),
+              CharacterInfo(name="Kitty")]
+    n = s05_segments._resolve_nameless_tags(
+        segments, roster, [c.name for c in roster], _cfg(), None)
+    assert n == 1
+    assert (segments[0]["speaker"], segments[0]["evidence"]) == ("Mr. Bennet", "tag-resolved")
+    assert segments[2]["speaker"] is None and segments[2].get("evidence") is None

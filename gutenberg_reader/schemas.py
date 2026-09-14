@@ -52,12 +52,18 @@ def critic_schema(char_names: list[str], new_names: list[str] | None = None) -> 
                 "type": "array",
                 "items": {
                     "type": "object",
+                    # Reason before verdict before speaker. Guided decoding
+                    # emits the fields in this order, and a model that has
+                    # already committed to a speaker cannot take it back when
+                    # its reasoning arrives at "no change needed" — which is
+                    # exactly what one did, and the label was overwritten.
                     "properties": {
                         "index": {"type": "integer"},
-                        "speaker": {"type": "string", "enum": speaker_enum(char_names)},
                         "reason": {"type": "string"},
+                        "verdict": {"type": "string", "enum": ["change", "keep"]},
+                        "speaker": {"type": "string", "enum": speaker_enum(char_names)},
                     },
-                    "required": ["index", "speaker", "reason"],
+                    "required": ["index", "reason", "verdict", "speaker"],
                     "additionalProperties": False,
                 },
             },

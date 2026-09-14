@@ -282,6 +282,9 @@ def _reattribute_and_recheck(
         if line.startswith("segment ") and line.split()[1].rstrip(":").isdigit()
     }
     retry |= {i for i in corrected if 0 <= i < len(segments)}
+    # A tag is the text naming its speaker; a low score is no reason to ask
+    # again about a line the author settled.
+    retry = {i for i in retry if not text_utils.is_tag_evidence(segments[i].get("evidence"))}
     if not retry:
         return chapter, report
 
@@ -310,6 +313,7 @@ def _reattribute_and_recheck(
     )
     for idx, speaker in answers.items():
         segments[idx]["speaker"] = speaker
+        segments[idx]["evidence"] = "inferred"
 
     reworked = ProcessedChapter(
         chapter_number=chapter.chapter_number,
@@ -424,6 +428,7 @@ def _segment_chapter(
     anchors.update(text_utils.extract_first_person_anchors(segments, narrator_name))
     for idx, name in anchors.items():
         segments[idx]["speaker"] = name
+        segments[idx]["evidence"] = "tag"
 
     # Tags can name speakers discovery missed ("said Lydia,") — merge them into
     # the roster so the LLM enum and the final JSON know them.
@@ -463,6 +468,7 @@ def _segment_chapter(
     )
     for idx, speaker in proposed.items():
         segments[idx]["speaker"] = speaker
+        segments[idx]["evidence"] = "inferred"
 
     # Pass B (critical): independently re-derive every non-anchored speaker.
     # Runs on the validator model — pointing --validator at a larger model
@@ -480,6 +486,7 @@ def _segment_chapter(
         current = segments[idx].get("speaker")
         if current is None:
             segments[idx]["speaker"] = speaker
+            segments[idx]["evidence"] = "inferred"
         elif speaker != current:
             disputes[idx] = (current, speaker)
 
@@ -684,36 +691,38 @@ def _resolve_nameless_tags(
     precisely as "said Mrs. Bennet" — once the referring expression is resolved.
     Mutates segments in place; returns the number of dialogue segments anchored.
     """
-    alias_map = text_utils._build_alias_map(characters)
-    nameless = {
-        i for i, s in enumerate(segments)
-        if text_utils._is_attribution_narration(s)
-        and text_utils._find_char_in_text(s.get("text", ""), alias_map) is None
-    }
-    if not nameless:
+    # Judged on the tag sentence, not the whole segment: a paragraph that opens
+    # "Mr. Bennet was among the earliest..." and ends "he suddenly addressed
+    # her with,—" is a nameless tag, whatever its first sentence mentions.
+    targets = text_utils.nameless_tag_targets(segments, characters)
+    if not targets:
         return 0
 
-    resolved = _llm_window_pass(
-        segments, nameless, config, client,
+    # Asked twice, blind, on both models, the way free attribution is. A
+    # resolved tag becomes an anchor the critic may not touch, so a single
+    # pass's slip ("said she" after "Now, Kitty, you may cough..." resolved to
+    # Kitty, the girl addressed) would be locked in. Two independent readings
+    # that agree are evidence; one that the other disputes goes back to the
+    # free passes, where it is a guess like any other and stays correctable.
+    ask = dict(
         system_msg=prompts.tag_resolution_system(char_names),
         user_fn=prompts.tag_resolution_user,
         schema=schemas.attribution_schema(char_names),
     )
+    first = _llm_window_pass(segments, set(targets), config, client, **ask)
+    second = _llm_window_pass(segments, set(targets), config, client,
+                              model=config.validation_model, **ask)
 
     n_anchored = 0
-    for idx, name in resolved.items():
-        if name == "Unknown":
+    for idx, name in first.items():
+        if name == "Unknown" or second.get(idx) != name:
             continue
-        # Preceding dialogue is always the tag's speech; the following one only
-        # when the tag ends with continuation punctuation (see
-        # text_utils.extract_attribution_anchors for the rationale).
-        adjacent = [idx - 1]
-        if segments[idx].get("text", "").strip().endswith((",", ";", ":")):
-            adjacent.append(idx + 1)
-        for adj in adjacent:
-            if 0 <= adj < len(segments) and segments[adj]["type"] == "dialogue":
-                if not segments[adj].get("speaker"):
-                    segments[adj]["speaker"] = name
-                    n_anchored += 1
+        # The preceding dialogue when the tag follows speech, the following
+        # one when it introduces speech (see text_utils._tag_directions).
+        for adj in targets[idx]:
+            if not segments[adj].get("speaker"):
+                segments[adj]["speaker"] = name
+                segments[adj]["evidence"] = "tag-resolved"
+                n_anchored += 1
 
     return n_anchored

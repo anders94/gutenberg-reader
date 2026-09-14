@@ -238,6 +238,20 @@ A dialogue segment whose quotation continues into the next paragraph (Gutenberg
 convention: no closing quote at paragraph end) carries `"notes": "quote-continues"`;
 the following dialogue segment is the same speaker.
 
+Every segment also carries `para` (which paragraph of the chapter it came from)
+and, on dialogue, `evidence` — how the speaker label was arrived at:
+
+| `evidence` | Meaning |
+|------------|---------|
+| `tag` | The author named the speaker in an adjacent tag ("said Mr. Bennet") |
+| `tag-resolved` | An adjacent tag named the speaker by role or pronoun ("said her mother", "he addressed her with,—") and two independent model readings agreed on who that is |
+| `inferred` | No tag; the attribution passes judged it from context |
+| `critic` | The Stage 06 critic changed the label |
+
+Tag-backed labels are the text's own statement of who spoke and no later pass
+may overrule them. A listener checking a book's attribution can start with the
+`inferred` lines: that is where the guesses are.
+
 ---
 
 ## Pipeline stages
