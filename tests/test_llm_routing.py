@@ -135,3 +135,68 @@ def test_template_kwargs_are_per_endpoint(stub):
     r.register("http://mac:8000/v1", template_kwargs={"enable_thinking": False})
     assert r._client("small-model").template_kwargs == {}
     assert r._client("big-model").template_kwargs == {"enable_thinking": False}
+
+
+# ── A stalled response is a short failure with a different retry ──────────────
+
+
+class _Resp:
+    def __init__(self, body):
+        self._body = body
+        self.status_code = 200
+
+    def raise_for_status(self):
+        pass
+
+    def json(self):
+        return self._body
+
+
+def _stalling_client(monkeypatch, answers):
+    """An LLMClient whose HTTP layer returns the given finish reasons in turn."""
+    client = llm.LLMClient("http://gpu:8000/v1")
+    seen: list[dict] = []
+    replies = iter(answers)
+
+    def post(url, json):
+        seen.append(json)
+        finish, content = next(replies)
+        return _Resp({"choices": [{"finish_reason": finish,
+                                   "message": {"content": content}}],
+                      "usage": {"completion_tokens": 16384}})
+
+    monkeypatch.setattr(client._client, "post", post)
+    return client, seen
+
+
+def test_every_request_carries_a_token_cap(monkeypatch):
+    """The stall PG 2131 hit — whitespace under guided decoding — ran to the
+    65k context, nine minutes a call, three calls a chapter. Capped, it is
+    a short failure."""
+    client, seen = _stalling_client(monkeypatch, [("stop", '{"ok": 1}')])
+    client.chat_json("m", [], schema={"type": "object"})
+    assert seen[0]["max_tokens"] == llm.DEFAULT_MAX_TOKENS
+
+
+def test_a_cut_response_is_reported_as_a_stall(monkeypatch):
+    client, _ = _stalling_client(monkeypatch, [("length", '{"roster_issues": [')])
+    with pytest.raises(llm.LLMStalled, match="max_tokens"):
+        client.chat_json("m", [], schema={"type": "object"})
+
+
+def test_the_retry_after_a_stall_changes_the_sampling(monkeypatch):
+    """Retrying the identical greedy request stalls identically; the retry
+    has to change what the model may prefer."""
+    client, seen = _stalling_client(monkeypatch, [
+        ("length", '{"roster_issues": ['), ("stop", '{"roster_issues": []}')])
+    out = call_json_with_retries(client, "m", [], schema={"type": "object"}, retries=3)
+    assert out == {"roster_issues": []}
+    assert "repetition_penalty" not in seen[0]
+    assert seen[1]["repetition_penalty"] == llm.STALL_RETRY_REPETITION_PENALTY
+
+
+def test_an_ordinary_failure_retries_unchanged(monkeypatch):
+    client, seen = _stalling_client(monkeypatch, [
+        ("stop", "not json"), ("stop", '{"a": 1}')])
+    assert call_json_with_retries(client, "m", [], retries=3) == {"a": 1}
+    assert "repetition_penalty" not in seen[1]

@@ -174,3 +174,24 @@ def test_casting_schemas_exist():
     batch = sch.voices_schema(["Ada", "Sam"])
     assert batch["properties"]["castings"]["minItems"] == 2
     assert batch["properties"]["castings"]["maxItems"] == 2
+
+
+def test_the_casting_prompts_state_every_required_field():
+    """PG 2131: the production call wrote person and narrator_character,
+    tried to close the narration object before voice and basis, and stalled
+    for 64k tokens. Both casting prompts now show the schema's shape."""
+    from gutenberg_reader import prompts, schemas
+
+    def required(schema):
+        out = set(schema.get("required", []))
+        for sub in schema.get("properties", {}).values():
+            out |= required(sub)
+            out |= required(sub.get("items", {}))
+        return out
+
+    production = prompts.casting_production_system()
+    for field in required(schemas.production_schema(["A"])):
+        assert f'"{field}"' in production, field
+    voices = prompts.casting_voices_system()
+    for field in required(schemas.voices_schema(["A"])):
+        assert f'"{field}"' in voices, field

@@ -758,3 +758,13 @@ def test_tag_resolution_needs_two_readings_to_agree(monkeypatch):
     assert n == 1
     assert (segments[0]["speaker"], segments[0]["evidence"]) == ("Mr. Bennet", "tag-resolved")
     assert segments[2]["speaker"] is None and segments[2].get("evidence") is None
+
+
+def test_the_roster_review_prompt_states_its_json_shape():
+    """Guided decoding cannot make a model want a field it was never told
+    about: untold of "reason", it tried to close the object and stalled on
+    whitespace for 64k tokens. Every prompt that answers a schema says the
+    shape."""
+    system = prompts.roster_review_system()
+    for field in ("roster_issues", "name", "verdict", "canonical", "reason"):
+        assert f'"{field}"' in system

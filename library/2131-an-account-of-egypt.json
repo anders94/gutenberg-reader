@@ -27,7 +27,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 0,
-            "end": 45
+            "end": 45,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -36,7 +38,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 47,
-            "end": 66
+            "end": 66,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -45,7 +49,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 68,
-            "end": 80
+            "end": 80,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -54,7 +60,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 82,
-            "end": 110
+            "end": 110,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -63,7 +71,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 112,
-            "end": 116
+            "end": 116,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -72,7 +82,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 118,
-            "end": 478
+            "end": 478,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -81,7 +93,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 480,
-            "end": 779
+            "end": 779,
+            "para": 6,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -90,7 +104,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 780,
-            "end": 970
+            "end": 970,
+            "para": 6,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -99,7 +115,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 971,
-            "end": 1201
+            "end": 1201,
+            "para": 6,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -108,7 +126,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1203,
-            "end": 1573
+            "end": 1573,
+            "para": 7,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -117,7 +137,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1574,
-            "end": 1821
+            "end": 1821,
+            "para": 7,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -126,7 +148,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1823,
-            "end": 2146
+            "end": 2146,
+            "para": 8,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -135,7 +159,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2147,
-            "end": 2288
+            "end": 2288,
+            "para": 8,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -144,7 +170,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2290,
-            "end": 2652
+            "end": 2652,
+            "para": 9,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -153,7 +181,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2653,
-            "end": 2934
+            "end": 2934,
+            "para": 9,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -162,7 +192,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2935,
-            "end": 3117
+            "end": 3117,
+            "para": 9,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -171,7 +203,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3119,
-            "end": 3169
+            "end": 3169,
+            "para": 10,
+            "evidence": null
           },
           {
             "type": "dialogue",
@@ -180,7 +214,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3170,
-            "end": 3220
+            "end": 3220,
+            "para": 10,
+            "evidence": "inferred"
           },
           {
             "type": "narration",
@@ -189,7 +225,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3221,
-            "end": 3233
+            "end": 3233,
+            "para": 10,
+            "evidence": null
           },
           {
             "type": "dialogue",
@@ -198,7 +236,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3234,
-            "end": 3813
+            "end": 3813,
+            "para": 10,
+            "evidence": "inferred"
           },
           {
             "type": "narration",
@@ -207,7 +247,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3815,
-            "end": 3834
+            "end": 3834,
+            "para": 11,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -216,7 +258,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3836,
-            "end": 3848
+            "end": 3848,
+            "para": 12,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -225,7 +269,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3850,
-            "end": 3903
+            "end": 3903,
+            "para": 13,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -234,7 +280,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3905,
-            "end": 4568
+            "end": 4568,
+            "para": 14,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -243,7 +291,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4570,
-            "end": 4931
+            "end": 4931,
+            "para": 15,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -252,7 +302,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4932,
-            "end": 5586
+            "end": 5586,
+            "para": 15,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -261,7 +313,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5587,
-            "end": 5759
+            "end": 5759,
+            "para": 15,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -270,7 +324,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5760,
-            "end": 6029
+            "end": 6029,
+            "para": 15,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -279,7 +335,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6030,
-            "end": 6282
+            "end": 6282,
+            "para": 15,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -288,7 +346,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6283,
-            "end": 6611
+            "end": 6611,
+            "para": 15,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -297,7 +357,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6612,
-            "end": 6868
+            "end": 6868,
+            "para": 15,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -306,7 +368,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6870,
-            "end": 7045
+            "end": 7045,
+            "para": 16,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -315,7 +379,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7046,
-            "end": 7320
+            "end": 7320,
+            "para": 16,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -324,7 +390,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7321,
-            "end": 7630
+            "end": 7630,
+            "para": 16,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -333,7 +401,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7631,
-            "end": 8332
+            "end": 8332,
+            "para": 16,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -342,7 +412,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8333,
-            "end": 8716
+            "end": 8716,
+            "para": 16,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -351,7 +423,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8717,
-            "end": 9790
+            "end": 9790,
+            "para": 16,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -360,7 +434,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9791,
-            "end": 9858
+            "end": 9858,
+            "para": 16,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -369,7 +445,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9859,
-            "end": 10469
+            "end": 10469,
+            "para": 16,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -378,7 +456,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10470,
-            "end": 10565
+            "end": 10565,
+            "para": 16,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -387,7 +467,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10566,
-            "end": 11191
+            "end": 11191,
+            "para": 16,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -396,7 +478,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11192,
-            "end": 11590
+            "end": 11590,
+            "para": 16,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -405,7 +489,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11591,
-            "end": 11856
+            "end": 11856,
+            "para": 16,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -414,7 +500,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11857,
-            "end": 12124
+            "end": 12124,
+            "para": 16,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -423,7 +511,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12125,
-            "end": 12531
+            "end": 12531,
+            "para": 16,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -432,7 +522,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12532,
-            "end": 12793
+            "end": 12793,
+            "para": 16,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -441,7 +533,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12794,
-            "end": 13222
+            "end": 13222,
+            "para": 16,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -450,7 +544,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13224,
-            "end": 13888
+            "end": 13888,
+            "para": 17,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -459,7 +555,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13889,
-            "end": 14203
+            "end": 14203,
+            "para": 17,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -468,7 +566,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 14204,
-            "end": 14379
+            "end": 14379,
+            "para": 17,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -477,7 +577,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 14380,
-            "end": 14707
+            "end": 14707,
+            "para": 17,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -486,7 +588,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 14708,
-            "end": 15045
+            "end": 15045,
+            "para": 17,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -495,7 +599,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 15046,
-            "end": 15363
+            "end": 15363,
+            "para": 17,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -504,7 +610,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 15364,
-            "end": 15534
+            "end": 15534,
+            "para": 17,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -513,7 +621,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 15535,
-            "end": 16502
+            "end": 16502,
+            "para": 17,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -522,7 +632,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 16503,
-            "end": 16933
+            "end": 16933,
+            "para": 17,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -531,7 +643,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 16934,
-            "end": 17547
+            "end": 17547,
+            "para": 17,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -540,7 +654,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 17548,
-            "end": 17942
+            "end": 17942,
+            "para": 17,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -549,7 +665,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 17943,
-            "end": 18282
+            "end": 18282,
+            "para": 17,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -558,10 +676,18 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 18283,
-            "end": 18927
+            "end": 18927,
+            "para": 17,
+            "evidence": null
           }
         ],
         "discovered_characters": [
+          {
+            "name": "Herodotus",
+            "aliases": [],
+            "pronunciation_hints": [],
+            "first_appearance_chapter": 1
+          },
           {
             "name": "John Bickers",
             "aliases": [],
@@ -665,7 +791,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 0,
-            "end": 733
+            "end": 733,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -674,7 +802,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 734,
-            "end": 982
+            "end": 982,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -683,7 +813,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 983,
-            "end": 1324
+            "end": 1324,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -692,7 +824,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1325,
-            "end": 1480
+            "end": 1480,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -701,7 +835,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1482,
-            "end": 2138
+            "end": 2138,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -710,7 +846,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2140,
-            "end": 2502
+            "end": 2502,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -719,7 +857,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2503,
-            "end": 3387
+            "end": 3387,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -728,7 +868,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3388,
-            "end": 3775
+            "end": 3775,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -737,7 +879,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3776,
-            "end": 4010
+            "end": 4010,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -746,7 +890,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4011,
-            "end": 4543
+            "end": 4543,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -755,7 +901,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4544,
-            "end": 4755
+            "end": 4755,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -764,7 +912,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4756,
-            "end": 5058
+            "end": 5058,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -773,7 +923,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5060,
-            "end": 5561
+            "end": 5561,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -782,7 +934,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5562,
-            "end": 5903
+            "end": 5903,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -791,7 +945,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5904,
-            "end": 6278
+            "end": 6278,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -800,7 +956,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6279,
-            "end": 6759
+            "end": 6759,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -809,7 +967,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6760,
-            "end": 6997
+            "end": 6997,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -818,7 +978,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6998,
-            "end": 7309
+            "end": 7309,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -827,7 +989,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7310,
-            "end": 7584
+            "end": 7584,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -836,7 +1000,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7585,
-            "end": 7995
+            "end": 7995,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -845,7 +1011,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7996,
-            "end": 8383
+            "end": 8383,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -854,7 +1022,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8384,
-            "end": 8673
+            "end": 8673,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -863,7 +1033,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8675,
-            "end": 9043
+            "end": 9043,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -872,7 +1044,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9044,
-            "end": 9306
+            "end": 9306,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -881,7 +1055,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9307,
-            "end": 10006
+            "end": 10006,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -890,7 +1066,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10007,
-            "end": 10162
+            "end": 10162,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -899,7 +1077,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10163,
-            "end": 10496
+            "end": 10496,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -908,7 +1088,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10497,
-            "end": 10611
+            "end": 10611,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -917,7 +1099,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10612,
-            "end": 10961
+            "end": 10961,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -926,7 +1110,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10962,
-            "end": 11155
+            "end": 11155,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -935,7 +1121,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11156,
-            "end": 11721
+            "end": 11721,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -944,7 +1132,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11722,
-            "end": 11910
+            "end": 11910,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -953,7 +1143,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11912,
-            "end": 12222
+            "end": 12222,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -962,7 +1154,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12223,
-            "end": 12603
+            "end": 12603,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -971,7 +1165,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12604,
-            "end": 12830
+            "end": 12830,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -980,7 +1176,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12831,
-            "end": 13051
+            "end": 13051,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -989,7 +1187,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13052,
-            "end": 13337
+            "end": 13337,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -998,7 +1198,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13338,
-            "end": 13616
+            "end": 13616,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1007,7 +1209,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13617,
-            "end": 13920
+            "end": 13920,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1016,7 +1220,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13921,
-            "end": 14227
+            "end": 14227,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1025,7 +1231,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 14228,
-            "end": 14579
+            "end": 14579,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1034,7 +1242,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 14580,
-            "end": 14785
+            "end": 14785,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1043,7 +1253,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 14786,
-            "end": 14993
+            "end": 14993,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1052,7 +1264,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 14994,
-            "end": 15321
+            "end": 15321,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1061,7 +1275,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 15322,
-            "end": 15657
+            "end": 15657,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1070,7 +1286,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 15658,
-            "end": 16210
+            "end": 16210,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1079,7 +1297,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 16211,
-            "end": 16466
+            "end": 16466,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1088,7 +1308,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 16467,
-            "end": 16817
+            "end": 16817,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1097,7 +1319,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 16818,
-            "end": 17071
+            "end": 17071,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1106,7 +1330,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 17072,
-            "end": 17228
+            "end": 17228,
+            "para": 5,
+            "evidence": null
           }
         ],
         "discovered_characters": [],
@@ -1146,7 +1372,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 0,
-            "end": 308
+            "end": 308,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1155,7 +1383,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 309,
-            "end": 419
+            "end": 419,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1164,7 +1394,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 420,
-            "end": 1950
+            "end": 1950,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1173,7 +1405,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1951,
-            "end": 3133
+            "end": 3133,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1182,7 +1416,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3134,
-            "end": 3372
+            "end": 3372,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1191,7 +1427,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3373,
-            "end": 4162
+            "end": 4162,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1200,7 +1438,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4163,
-            "end": 4522
+            "end": 4522,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1209,7 +1449,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4523,
-            "end": 4911
+            "end": 4911,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1218,7 +1460,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4913,
-            "end": 5217
+            "end": 5217,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1227,7 +1471,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5219,
-            "end": 6278
+            "end": 6278,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1236,7 +1482,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6279,
-            "end": 7716
+            "end": 7716,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1245,7 +1493,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7718,
-            "end": 8116
+            "end": 8116,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1254,7 +1504,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8117,
-            "end": 8570
+            "end": 8570,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1263,7 +1515,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8571,
-            "end": 9284
+            "end": 9284,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1272,7 +1526,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9286,
-            "end": 10162
+            "end": 10162,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1281,7 +1537,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10163,
-            "end": 10240
+            "end": 10240,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1290,7 +1548,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10241,
-            "end": 10644
+            "end": 10644,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1299,7 +1559,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10645,
-            "end": 11160
+            "end": 11160,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1308,7 +1570,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11161,
-            "end": 12223
+            "end": 12223,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1317,7 +1581,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12224,
-            "end": 12464
+            "end": 12464,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1326,7 +1592,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12465,
-            "end": 13137
+            "end": 13137,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1335,7 +1603,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13138,
-            "end": 13610
+            "end": 13610,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1344,7 +1614,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13611,
-            "end": 13842
+            "end": 13842,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1353,7 +1625,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13843,
-            "end": 14060
+            "end": 14060,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1362,7 +1636,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 14061,
-            "end": 14246
+            "end": 14246,
+            "para": 4,
+            "evidence": null
           }
         ],
         "discovered_characters": [
@@ -1463,7 +1739,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 0,
-            "end": 414
+            "end": 414,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1472,7 +1750,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 415,
-            "end": 907
+            "end": 907,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1481,7 +1761,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 908,
-            "end": 1217
+            "end": 1217,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1490,7 +1772,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1218,
-            "end": 1502
+            "end": 1502,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1499,7 +1783,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1503,
-            "end": 1623
+            "end": 1623,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1508,7 +1794,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1625,
-            "end": 2769
+            "end": 2769,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1517,7 +1805,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2770,
-            "end": 3036
+            "end": 3036,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1526,7 +1816,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3037,
-            "end": 3828
+            "end": 3828,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1535,7 +1827,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3829,
-            "end": 4169
+            "end": 4169,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1544,7 +1838,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4170,
-            "end": 4466
+            "end": 4466,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1553,7 +1849,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4467,
-            "end": 4889
+            "end": 4889,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1562,7 +1860,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4890,
-            "end": 5235
+            "end": 5235,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1571,7 +1871,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5236,
-            "end": 5497
+            "end": 5497,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1580,7 +1882,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5499,
-            "end": 6028
+            "end": 6028,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1589,7 +1893,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6029,
-            "end": 6356
+            "end": 6356,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1598,7 +1904,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6357,
-            "end": 6550
+            "end": 6550,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1607,7 +1915,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6552,
-            "end": 7066
+            "end": 7066,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1616,7 +1926,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7067,
-            "end": 7487
+            "end": 7487,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1625,7 +1937,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7488,
-            "end": 8076
+            "end": 8076,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1634,7 +1948,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8077,
-            "end": 8750
+            "end": 8750,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1643,7 +1959,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8751,
-            "end": 8919
+            "end": 8919,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1652,7 +1970,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8920,
-            "end": 9189
+            "end": 9189,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1661,7 +1981,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9190,
-            "end": 9484
+            "end": 9484,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1670,7 +1992,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9485,
-            "end": 10235
+            "end": 10235,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1679,7 +2003,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10237,
-            "end": 10969
+            "end": 10969,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1688,7 +2014,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10970,
-            "end": 11044
+            "end": 11044,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1697,7 +2025,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11045,
-            "end": 11606
+            "end": 11606,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1706,7 +2036,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11607,
-            "end": 11953
+            "end": 11953,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1715,7 +2047,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11954,
-            "end": 12189
+            "end": 12189,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1724,7 +2058,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12190,
-            "end": 12551
+            "end": 12551,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1733,7 +2069,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12552,
-            "end": 12922
+            "end": 12922,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1742,7 +2080,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12923,
-            "end": 13097
+            "end": 13097,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1751,7 +2091,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13098,
-            "end": 13737
+            "end": 13737,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1760,7 +2102,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13738,
-            "end": 13888
+            "end": 13888,
+            "para": 4,
+            "evidence": null
           }
         ],
         "discovered_characters": [
@@ -1786,7 +2130,9 @@
           },
           {
             "name": "Osiris",
-            "aliases": [],
+            "aliases": [
+              "Dionysos"
+            ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 4
           },
@@ -1828,7 +2174,9 @@
           },
           {
             "name": "Cadmos the Tyrian",
-            "aliases": [],
+            "aliases": [
+              "Cadmos"
+            ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 4
           },
@@ -1855,7 +2203,7 @@
         "missing_text": [],
         "attribution_issues": [],
         "name_inconsistencies": [],
-        "overall_quality": 1.0,
+        "overall_quality": 0.9866666666666667,
         "needs_reprocessing": false,
         "unreviewed_windows": [],
         "fixed_segments": null
@@ -1881,7 +2229,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 0,
-            "end": 109
+            "end": 109,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1890,7 +2240,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 110,
-            "end": 750
+            "end": 750,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1899,7 +2251,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 751,
-            "end": 963
+            "end": 963,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1908,7 +2262,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 964,
-            "end": 1350
+            "end": 1350,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1917,7 +2273,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1351,
-            "end": 1595
+            "end": 1595,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1926,7 +2284,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1596,
-            "end": 2377
+            "end": 2377,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1935,7 +2295,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2378,
-            "end": 2857
+            "end": 2857,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1944,7 +2306,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2858,
-            "end": 3117
+            "end": 3117,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1953,7 +2317,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3119,
-            "end": 3462
+            "end": 3462,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1962,7 +2328,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3463,
-            "end": 4037
+            "end": 4037,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1971,7 +2339,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4038,
-            "end": 4639
+            "end": 4639,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1980,7 +2350,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4640,
-            "end": 5011
+            "end": 5011,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1989,7 +2361,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5012,
-            "end": 5583
+            "end": 5583,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -1998,7 +2372,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5584,
-            "end": 5973
+            "end": 5973,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2007,7 +2383,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5974,
-            "end": 6302
+            "end": 6302,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2016,7 +2394,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6303,
-            "end": 6936
+            "end": 6936,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2025,7 +2405,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6937,
-            "end": 7277
+            "end": 7277,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2034,7 +2416,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7278,
-            "end": 7477
+            "end": 7477,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2043,7 +2427,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7478,
-            "end": 7994
+            "end": 7994,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2052,7 +2438,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7995,
-            "end": 8093
+            "end": 8093,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2061,7 +2449,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8095,
-            "end": 8724
+            "end": 8724,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2070,7 +2460,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8726,
-            "end": 9131
+            "end": 9131,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2079,7 +2471,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9132,
-            "end": 9420
+            "end": 9420,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2088,7 +2482,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9421,
-            "end": 10084
+            "end": 10084,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2097,7 +2493,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10085,
-            "end": 10396
+            "end": 10396,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2106,7 +2504,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10397,
-            "end": 10674
+            "end": 10674,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2115,7 +2515,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10675,
-            "end": 10992
+            "end": 10992,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2124,7 +2526,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10993,
-            "end": 11308
+            "end": 11308,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2133,7 +2537,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11309,
-            "end": 11505
+            "end": 11505,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2142,7 +2548,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11506,
-            "end": 11773
+            "end": 11773,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2151,7 +2559,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11774,
-            "end": 12018
+            "end": 12018,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2160,7 +2570,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12020,
-            "end": 12420
+            "end": 12420,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2169,7 +2581,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12421,
-            "end": 12755
+            "end": 12755,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2178,7 +2592,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12756,
-            "end": 13024
+            "end": 13024,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2187,7 +2603,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13025,
-            "end": 13182
+            "end": 13182,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2196,7 +2614,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13183,
-            "end": 13712
+            "end": 13712,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2205,7 +2625,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13713,
-            "end": 14457
+            "end": 14457,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2214,7 +2636,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 14458,
-            "end": 14795
+            "end": 14795,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2223,7 +2647,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 14796,
-            "end": 15320
+            "end": 15320,
+            "para": 4,
+            "evidence": null
           }
         ],
         "discovered_characters": [
@@ -2282,7 +2708,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 0,
-            "end": 433
+            "end": 433,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2291,7 +2719,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 434,
-            "end": 674
+            "end": 674,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2300,7 +2730,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 676,
-            "end": 1149
+            "end": 1149,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2309,7 +2741,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1150,
-            "end": 1895
+            "end": 1895,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2318,7 +2752,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1896,
-            "end": 1930
+            "end": 1930,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2327,7 +2763,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1932,
-            "end": 2180
+            "end": 2180,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2336,7 +2774,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2181,
-            "end": 2602
+            "end": 2602,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2345,7 +2785,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2603,
-            "end": 3005
+            "end": 3005,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2354,7 +2796,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3006,
-            "end": 3204
+            "end": 3204,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2363,7 +2807,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3205,
-            "end": 3816
+            "end": 3816,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2372,7 +2818,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3817,
-            "end": 4024
+            "end": 4024,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2381,7 +2829,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4026,
-            "end": 4970
+            "end": 4970,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2390,7 +2840,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4971,
-            "end": 5330
+            "end": 5330,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2399,7 +2851,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5331,
-            "end": 5657
+            "end": 5657,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "dialogue",
@@ -2408,7 +2862,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5658,
-            "end": 5759
+            "end": 5759,
+            "para": 3,
+            "evidence": "inferred"
           },
           {
             "type": "narration",
@@ -2417,7 +2873,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5760,
-            "end": 6145
+            "end": 6145,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2426,7 +2884,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6146,
-            "end": 6530
+            "end": 6530,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2435,7 +2895,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6531,
-            "end": 6753
+            "end": 6753,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2444,7 +2906,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6754,
-            "end": 7041
+            "end": 7041,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2453,7 +2917,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7042,
-            "end": 7229
+            "end": 7229,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2462,7 +2928,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7230,
-            "end": 7497
+            "end": 7497,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2471,7 +2939,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7498,
-            "end": 7808
+            "end": 7808,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2480,7 +2950,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7810,
-            "end": 8136
+            "end": 8136,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2489,7 +2961,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8137,
-            "end": 8423
+            "end": 8423,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2498,7 +2972,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8424,
-            "end": 8738
+            "end": 8738,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2507,7 +2983,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8739,
-            "end": 8881
+            "end": 8881,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2516,7 +2994,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8882,
-            "end": 9220
+            "end": 9220,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2525,7 +3005,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9222,
-            "end": 9451
+            "end": 9451,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2534,7 +3016,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9452,
-            "end": 9864
+            "end": 9864,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2543,7 +3027,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9865,
-            "end": 9956
+            "end": 9956,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2552,7 +3038,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9957,
-            "end": 10352
+            "end": 10352,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2561,7 +3049,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10353,
-            "end": 10470
+            "end": 10470,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2570,7 +3060,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10471,
-            "end": 11157
+            "end": 11157,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2579,7 +3071,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11158,
-            "end": 11502
+            "end": 11502,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2588,7 +3082,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11503,
-            "end": 11772
+            "end": 11772,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2597,7 +3093,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11773,
-            "end": 12612
+            "end": 12612,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2606,7 +3104,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12613,
-            "end": 13004
+            "end": 13004,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2615,7 +3115,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13005,
-            "end": 13255
+            "end": 13255,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2624,7 +3126,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13256,
-            "end": 13474
+            "end": 13474,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2633,7 +3137,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13475,
-            "end": 13978
+            "end": 13978,
+            "para": 5,
+            "evidence": null
           }
         ],
         "discovered_characters": [
@@ -2718,7 +3224,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 0,
-            "end": 112
+            "end": 112,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2727,7 +3235,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 113,
-            "end": 487
+            "end": 487,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2736,7 +3246,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 488,
-            "end": 812
+            "end": 812,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2745,7 +3257,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 813,
-            "end": 1757
+            "end": 1757,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2754,7 +3268,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1759,
-            "end": 2450
+            "end": 2450,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2763,7 +3279,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2451,
-            "end": 2571
+            "end": 2571,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2772,7 +3290,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2572,
-            "end": 2934
+            "end": 2934,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2781,7 +3301,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2935,
-            "end": 3258
+            "end": 3258,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2790,7 +3312,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3259,
-            "end": 3434
+            "end": 3434,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2799,7 +3323,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3436,
-            "end": 3891
+            "end": 3891,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2808,7 +3334,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3892,
-            "end": 4283
+            "end": 4283,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2817,7 +3345,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4284,
-            "end": 4487
+            "end": 4487,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2826,7 +3356,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4488,
-            "end": 4787
+            "end": 4787,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2835,7 +3367,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4788,
-            "end": 5121
+            "end": 5121,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2844,7 +3378,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5122,
-            "end": 5410
+            "end": 5410,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2853,7 +3389,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5412,
-            "end": 5443
+            "end": 5443,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2862,7 +3400,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5444,
-            "end": 5984
+            "end": 5984,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2871,7 +3411,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5985,
-            "end": 6090
+            "end": 6090,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2880,7 +3422,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6091,
-            "end": 6828
+            "end": 6828,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2889,7 +3433,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6830,
-            "end": 6999
+            "end": 6999,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2898,7 +3444,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7000,
-            "end": 7357
+            "end": 7357,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2907,7 +3455,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7358,
-            "end": 7493
+            "end": 7493,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2916,7 +3466,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7494,
-            "end": 7929
+            "end": 7929,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2925,7 +3477,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7930,
-            "end": 8253
+            "end": 8253,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2934,7 +3488,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8255,
-            "end": 8486
+            "end": 8486,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2943,7 +3499,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8487,
-            "end": 8963
+            "end": 8963,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2952,7 +3510,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8964,
-            "end": 9345
+            "end": 9345,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2961,7 +3521,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9346,
-            "end": 9428
+            "end": 9428,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2970,7 +3532,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9430,
-            "end": 9435
+            "end": 9435,
+            "para": 6,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2979,7 +3543,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9437,
-            "end": 9712
+            "end": 9712,
+            "para": 7,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2988,7 +3554,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9714,
-            "end": 10483
+            "end": 10483,
+            "para": 8,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -2997,7 +3565,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10484,
-            "end": 10859
+            "end": 10859,
+            "para": 8,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3006,7 +3576,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10860,
-            "end": 10966
+            "end": 10966,
+            "para": 8,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3015,7 +3587,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10967,
-            "end": 11335
+            "end": 11335,
+            "para": 8,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3024,7 +3598,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11336,
-            "end": 11607
+            "end": 11607,
+            "para": 8,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3033,7 +3609,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11608,
-            "end": 11965
+            "end": 11965,
+            "para": 8,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3042,7 +3620,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11966,
-            "end": 12135
+            "end": 12135,
+            "para": 8,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3051,7 +3631,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12136,
-            "end": 12637
+            "end": 12637,
+            "para": 8,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3060,7 +3642,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12638,
-            "end": 12709
+            "end": 12709,
+            "para": 8,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3069,7 +3653,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12711,
-            "end": 12816
+            "end": 12816,
+            "para": 9,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3078,7 +3664,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12817,
-            "end": 13814
+            "end": 13814,
+            "para": 9,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3087,7 +3675,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13815,
-            "end": 14152
+            "end": 14152,
+            "para": 9,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3096,7 +3686,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 14153,
-            "end": 14510
+            "end": 14510,
+            "para": 9,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3105,7 +3697,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 14511,
-            "end": 14874
+            "end": 14874,
+            "para": 9,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3114,7 +3708,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 14875,
-            "end": 15191
+            "end": 15191,
+            "para": 9,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3123,7 +3719,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 15192,
-            "end": 15478
+            "end": 15478,
+            "para": 9,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3132,7 +3730,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 15479,
-            "end": 15606
+            "end": 15606,
+            "para": 9,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3141,7 +3741,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 15607,
-            "end": 16040
+            "end": 16040,
+            "para": 9,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3150,7 +3752,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 16041,
-            "end": 16396
+            "end": 16396,
+            "para": 9,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3159,7 +3763,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 16397,
-            "end": 16641
+            "end": 16641,
+            "para": 9,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3168,7 +3774,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 16642,
-            "end": 16832
+            "end": 16832,
+            "para": 9,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3177,7 +3785,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 16833,
-            "end": 17219
+            "end": 17219,
+            "para": 9,
+            "evidence": null
           },
           {
             "type": "dialogue",
@@ -3186,7 +3796,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 17220,
-            "end": 17267
+            "end": 17267,
+            "para": 9,
+            "evidence": "inferred"
           },
           {
             "type": "narration",
@@ -3195,7 +3807,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 17268,
-            "end": 17514
+            "end": 17514,
+            "para": 9,
+            "evidence": null
           }
         ],
         "discovered_characters": [
@@ -3326,7 +3940,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 0,
-            "end": 711
+            "end": 711,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3335,7 +3951,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 712,
-            "end": 845
+            "end": 845,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3344,7 +3962,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 846,
-            "end": 1571
+            "end": 1571,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3353,7 +3973,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1572,
-            "end": 1853
+            "end": 1853,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3362,7 +3984,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1854,
-            "end": 2524
+            "end": 2524,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3371,7 +3995,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2525,
-            "end": 2660
+            "end": 2660,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3380,7 +4006,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2661,
-            "end": 3464
+            "end": 3464,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3389,7 +4017,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3465,
-            "end": 3515
+            "end": 3515,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3398,7 +4028,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3517,
-            "end": 4158
+            "end": 4158,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3407,7 +4039,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4159,
-            "end": 4979
+            "end": 4979,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3416,7 +4050,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4980,
-            "end": 5367
+            "end": 5367,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3425,7 +4061,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5369,
-            "end": 5758
+            "end": 5758,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3434,7 +4072,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5759,
-            "end": 6193
+            "end": 6193,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3443,7 +4083,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6195,
-            "end": 6635
+            "end": 6635,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3452,7 +4094,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6636,
-            "end": 6948
+            "end": 6948,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3461,7 +4105,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6949,
-            "end": 7376
+            "end": 7376,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3470,7 +4116,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7377,
-            "end": 7483
+            "end": 7483,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "dialogue",
@@ -3479,7 +4127,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7484,
-            "end": 7870
+            "end": 7870,
+            "para": 3,
+            "evidence": "tag-resolved"
           },
           {
             "type": "narration",
@@ -3488,7 +4138,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7871,
-            "end": 7932
+            "end": 7932,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "dialogue",
@@ -3497,7 +4149,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7933,
-            "end": 8087
+            "end": 8087,
+            "para": 3,
+            "evidence": "tag-resolved"
           },
           {
             "type": "narration",
@@ -3506,7 +4160,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8088,
-            "end": 8292
+            "end": 8292,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3515,7 +4171,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8293,
-            "end": 8556
+            "end": 8556,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3524,7 +4182,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8557,
-            "end": 8856
+            "end": 8856,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "dialogue",
@@ -3533,7 +4193,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8857,
-            "end": 10012
+            "end": 10012,
+            "para": 3,
+            "evidence": "tag"
           },
           {
             "type": "narration",
@@ -3542,7 +4204,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10014,
-            "end": 10577
+            "end": 10577,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3551,16 +4215,20 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10578,
-            "end": 10665
+            "end": 10665,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "dialogue",
             "text": "\"There she had robes many-coloured, the works of women of Sidon, Those whom her son himself the god-like of form Alexander Carried from Sidon, what time the broad sea-path he sailed over Bringing back Helene home, of a noble father begotten.\"",
-            "speaker": "Citation",
+            "speaker": "Homer",
             "pronunciation_hints": [],
-            "notes": "citation",
+            "notes": null,
             "start": 10667,
-            "end": 10909
+            "end": 10909,
+            "para": 5,
+            "evidence": "inferred"
           },
           {
             "type": "narration",
@@ -3569,16 +4237,20 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10911,
-            "end": 10977
+            "end": 10977,
+            "para": 6,
+            "evidence": null
           },
           {
             "type": "dialogue",
             "text": "\"Such had the daughter of Zeus, such drugs of exquisite cunning, Good, which to her the wife of Thon, Polydamna, had given, Dwelling in Egypt, the land where the bountiful meadow produces Drugs more than all lands else, many good being mixed, many evil.\"",
-            "speaker": "Citation",
+            "speaker": "Isis",
             "pronunciation_hints": [],
-            "notes": "citation",
+            "notes": null,
             "start": 10979,
-            "end": 11233
+            "end": 11233,
+            "para": 7,
+            "evidence": "inferred"
           },
           {
             "type": "narration",
@@ -3587,16 +4259,20 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11235,
-            "end": 11276
+            "end": 11276,
+            "para": 8,
+            "evidence": null
           },
           {
             "type": "dialogue",
             "text": "\"Still the gods stayed me in Egypt, to come back hither desiring, Stayed me from voyaging home, since sacrifice due I performed not.\"",
-            "speaker": "Citation",
+            "speaker": "Menalaos",
             "pronunciation_hints": [],
-            "notes": "citation",
+            "notes": null,
             "start": 11278,
-            "end": 11411
+            "end": 11411,
+            "para": 9,
+            "evidence": "inferred"
           },
           {
             "type": "narration",
@@ -3605,7 +4281,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11413,
-            "end": 11582
+            "end": 11582,
+            "para": 10,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3614,16 +4292,20 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11583,
-            "end": 11847
+            "end": 11847,
+            "para": 10,
+            "evidence": null
           },
           {
             "type": "dialogue",
             "text": "\"gently-blowing wind and a smooth sea,\"",
-            "speaker": "Citation",
+            "speaker": "Homer",
             "pronunciation_hints": [],
-            "notes": "citation",
+            "notes": null,
             "start": 11848,
-            "end": 11887
+            "end": 11887,
+            "para": 10,
+            "evidence": "inferred"
           },
           {
             "type": "narration",
@@ -3632,7 +4314,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11888,
-            "end": 11970
+            "end": 11970,
+            "para": 10,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3641,7 +4325,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11972,
-            "end": 12271
+            "end": 12271,
+            "para": 11,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3650,7 +4336,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12272,
-            "end": 13068
+            "end": 13068,
+            "para": 11,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3659,7 +4347,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13069,
-            "end": 13349
+            "end": 13349,
+            "para": 11,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3668,7 +4358,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13350,
-            "end": 13553
+            "end": 13553,
+            "para": 11,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3677,7 +4369,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13554,
-            "end": 13858
+            "end": 13858,
+            "para": 11,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3686,7 +4380,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13859,
-            "end": 14242
+            "end": 14242,
+            "para": 11,
+            "evidence": null
           }
         ],
         "discovered_characters": [
@@ -3715,7 +4411,8 @@
           {
             "name": "Helen",
             "aliases": [
-              "the daughter of Tyndareus"
+              "the daughter of Tyndareus",
+              "foreign Aphrodite"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 8
@@ -3729,16 +4426,16 @@
             "first_appearance_chapter": 8
           },
           {
-            "name": "Thonis",
-            "aliases": [
-              "the warden of this river-mouth"
-            ],
+            "name": "Menalaos",
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 8
           },
           {
-            "name": "Menelaos",
-            "aliases": [],
+            "name": "Thonis",
+            "aliases": [
+              "the warden of this river-mouth"
+            ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 8
           },
@@ -3751,7 +4448,7 @@
           {
             "name": "Polydamna",
             "aliases": [
-              "the wife of Thon"
+              "wife of Thon"
             ],
             "pronunciation_hints": [],
             "first_appearance_chapter": 8
@@ -3793,7 +4490,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 0,
-            "end": 1048
+            "end": 1048,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3802,7 +4501,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1049,
-            "end": 1478
+            "end": 1478,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3811,7 +4512,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1479,
-            "end": 1877
+            "end": 1877,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3820,7 +4523,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1879,
-            "end": 2427
+            "end": 2427,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3829,7 +4534,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2428,
-            "end": 2913
+            "end": 2913,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3838,7 +4545,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2914,
-            "end": 3244
+            "end": 3244,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3847,7 +4556,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3245,
-            "end": 3460
+            "end": 3460,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3856,7 +4567,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3461,
-            "end": 3717
+            "end": 3717,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3865,7 +4578,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3718,
-            "end": 4674
+            "end": 4674,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3874,7 +4589,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4675,
-            "end": 4850
+            "end": 4850,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3883,7 +4600,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4851,
-            "end": 5263
+            "end": 5263,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3892,7 +4611,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5264,
-            "end": 5641
+            "end": 5641,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3901,7 +4622,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5642,
-            "end": 6115
+            "end": 6115,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3910,7 +4633,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6116,
-            "end": 6709
+            "end": 6709,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3919,7 +4644,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6710,
-            "end": 6907
+            "end": 6907,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3928,7 +4655,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6908,
-            "end": 7137
+            "end": 7137,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3937,7 +4666,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7138,
-            "end": 7432
+            "end": 7432,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3946,7 +4677,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7433,
-            "end": 7720
+            "end": 7720,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3955,7 +4688,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7721,
-            "end": 8381
+            "end": 8381,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3964,7 +4699,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8382,
-            "end": 9321
+            "end": 9321,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3973,7 +4710,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9322,
-            "end": 9619
+            "end": 9619,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3982,7 +4721,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9620,
-            "end": 9918
+            "end": 9918,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -3991,7 +4732,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9920,
-            "end": 10507
+            "end": 10507,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4000,7 +4743,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10508,
-            "end": 10771
+            "end": 10771,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4009,7 +4754,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10772,
-            "end": 10997
+            "end": 10997,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4018,7 +4765,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10998,
-            "end": 11247
+            "end": 11247,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4027,7 +4776,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11248,
-            "end": 11742
+            "end": 11742,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4036,7 +4787,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11743,
-            "end": 11918
+            "end": 11918,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4045,7 +4798,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11920,
-            "end": 12261
+            "end": 12261,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4054,7 +4809,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12262,
-            "end": 12611
+            "end": 12611,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4063,7 +4820,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12612,
-            "end": 12994
+            "end": 12994,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4072,7 +4831,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12995,
-            "end": 13361
+            "end": 13361,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4081,7 +4842,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13362,
-            "end": 13500
+            "end": 13500,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4090,7 +4853,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13501,
-            "end": 14244
+            "end": 14244,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4099,7 +4864,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 14245,
-            "end": 14459
+            "end": 14459,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4108,7 +4875,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 14460,
-            "end": 15116
+            "end": 15116,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4117,7 +4886,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 15117,
-            "end": 15772
+            "end": 15772,
+            "para": 3,
+            "evidence": null
           }
         ],
         "discovered_characters": [
@@ -4200,7 +4971,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 0,
-            "end": 122
+            "end": 122,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4209,7 +4982,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 123,
-            "end": 823
+            "end": 823,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4218,7 +4993,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 824,
-            "end": 1140
+            "end": 1140,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4227,7 +5004,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1141,
-            "end": 1355
+            "end": 1355,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4236,7 +5015,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1356,
-            "end": 1747
+            "end": 1747,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4245,7 +5026,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1748,
-            "end": 2017
+            "end": 2017,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4254,7 +5037,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2018,
-            "end": 2511
+            "end": 2511,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4263,7 +5048,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2512,
-            "end": 2810
+            "end": 2810,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4272,7 +5059,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2811,
-            "end": 3090
+            "end": 3090,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4281,7 +5070,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3091,
-            "end": 3533
+            "end": 3533,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4290,7 +5081,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3534,
-            "end": 3808
+            "end": 3808,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4299,7 +5092,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3809,
-            "end": 4088
+            "end": 4088,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4308,7 +5103,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4089,
-            "end": 4454
+            "end": 4454,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4317,7 +5114,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4456,
-            "end": 5391
+            "end": 5391,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4326,7 +5125,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5392,
-            "end": 5760
+            "end": 5760,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4335,7 +5136,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5761,
-            "end": 5931
+            "end": 5931,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4344,7 +5147,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5933,
-            "end": 6149
+            "end": 6149,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4353,7 +5158,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6150,
-            "end": 6711
+            "end": 6711,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4362,7 +5169,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6712,
-            "end": 7259
+            "end": 7259,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4371,7 +5180,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7260,
-            "end": 7510
+            "end": 7510,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4380,7 +5191,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7511,
-            "end": 7727
+            "end": 7727,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4389,7 +5202,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7728,
-            "end": 8144
+            "end": 8144,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4398,7 +5213,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8145,
-            "end": 8518
+            "end": 8518,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4407,7 +5224,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8519,
-            "end": 8894
+            "end": 8894,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4416,7 +5235,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8895,
-            "end": 9048
+            "end": 9048,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4425,7 +5246,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9050,
-            "end": 9389
+            "end": 9389,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4434,7 +5257,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9390,
-            "end": 10127
+            "end": 10127,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4443,16 +5268,20 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10128,
-            "end": 10333
+            "end": 10333,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "dialogue",
             "text": "\"Despise not me in comparison with the pyramids of stone, seeing that I excel them as much as Zeus excels the other gods; for with a pole they struck into the lake, and whatever of the mud attached itself to the pole, this they gathered up and made bricks, and in such manner they finished me.\"",
-            "speaker": "Asychis",
+            "speaker": "Cheops",
             "pronunciation_hints": [],
             "notes": null,
             "start": 10334,
-            "end": 10628
+            "end": 10628,
+            "para": 3,
+            "evidence": "inferred"
           },
           {
             "type": "narration",
@@ -4461,7 +5290,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10630,
-            "end": 10756
+            "end": 10756,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4470,7 +5301,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10757,
-            "end": 11326
+            "end": 11326,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4479,7 +5312,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11327,
-            "end": 11664
+            "end": 11664,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4488,7 +5323,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11665,
-            "end": 11849
+            "end": 11849,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4497,7 +5334,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11850,
-            "end": 12336
+            "end": 12336,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4506,7 +5345,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12337,
-            "end": 12863
+            "end": 12863,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4515,7 +5356,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12864,
-            "end": 13190
+            "end": 13190,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4524,7 +5367,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13192,
-            "end": 13480
+            "end": 13480,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4533,7 +5378,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13481,
-            "end": 13906
+            "end": 13906,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4542,7 +5389,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13907,
-            "end": 14180
+            "end": 14180,
+            "para": 5,
+            "evidence": null
           }
         ],
         "discovered_characters": [
@@ -4667,7 +5516,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 0,
-            "end": 434
+            "end": 434,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4676,7 +5527,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 435,
-            "end": 668
+            "end": 668,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4685,7 +5538,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 670,
-            "end": 753
+            "end": 753,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4694,7 +5549,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 754,
-            "end": 1094
+            "end": 1094,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4703,7 +5560,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1095,
-            "end": 1195
+            "end": 1195,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4712,7 +5571,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1196,
-            "end": 1692
+            "end": 1692,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4721,7 +5582,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1693,
-            "end": 1977
+            "end": 1977,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4730,7 +5593,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1978,
-            "end": 2234
+            "end": 2234,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4739,7 +5604,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2235,
-            "end": 2390
+            "end": 2390,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "dialogue",
@@ -4748,7 +5615,9 @@
             "pronunciation_hints": [],
             "notes": "citation",
             "start": 2391,
-            "end": 2442
+            "end": 2442,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4757,7 +5626,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2444,
-            "end": 3029
+            "end": 3029,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4766,7 +5637,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3030,
-            "end": 3298
+            "end": 3298,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4775,7 +5648,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3299,
-            "end": 3726
+            "end": 3726,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4784,7 +5659,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3727,
-            "end": 3985
+            "end": 3985,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4793,7 +5670,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3986,
-            "end": 4496
+            "end": 4496,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4802,7 +5681,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4497,
-            "end": 5027
+            "end": 5027,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4811,7 +5692,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5028,
-            "end": 5096
+            "end": 5096,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4820,7 +5703,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5097,
-            "end": 5540
+            "end": 5540,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4829,7 +5714,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5541,
-            "end": 5588
+            "end": 5588,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4838,7 +5725,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5590,
-            "end": 5939
+            "end": 5939,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4847,7 +5736,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5940,
-            "end": 6307
+            "end": 6307,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4856,7 +5747,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6308,
-            "end": 6436
+            "end": 6436,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4865,7 +5758,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6437,
-            "end": 6835
+            "end": 6835,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4874,7 +5769,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6836,
-            "end": 7011
+            "end": 7011,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4883,7 +5780,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7012,
-            "end": 7597
+            "end": 7597,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4892,7 +5791,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7598,
-            "end": 7813
+            "end": 7813,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4901,7 +5802,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7815,
-            "end": 8102
+            "end": 8102,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4910,7 +5813,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8104,
-            "end": 8304
+            "end": 8304,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4919,7 +5824,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8305,
-            "end": 8883
+            "end": 8883,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4928,7 +5835,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8884,
-            "end": 9195
+            "end": 9195,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4937,7 +5846,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9196,
-            "end": 9471
+            "end": 9471,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4946,7 +5857,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9472,
-            "end": 9652
+            "end": 9652,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4955,7 +5868,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9653,
-            "end": 9998
+            "end": 9998,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4964,7 +5879,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9999,
-            "end": 10378
+            "end": 10378,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4973,7 +5890,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10379,
-            "end": 10547
+            "end": 10547,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4982,7 +5901,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10548,
-            "end": 10895
+            "end": 10895,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -4991,7 +5912,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10896,
-            "end": 11278
+            "end": 11278,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5000,7 +5923,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11280,
-            "end": 11634
+            "end": 11634,
+            "para": 6,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5009,7 +5934,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11635,
-            "end": 11743
+            "end": 11743,
+            "para": 6,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5018,7 +5945,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11744,
-            "end": 12069
+            "end": 12069,
+            "para": 6,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5027,7 +5956,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12070,
-            "end": 12291
+            "end": 12291,
+            "para": 6,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5036,7 +5967,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12292,
-            "end": 12742
+            "end": 12742,
+            "para": 6,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5045,7 +5978,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12743,
-            "end": 12982
+            "end": 12982,
+            "para": 6,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5054,7 +5989,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12983,
-            "end": 13376
+            "end": 13376,
+            "para": 6,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5063,7 +6000,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13377,
-            "end": 13562
+            "end": 13562,
+            "para": 6,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5072,7 +6011,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13563,
-            "end": 13910
+            "end": 13910,
+            "para": 6,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5081,7 +6022,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13911,
-            "end": 14243
+            "end": 14243,
+            "para": 6,
+            "evidence": null
           }
         ],
         "discovered_characters": [
@@ -5150,7 +6093,7 @@
         "missing_text": [],
         "attribution_issues": [],
         "name_inconsistencies": [],
-        "overall_quality": 1.0,
+        "overall_quality": 0.95,
         "needs_reprocessing": false,
         "unreviewed_windows": [],
         "fixed_segments": null
@@ -5176,7 +6119,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 0,
-            "end": 372
+            "end": 372,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5185,7 +6130,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 373,
-            "end": 689
+            "end": 689,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5194,7 +6141,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 690,
-            "end": 1339
+            "end": 1339,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5203,7 +6152,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1340,
-            "end": 1664
+            "end": 1664,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5212,7 +6163,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1665,
-            "end": 1827
+            "end": 1827,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5221,7 +6174,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1828,
-            "end": 2178
+            "end": 2178,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5230,7 +6185,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2179,
-            "end": 2583
+            "end": 2583,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5239,7 +6196,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2584,
-            "end": 2914
+            "end": 2914,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5248,7 +6207,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2915,
-            "end": 3331
+            "end": 3331,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5257,7 +6218,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3332,
-            "end": 3382
+            "end": 3382,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5266,7 +6229,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3383,
-            "end": 3858
+            "end": 3858,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5275,7 +6240,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3859,
-            "end": 4057
+            "end": 4057,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5284,7 +6251,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4058,
-            "end": 4609
+            "end": 4609,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5293,7 +6262,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4611,
-            "end": 4799
+            "end": 4799,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5302,7 +6273,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4800,
-            "end": 5083
+            "end": 5083,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5311,7 +6284,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5084,
-            "end": 5476
+            "end": 5476,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5320,7 +6295,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5477,
-            "end": 5786
+            "end": 5786,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5329,7 +6306,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5787,
-            "end": 6168
+            "end": 6168,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5338,7 +6317,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6169,
-            "end": 6651
+            "end": 6651,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5347,7 +6328,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6652,
-            "end": 6859
+            "end": 6859,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5356,7 +6339,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6860,
-            "end": 7127
+            "end": 7127,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5365,7 +6350,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7129,
-            "end": 7470
+            "end": 7470,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5374,7 +6361,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7472,
-            "end": 7841
+            "end": 7841,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5383,7 +6372,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7842,
-            "end": 8392
+            "end": 8392,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5392,7 +6383,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8393,
-            "end": 8810
+            "end": 8810,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5401,7 +6394,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8811,
-            "end": 9047
+            "end": 9047,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5410,7 +6405,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9048,
-            "end": 9291
+            "end": 9291,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5419,7 +6416,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9292,
-            "end": 9608
+            "end": 9608,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5428,7 +6427,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9609,
-            "end": 9734
+            "end": 9734,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5437,7 +6438,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9736,
-            "end": 10038
+            "end": 10038,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5446,7 +6449,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10039,
-            "end": 10512
+            "end": 10512,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5455,7 +6460,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10513,
-            "end": 11223
+            "end": 11223,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5464,7 +6471,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11224,
-            "end": 11285
+            "end": 11285,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5473,7 +6482,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11287,
-            "end": 11489
+            "end": 11489,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5482,7 +6493,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11490,
-            "end": 11729
+            "end": 11729,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5491,7 +6504,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11730,
-            "end": 11909
+            "end": 11909,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5500,7 +6515,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11910,
-            "end": 12287
+            "end": 12287,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5509,7 +6526,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12288,
-            "end": 12431
+            "end": 12431,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5518,7 +6537,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12432,
-            "end": 12754
+            "end": 12754,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5527,7 +6548,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12755,
-            "end": 13142
+            "end": 13142,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5536,7 +6559,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13143,
-            "end": 13333
+            "end": 13333,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5545,7 +6570,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13334,
-            "end": 13660
+            "end": 13660,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5554,7 +6581,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13661,
-            "end": 14057
+            "end": 14057,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5563,7 +6592,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 14058,
-            "end": 14291
+            "end": 14291,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5572,7 +6603,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 14292,
-            "end": 14560
+            "end": 14560,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5581,7 +6614,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 14561,
-            "end": 14782
+            "end": 14782,
+            "para": 5,
+            "evidence": null
           }
         ],
         "discovered_characters": [
@@ -5605,17 +6640,13 @@
           },
           {
             "name": "Apis",
-            "aliases": [
-              "Epaphos"
-            ],
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 12
           },
           {
-            "name": "Darius",
-            "aliases": [
-              "Dareios"
-            ],
+            "name": "Apries",
+            "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 12
           },
@@ -5626,7 +6657,7 @@
             "first_appearance_chapter": 12
           },
           {
-            "name": "Apries",
+            "name": "Eleians",
             "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 12
@@ -5674,7 +6705,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 0,
-            "end": 343
+            "end": 343,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5683,7 +6716,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 344,
-            "end": 724
+            "end": 724,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5692,7 +6727,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 725,
-            "end": 1046
+            "end": 1046,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5701,7 +6738,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1047,
-            "end": 1359
+            "end": 1359,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5710,7 +6749,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1360,
-            "end": 1979
+            "end": 1979,
+            "para": 0,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5719,7 +6760,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 1981,
-            "end": 2323
+            "end": 2323,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5728,7 +6771,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2324,
-            "end": 2756
+            "end": 2756,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5737,7 +6782,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2757,
-            "end": 2856
+            "end": 2856,
+            "para": 1,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5746,7 +6793,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 2858,
-            "end": 3172
+            "end": 3172,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5755,7 +6804,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3173,
-            "end": 3527
+            "end": 3527,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5764,7 +6815,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3528,
-            "end": 3987
+            "end": 3987,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5773,7 +6826,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 3988,
-            "end": 4457
+            "end": 4457,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5782,7 +6837,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4458,
-            "end": 4913
+            "end": 4913,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5791,7 +6848,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 4914,
-            "end": 5290
+            "end": 5290,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5800,7 +6859,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5291,
-            "end": 5634
+            "end": 5634,
+            "para": 2,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5809,7 +6870,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 5636,
-            "end": 6004
+            "end": 6004,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5818,7 +6881,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6005,
-            "end": 6385
+            "end": 6385,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5827,7 +6892,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6386,
-            "end": 6939
+            "end": 6939,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5836,7 +6903,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 6940,
-            "end": 7321
+            "end": 7321,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5845,7 +6914,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7322,
-            "end": 7402
+            "end": 7402,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "dialogue",
@@ -5854,7 +6925,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7403,
-            "end": 7823
+            "end": 7823,
+            "para": 3,
+            "evidence": "tag-resolved"
           },
           {
             "type": "narration",
@@ -5863,7 +6936,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7824,
-            "end": 7850
+            "end": 7850,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "dialogue",
@@ -5872,7 +6947,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 7851,
-            "end": 8386
+            "end": 8386,
+            "para": 3,
+            "evidence": "tag-resolved"
           },
           {
             "type": "narration",
@@ -5881,7 +6958,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8387,
-            "end": 8418
+            "end": 8418,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5890,7 +6969,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 8419,
-            "end": 9443
+            "end": 9443,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5899,7 +6980,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9444,
-            "end": 9680
+            "end": 9680,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5908,7 +6991,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 9681,
-            "end": 10227
+            "end": 10227,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5917,7 +7002,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10228,
-            "end": 10518
+            "end": 10518,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5926,7 +7013,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10519,
-            "end": 10880
+            "end": 10880,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5935,7 +7024,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 10881,
-            "end": 11024
+            "end": 11024,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5944,7 +7035,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11025,
-            "end": 11459
+            "end": 11459,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5953,7 +7046,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11460,
-            "end": 11690
+            "end": 11690,
+            "para": 3,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5962,7 +7057,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 11692,
-            "end": 12001
+            "end": 12001,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5971,7 +7068,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12002,
-            "end": 12291
+            "end": 12291,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5980,7 +7079,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12292,
-            "end": 12470
+            "end": 12470,
+            "para": 4,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5989,7 +7090,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12472,
-            "end": 12841
+            "end": 12841,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -5998,7 +7101,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 12842,
-            "end": 13148
+            "end": 13148,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -6007,7 +7112,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13149,
-            "end": 13490
+            "end": 13490,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -6016,7 +7123,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13491,
-            "end": 13981
+            "end": 13981,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -6025,7 +7134,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 13982,
-            "end": 14386
+            "end": 14386,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -6034,7 +7145,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 14387,
-            "end": 14586
+            "end": 14586,
+            "para": 5,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -6043,7 +7156,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 14588,
-            "end": 15028
+            "end": 15028,
+            "para": 6,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -6052,7 +7167,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 15029,
-            "end": 15242
+            "end": 15242,
+            "para": 6,
+            "evidence": null
           },
           {
             "type": "dialogue",
@@ -6061,7 +7178,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 15243,
-            "end": 15337
+            "end": 15337,
+            "para": 6,
+            "evidence": "inferred"
           },
           {
             "type": "narration",
@@ -6070,7 +7189,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 15338,
-            "end": 15816
+            "end": 15816,
+            "para": 6,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -6079,7 +7200,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 15817,
-            "end": 16144
+            "end": 16144,
+            "para": 6,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -6088,7 +7211,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 16146,
-            "end": 16540
+            "end": 16540,
+            "para": 7,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -6097,7 +7222,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 16541,
-            "end": 16881
+            "end": 16881,
+            "para": 7,
+            "evidence": null
           },
           {
             "type": "narration",
@@ -6106,7 +7233,9 @@
             "pronunciation_hints": [],
             "notes": null,
             "start": 16882,
-            "end": 17016
+            "end": 17016,
+            "para": 7,
+            "evidence": null
           }
         ],
         "discovered_characters": [
@@ -6120,6 +7249,24 @@
           },
           {
             "name": "Ladike",
+            "aliases": [],
+            "pronunciation_hints": [],
+            "first_appearance_chapter": 13
+          },
+          {
+            "name": "Battos",
+            "aliases": [],
+            "pronunciation_hints": [],
+            "first_appearance_chapter": 13
+          },
+          {
+            "name": "Arkesilaos",
+            "aliases": [],
+            "pronunciation_hints": [],
+            "first_appearance_chapter": 13
+          },
+          {
+            "name": "Critobulos",
             "aliases": [],
             "pronunciation_hints": [],
             "first_appearance_chapter": 13
@@ -6143,7 +7290,7 @@
         "missing_text": [],
         "attribution_issues": [],
         "name_inconsistencies": [],
-        "overall_quality": 0.9266666666666667,
+        "overall_quality": 1.0,
         "needs_reprocessing": false,
         "unreviewed_windows": [],
         "fixed_segments": null
@@ -6152,13 +7299,6 @@
     }
   ],
   "characters": [
-    {
-      "name": "Herodotus",
-      "aliases": [],
-      "pronunciation_hints": [],
-      "first_appearance_chapter": 1,
-      "dialogue_segments": 0
-    },
     {
       "name": "Cyrus",
       "aliases": [],
@@ -6195,7 +7335,21 @@
       "dialogue_segments": 0
     },
     {
+      "name": "Hephaistos",
+      "aliases": [],
+      "pronunciation_hints": [],
+      "first_appearance_chapter": 1,
+      "dialogue_segments": 0
+    },
+    {
       "name": "Etearchos",
+      "aliases": [],
+      "pronunciation_hints": [],
+      "first_appearance_chapter": 3,
+      "dialogue_segments": 0
+    },
+    {
+      "name": "Nasamonians",
       "aliases": [],
       "pronunciation_hints": [],
       "first_appearance_chapter": 3,
@@ -6222,7 +7376,25 @@
       "aliases": [],
       "pronunciation_hints": [],
       "first_appearance_chapter": 4,
-      "dialogue_segments": 0
+      "dialogue_segments": 1,
+      "description": "A divine or highly knowledgeable figure, commenting on magical or cunning practices.",
+      "voice": {
+        "sex": "female",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "none"
+        },
+        "social_rank": "Divine/Wise",
+        "register": "Wise/Observational",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "serene",
+        "distinctive": "Calm and knowing, speaking with the weight of ancient wisdom."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Osiris",
@@ -6235,6 +7407,13 @@
     },
     {
       "name": "Dionysos",
+      "aliases": [],
+      "pronunciation_hints": [],
+      "first_appearance_chapter": 4,
+      "dialogue_segments": 0
+    },
+    {
+      "name": "Ammon",
       "aliases": [],
       "pronunciation_hints": [],
       "first_appearance_chapter": 4,
@@ -6289,7 +7468,25 @@
       "aliases": [],
       "pronunciation_hints": [],
       "first_appearance_chapter": 4,
-      "dialogue_segments": 0
+      "dialogue_segments": 2,
+      "description": "A poet or narrator describing scenes, likely with a slightly elevated, lyrical tone.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "none"
+        },
+        "social_rank": "Educated/Artistic",
+        "register": "Poetic/Elevated",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "resonant",
+        "distinctive": "Flowery and evocative, as if reciting epic verse."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Promeneia",
@@ -6310,6 +7507,13 @@
       "aliases": [],
       "pronunciation_hints": [],
       "first_appearance_chapter": 5,
+      "dialogue_segments": 0
+    },
+    {
+      "name": "Helios",
+      "aliases": [],
+      "pronunciation_hints": [],
+      "first_appearance_chapter": 6,
       "dialogue_segments": 0
     },
     {
@@ -6404,24 +7608,52 @@
       "pronunciation_hints": [],
       "first_appearance_chapter": 7,
       "dialogue_segments": 1,
-      "description": "A great and conquering Pharaoh of Egypt, whose terse statement is a declaration of his own martial prowess and divine mandate.",
+      "description": "A powerful ruler who claims ownership and conquest over his domain.",
       "voice": {
         "sex": "male",
-        "age_band": "middle_aged",
+        "age_band": "adult",
         "accent": {
           "locale": "en-GB",
           "origin": "",
-          "strength": "light"
+          "strength": "none"
         },
-        "social_rank": "royal",
-        "register": "formal, terse",
-        "pitch": "low",
-        "pace": "slow",
-        "timbre": "hard, commanding",
-        "distinctive": "Monumental and self-assured; speaks with the finality of a king who has never been questioned, each word a stone set in place."
+        "social_rank": "Royal",
+        "register": "Assertive",
+        "pitch": "medium",
+        "pace": "brisk",
+        "timbre": "strong",
+        "distinctive": "Triumphant and forceful, emphasizing his personal achievement."
       },
       "confidence": "medium",
       "basis": "inferred_from_text"
+    },
+    {
+      "name": "Colchians",
+      "aliases": [],
+      "pronunciation_hints": [],
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
+    },
+    {
+      "name": "Phenicians",
+      "aliases": [],
+      "pronunciation_hints": [],
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
+    },
+    {
+      "name": "Syrians",
+      "aliases": [],
+      "pronunciation_hints": [],
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
+    },
+    {
+      "name": "Macronians",
+      "aliases": [],
+      "pronunciation_hints": [],
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
     },
     {
       "name": "Archander",
@@ -6445,10 +7677,16 @@
       "dialogue_segments": 0
     },
     {
+      "name": "Memnon",
+      "aliases": [],
+      "pronunciation_hints": [],
+      "first_appearance_chapter": 7,
+      "dialogue_segments": 0
+    },
+    {
       "name": "Dareios",
       "aliases": [
-        "the Persian",
-        "Darius"
+        "the Persian"
       ],
       "pronunciation_hints": [],
       "first_appearance_chapter": 8,
@@ -6469,29 +7707,30 @@
       "pronunciation_hints": [],
       "first_appearance_chapter": 8,
       "dialogue_segments": 2,
-      "description": "A wise and just king of Egypt, who acts as an arbiter of moral law, showing mercy even to wrongdoers who are guests in his land.",
+      "description": "A powerful figure, possibly a ruler or military commander, issuing commands and making pronouncements.",
       "voice": {
         "sex": "male",
-        "age_band": "elderly",
+        "age_band": "adult",
         "accent": {
           "locale": "en-GB",
           "origin": "",
-          "strength": "light"
+          "strength": "none"
         },
-        "social_rank": "royal",
-        "register": "formal, magisterial",
+        "social_rank": "High/Military",
+        "register": "Formal",
         "pitch": "low",
-        "pace": "slow",
-        "timbre": "deep, gravelly",
-        "distinctive": "Weighty and deliberate; speaks with the gravity of a judge, but with a hint of weary compassion in his pronouncements."
+        "pace": "measured",
+        "timbre": "command-like",
+        "distinctive": "Gravelly and imposing, delivering threats with measured gravity."
       },
-      "confidence": "high",
-      "basis": "known_work"
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Helen",
       "aliases": [
-        "the daughter of Tyndareus"
+        "the daughter of Tyndareus",
+        "foreign Aphrodite"
       ],
       "pronunciation_hints": [],
       "first_appearance_chapter": 8,
@@ -6507,6 +7746,31 @@
       "dialogue_segments": 0
     },
     {
+      "name": "Menalaos",
+      "aliases": [],
+      "pronunciation_hints": [],
+      "first_appearance_chapter": 8,
+      "dialogue_segments": 1,
+      "description": "A figure who has been delayed or prevented from returning home, likely due to obligations.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "none"
+        },
+        "social_rank": "Noble/Warrior",
+        "register": "Formal",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "somber",
+        "distinctive": "Melancholic and resigned, speaking of fate and duty."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
+    },
+    {
       "name": "Thonis",
       "aliases": [
         "the warden of this river-mouth"
@@ -6514,31 +7778,24 @@
       "pronunciation_hints": [],
       "first_appearance_chapter": 8,
       "dialogue_segments": 1,
-      "description": "A dutiful Egyptian official, a warden of the coast, who reports a grave crime to his king with a sense of urgency and moral outrage.",
+      "description": "A messenger or official reporting the arrival of a problematic stranger.",
       "voice": {
         "sex": "male",
-        "age_band": "young_adult",
+        "age_band": "adult",
         "accent": {
           "locale": "en-GB",
           "origin": "",
-          "strength": "light"
+          "strength": "none"
         },
-        "social_rank": "official",
-        "register": "formal, respectful",
+        "social_rank": "Official/Messenger",
+        "register": "Formal",
         "pitch": "medium",
-        "pace": "fast",
-        "timbre": "bright, urgent",
-        "distinctive": "Earnest and breathless; delivers his report with a sense of scandalized excitement, eager to convey the enormity of the stranger's crime."
+        "pace": "measured",
+        "timbre": "concerned",
+        "distinctive": "Urgent and grave, delivering news of potential trouble."
       },
       "confidence": "medium",
       "basis": "inferred_from_text"
-    },
-    {
-      "name": "Menelaos",
-      "aliases": [],
-      "pronunciation_hints": [],
-      "first_appearance_chapter": 8,
-      "dialogue_segments": 0
     },
     {
       "name": "Telemachos",
@@ -6550,7 +7807,7 @@
     {
       "name": "Polydamna",
       "aliases": [
-        "the wife of Thon"
+        "wife of Thon"
       ],
       "pronunciation_hints": [],
       "first_appearance_chapter": 8,
@@ -6589,7 +7846,25 @@
       "aliases": [],
       "pronunciation_hints": [],
       "first_appearance_chapter": 9,
-      "dialogue_segments": 0
+      "dialogue_segments": 1,
+      "description": "A pharaoh or powerful ruler boasting about his achievements and power.",
+      "voice": {
+        "sex": "male",
+        "age_band": "adult",
+        "accent": {
+          "locale": "en-GB",
+          "origin": "",
+          "strength": "none"
+        },
+        "social_rank": "Royal",
+        "register": "Arrogant/Grand",
+        "pitch": "medium",
+        "pace": "measured",
+        "timbre": "booming",
+        "distinctive": "Self-aggrandizing and bombastic, comparing his works to divine feats."
+      },
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Chephren",
@@ -6669,25 +7944,7 @@
       "aliases": [],
       "pronunciation_hints": [],
       "first_appearance_chapter": 10,
-      "dialogue_segments": 1,
-      "description": "A Pharaoh of Egypt, proud of his own monumental legacy, which he boasts surpasses even the great pyramids.",
-      "voice": {
-        "sex": "male",
-        "age_band": "middle_aged",
-        "accent": {
-          "locale": "en-GB",
-          "origin": "",
-          "strength": "light"
-        },
-        "social_rank": "royal",
-        "register": "formal, boastful",
-        "pitch": "medium",
-        "pace": "brisk",
-        "timbre": "clear, assertive",
-        "distinctive": "Proud and competitive; his voice carries a sharp edge of vanity, as if daring anyone to contradict his claim."
-      },
-      "confidence": "medium",
-      "basis": "inferred_from_text"
+      "dialogue_segments": 0
     },
     {
       "name": "Anysis",
@@ -6703,13 +7960,6 @@
       ],
       "pronunciation_hints": [],
       "first_appearance_chapter": 10,
-      "dialogue_segments": 0
-    },
-    {
-      "name": "Amyrtaios",
-      "aliases": [],
-      "pronunciation_hints": [],
-      "first_appearance_chapter": 11,
       "dialogue_segments": 0
     },
     {
@@ -6760,24 +8010,24 @@
       "pronunciation_hints": [],
       "first_appearance_chapter": 11,
       "dialogue_segments": 3,
-      "description": "A wily and pragmatic Pharaoh of Egypt, known for his cunning and his ability to speak in homely parables to make a point.",
+      "description": "A figure of authority, likely a ruler or high official, addressing others with stern admonishment.",
       "voice": {
         "sex": "male",
-        "age_band": "middle_aged",
+        "age_band": "adult",
         "accent": {
           "locale": "en-GB",
           "origin": "",
-          "strength": "light"
+          "strength": "none"
         },
-        "social_rank": "royal",
-        "register": "formal, but with a common touch",
+        "social_rank": "High/Royal",
+        "register": "Formal",
         "pitch": "medium",
         "pace": "measured",
-        "timbre": "warm, resonant",
-        "distinctive": "Sage and wry; delivers parables with a knowing, almost teasing tone, as if enjoying the lesson more than the listener."
+        "timbre": "authoritative",
+        "distinctive": "Paternal and stern, with a tone of disappointed authority."
       },
-      "confidence": "high",
-      "basis": "known_work"
+      "confidence": "medium",
+      "basis": "inferred_from_text"
     },
     {
       "name": "Sardanapallos",
@@ -6795,15 +8045,6 @@
     },
     {
       "name": "Apis",
-      "aliases": [
-        "Epaphos"
-      ],
-      "pronunciation_hints": [],
-      "first_appearance_chapter": 12,
-      "dialogue_segments": 0
-    },
-    {
-      "name": "Psammis",
       "aliases": [],
       "pronunciation_hints": [],
       "first_appearance_chapter": 12,
@@ -6811,6 +8052,13 @@
     },
     {
       "name": "Apries",
+      "aliases": [],
+      "pronunciation_hints": [],
+      "first_appearance_chapter": 12,
+      "dialogue_segments": 0
+    },
+    {
+      "name": "Psammis",
       "aliases": [],
       "pronunciation_hints": [],
       "first_appearance_chapter": 12,
@@ -6840,6 +8088,27 @@
       "dialogue_segments": 0
     },
     {
+      "name": "Battos",
+      "aliases": [],
+      "pronunciation_hints": [],
+      "first_appearance_chapter": 13,
+      "dialogue_segments": 0
+    },
+    {
+      "name": "Arkesilaos",
+      "aliases": [],
+      "pronunciation_hints": [],
+      "first_appearance_chapter": 13,
+      "dialogue_segments": 0
+    },
+    {
+      "name": "Critobulos",
+      "aliases": [],
+      "pronunciation_hints": [],
+      "first_appearance_chapter": 13,
+      "dialogue_segments": 0
+    },
+    {
       "name": "Polycrates",
       "aliases": [
         "Polycrates the son of Aiakes"
@@ -6853,51 +8122,51 @@
     "total_chapters": 13,
     "total_words": 37570,
     "total_segments": 561,
-    "total_characters": 81,
+    "total_characters": 91,
     "validation_performed": true,
     "chapters_needing_review": [],
     "unreviewed_critic_windows": 0,
     "pipeline_version": "1.1.0",
     "discovery_confidence": {
-      "avg_confidence": 0.9943589743589742,
-      "min_confidence": 0.9266666666666667
+      "avg_confidence": 0.9951282051282052,
+      "min_confidence": 0.95
     },
-    "cast_characters": 5
+    "cast_characters": 8
   },
   "processing_config": {
     "processing_model": "google/gemma-4-E4B-it-qat-w4a16-ct",
-    "validation_model": "/opt/data/models/DeepSeek-V4-Flash-0731-GGUF/UD-Q8_K_XL/DeepSeek-V4-Flash-0731-UD-Q8_K_XL-00001-of-00005.gguf",
-    "dual_llm_validation": true,
+    "validation_model": "google/gemma-4-E4B-it-qat-w4a16-ct",
+    "dual_llm_validation": false,
     "chunk_size": 1000
   },
   "production": {
-    "synopsis": "Herodotus, the Greek historian, recounts his travels and inquiries in Egypt, blending geography, customs, and history. He describes the Nile's flooding, the wonders of the temples, and the reigns of pharaohs from Sesostris to Amasis, often contrasting Egyptian practices with Greek ones. The work is a foundational text of ethnography and historiography, mixing observation, hearsay, and myth.",
+    "synopsis": "This work offers a detailed historical account of ancient Egypt, covering its geography, customs, people, and notable figures.",
     "author": {
       "name": "Herodotus",
-      "years": "c. 484–c. 425 BC",
-      "nationality": "Greek (Halicarnassus)",
-      "note": "A curious, genial, and digressive storyteller; his voice is that of an educated traveler, skeptical yet open to wonder, with a dry, understated wit."
+      "years": "c. 484–425 BC",
+      "nationality": "Greek",
+      "note": "The tone should be scholarly, observational, and authoritative, reflecting a historical inquiry."
     },
     "narration": {
-      "person": "first_person",
+      "person": "third_omniscient",
       "narrator_character": "",
       "voice": {
         "sex": "male",
-        "age_band": "middle_aged",
+        "age_band": "adult",
         "accent": {
           "locale": "en-GB",
-          "origin": "educated British English",
-          "strength": "moderate"
+          "origin": "",
+          "strength": "none"
         },
-        "social_rank": "scholar",
-        "register": "conversational, learned, slightly formal",
+        "social_rank": "Scholar/Observer",
+        "register": "Formal and academic",
         "pitch": "medium",
         "pace": "measured",
-        "timbre": "warm, clear",
-        "distinctive": "occasional dry humor; a hint of wonder in descriptive passages"
+        "timbre": "clear and resonant",
+        "distinctive": "Authoritative"
       },
       "basis": "author_nationality"
     },
-    "casting_notes": "All characters are Egyptian or Greek men of antiquity; use a consistent educated British English accent for the narration, and differentiate characters by age, rank, and temperament rather than by regional accent. Keep the tone dignified but lively, with a sense of Herodotus's own curiosity and irony."
+    "casting_notes": "The narrator must maintain a consistent, learned tone throughout the historical narrative. Character voices should be distinct but subservient to the overarching historical voice."
   }
 }

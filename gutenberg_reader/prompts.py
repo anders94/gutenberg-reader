@@ -570,7 +570,11 @@ real and distinct person — "Narrator's Wife" is somebody — so do not merge o
 resemblance alone.
 
 Keep is the safe answer. Striking a real character loses every line they speak
-for the rest of the book."""
+for the rest of the book.
+
+Respond ONLY with JSON of exactly this shape, one entry per new name, every
+entry carrying all four fields:
+{"roster_issues": [{"name": "<New Name>", "verdict": "keep" | "not_a_character" | "duplicate", "canonical": "<Known Character, or empty>", "reason": "<brief>"}]}"""
 
 
 # The roster shown alongside the new names. A whole book's cast is affordable
@@ -632,6 +636,25 @@ def narration_user(title: str, author: str, opening: str) -> str:
     )
 
 
+# The JSON a casting call answers with, stated in the prompt because the
+# schema alone is not enough. Guided decoding forbids the fields the model
+# does not expect, but it cannot make the model want them: told nothing about
+# "reason", gemma wrote name/verdict/canonical, tried to close the object, and
+# with "}" masked emitted whitespace — legal anywhere in JSON — for 64,000
+# tokens until the context ran out, three times per chapter, on every chapter.
+# A prompt that shows the shape is answered in four seconds.
+_VOICE_SHAPE = (
+    '{"sex": "male" | "female" | "neutral", '
+    '"age_band": "child" | "teen" | "young_adult" | "adult" | "middle_aged" | "elderly", '
+    '"accent": {"locale": "<en-GB>", "origin": "<region or empty>", '
+    '"strength": "none" | "light" | "moderate" | "strong"}, '
+    '"social_rank": "<text>", "register": "<text>", '
+    '"pitch": "low" | "medium" | "high", '
+    '"pace": "slow" | "measured" | "medium" | "brisk" | "fast", '
+    '"timbre": "<text>", "distinctive": "<text>"}'
+)
+
+
 def casting_production_system() -> str:
     return """You are the casting director for an unabridged audiobook of a
 classic work. You are told the book's title, author, how it is narrated, and
@@ -651,7 +674,10 @@ its speaking characters. Produce the production notes a voice pipeline needs.
   choose the accent an English-language audiobook of it would use, never the
   characters' in-story language.
 - casting_notes: one or two sentences of guidance that apply across the whole
-  cast ("One accent throughout; differentiate by class and age.")."""
+  cast ("One accent throughout; differentiate by class and age.").
+
+Respond ONLY with JSON of exactly this shape, every field present:
+{"synopsis": "<text>", "author": {"name": "<text>", "years": "<1775-1817>", "nationality": "<text>", "note": "<text>"}, "narration": {"person": "first_person" | "third_limited" | "third_omniscient" | "epistolary" | "mixed", "narrator_character": "<roster name, or empty>", "voice": """ + _VOICE_SHAPE + """, "basis": "author_nationality" | "narrator_character" | "work_setting" | "house_style"}, "casting_notes": "<text>"}"""
 
 
 def casting_production_user(
@@ -692,7 +718,11 @@ speak and sample lines of their actual dialogue.
 - distinctive: one playable direction for a voice actor — delivery, energy,
   habit ("arch, teasing; lands the last word", "booming, over-sincere") —
   not appearance.
-- description: one sentence saying who this character is in the story."""
+- description: one sentence saying who this character is in the story.
+
+Respond ONLY with JSON of exactly this shape, one entry per character, every
+field present:
+{"castings": [{"name": "<Character>", "description": "<text>", "voice": """ + _VOICE_SHAPE + """, "confidence": "high" | "medium" | "low", "basis": "known_work" | "inferred_from_text"}]}"""
 
 
 def casting_voices_user(

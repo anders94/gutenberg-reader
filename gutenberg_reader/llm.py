@@ -12,6 +12,28 @@ class LLMError(Exception):
     pass
 
 
+class LLMStalled(LLMError):
+    """The server cut the response at max_tokens.
+
+    Two things do this: an answer that is genuinely long, and a model stalled
+    under guided decoding — wanting a token the grammar masks, it emits the
+    whitespace the grammar allows, forever. The second is what an unbounded
+    request turns into a 64,000-token, nine-minute failure; the cap makes it
+    a short one, and the retry can then change the sampling to break it.
+    """
+
+
+# Completion tokens per request. Well above any real answer (a critic window
+# with thinking runs ~2k, the structure pass measured 5k on a large model) and
+# far below the 65k context a stalled request otherwise consumes.
+DEFAULT_MAX_TOKENS = 16384
+
+# Applied on the retry after a stall. Measured on the roster review that
+# stalled: 1.15 turns the whitespace loop into a complete answer in 3 seconds;
+# temperature 0.7 alone does not.
+STALL_RETRY_REPETITION_PENALTY = 1.15
+
+
 def _strip_markdown_fences(content: str) -> str:
     """Remove ```json ... ``` or ``` ... ``` wrappers if present."""
     content = content.strip()
@@ -89,13 +111,22 @@ class LLMClient:
         temperature: float = 0.1,
         schema: dict | None = None,
         require_json: bool = True,
+        max_tokens: int = DEFAULT_MAX_TOKENS,
+        sampling: dict | None = None,
     ) -> str:
-        """Send a chat request and return the assistant's message content."""
+        """Send a chat request and return the assistant's message content.
+
+        sampling: extra sampling parameters passed through to the server
+        (repetition_penalty and the like). Raises LLMStalled when the server
+        cut the answer at max_tokens.
+        """
         payload: dict[str, Any] = {
             "model": model,
             "messages": messages,
             "temperature": temperature,
+            "max_tokens": max_tokens,
             "stream": False,
+            **(sampling or {}),
         }
         if self.template_kwargs:
             payload["chat_template_kwargs"] = self.template_kwargs
@@ -118,9 +149,18 @@ class LLMClient:
 
         data = resp.json()
         try:
-            return data["choices"][0]["message"]["content"] or ""
+            choice = data["choices"][0]
+            content = choice["message"]["content"] or ""
         except (KeyError, IndexError) as e:
             raise LLMError(f"Unexpected response shape: {json.dumps(data)[:500]}") from e
+        if choice.get("finish_reason") == "length":
+            used = (data.get("usage") or {}).get("completion_tokens", "?")
+            raise LLMStalled(
+                f"response cut at max_tokens={max_tokens} ({used} completion "
+                f"tokens; a model stalled under guided decoding emits whitespace "
+                f"until it hits the cap). Content so far: {content[:200]!r}"
+            )
+        return content
 
     def chat_json(
         self,
@@ -128,9 +168,10 @@ class LLMClient:
         messages: list[dict],
         temperature: float = 0.1,
         schema: dict | None = None,
+        **kw,
     ) -> Any:
         """Send a chat request and parse the JSON response."""
-        content = self.chat(model, messages, temperature=temperature, schema=schema)
+        content = self.chat(model, messages, temperature=temperature, schema=schema, **kw)
         content = _strip_markdown_fences(content)
         try:
             return json.loads(content)
@@ -175,12 +216,18 @@ def call_json_with_retries(
     review reports 0.94 on work it never looked at.
     """
     last: Exception | None = None
+    sampling: dict | None = None
     for attempt in range(1, retries + 1):
         try:
             return client.chat_json(
-                model, messages, schema=schema, temperature=temperature)
+                model, messages, schema=schema, temperature=temperature,
+                sampling=sampling)
         except LLMError as e:
             last = e
+            if isinstance(e, LLMStalled):
+                # Same prompt, same greedy answer, same stall. Change what the
+                # model is allowed to prefer rather than asking again.
+                sampling = {"repetition_penalty": STALL_RETRY_REPETITION_PENALTY}
             if console is not None:
                 console.print(
                     f"  [red]{what} failed (attempt {attempt}/{retries}): {e}[/red]"
