@@ -119,6 +119,12 @@ def roster_review_schema(char_names: list[str], new_names: list[str]) -> dict:
 # alternately 184 times each until it hit the token cap. An array the grammar
 # never closes is an invitation to loop.
 DISCOVERY_MAX_CHARACTERS = 80
+# Bounding the outer list moved the loop inside an entry: on PG 1184 chapter
+# 10 the model was still listing aliases for Louis XVIII ("the king",
+# "philosophical monarch", ...) when it hit the token cap. A person has a
+# handful of names, not an open-ended list of descriptions.
+DISCOVERY_MAX_ALIASES = 8
+DISCOVERY_MAX_HINTS = 3
 
 CHARACTERS_SCHEMA = {
     "type": "object",
@@ -130,8 +136,10 @@ CHARACTERS_SCHEMA = {
                 "type": "object",
                 "properties": {
                     "name": {"type": "string"},
-                    "aliases": {"type": "array", "items": {"type": "string"}},
-                    "pronunciation_hints": {"type": "array", "items": {"type": "string"}},
+                    "aliases": {"type": "array", "maxItems": DISCOVERY_MAX_ALIASES,
+                                "items": {"type": "string"}},
+                    "pronunciation_hints": {"type": "array", "maxItems": DISCOVERY_MAX_HINTS,
+                                            "items": {"type": "string"}},
                     "first_appearance_chapter": {"type": "integer"},
                 },
                 "required": ["name", "aliases", "pronunciation_hints", "first_appearance_chapter"],

@@ -777,6 +777,9 @@ def test_discovery_arrays_are_bounded():
     from gutenberg_reader.stages import s04_characters
     assert schemas.CHARACTERS_SCHEMA["properties"]["characters"]["maxItems"] == \
         schemas.DISCOVERY_MAX_CHARACTERS
+    entry = schemas.CHARACTERS_SCHEMA["properties"]["characters"]["items"]["properties"]
+    assert entry["aliases"]["maxItems"] == schemas.DISCOVERY_MAX_ALIASES
+    assert entry["pronunciation_hints"]["maxItems"] == schemas.DISCOVERY_MAX_HINTS
     assert schemas.roster_review_schema(["A", "B"], ["B"])["properties"]["roster_issues"]["maxItems"] == 1
     assert schemas.structure_schema(12)["properties"]["headings"]["maxItems"] == 12
     assert s04_characters._is_degenerate(
