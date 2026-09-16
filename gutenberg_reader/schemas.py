@@ -86,6 +86,9 @@ def roster_review_schema(char_names: list[str], new_names: list[str]) -> dict:
         "properties": {
             "roster_issues": {
                 "type": "array",
+                # One verdict per new name at most; the grammar closes the
+                # array where the question ends.
+                "maxItems": max(1, len(set(new_names))),
                 "items": {
                     "type": "object",
                     "properties": {
@@ -110,11 +113,19 @@ def roster_review_schema(char_names: list[str], new_names: list[str]) -> dict:
     }
 
 
+# Names one discovery window can return. A 6,000-word window introduces a
+# few dozen at most; the bound exists because gemma, asked about a chapter of
+# PG 1184 with five names in it, listed "M. de Villefort" and "M. de Blacas"
+# alternately 184 times each until it hit the token cap. An array the grammar
+# never closes is an invitation to loop.
+DISCOVERY_MAX_CHARACTERS = 80
+
 CHARACTERS_SCHEMA = {
     "type": "object",
     "properties": {
         "characters": {
             "type": "array",
+            "maxItems": DISCOVERY_MAX_CHARACTERS,
             "items": {
                 "type": "object",
                 "properties": {
@@ -184,6 +195,9 @@ def structure_schema(n_candidates: int) -> dict:
                 # A book with no chapter divisions still has a title page to
                 # classify, so requiring one costs nothing.
                 "minItems": 1,
+                # Every candidate classified once is the most a verdict can
+                # say; past that the model is repeating itself.
+                "maxItems": max(1, n_candidates),
                 "items": {
                     "type": "object",
                     "properties": {
@@ -223,6 +237,7 @@ def span_type_schema(n_spans: int) -> dict:
             "spans": {
                 "type": "array",
                 "minItems": 1,
+                "maxItems": max(1, n_spans),
                 "items": {
                     "type": "object",
                     "properties": {

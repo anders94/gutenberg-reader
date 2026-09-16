@@ -53,8 +53,16 @@ def normalize_typography(text: str) -> str:
     return text
 
 
+# An illustration's file name on a line of its own, left behind when the
+# HTML edition was flattened: PG 1184 prints "0023m" ... "40010m" 92 times.
+# Not a caption, not a word — read aloud it is "forty thousand ten m".
+IMAGE_MARKER_LINE_RE = re.compile(r"^[ \t]*\d{3,6}[a-z][ \t]*$", re.MULTILINE)
+
+
 def strip_illustration_blocks(text: str) -> str:
-    """Remove [Illustration: ...] blocks, handling nested brackets."""
+    """Remove [Illustration: ...] blocks (nested brackets handled) and
+    illustration file-name lines."""
+    text = IMAGE_MARKER_LINE_RE.sub("", text)
     result = []
     depth = 0
     i = 0

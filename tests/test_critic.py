@@ -768,3 +768,49 @@ def test_the_roster_review_prompt_states_its_json_shape():
     system = prompts.roster_review_system()
     for field in ("roster_issues", "name", "verdict", "canonical", "reason"):
         assert f'"{field}"' in system
+
+
+# ── Discovery: an unbounded array is an invitation to loop ────────────────────
+
+
+def test_discovery_arrays_are_bounded():
+    from gutenberg_reader.stages import s04_characters
+    assert schemas.CHARACTERS_SCHEMA["properties"]["characters"]["maxItems"] == \
+        schemas.DISCOVERY_MAX_CHARACTERS
+    assert schemas.roster_review_schema(["A", "B"], ["B"])["properties"]["roster_issues"]["maxItems"] == 1
+    assert schemas.structure_schema(12)["properties"]["headings"]["maxItems"] == 12
+    assert s04_characters._is_degenerate(
+        [{"name": "M. de Villefort"}, {"name": "M. de Blacas"}] * 3)
+    assert not s04_characters._is_degenerate(
+        [{"name": "Louis XVIII."}, {"name": "M. Dandré"}, {"name": "de Blacas"}])
+
+
+def test_a_looping_discovery_answer_is_asked_again_with_a_penalty():
+    """PG 1184 chapter 14: five names in the text, 372 entries in the answer
+    — two names alternating until the token cap. The array bound makes that
+    valid JSON; the names after the loop began were never written, so the
+    window is asked once more with the sampling changed."""
+    from gutenberg_reader.stages import s04_characters
+
+    class _Loop(_Client):
+        def __init__(self):
+            super().__init__({})
+            self.sampling: list = []
+
+        def chat_json(self, model, messages, schema=None, sampling=None, **kw):
+            self.sampling.append(sampling)
+            if sampling:
+                return {"characters": [
+                    {"name": n, "aliases": [], "pronunciation_hints": [],
+                     "first_appearance_chapter": 1}
+                    for n in ("Louis XVIII.", "M. de Blacas", "M. Noirtier")]}
+            return {"characters": [
+                {"name": n, "aliases": [], "pronunciation_hints": [],
+                 "first_appearance_chapter": 1}
+                for n in ["Louis XVIII."] + ["M. de Villefort", "M. de Blacas"] * 20]}
+
+    client = _Loop()
+    found = s04_characters._discover("text", 14, _cfg(), client)
+    assert [c.name for c in found] == ["Louis XVIII.", "M. de Blacas", "M. Noirtier"]
+    from gutenberg_reader import llm
+    assert client.sampling == [None, {"repetition_penalty": llm.STALL_RETRY_REPETITION_PENALTY}]

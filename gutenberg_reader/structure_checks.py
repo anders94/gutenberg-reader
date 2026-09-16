@@ -45,6 +45,9 @@ RESIDUE_MIN_GAP = 200
 # anything being wrong. Excluding them costs nothing — 6400's real missed
 # headings are all-caps names, not numerals.
 RESIDUE_IGNORED_SHAPES = {"shape:9", "shape:R", "shape:p"}
+# Missed ordinals named in a residue finding. Enough to hand a whole novel's
+# chapters back to the repair pass in one complaint.
+RESIDUE_ORDINALS_SHOWN = 150
 
 
 @dataclass
@@ -164,24 +167,87 @@ def _unexplained_structure(
                 continue
             shape = next((f for f in c.flags if f.startswith("shape:")), "shape:?")
             by_shape[shape].append(c)
+            # A titled heading series does not share a shape: PG 1184's
+            # "Chapter 1. Marseilles—The Arrival" and "Chapter 2. Father and
+            # Son" differ in every word after the numeral, so 117 of them
+            # split into groups too small to count. What they share is that
+            # the heading regex recognizes every one. Grouped on that, the
+            # verdict that chose none of them is the contradiction it is.
+            if "regex:chapter" in c.flags:
+                by_shape["regex:chapter"].append(c)
 
         for shape, group in by_shape.items():
             if shape in RESIDUE_IGNORED_SHAPES or len(group) < RESIDUE_MIN_RUN:
                 continue
             gaps = [b.line - a.line for a, b in zip(group, group[1:])]
             if gaps and min(gaps) >= RESIDUE_MIN_GAP:
+                what = ("carrying the regex:chapter flag" if shape == "regex:chapter"
+                        else f"sharing {shape}")
+                examples = "; ".join(repr(c.text) for c in group[:3])
+                # The ordinals themselves, so the repair is an edit rather than
+                # a fresh guess: told only that headings were missed, the
+                # model's next answer on PG 1184 selected 627 of 637 blocks.
+                ords = [c.ordinal for c in group]
+                shown = ", ".join(str(o) for o in ords[:RESIDUE_ORDINALS_SHOWN])
+                if len(ords) > RESIDUE_ORDINALS_SHOWN:
+                    shown += f", and {len(ords) - RESIDUE_ORDINALS_SHOWN} more"
                 out.append(Finding(
                     "fail", "unexplained_structure",
                     f"chapter {ci.number} ({ci.title!r}, {ci.word_count:,} words) "
-                    f"contains {len(group)} unclassified blocks sharing "
-                    f"{shape}, spaced {min(gaps):,}-{max(gaps):,} lines apart — "
-                    "these look like chapter headings that were missed",
+                    f"contains {len(group)} unclassified blocks {what}, spaced "
+                    f"{min(gaps):,}-{max(gaps):,} lines apart ({examples}) — "
+                    "these look like chapter headings that were missed; "
+                    f"add the ones that are: ordinals {shown}",
                     {
                         "chapter": ci.number,
                         "ordinals": [c.ordinal for c in group],
                         "examples": [c.text for c in group[:4]],
                     },
                 ))
+    return out
+
+
+def _missed_division(
+    chapters: list[ChapterInfo],
+    cands: list[Candidate],
+    body_start: int,
+) -> list[Finding]:
+    """An oversized chapter with a recognised heading inside it.
+
+    The residue check needs a series; a single missed division leaves none.
+    PG 1184's verdict skipped five headings in isolation — "Chapter 32",
+    "Chapter 35", "Chapter 48" — and each became a size warning nobody acts
+    on, with the missed heading sitting unchosen in the middle of the
+    doubled chapter. A long chapter is allowed (Moby-Dick's "Cetology" runs
+    3.6x the median); a long chapter *containing an unchosen block the
+    heading regex recognizes* is two chapters, and the ordinal says where.
+    """
+    body = [c for c in chapters if c.kind == "body" and c.word_count > 0]
+    if len(body) < 3:
+        return []
+    median = statistics.median(c.word_count for c in body)
+    chosen = {ci.start_line for ci in chapters}
+    out: list[Finding] = []
+    for ci in body:
+        if ci.word_count <= SIZE_HIGH * median:
+            continue
+        inside = [
+            c for c in cands
+            if "regex:chapter" in c.flags
+            and ci.start_line < body_start + c.line + 1 <= ci.end_line
+            and (body_start + c.line + 1) not in chosen
+        ]
+        if inside:
+            out.append(Finding(
+                "fail", "missed_division",
+                f"chapter {ci.number} ({ci.title!r}, {ci.word_count:,} words, "
+                f"{ci.word_count / median:.1f}x the median) contains "
+                f"{len(inside)} unchosen block(s) the heading regex recognizes "
+                f"({'; '.join(repr(c.text) for c in inside[:3])}) — add "
+                f"ordinals {', '.join(str(c.ordinal) for c in inside[:20])}",
+                {"chapter": ci.number, "ordinals": [c.ordinal for c in inside],
+                 "examples": [c.text for c in inside[:4]]},
+            ))
     return out
 
 
@@ -196,6 +262,7 @@ def check(
         + _degenerate(chapters)
         + _pair_lopsided(chapters)
         + _unexplained_structure(chapters, cands or [], body_start)
+        + _missed_division(chapters, cands or [], body_start)
         + _size_outliers(chapters)
     )
     return sorted(findings, key=lambda f: f.severity != "fail")

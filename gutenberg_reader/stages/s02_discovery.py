@@ -396,13 +396,20 @@ def _llm_structure(
             raw = [{"number": 1, "title": raw[0]["title"] if raw else "",
                     "start_line": start, "start_marker": "", "kind": "body"}]
         raw = _absorb_part_titles(raw, body_lines)
-        raw = _split_headless_body(raw, body_lines)
 
+        # Checked before the headless split, not after. PG 1184's verdict
+        # named five front-matter blocks and no body heading; split into 182
+        # equal parts, each held one of the 117 "Chapter N." lines it had
+        # missed, and no part contained a series for the residue check to
+        # see. The single unsplit chapter contains all 117.
         infos = _build_chapter_infos(
             raw, body_lines, 0, include_back_matter=config.include_back_matter)
         findings = structure_checks.check(infos, cands, 0)
         fails = [f for f in findings if f.severity == "fail"]
         if not fails:
+            raw = _split_headless_body(raw, body_lines)
+            infos = _build_chapter_infos(
+                raw, body_lines, 0, include_back_matter=config.include_back_matter)
             return infos, verdict
 
         if attempt == MAX_STRUCTURE_REPAIRS:
@@ -413,6 +420,9 @@ def _llm_structure(
         )
         user = prompts.structure_repair_user(rendered, [f.message for f in fails])
 
+    raw = _split_headless_body(raw, body_lines)
+    infos = _build_chapter_infos(
+        raw, body_lines, 0, include_back_matter=config.include_back_matter)
     return infos, verdict
 
 

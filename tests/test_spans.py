@@ -492,3 +492,17 @@ def test_a_windowed_passage_keeps_context_on_both_sides():
 def test_a_short_paragraph_is_passed_through_whole():
     line = _passage(n_before=3, n_after=3)
     assert "…" not in line
+
+
+def test_image_file_name_lines_are_not_read_aloud():
+    """PG 1184 prints "0023m" on its own line wherever the HTML edition had a
+    picture. It is not a caption and not a word; the reading text drops it
+    the way it drops [Illustration] blocks, and coverage still verifies."""
+    from gutenberg_reader import segmenter, text_utils
+    chapter = "Chapter 1. Marseilles\n\nHe arrived.\n\n0023m\n\nShe waited.\n\n40010m\n"
+    reading, _ = segmenter.normalize_chapter(chapter)
+    assert "0023m" not in reading and "40010m" not in reading
+    ok, issues = text_utils.verify_reading_text(chapter, reading)
+    assert ok, issues
+    # A real word with a trailing letter is untouched.
+    assert segmenter.normalize_chapter("Room 101a is ready.\n")[0] == "Room 101a is ready."

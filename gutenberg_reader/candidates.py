@@ -39,6 +39,15 @@ _OPENS_QUOTED = ('"', "'", "“", "‘")
 
 _ROMAN = re.compile(r"^[IVXLCDM]+\.?$", re.IGNORECASE)
 
+# An illustration's file name, left behind when Gutenberg's HTML edition was
+# flattened to text: PG 1184 prints "0023m", "0025m", "0027m" on their own
+# lines 92 times, one per picture. Shown as candidates, the model chose three
+# of them as chapter headings and cut chapter one into four pieces named after
+# image files ("30053m" further in — the run of digits is the picture's
+# sequence number and grows). No heading is a run of digits with one lower-case
+# letter after it.
+_IMAGE_MARKER_RE = re.compile(r"^\d{3,6}[a-z]$")
+
 # A table of contents lists every heading a line or two apart; real chapters are
 # hundreds of lines apart. Moby Dick's contents run 135 entries at a gap of 2.
 TOC_RUN_MAX_GAP = 4
@@ -122,8 +131,41 @@ def _flags(block: list[str], text: str, body_lines: list[str], idx: int) -> tupl
     return tuple(f)
 
 
+# A short sentence: "Albert laughed.", "Franz continued:", "Valentine
+# screamed." PG 1184 prints hundreds of these as one-line paragraphs, the
+# structure pass chose sixteen of them as chapter headings, and each cut a
+# chapter in two under a title nobody would read aloud. Too short for the
+# ratio test above; the tell is a lower-case word after the first, with the
+# block ending the way a sentence ends. A heading that ends in a period
+# ("CHAPTER II.") has no lower-case word in it, and "Chapter 2. Father and
+# Son" does not end like a sentence. Particles do not count as the lower-case
+# word — "Story of the Door." and "The Whiteness of the Whale." are titles
+# — so the tell is a lower-case word that carries meaning: a verb, mostly.
+_SENTENCE_END = (".", "!", "?", ":", "\u201d", '"', "\u2019", "'")
+_SHORT_SENTENCE_MAX_WORDS = 4
+_TITLE_PARTICLES = frozenset({
+    "a", "an", "the", "of", "and", "or", "in", "on", "at", "to", "for", "by",
+    "with", "from", "into", "upon", "de", "du", "da", "di", "la", "le", "von",
+    "van", "is", "as", "vs",
+})
+
+
+def _short_sentence(text: str) -> bool:
+    words = text.split()
+    if (not 2 <= len(words) <= _SHORT_SENTENCE_MAX_WORDS
+            or not text.endswith(_SENTENCE_END)):
+        return False
+    return any(
+        w[:1].islower() and w.strip(".,;:!?\"'\u201c\u201d\u2018\u2019_").lower()
+        not in _TITLE_PARTICLES
+        for w in words[1:]
+    )
+
+
 def _reads_as_prose(text: str) -> bool:
     words = text.split()
+    if _short_sentence(text):
+        return True
     if len(words) <= _PROSE_MIN_WORDS or not re.search(r"[a-z]", text):
         return False
     lower = sum(1 for w in words if w[:1].islower())
@@ -156,7 +198,8 @@ def extract(body_lines: list[str]) -> list[Candidate]:
                 f.startswith(("regex:", "front-matter", "back-matter", "toc-entry"))
                 for f in flags
             )
-            noise = _reads_as_prose(text) or text.startswith(_OPENS_QUOTED)
+            noise = (_reads_as_prose(text) or text.startswith(_OPENS_QUOTED)
+                     or bool(_IMAGE_MARKER_RE.match(text)))
             if known or not noise:
                 out.append(Candidate(
                     ordinal=len(out),

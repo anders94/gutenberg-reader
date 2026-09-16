@@ -243,3 +243,132 @@ def test_page_markers_are_never_residue_evidence():
     marker, not a missed chapter. PG 6400 prints them throughout, and a long
     chapter can hold five 200+ lines apart with nothing wrong."""
     assert "shape:9" in structure_checks.RESIDUE_IGNORED_SHAPES
+
+
+def test_a_titled_heading_series_is_residue_even_though_no_two_share_a_shape():
+    """PG 1184: the verdict named five front-matter blocks and no body
+    heading, and the 117 "Chapter N. <title>" lines it missed differ in
+    shape after the numeral, so grouped by shape they never reached the run
+    length. The regex recognizes every one; grouped on that, one chapter
+    holding them all is the contradiction it is."""
+    from gutenberg_reader.candidates import Candidate
+
+    titles = ["Chapter 1. Marseilles—The Arrival", "Chapter 2. Father and Son",
+              "Chapter 3. The Catalans", "Chapter 4. Conspiracy",
+              "Chapter 5. The Marriage Feast", "Chapter 6. The Deputy Procureur du Roi"]
+    cands = [
+        Candidate(ordinal=i, line=100 + 400 * i, n_lines=1, text=t,
+                  flags=("regex:chapter", f"shape:T 9 {'T ' * (i % 3)}".strip()),
+                  gap_before=400)
+        for i, t in enumerate(titles)
+    ]
+    one = [ChapterInfo(number=1, title="", start_line=1, end_line=3000,
+                       word_count=50000, start_marker="", kind="body")]
+    fails = [f for f in structure_checks.check(one, cands, 0) if f.severity == "fail"]
+    assert len(fails) == 1 and fails[0].code == "unexplained_structure"
+    assert "regex:chapter" in fails[0].message and "Marseilles" in fails[0].message
+
+
+def test_a_chosen_heading_series_is_not_residue():
+    from gutenberg_reader.candidates import Candidate
+
+    cands = [
+        Candidate(ordinal=i, line=100 + 400 * i, n_lines=1, text=f"Chapter {i + 1}. T{i}",
+                  flags=("regex:chapter", "shape:T 9 T"), gap_before=400)
+        for i in range(6)
+    ]
+    chapters = [
+        ChapterInfo(number=i + 1, title=c.text, start_line=c.line + 1,
+                    end_line=(cands[i + 1].line if i + 1 < len(cands) else 3000),
+                    word_count=3000, start_marker=c.text, kind="body")
+        for i, c in enumerate(cands)
+    ]
+    assert not [f for f in structure_checks.check(chapters, cands, 0) if f.severity == "fail"]
+
+
+def test_a_residue_finding_names_the_ordinals_to_add():
+    from gutenberg_reader.candidates import Candidate
+
+    cands = [
+        Candidate(ordinal=i * 2, line=100 + 400 * i, n_lines=1, text=f"Chapter {i + 1}. T",
+                  flags=("regex:chapter", "shape:T 9 T"), gap_before=400)
+        for i in range(6)
+    ]
+    one = [ChapterInfo(number=1, title="", start_line=1, end_line=3000,
+                       word_count=50000, start_marker="", kind="body")]
+    fails = [f for f in structure_checks.check(one, cands, 0) if f.severity == "fail"]
+    assert fails and all("ordinals 0, 2, 4, 6, 8, 10" in f.message for f in fails)
+
+
+def test_image_file_names_are_not_candidates():
+    body = ["Chapter 1. Marseilles", "", "0023m", "", "Some prose here.", "", "0025m", ""]
+    texts = [c.text for c in candidates.extract(body)]
+    assert "Chapter 1. Marseilles" in texts
+    assert not any(t.endswith("m") and t[:-1].isdigit() for t in texts)
+
+
+def test_an_oversized_chapter_with_a_recognised_heading_inside_is_a_missed_division():
+    """PG 1184: five headings skipped one at a time, each doubling a chapter.
+    No series for the residue check; a size warning nobody acts on. The
+    unchosen heading in the middle of the doubled chapter is the tell."""
+    from gutenberg_reader.candidates import Candidate
+
+    cands = [
+        Candidate(ordinal=i, line=100 + 400 * i, n_lines=1, text=f"Chapter {i + 1}. T",
+                  flags=("regex:chapter", "shape:T 9 T"), gap_before=400)
+        for i in range(6)
+    ]
+    # Chapter 3's heading (ordinal 2) was skipped: chapter 2 runs on to chapter 4.
+    picks = [0, 1, 3, 4, 5]
+    chapters = []
+    for n, i in enumerate(picks):
+        end = cands[picks[n + 1]].line if n + 1 < len(picks) else 3000
+        words = 6000 if i == 1 else 3000
+        chapters.append(ChapterInfo(number=n + 1, title=cands[i].text,
+                                    start_line=cands[i].line + 1, end_line=end,
+                                    word_count=words, start_marker=cands[i].text,
+                                    kind="body"))
+    # 2x the median is under SIZE_HIGH; make it clearly oversized.
+    chapters[1].word_count = 9000
+    fails = [f for f in structure_checks.check(chapters, cands, 0)
+             if f.code == "missed_division"]
+    assert len(fails) == 1 and "ordinals 2" in fails[0].message
+
+
+def test_a_long_chapter_with_nothing_inside_is_only_a_warning():
+    from gutenberg_reader.candidates import Candidate
+
+    cands = [
+        Candidate(ordinal=i, line=100 + 400 * i, n_lines=1, text=f"Chapter {i + 1}. T",
+                  flags=("regex:chapter", "shape:T 9 T"), gap_before=400)
+        for i in range(5)
+    ]
+    chapters = [
+        ChapterInfo(number=i + 1, title=c.text, start_line=c.line + 1,
+                    end_line=(cands[i + 1].line if i + 1 < len(cands) else 3000),
+                    word_count=(12000 if i == 2 else 3000), start_marker=c.text, kind="body")
+        for i, c in enumerate(cands)
+    ]
+    assert not [f for f in structure_checks.check(chapters, cands, 0) if f.severity == "fail"]
+
+
+def test_five_digit_image_markers_are_not_candidates():
+    body = ["Chapter 9. T", "", "30053m", "", "Prose.", ""]
+    assert "30053m" not in [c.text for c in candidates.extract(body)]
+
+
+@pytest.mark.parametrize("line", [
+    "Albert laughed.", "Franz continued:", "Valentine screamed.", "Morrel started.",
+    "Villefort went immediately.", "The paralytic motioned “Yes.”",
+])
+def test_a_short_sentence_is_not_a_candidate(line):
+    assert line not in [c.text for c in candidates.extract([line, "", "Prose follows.", ""])]
+
+
+@pytest.mark.parametrize("line", [
+    "CHAPTER II.", "Chapter 2. Father and Son", "I.", "PLAYING PILGRIMS.",
+    "_Edmond Dantès:_", "The Catalans", "Loomings.", "THE CARPET-BAG.",
+    "Story of the Door.", "The Whiteness of the Whale.", "Book the First.",
+])
+def test_a_heading_still_is(line):
+    assert line in [c.text for c in candidates.extract([line, "", "Prose follows.", ""])]

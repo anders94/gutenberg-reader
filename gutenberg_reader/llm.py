@@ -207,8 +207,12 @@ def call_json_with_retries(
     what: str = "LLM call",
     console=None,
     temperature: float = 0.1,
+    sampling: dict | None = None,
 ) -> Any | None:
     """chat_json with retries. Returns None once every attempt has failed.
+
+    sampling: extra sampling parameters for every attempt (a caller that has
+    already seen the model loop passes a repetition penalty).
 
     Returning None rather than raising is deliberate: one bad window should cost
     its own text, not the chapter. But the caller must then *record* the loss —
@@ -216,7 +220,6 @@ def call_json_with_retries(
     review reports 0.94 on work it never looked at.
     """
     last: Exception | None = None
-    sampling: dict | None = None
     for attempt in range(1, retries + 1):
         try:
             return client.chat_json(
@@ -227,7 +230,8 @@ def call_json_with_retries(
             if isinstance(e, LLMStalled):
                 # Same prompt, same greedy answer, same stall. Change what the
                 # model is allowed to prefer rather than asking again.
-                sampling = {"repetition_penalty": STALL_RETRY_REPETITION_PENALTY}
+                sampling = {**(sampling or {}),
+                            "repetition_penalty": STALL_RETRY_REPETITION_PENALTY}
             if console is not None:
                 console.print(
                     f"  [red]{what} failed (attempt {attempt}/{retries}): {e}[/red]"

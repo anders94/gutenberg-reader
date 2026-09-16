@@ -19,7 +19,9 @@ from rich.console import Console
 
 from gutenberg_reader.config import Config
 from gutenberg_reader.models import CharacterInfo
-from gutenberg_reader.llm import LLMRouter, call_json_with_retries
+from gutenberg_reader.llm import (
+    STALL_RETRY_REPETITION_PENALTY, LLMRouter, call_json_with_retries,
+)
 from gutenberg_reader import prompts, schemas, text_utils
 
 console = Console()
@@ -69,6 +71,20 @@ def _split_for_discovery(text: str, word_budget: int) -> list[str]:
     return windows
 
 
+# A name listed this many times is a loop, not a cast list.
+DEGENERATE_REPEATS = 3
+
+
+def _is_degenerate(entries: list) -> bool:
+    """True when the list repeats a name enough times to be a loop."""
+    counts: dict[str, int] = {}
+    for c in entries:
+        name = (c.get("name") or "").strip().lower() if isinstance(c, dict) else ""
+        if name:
+            counts[name] = counts.get(name, 0) + 1
+    return any(n >= DEGENERATE_REPEATS for n in counts.values())
+
+
 def _discover(
     text: str,
     chapter_num: int,
@@ -88,6 +104,21 @@ def _discover(
         retries=config.max_retries,
         what=f"character discovery (chapter {chapter_num})", console=console,
     )
+    if data is not None and _is_degenerate(data.get("characters", [])):
+        # The list is the model repeating two names until the schema's array
+        # bound closed it (PG 1184 chapter 14). Valid JSON, but the names that
+        # came after the loop began were never written. Asked once more with a
+        # repetition penalty the same window answers with its seven names.
+        console.print(
+            f"  [yellow]character discovery (chapter {chapter_num}): the model "
+            f"repeated itself — asking again with a repetition penalty[/yellow]"
+        )
+        data = call_json_with_retries(
+            client, config.processing_model, messages, schema=schemas.CHARACTERS_SCHEMA,
+            retries=config.max_retries,
+            what=f"character discovery (chapter {chapter_num})", console=console,
+            sampling={"repetition_penalty": STALL_RETRY_REPETITION_PENALTY},
+        )
     if data is None:
         return []
 
