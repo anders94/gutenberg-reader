@@ -129,6 +129,7 @@ def run_pipeline(config: Config) -> Path:
         accepted,
         characters,
         start_time,
+        client=client,
     )
 
     # ── Stage 08: Casting ─────────────────────────────────────────────────────

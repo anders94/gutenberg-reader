@@ -377,24 +377,27 @@ def production_schema(char_names: list[str]) -> dict:
             },
             "narration": {
                 "type": "object",
+                # narrator_character last: it is "" for most books, and the
+                # model closes the object after an empty string. With voice
+                # and basis still required behind it, that was a stall.
                 "properties": {
                     "person": {
                         "type": "string",
                         "enum": ["first_person", "third_limited",
                                  "third_omniscient", "epistolary", "mixed"],
                     },
-                    "narrator_character": {
-                        "type": "string",
-                        "enum": [*dict.fromkeys(char_names), ""],
-                    },
-                    "voice": voice_spec_schema(),
                     "basis": {
                         "type": "string",
                         "enum": ["author_nationality", "narrator_character",
                                  "work_setting", "house_style"],
                     },
+                    "voice": voice_spec_schema(),
+                    "narrator_character": {
+                        "type": "string",
+                        "enum": [*dict.fromkeys(char_names), ""],
+                    },
                 },
-                "required": ["person", "narrator_character", "voice", "basis"],
+                "required": ["person", "basis", "voice", "narrator_character"],
                 "additionalProperties": False,
             },
             "casting_notes": {"type": "string"},
@@ -421,10 +424,14 @@ def voices_schema(char_names: list[str]) -> dict:
                 "maxItems": len(names),
                 "items": {
                     "type": "object",
+                    # The voice object comes last. Guided decoding emits the
+                    # fields in this order, and the model, having written a
+                    # whole voice, closes the entry; with confidence and basis
+                    # still required after it, "}" was masked and it emitted
+                    # whitespace to the token cap — three batches a book.
                     "properties": {
                         "name": {"type": "string", "enum": names},
                         "description": {"type": "string"},
-                        "voice": voice_spec_schema(),
                         "confidence": {
                             "type": "string",
                             "enum": ["high", "medium", "low"],
@@ -433,13 +440,52 @@ def voices_schema(char_names: list[str]) -> dict:
                             "type": "string",
                             "enum": ["known_work", "inferred_from_text"],
                         },
+                        "voice": voice_spec_schema(),
                     },
-                    "required": ["name", "description", "voice",
-                                 "confidence", "basis"],
+                    "required": ["name", "description", "confidence",
+                                 "basis", "voice"],
                     "additionalProperties": False,
                 },
             },
         },
         "required": ["castings"],
+        "additionalProperties": False,
+    }
+
+
+def cast_review_schema(names: list[str], conflicts: dict[str, list[str]]) -> dict:
+    """Whole-book cast settlement: merges over the roster, an owner per
+    disputed alias drawn from that alias's claimants. Bounded everywhere —
+    a merge per entry at most, one owner per alias."""
+    names = [*dict.fromkeys(names)]
+    owners = {
+        alias: {"type": "string", "enum": [*dict.fromkeys(claimants)]}
+        for alias, claimants in conflicts.items()
+    }
+    return {
+        "type": "object",
+        "properties": {
+            "merges": {
+                "type": "array",
+                "maxItems": max(1, len(names)),
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {"type": "string", "enum": names},
+                        "reason": {"type": "string"},
+                        "canonical": {"type": "string", "enum": names},
+                    },
+                    "required": ["name", "reason", "canonical"],
+                    "additionalProperties": False,
+                },
+            },
+            "alias_owners": {
+                "type": "object",
+                "properties": owners,
+                "required": list(owners),
+                "additionalProperties": False,
+            },
+        },
+        "required": ["merges", "alias_owners"],
         "additionalProperties": False,
     }

@@ -51,6 +51,9 @@ class Config:
     # Ask what an ambiguous quoted span actually is before treating it as
     # speech. Off, every scare-quoted term is dialogue needing a speaker.
     span_review: bool = True
+    # Settle the whole cast once at assembly: which roster entries are one
+    # person, who owns a disputed alias, then re-anchor tag-backed lines.
+    cast_review: bool = True
     # On by default: the production block and per-character voice specs are
     # the half of this project's stated purpose ("so TTS engines can apply
     # per-character voices automatically") that lives after assembly.

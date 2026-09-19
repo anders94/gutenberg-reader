@@ -6,7 +6,7 @@ from pathlib import Path
 
 from rich.console import Console
 
-from gutenberg_reader import library
+from gutenberg_reader import cast, library
 from gutenberg_reader.cache import atomic_write_json
 from gutenberg_reader.config import Config
 from gutenberg_reader import text_utils
@@ -51,8 +51,12 @@ def run(
     accepted: dict[int, tuple[ProcessedChapter, CriticReport | None]],
     characters: list[CharacterInfo],
     start_time: float,
+    client=None,
 ) -> Path:
-    """Assemble and save final JSON. Returns path to output file."""
+    """Assemble and save final JSON. Returns path to output file.
+
+    client: the LLM router, for the whole-book cast review; None skips it.
+    """
     out_path = _output_path(config)
 
     # Assembly is always re-run: it takes milliseconds, and its inputs (stages
@@ -116,6 +120,19 @@ def run(
     final_chars = text_utils.merge_duplicate_characters(
         [c for c in characters if not text_utils.is_reserved_character_name(c.name)]
     )
+    # Then the judgment the deterministic rules cannot make: which entries
+    # are one person ("Meg March" / "Margaret March"), and who owns an alias
+    # two entries claim ("Laurie"). Asked once, for the whole book, with the
+    # line counts in front of the model.
+    relabel: dict[str, str] = {}
+    moved: list[tuple[str, str, str]] = []
+    if config.cast_review and client is not None:
+        counts = cast.line_counts(chapters_out)
+        merges, owners = cast.review(config, client, final_chars, counts)
+        final_chars, relabel, log, moved = cast.apply(
+            final_chars, merges, owners, cast.conversing_pairs(chapters_out))
+        for line in log:
+            console.print(f"  [dim]cast: {line}[/dim]")
     alias_map = text_utils._build_alias_map(final_chars)
     n_remapped = 0
     n_orphaned = 0
@@ -124,7 +141,7 @@ def run(
             speaker = seg.get("speaker")
             if speaker and speaker not in (
                     "Unknown", "Narrator", text_utils.CITATION_SPEAKER):
-                canonical = alias_map.get(speaker.lower())
+                canonical = alias_map.get(relabel.get(speaker, speaker).lower())
                 if canonical is None:
                     # Attributed to a name the critic later struck from the
                     # roster (a ship, an epitaph): the judgment "not a
@@ -134,10 +151,28 @@ def run(
                 elif canonical != speaker:
                     seg["speaker"] = canonical
                     n_remapped += 1
-    if config.verbose and (n_remapped or n_orphaned):
+    # With the aliases settled, the text's own attributions ("said Laurie")
+    # name the same owner everywhere; labels that rest on a tag follow it.
+    n_reanchored = cast.reanchor(chapters_out, final_chars) if relabel or config.cast_review else 0
+    # An alias that changed hands leaves guesses behind it: the loser's
+    # inferred lines from before the owner was on the roster. Ask again about
+    # those, with the settled cast on offer and the re-anchored tag lines
+    # around them as anchors.
+    n_reasked = 0
+    if moved and client is not None:
+        suspects = cast.suspect_lines(chapters_out, final_chars, moved)
+        n_suspect = sum(len(v) for v in suspects.values())
+        if n_suspect:
+            n_reasked = cast.reattribute(config, client, chapters_out, final_chars, suspects)
+            console.print(
+                f"  [dim]cast: {n_suspect} inferred line(s) guessed before the "
+                f"right name was on the roster — re-attributed {n_reasked}[/dim]"
+            )
+    if config.verbose and (n_remapped or n_orphaned or n_reanchored):
         console.print(
             f"  [dim]Regularized to {len(final_chars)} characters, remapped "
-            f"{n_remapped} speaker labels, {n_orphaned} orphaned -> Unknown[/dim]"
+            f"{n_remapped} speaker labels, {n_orphaned} orphaned -> Unknown, "
+            f"{n_reanchored} tag-backed lines re-anchored[/dim]"
         )
 
     elapsed = time.time() - start_time

@@ -241,7 +241,7 @@ def _run_critic(
         for line in applied:
             console.print(f"  [dim]roster: {line}[/dim]")
 
-    if report.needs_reprocessing:
+    if report.needs_reprocessing and not report.second_pass:
         final_chapter, report = _reattribute_and_recheck(
             config, client, final_chapter, report, roster, protected,
             narrator_name, withhold,
@@ -327,10 +327,17 @@ def _reattribute_and_recheck(
         config, client, reworked, roster, [], force=True,
         narrator_name=narrator_name, withhold=withhold,
     )
+    # Whichever opinion wins is recorded as having had its second pass, so a
+    # resume does not pay for it again — and the cache holds the winner, not
+    # whatever run_chapter last computed.
     if second.overall_quality < report.overall_quality:
         # The second opinion is worse than the first; keep what we had rather
         # than churn the chapter toward whichever pass was luckier.
+        report.second_pass = True
+        s06_critic.save_chapter(config, chapter, report)
         return chapter, report
+    second.second_pass = True
+    s06_critic.save_chapter(config, rechecked, second)
     return rechecked, second
 
 

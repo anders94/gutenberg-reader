@@ -91,7 +91,8 @@ gutenberg-reader BOOK_ID [OPTIONS]
 | `--cache-dir DIR` | `./cache` | Directory for all cached stage outputs |
 | `--output FILE` | *(auto)* | Override output JSON path |
 | `--chunk-size N` | `1000` | Words per LLM attribution window |
-| `--critic` | off | Run the Stage 06 LLM critic pass (most useful with a larger `--validator` model) |
+| `--critic` | on | Run the Stage 06 LLM critic pass (most useful with a larger `--validator` model); `--no-critic` to skip |
+| `--cast-review` | on | At assembly, settle the whole cast once: merge roster entries that are one person, decide who owns an alias two entries claim, and re-anchor tag-backed lines against the result; `--no-cast-review` to skip |
 | `--force-stage N` | — | Re-run from stage N (1–7) forward, discarding cached results from that stage on |
 | `--chapters N[,N,…]` | — | Process only specific chapter numbers (e.g. `1,2,5`) |
 | `--max-retries N` | `3` | Max LLM retries per attribution window |

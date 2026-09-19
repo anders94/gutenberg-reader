@@ -167,6 +167,11 @@ class CriticReport:
     # looked at — invisible while the critic was opt-in, systematic once it is
     # the default.
     unreviewed_windows: list[list[int]] = field(default_factory=list)
+    # The chapter has had its one re-attribution pass. A report below the
+    # threshold used to trigger that pass on every resume — a --force-stage 7
+    # run re-attributed chapters 34 and 41 of PG 37106 again — because
+    # nothing recorded that it had already been done.
+    second_pass: bool = False
 
     def to_dict(self) -> dict:
         return {
@@ -177,6 +182,7 @@ class CriticReport:
             "overall_quality": self.overall_quality,
             "needs_reprocessing": self.needs_reprocessing,
             "unreviewed_windows": self.unreviewed_windows,
+            "second_pass": self.second_pass,
             "fixed_segments": [s.to_dict() for s in self.fixed_segments] if self.fixed_segments else None,
         }
 
@@ -190,6 +196,7 @@ class CriticReport:
             overall_quality=d.get("overall_quality", 1.0),
             needs_reprocessing=d.get("needs_reprocessing", False),
             unreviewed_windows=d.get("unreviewed_windows", []),
+            second_pass=d.get("second_pass", False),
             fixed_segments=[Segment.from_dict(s) for s in d["fixed_segments"]] if d.get("fixed_segments") else None,
         )
 

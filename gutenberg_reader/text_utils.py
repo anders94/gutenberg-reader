@@ -347,6 +347,8 @@ def drop_toc_clusters(matches: list[dict]) -> list[dict]:
 
 
 BARE_NUMERAL_RE = re.compile(r"^[IVXLCDM]+\.?$")
+# Lines from a two-line heading's numeral to its title, at most.
+TWO_LINE_HEADING_SPAN = 4
 
 # How many blank lines may sit between the numeral and its title before they
 # stop reading as one heading. Editions centre them a line or two apart.

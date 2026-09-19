@@ -677,7 +677,7 @@ its speaking characters. Produce the production notes a voice pipeline needs.
   cast ("One accent throughout; differentiate by class and age.").
 
 Respond ONLY with JSON of exactly this shape, every field present:
-{"synopsis": "<text>", "author": {"name": "<text>", "years": "<1775-1817>", "nationality": "<text>", "note": "<text>"}, "narration": {"person": "first_person" | "third_limited" | "third_omniscient" | "epistolary" | "mixed", "narrator_character": "<roster name, or empty>", "voice": """ + _VOICE_SHAPE + """, "basis": "author_nationality" | "narrator_character" | "work_setting" | "house_style"}, "casting_notes": "<text>"}"""
+{"synopsis": "<text>", "author": {"name": "<text>", "years": "<1775-1817>", "nationality": "<text>", "note": "<text>"}, "narration": {"person": "first_person" | "third_limited" | "third_omniscient" | "epistolary" | "mixed", "basis": "author_nationality" | "narrator_character" | "work_setting" | "house_style", "voice": """ + _VOICE_SHAPE + """, "narrator_character": "<roster name, or empty>"}, "casting_notes": "<text>"}"""
 
 
 def casting_production_user(
@@ -722,7 +722,7 @@ speak and sample lines of their actual dialogue.
 
 Respond ONLY with JSON of exactly this shape, one entry per character, every
 field present:
-{"castings": [{"name": "<Character>", "description": "<text>", "voice": """ + _VOICE_SHAPE + """, "confidence": "high" | "medium" | "low", "basis": "known_work" | "inferred_from_text"}]}"""
+{"castings": [{"name": "<Character>", "description": "<text>", "confidence": "high" | "medium" | "low", "basis": "known_work" | "inferred_from_text", "voice": """ + _VOICE_SHAPE + """}]}"""
 
 
 def casting_voices_user(
@@ -739,3 +739,48 @@ def casting_voices_user(
         f"Production notes: {notes}\nHouse locale: {house_locale or 'unknown'}\n\n"
         f"Characters to cast:\n\n{blocks}"
     )
+
+
+def cast_review_system() -> str:
+    return """You are settling the cast list of a whole book for an audiobook, where
+each character must be read in one voice. The list was built chapter by
+chapter, so the same person can appear under several names: a nickname and
+the full name ("Meg March" and "Margaret March"), a role and the name
+("Mother" and "Marmee March"), a married name ("Mrs. Brooke" is Meg March
+after her wedding), or a later form ("Aunt Amy" is Amy March once she has
+nieces). For each entry you are shown its aliases, the chapter it first
+appears in, and how many lines of dialogue it speaks.
+
+Two tasks:
+
+1. merges — every entry that is the same person as another entry. Give the
+   entry to fold away as "name" and the entry to keep as "canonical"; keep
+   the one with the fuller proper name (a first name and surname over a
+   nickname, a name over a role). Merge only people the book shows to be one
+   person. Never merge different people who share a surname — a father and
+   son, a grandfather and grandson ("Mr. Laurence" and "Theodore Laurence"),
+   sisters. Characters from a play or a story the characters write are their
+   own entries and are not merged with the players.
+
+2. alias_owners — some aliases are claimed by two entries, which cannot both
+   be right. For each disputed alias, say which entry it belongs to.
+   "Laurie" is the grandson, not the grandfather; "Meg" is Meg March.
+
+Respond ONLY with JSON of exactly this shape:
+{"merges": [{"name": "<entry to fold away>", "reason": "<brief>", "canonical": "<entry to keep>"}], "alias_owners": {"<disputed alias>": "<owning entry>", ...}}
+Include every disputed alias in alias_owners. An empty merges list is a valid answer."""
+
+
+def cast_review_user(entries: list[dict], conflicts: dict[str, list[str]]) -> str:
+    lines = []
+    for e in entries:
+        aliases = ", ".join(e["aliases"]) if e["aliases"] else "-"
+        lines.append(f"- {e['name']} (first ch. {e['first_chapter']}, {e['lines']} lines) "
+                     f"aliases: {aliases}")
+    parts = ["Cast, most lines first:\n" + "\n".join(lines)]
+    if conflicts:
+        parts.append("Disputed aliases, each claimed by more than one entry:\n" + "\n".join(
+            f"- {alias!r}: {', '.join(names)}" for alias, names in conflicts.items()))
+    else:
+        parts.append("No alias is disputed.")
+    return "\n\n".join(parts)

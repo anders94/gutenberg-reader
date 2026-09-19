@@ -55,6 +55,10 @@ console = Console()
 @click.option("--span-review/--no-span-review", default=True, show_default=True,
               help="Ask whether an ambiguous quoted span is speech, a term being "
                    "discussed, or a title. Off, every quoted phrase is dialogue")
+@click.option("--cast-review/--no-cast-review", default=True, show_default=True,
+              help="At assembly, settle the whole cast once: merge entries that are "
+                   "one person, decide who owns a disputed alias, and re-anchor "
+                   "tag-backed lines against the result")
 @click.option("--structure", "structure_detector",
               type=click.Choice(["llm", "regex"]), default="llm", show_default=True,
               help="How to find chapter boundaries. 'regex' is the previous "
@@ -90,6 +94,7 @@ def main(
     include_back_matter: bool,
     withhold_narrator: bool | None,
     span_review: bool,
+    cast_review: bool,
     structure_detector: str,
     accept_structure_warnings: bool,
     casting: bool,
@@ -134,6 +139,7 @@ def main(
         include_back_matter=include_back_matter,
         withhold_narrator=withhold_narrator,
         span_review=span_review,
+        cast_review=cast_review,
         structure_detector=structure_detector,
         accept_structure_warnings=accept_structure_warnings,
         casting=casting,

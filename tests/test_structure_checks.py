@@ -372,3 +372,41 @@ def test_a_short_sentence_is_not_a_candidate(line):
 ])
 def test_a_heading_still_is(line):
     assert line in [c.text for c in candidates.extract([line, "", "Prose follows.", ""])]
+
+
+# ── A listing stays a listing across captions the prose filter dropped ───────
+
+
+def _illustration_list():
+    body = ["List of Illustrations", ""]
+    for i in range(12):
+        body += [f"Caption Number {i}", "", "The procession set out", "",
+                 "Out came Meg with gray horse-hair hanging about her face", ""]
+    body += ["I.", "", "PLAYING PILGRIMS.", "",
+             '"Christmas won\'t be Christmas without any presents," grumbled Jo,',
+             "lying on the rug and looking at the fire.", ""]
+    return body
+
+
+def test_a_listing_broken_by_prose_looking_captions_is_still_a_run():
+    """PG 37106's List of Illustrations: most captions read as prose and are
+    not candidates, so by candidate-to-candidate gap the run broke into
+    pieces too short to mark, and the model took forty entries for chapters.
+    Nothing but short lines sits between the entries; no paragraph does."""
+    cands = candidates.extract(_illustration_list())
+    entries = [c for c in cands if c.text.startswith("Caption Number")]
+    assert entries and all("toc-run" in c.flags for c in entries)
+    heading = next(c for c in cands if c.text == "I.")
+    assert "toc-run" not in heading.flags
+
+
+def test_a_title_page_over_a_heading_is_not_a_listing():
+    """PG 3296 and 6400: five title-page lines and then BOOK I / PREFACE with
+    the text under it — six short blocks in a row. The heading has prose
+    under it; an entry in a listing has another entry under it."""
+    body = ["THE CONFESSIONS OF SAINT AUGUSTINE", "", "By Saint Augustine", "",
+            "Bishop of Hippo", "", "Translated by E. B. Pusey", "", "AD 401", "", "",
+            "BOOK I", "", "Great art Thou, O Lord, and greatly to be praised; great is",
+            "Thy power, and Thy wisdom infinite. And Thee would man praise.", ""]
+    cands = candidates.extract(body)
+    assert not any("toc-run" in c.flags for c in cands)

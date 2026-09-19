@@ -817,3 +817,41 @@ def test_a_looping_discovery_answer_is_asked_again_with_a_penalty():
     assert [c.name for c in found] == ["Louis XVIII.", "M. de Blacas", "M. Noirtier"]
     from gutenberg_reader import llm
     assert client.sampling == [None, {"repetition_penalty": llm.STALL_RETRY_REPETITION_PENALTY}]
+
+
+def test_a_chapter_is_re_attributed_once_not_on_every_resume(tmp_path):
+    """PG 37106 chapters 34 and 41 scored below threshold, were re-attributed,
+    and were re-attributed again on a --force-stage 7 run: the cached
+    report still said reprocess and nothing recorded that it had been
+    done. The report carries second_pass now, and the cache holds the
+    opinion the caller kept."""
+    from gutenberg_reader.stages import s05_segments
+    chapter = _chapter([_seg("“Line.”", "Pip"), _seg("“Reply.”", "Ahab")])
+    roster = [CharacterInfo(name="Pip"), CharacterInfo(name="Ahab")]
+    cfg = _cfg(cache_dir=tmp_path)
+    for n in range(1, 9):
+        cfg.stage_dir(n).mkdir(parents=True, exist_ok=True)
+    low = CriticReport(chapter_number=1, overall_quality=0.5, needs_reprocessing=True,
+                       attribution_issues=["segment 0: Pip -> Ahab (x)"])
+    calls: list[str] = []
+
+    def fake_run_chapter(config, client, chap, ros, new_names, force=False, **kw):
+        calls.append("critique")
+        return chap, CriticReport(chapter_number=1, overall_quality=0.4, needs_reprocessing=True), []
+
+    monkeypatch = pytest.MonkeyPatch()
+    monkeypatch.setattr(s06_critic, "run_chapter", fake_run_chapter)
+    monkeypatch.setattr(s05_segments, "_llm_window_pass", lambda *a, **k: {0: "Ahab"})
+    try:
+        kept, report = s05_segments._reattribute_and_recheck(
+            cfg, None, chapter, low, roster, set())
+    finally:
+        monkeypatch.undo()
+    # The second opinion (0.4) lost to the first (0.5): the first is kept,
+    # marked as having had its pass, and that is what the cache holds.
+    assert report.second_pass and report.overall_quality == 0.5
+    from gutenberg_reader.cache import read_json
+    cached = read_json(cfg.stage_dir(6) / "chapter-01.json")
+    assert cached["report"]["second_pass"] and cached["report"]["overall_quality"] == 0.5
+    assert cached["chapter"]["segments"][0]["speaker"] == "Pip"
+    assert CriticReport.from_dict(cached["report"]).second_pass

@@ -249,3 +249,46 @@ def test_stage_02_trims_a_publisher_catalogue_from_the_final_chapter():
     kept = "\n".join(body[infos[-1].start_line - 1:infos[-1].end_line])
     assert "The story begins here" in kept
     assert "Alcott" not in kept and "$1.50" not in kept
+
+
+def test_a_caption_is_never_a_chapter():
+    """PG 37106 shipped chapters titled "[Illustration: Mrs. Gardiner greeted
+    them]". A caption the model picks is dropped, not honoured."""
+    from gutenberg_reader.stages.s02_discovery import _structure_to_raw
+    body = ["[Illustration: A Merry Christmas]", "", "II.", "", "A MERRY CHRISTMAS.", "",
+            "Jo was the first to wake in the gray dawn of Christmas morning.",
+            "No stockings hung at the fireplace.", ""]
+    cands = candidates.extract(body)
+    picks = [(c.text, "body") for c in cands if "illustration" in c.flags or c.text == "II."]
+    raw = _structure_to_raw(_verdict(cands, picks), cands, body, _cfg())
+    assert [r["title"] for r in raw] == ["II. A MERRY CHRISTMAS."]
+
+
+def test_a_title_line_picked_instead_of_its_numeral_snaps_up():
+    """The model picked "A MERRY CHRISTMAS." for one chapter and "III." for
+    the next. Either line names the chapter; the numeral is where it
+    starts, and the two together are its title."""
+    from gutenberg_reader.stages.s02_discovery import _structure_to_raw
+    body = ["II.", "", "A MERRY CHRISTMAS.", "",
+            "Jo was the first to wake in the gray dawn of Christmas morning.",
+            "No stockings hung at the fireplace.", ""]
+    cands = candidates.extract(body)
+    picks = [("A MERRY CHRISTMAS.", "body")]
+    raw = _structure_to_raw(_verdict(cands, picks), cands, body, _cfg())
+    assert len(raw) == 1
+    assert raw[0]["title"] == "II. A MERRY CHRISTMAS." and raw[0]["start_line"] == 1
+    # Picking the numeral itself gives the same chapter once, not twice.
+    raw2 = _structure_to_raw(_verdict(cands, [("II.", "body"), ("A MERRY CHRISTMAS.", "body")]),
+                             cands, body, _cfg())
+    assert [r["title"] for r in raw2] == ["II. A MERRY CHRISTMAS."]
+
+
+def test_a_wrapped_heading_is_titled_without_the_slash():
+    from gutenberg_reader.stages.s02_discovery import _structure_to_raw
+    body = ["Chapter 61. How a Gardener May Get Rid of the Dormice that Eat His",
+            "Peaches", "",
+            "Not the same evening, as he had intended, but the next morning, the",
+            "Count of Monte Cristo went out by the Barrier d'Enfer.", ""]
+    cands = candidates.extract(body)
+    raw = _structure_to_raw(_verdict(cands, [(cands[0].text, "body")]), cands, body, _cfg())
+    assert raw[0]["title"].endswith("that Eat His Peaches")

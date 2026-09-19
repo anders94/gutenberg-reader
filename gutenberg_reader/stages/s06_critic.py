@@ -109,6 +109,26 @@ def run_chapter(
     return final_chapter, report, roster_issues
 
 
+def save_chapter(
+    config: Config,
+    chapter: ProcessedChapter,
+    report: CriticReport,
+    roster_issues: list[dict] | None = None,
+) -> None:
+    """Write what the caller settled on as this chapter's critic entry.
+
+    run_chapter caches what it computed; after a re-attribution the caller
+    may keep the first opinion instead, and the cache must say so, or a
+    resume serves the rejected second one.
+    """
+    atomic_write_json(chapter_file(config.stage_dir(6), chapter.chapter_number), {
+        "source": _fingerprint(chapter),
+        "chapter": chapter.to_dict(),
+        "report": report.to_dict(),
+        "roster_issues": roster_issues or [],
+    })
+
+
 def apply_roster_issues(
     roster: list[CharacterInfo],
     issues: list[dict],

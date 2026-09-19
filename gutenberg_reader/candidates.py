@@ -38,6 +38,8 @@ _PROSE_LOWER_RATIO = 0.5
 _OPENS_QUOTED = ('"', "'", "“", "‘")
 
 _ROMAN = re.compile(r"^[IVXLCDM]+\.?$", re.IGNORECASE)
+# Lines from a two-line heading's numeral to its title, at most.
+_TWO_LINE_SPAN = 4
 
 # An illustration's file name, left behind when Gutenberg's HTML edition was
 # flattened to text: PG 1184 prints "0023m", "0025m", "0027m" on their own
@@ -56,6 +58,11 @@ TOC_RUN_MAX_GAP = 4
 # CHRISTMAS.", which is a three-candidate cluster and a real heading. A contents
 # listing is not three entries long — Moby Dick's is 136, Little Women's 47.
 TOC_RUN_MIN_LEN = 6
+# How far apart two entries of a run may be when only short lines — captions
+# the prose filter dropped — sit between them. Little Women's illustration
+# list has stretches of eight such captions, nineteen lines, between two
+# candidates.
+TOC_RUN_MAX_GAP_NO_PROSE = 24
 
 
 @dataclass(frozen=True)
@@ -68,6 +75,8 @@ class Candidate:
     text: str             # the block, lines joined by " / "
     flags: tuple[str, ...]
     gap_before: int       # lines since the previous candidate
+    prose_before: int = 0   # paragraphs (blocks too big to be headings) since the previous candidate
+    prose_after: bool = False  # the next block is a paragraph, not another short line
 
     def render(self) -> str:
         flags = " ".join(self.flags)
@@ -176,6 +185,7 @@ def extract(body_lines: list[str]) -> list[Candidate]:
     """Every block in body_lines that could be a heading, in document order."""
     out: list[Candidate] = []
     prev_line = 0
+    prose_since = 0
     i, n = 0, len(body_lines)
 
     while i < n:
@@ -186,10 +196,14 @@ def extract(body_lines: list[str]) -> list[Candidate]:
         while j < n and body_lines[j].strip():
             j += 1
         block = [body_lines[k].strip() for k in range(i, j)]
+        emitted = False
+        if out and _is_paragraph(block):
+            # A paragraph after the last candidate: it is followed by prose.
+            if prose_since == 0:
+                out[-1] = replace(out[-1], prose_after=True)
+            prose_since += 1
 
-        if (len(block) <= MAX_BLOCK_LINES
-                and max(len(x) for x in block) <= MAX_BLOCK_LINE_CHARS
-                and sum(len(x) for x in block) <= MAX_BLOCK_CHARS):
+        if _heading_sized(block):
             text = " ".join(block)
             flags = _flags(block, text, body_lines, i)
             # A block the regexes recognize is kept whatever it looks like, so
@@ -208,11 +222,89 @@ def extract(body_lines: list[str]) -> list[Candidate]:
                     text=" / ".join(block),
                     flags=flags,
                     gap_before=i - prev_line,
+                    prose_before=prose_since,
                 ))
                 prev_line = i
+                prose_since = 0
+                emitted = True
         i = j
 
     return _mark_toc_runs(out)
+
+
+def _heading_sized(block: list[str]) -> bool:
+    return (len(block) <= MAX_BLOCK_LINES
+            and max(len(x) for x in block) <= MAX_BLOCK_LINE_CHARS
+            and sum(len(x) for x in block) <= MAX_BLOCK_CHARS)
+
+
+def _is_paragraph(block: list[str]) -> bool:
+    """A block of running text, as opposed to a caption or a heading.
+
+    Anything too big to be a heading; or a line of dialogue, which opens
+    with a quote; or a wrapped block that reads as prose and ends the way a
+    sentence ends ("...grumbled Jo, / lying on the rug." — two lines, short
+    enough to pass the size test). A caption is none of these: "The
+    procession set out" is one line, and a caption that wrapped ("I used
+    to be so frightened when it was my turn to sit in / the big chair")
+    has no full stop, so a listing of them is not broken by them.
+    """
+    if not _heading_sized(block):
+        return True
+    text = " ".join(block)
+    if text.startswith(_OPENS_QUOTED):
+        return True
+    return (len(block) >= 2 and _reads_as_prose(text)
+            and text.endswith(_SENTENCE_END))
+
+
+def _packed(c: Candidate) -> bool:
+    """Whether this candidate continues a listing from the previous one.
+
+    By line gap, or — further apart — with nothing but short lines between
+    them. PG 37106's List of Illustrations runs 200 entries two lines apart,
+    but most captions read as prose ("The procession set out") and are not
+    candidates, so by candidate-to-candidate gap the run broke into pieces
+    too short to mark, and the model took forty entries for chapters. What
+    never sits between two entries of a listing is a paragraph.
+    """
+    if c.gap_before <= TOC_RUN_MAX_GAP:
+        return True
+    return c.prose_before == 0 and c.gap_before <= TOC_RUN_MAX_GAP_NO_PROSE
+
+
+def _is_heading_over_text(cands: list[Candidate], k: int) -> bool:
+    """A heading the regex recognizes with a paragraph directly under it.
+
+    That is a chapter, whatever is packed above it: PG 3296's title page
+    sits five lines over "BOOK I", six short blocks in a row, and "BOOK I"
+    has the Confessions under it; PG 6400's sits over "PREFACE" the same
+    way. An entry in a listing has another entry under it. Such a candidate
+    is never part of a run.
+
+    A two-line heading ("I." over "PLAYING PILGRIMS.") has its title under
+    the numeral and the paragraph under the title, so it is judged on the
+    title line — and the title line goes with it.
+    """
+    c = cands[k]
+    if not any(f.startswith("regex:") or f in ("front-matter-word", "back-matter-word")
+               for f in c.flags):
+        return False
+    if c.prose_after:
+        return True
+    if "regex:two-line" in c.flags and k + 1 < len(cands):
+        title = cands[k + 1]
+        return title.line - c.line <= _TWO_LINE_SPAN and title.prose_after
+    return False
+
+
+def _heading_span(cands: list[Candidate], k: int) -> int:
+    """How many candidates the heading at k occupies: 2 for a two-line one."""
+    c = cands[k]
+    if ("regex:two-line" in c.flags and k + 1 < len(cands)
+            and cands[k + 1].line - c.line <= _TWO_LINE_SPAN):
+        return 2
+    return 1
 
 
 def _mark_toc_runs(cands: list[Candidate]) -> list[Candidate]:
@@ -226,8 +318,12 @@ def _mark_toc_runs(cands: list[Candidate]) -> list[Candidate]:
     i = 0
     while i < len(out):
         j = i
+        if _is_heading_over_text(out, i):
+            i += _heading_span(out, i)
+            continue
         while (j + 1 < len(out)
-               and out[j + 1].gap_before <= TOC_RUN_MAX_GAP
+               and _packed(out[j + 1])
+               and not _is_heading_over_text(out, j + 1)
                and "illustration" not in out[j + 1].flags):
             j += 1
         if j - i + 1 >= TOC_RUN_MIN_LEN:

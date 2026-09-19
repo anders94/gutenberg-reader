@@ -302,8 +302,8 @@ def _structure_to_raw(
     if config.include_back_matter:
         keep.add("back")
 
-    chosen: list[tuple[int, str, str]] = []   # (line, title, kind)
-    in_toc = 0
+    chosen: dict[int, tuple[str, str]] = {}   # line -> (title, kind)
+    in_toc = captions = snapped = 0
     for h in verdict.get("headings", []):
         c = by_ord.get(h.get("ordinal"))
         if c is None or h.get("kind") not in keep:
@@ -315,18 +315,51 @@ def _structure_to_raw(
         if "toc-run" in c.flags:
             in_toc += 1
             continue
-        chosen.append((c.line, c.text, h["kind"]))
-    chosen.sort()
+        # A caption is never a chapter. PG 37106 got four chapters titled
+        # "[Illustration: Mrs. Gardiner greeted them]" and the like.
+        if "illustration" in c.flags:
+            captions += 1
+            continue
+        # The title line of a two-line heading, picked instead of its numeral:
+        #     II.
+        #
+        #     A MERRY CHRISTMAS.
+        # Either line names the same chapter; the numeral is where it starts,
+        # and the two together are its title.
+        prev = by_ord.get(c.ordinal - 1)
+        if (prev is not None and "regex:two-line" in prev.flags
+                and c.line - prev.line <= text_utils.TWO_LINE_HEADING_SPAN):
+            c = prev
+            snapped += 1
+        # A heading that wrapped is rendered "first line / second line" for
+        # the model; its title is the words. PG 1184's chapter 61 would
+        # otherwise be read aloud as "...the Dormice that Eat His slash
+        # Peaches".
+        title = c.text.replace(" / ", " ")
+        if "regex:two-line" in c.flags:
+            joined = text_utils._two_line_heading(body_lines, c.line)
+            if joined is not None:
+                title = joined[0]
+        chosen[c.line] = (title, h["kind"])
     if in_toc:
         console.print(
             f"[cyan]Stage 02:[/cyan] ignored {in_toc} heading(s) inside a contents "
             "listing — they are entries, not the body"
         )
+    if captions:
+        console.print(
+            f"[cyan]Stage 02:[/cyan] ignored {captions} illustration caption(s) "
+            "chosen as headings"
+        )
+    if snapped and config.verbose:
+        console.print(
+            f"[dim]Stage 02: {snapped} title line(s) moved up to their numeral[/dim]"
+        )
 
     raw = [
         {"number": i + 1, "title": title, "start_line": line + 1,
          "start_marker": title, "kind": kind}
-        for i, (line, title, kind) in enumerate(chosen)
+        for i, (line, (title, kind)) in enumerate(sorted(chosen.items()))
     ]
 
     # The edition prints no heading over its opening chapter (PG 1342). Give the
