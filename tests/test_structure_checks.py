@@ -410,3 +410,22 @@ def test_a_title_page_over_a_heading_is_not_a_listing():
             "Thy power, and Thy wisdom infinite. And Thee would man praise.", ""]
     cands = candidates.extract(body)
     assert not any("toc-run" in c.flags for c in cands)
+
+
+@pytest.mark.parametrize("line", [
+    "_Reading Jane’s Letters._      _Chap 34._ / ]",       # tail of a split illustration block
+    "(_As told at the Golden Inn._)",                      # a parenthesis
+    "(_Ahab to himself_.)",
+    "--------Quid Nerone pejus? / Quid thermis melius Neronianis.--B. vii. ch. 34.",
+    "Thus ends BOOK II. (_Octavo_), and begins BOOK III. (_Duodecimo_).",
+    "DAGGOO (_grimly_). None.",                            # a stage direction
+    "Hunc Fauna, et nympha genitum / Laurente Marica Accipimus.--Aen. vii. 47.",
+    "[103] [ See note [64].]",
+])
+def test_lines_that_were_chapter_titles_in_shipped_books_are_not_candidates(line):
+    """Pride and Prejudice, Moby-Dick and Suetonius shipped with these as
+    chapter titles; a performer then announced "Chapter 1. Reading Jane's
+    Letters. Chap 34."."""
+    body = line.split(" / ") + ["", "Prose follows here, long enough to be a paragraph of the",
+                                "book and not a heading of any kind.", ""]
+    assert line not in [c.text for c in candidates.extract(body)]

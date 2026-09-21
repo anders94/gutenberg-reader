@@ -159,21 +159,56 @@ _TITLE_PARTICLES = frozenset({
 })
 
 
+_WORD_WRAP = ".,;:!?\"'\u201c\u201d\u2018\u2019_()[]"
+
+
+def _bare(word: str) -> str:
+    """The word without the punctuation, underscores and brackets around it:
+    "(_grimly_)." is "grimly"."""
+    return word.strip(_WORD_WRAP)
+
+
+def _lower_content_words(words: list[str]) -> int:
+    return sum(
+        1 for w in words
+        if _bare(w)[:1].islower() and _bare(w).lower() not in _TITLE_PARTICLES
+    )
+
+
 def _short_sentence(text: str) -> bool:
     words = text.split()
     if (not 2 <= len(words) <= _SHORT_SENTENCE_MAX_WORDS
             or not text.endswith(_SENTENCE_END)):
         return False
-    return any(
-        w[:1].islower() and w.strip(".,;:!?\"'\u201c\u201d\u2018\u2019_").lower()
-        not in _TITLE_PARTICLES
-        for w in words[1:]
-    )
+    return _lower_content_words(words[1:]) > 0
+
+
+# A sentence of any length: several lower-case words that carry meaning, and
+# a full stop. "Thus ends BOOK I. (_Folio_), and now begins BOOK II.
+# (_Octavo_)." is half capitals by the ratio test and was a chapter of
+# Moby-Dick twice; so was a Latin epigraph with its citation in Suetonius.
+_SENTENCE_MIN_LOWER_WORDS = 2
+
+# Blocks that are never a heading whatever their words: the tail of an
+# illustration block that a blank line split ("_Reading Jane's Letters._ /
+# ]" was chapter one of Pride and Prejudice), a parenthesis ("(_As told at
+# the Golden Inn._)"), and a rule of dashes opening an epigraph.
+_NEVER_HEADING_RE = re.compile(
+    r"^\s*[\(\[].*[\)\]]\s*$"      # wrapped in brackets
+    r"|^[^\[]*\]"                     # closes a bracket it never opened
+    r"|^\s*-{3,}"                     # a rule of dashes
+    r"|^\s*\*(?:\s+\*)+\s*$",       # a row of asterisks
+    re.DOTALL,
+)
 
 
 def _reads_as_prose(text: str) -> bool:
     words = text.split()
     if _short_sentence(text):
+        return True
+    if _NEVER_HEADING_RE.search(text):
+        return True
+    if text.endswith(_SENTENCE_END) and _lower_content_words(words) >= _SENTENCE_MIN_LOWER_WORDS:
         return True
     if len(words) <= _PROSE_MIN_WORDS or not re.search(r"[a-z]", text):
         return False
