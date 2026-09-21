@@ -239,6 +239,14 @@ A dialogue segment whose quotation continues into the next paragraph (Gutenberg
 convention: no closing quote at paragraph end) carries `"notes": "quote-continues"`;
 the following dialogue segment is the same speaker.
 
+A chapter's `title` is given as it is spoken: a leading bare numeral is dropped
+("II. A MERRY CHRISTMAS." becomes "A MERRY CHRISTMAS."), since the chapter's
+`number` is its own field and a performer announces it. Labelled headings
+("CHAPTER II.", "BOOK I") are kept as they are. `start_marker` keeps the heading
+as printed. The heading is also in the chapter's text; the narration segment(s)
+that are it carry `"notes": "heading"` (two of them for a numeral printed above
+its title), so a performer that announces the chapter itself can skip them.
+
 Every segment also carries `para` (which paragraph of the chapter it came from)
 and, on dialogue, `evidence` — how the speaker label was arrived at:
 

@@ -81,18 +81,28 @@ def run(
         processed, report = accepted[num]
         ci = info_by_num.get(num)
 
+        # Stage 02 is the authority on titles; a chapter processed before
+        # that was threaded through stage 05 carries whatever its first
+        # non-blank line said ("I." for a two-line heading). The title is
+        # given as it is spoken — the chapter's number is its own field —
+        # and start_marker keeps the heading as printed.
+        printed = ci.title if ci else processed.chapter_title
+        title = text_utils.spoken_title(printed)
+        processed_out = processed.to_dict()
+        processed_out["chapter_title"] = title
+        # The heading is in the text too. Note which segments it is, so a
+        # performer that announces the chapter does not read it twice.
+        text_utils.mark_heading_segments(
+            processed_out["segments"], ci.start_marker if ci else printed)
         chapter_entry = {
             "chapter": {
                 "number": processed.chapter_number,
-                # Stage 02 is the authority on titles; a chapter processed
-                # before that was threaded through stage 05 carries whatever
-                # its first non-blank line said ("I." for a two-line heading).
-                "title": ci.title if ci else processed.chapter_title,
+                "title": title,
                 "text": "",  # raw text omitted from final output
                 "word_count": processed.word_count,
-                "start_marker": ci.start_marker if ci else processed.chapter_title,
+                "start_marker": ci.start_marker if ci else printed,
             },
-            "processed": processed.to_dict(),
+            "processed": processed_out,
             "validation": report.to_dict() if report else None,
             # Visible in the output rather than only in a log line: a chapter the
             # critic scored poorly, or only partly saw, is the one worth listening

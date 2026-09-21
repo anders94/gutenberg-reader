@@ -1275,3 +1275,75 @@ def _tag_speaker(sentence: str, alias_map: dict[str, str]) -> str | None:
     return matches[0] if len(matches) == 1 else None
 
 
+
+
+# ── Chapter titles as spoken ──────────────────────────────────────────────────
+
+# A bare numeral opening a title: "II. A MERRY CHRISTMAS.", "I. A SCANDAL IN
+# BOHEMIA", "1. Loomings". The chapter's number is a field of its own, and a
+# performer that announces "Chapter 2" and then the title said "Chapter two,
+# two, A Merry Christmas" for every chapter of Little Women.
+_BARE_NUMERAL_PREFIX_RE = re.compile(r"^\s*(?:[IVXLCDM]+|\d+)\.?[\s\u2014\u2013:-]+(?=\S)", re.IGNORECASE)
+
+
+def spoken_title(title: str) -> str:
+    """The title without a leading bare numeral. Labelled headings ("CHAPTER
+    II.", "BOOK I", "Chapter 1. Marseilles") are left alone: the label says
+    what the number is, and a performer may want "Book 1" over "Chapter 1"."""
+    stripped = _BARE_NUMERAL_PREFIX_RE.sub("", title, count=1)
+    return stripped.strip() if stripped.strip() else title.strip()
+
+
+_HEADING_KEY_RE = re.compile(r"[\s/]+")
+
+
+def _heading_key(text: str) -> str:
+    # Punctuation goes: "II." joined to "A MERRY CHRISTMAS." must equal
+    # "II. A MERRY CHRISTMAS.", and source line breaks arrive as " / ".
+    return _HEADING_KEY_RE.sub(" ", re.sub(r"[.:;,]", "", text)).strip().casefold()
+
+
+# Leading segments looked at for the printed heading. A part title can sit
+# above it ("PART ONE" over "Chapter I The Bertolini").
+HEADING_LOOKAHEAD = 4
+HEADING_SKIP_MAX_WORDS = 6
+
+HEADING_NOTE = "heading"
+
+
+def mark_heading_segments(segments: list[dict], heading: str) -> int:
+    """Note the segments that are the chapter's printed heading.
+
+    The heading is in the text — chapters start at their heading line — and a
+    two-line heading ("II." over "A MERRY CHRISTMAS.") is two narration
+    segments there. A performer announcing the chapter itself needs to know
+    which segments those are, so it does not read them a second time. Leading
+    narration segments are consumed while they build up a prefix of the
+    heading, and no further: PG 1661's "I. A SCANDAL IN BOHEMIA" is followed
+    by a bare "I." that is a section of the story. Returns how many were
+    marked; nothing is marked unless the whole heading was found.
+    """
+    target = _heading_key(heading)
+    if not target:
+        return 0
+    acc = ""
+    marked: list[int] = []
+    for i, seg in enumerate(segments[:HEADING_LOOKAHEAD]):
+        if seg.get("type") != "narration":
+            break
+        piece = _heading_key(seg.get("text", ""))
+        cand = (acc + " " + piece).strip()
+        if target.startswith(cand):
+            marked.append(i)
+            acc = cand
+            if cand == target:
+                break
+        elif not acc and len(piece.split()) <= HEADING_SKIP_MAX_WORDS:
+            continue       # a part title or the like, above the heading
+        else:
+            break
+    if acc != target:
+        return 0
+    for i in marked:
+        segments[i]["notes"] = HEADING_NOTE
+    return len(marked)

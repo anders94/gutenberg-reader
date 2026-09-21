@@ -506,3 +506,56 @@ def test_image_file_name_lines_are_not_read_aloud():
     assert ok, issues
     # A real word with a trailing letter is untouched.
     assert segmenter.normalize_chapter("Room 101a is ready.\n")[0] == "Room 101a is ready."
+
+
+# ── Chapter titles as spoken, and the heading in the text ────────────────────
+
+
+@pytest.mark.parametrize("printed,spoken", [
+    ("II. A MERRY CHRISTMAS.", "A MERRY CHRISTMAS."),
+    ("I. A SCANDAL IN BOHEMIA", "A SCANDAL IN BOHEMIA"),
+    ("XLVII. HARVEST TIME.", "HARVEST TIME."),
+    ("1. Loomings.", "Loomings."),
+    ("CHAPTER II.", "CHAPTER II."),
+    ("BOOK I", "BOOK I"),
+    ("Chapter 1. Marseilles—The Arrival", "Chapter 1. Marseilles—The Arrival"),
+    ("II.", "II."),
+    ("Part 3", "Part 3"),
+])
+def test_a_bare_numeral_is_not_part_of_the_spoken_title(printed, spoken):
+    from gutenberg_reader.text_utils import spoken_title
+    assert spoken_title(printed) == spoken
+
+
+def _segs(*texts):
+    return [{"type": "narration", "text": t, "notes": None} for t in texts]
+
+
+def test_a_two_line_heading_is_two_marked_segments():
+    from gutenberg_reader.text_utils import mark_heading_segments
+    segs = _segs("II.", "A MERRY CHRISTMAS.", "Jo was the first to wake.")
+    assert mark_heading_segments(segs, "II. A MERRY CHRISTMAS.") == 2
+    assert [s["notes"] for s in segs] == ["heading", "heading", None]
+
+
+def test_a_section_numeral_after_the_heading_is_not_the_heading():
+    """PG 1661: the story's first section is numbered "I." right under the
+    heading "I. A SCANDAL IN BOHEMIA"."""
+    from gutenberg_reader.text_utils import mark_heading_segments
+    segs = _segs("I. A SCANDAL IN BOHEMIA", "I.", "To Sherlock Holmes she is always the woman.")
+    assert mark_heading_segments(segs, "I. A SCANDAL IN BOHEMIA") == 1
+    assert [s["notes"] for s in segs] == ["heading", None, None]
+
+
+def test_a_part_title_above_the_heading_is_skipped_over():
+    from gutenberg_reader.text_utils import mark_heading_segments
+    segs = _segs("PART ONE", "Chapter I The Bertolini", "“The Signora had no business to do it,”")
+    assert mark_heading_segments(segs, "Chapter I / The Bertolini") == 1
+    assert [s["notes"] for s in segs] == [None, "heading", None]
+
+
+def test_a_chapter_with_no_printed_heading_marks_nothing():
+    from gutenberg_reader.text_utils import mark_heading_segments
+    segs = _segs("It is a truth universally acknowledged, that a single man")
+    assert mark_heading_segments(segs, "Chapter I") == 0
+    assert segs[0]["notes"] is None
